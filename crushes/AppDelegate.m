@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "MainViewController.h"
+#import "MoreViewController.h"
+#import "SendViewController.h"
+#import "WebViewController.h"
 
 @implementation AppDelegate
 
@@ -14,6 +18,18 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    WebViewController *mainVC = [[WebViewController alloc] init];
+    WebViewController *moreVC = [[WebViewController alloc] init];
+    SendViewController *sendVC = [[SendViewController alloc] init];
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    
+    NSArray *viewControllers = [NSArray arrayWithObjects:mainVC, moreVC, sendVC, nil];
+    [tabBarController setViewControllers:viewControllers];
+    
+    [[self window] setRootViewController:tabBarController];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
