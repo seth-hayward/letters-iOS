@@ -15,7 +15,7 @@ typedef enum {
 
 @interface WebViewController : UIViewController
 {
-    __weak IBOutlet UILabel *typeLabel;
+    __weak IBOutlet UIWebView *webView;
 }
 
 @property (nonatomic) WebViewType viewType;

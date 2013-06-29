@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SendViewController : UIViewController
+@interface SendViewController : UIViewController <UITextFieldDelegate>
 {
     __weak IBOutlet UITextView *messageText;
     __weak IBOutlet UIButton *sendButton;    
 }
+- (IBAction)backgroundTapped:(id)sender;
 
 @end

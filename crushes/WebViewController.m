@@ -24,15 +24,26 @@
 
 - (void)viewDidLoad
 {
+    
+    NSURL *url;
+    
     if ([self viewType] == WebViewTypeHome) {
-        [typeLabel setText:@"Home view"];
+        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/home"];
+        NSLog(@"Using home page...");
     } else if ([self viewType] == WebViewTypeMore) {
-        [typeLabel setText:@"More view"];
+        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/more"];
+        NSLog(@"Using more page...");
     }
+    
+    [webView setScalesPageToFit:YES];
+    
+    NSURLRequest *req = [NSURLRequest requestWithURL:url];
+    [webView loadRequest:req];
+    
 }
 
 - (void)viewDidUnload {
-    typeLabel = nil;
+    webView = nil;
     [super viewDidUnload];
 }
 @end

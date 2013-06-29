@@ -19,13 +19,17 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    WebViewController *mainVC = [[WebViewController alloc] init];
+    WebViewController *homeVC = [[WebViewController alloc] init];
+    [homeVC setViewType:WebViewTypeHome];
+    
     WebViewController *moreVC = [[WebViewController alloc] init];
+    [moreVC setViewType:WebViewTypeMore];
+    
     SendViewController *sendVC = [[SendViewController alloc] init];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
-    NSArray *viewControllers = [NSArray arrayWithObjects:mainVC, moreVC, sendVC, nil];
+    NSArray *viewControllers = [NSArray arrayWithObjects:homeVC, moreVC, sendVC, nil];
     [tabBarController setViewControllers:viewControllers];
     
     [[self window] setRootViewController:tabBarController];
