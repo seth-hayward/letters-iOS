@@ -27,6 +27,12 @@ profile
 
 
 ####
+# Ignore CocoaPods files plz
+#
+Pods/
+
+
+####
 # Xcode build files -
 #
 # NB: slash on the end, so we only remove the FOLDER, not any files that were badly named "DerivedData"
