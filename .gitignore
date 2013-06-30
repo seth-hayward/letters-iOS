@@ -31,6 +31,10 @@ profile
 #
 Pods/
 
+####
+# Ignore RestKit submodule
+#
+RestKit/
 
 ####
 # Xcode build files -
