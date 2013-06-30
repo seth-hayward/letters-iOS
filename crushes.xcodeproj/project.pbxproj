@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20301876327F424892049AFA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C6818BD3B3146F19D555AC7 /* libPods.a */; };
 		5D0BD03D1670AAA30088A383 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D0BD03C1670AAA30088A383 /* UIKit.framework */; };
 		5D0BD03F1670AAA30088A383 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D0BD03E1670AAA30088A383 /* Foundation.framework */; };
 		5D0BD0411670AAA30088A383 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D0BD0401670AAA30088A383 /* CoreGraphics.framework */; };
@@ -28,6 +29,7 @@
 		5D0BD077167117350088A383 /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD076167117350088A383 /* pencil.png */; };
 		5D0BD07A16711F850088A383 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0BD07916711F850088A383 /* WebViewController.m */; };
 		5D0BD07C16711FB30088A383 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD07B16711FB30088A383 /* WebViewController.xib */; };
+		5D7F303B1780DCE8009F0AC6 /* RKLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303A1780DCE8009F0AC6 /* RKLetter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,10 @@
 		5D0BD07816711F850088A383 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		5D0BD07916711F850088A383 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		5D0BD07B16711FB30088A383 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
+		5D7F30391780DCE8009F0AC6 /* RKLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLetter.h; sourceTree = "<group>"; };
+		5D7F303A1780DCE8009F0AC6 /* RKLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLetter.m; sourceTree = "<group>"; };
+		6C6818BD3B3146F19D555AC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E241FCEAA9F14664A45919BA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,7 @@
 				5D0BD03D1670AAA30088A383 /* UIKit.framework in Frameworks */,
 				5D0BD03F1670AAA30088A383 /* Foundation.framework in Frameworks */,
 				5D0BD0411670AAA30088A383 /* CoreGraphics.framework in Frameworks */,
+				20301876327F424892049AFA /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +90,7 @@
 				5D0BD0421670AAA30088A383 /* crushes */,
 				5D0BD03B1670AAA30088A383 /* Frameworks */,
 				5D0BD0391670AAA30088A383 /* Products */,
+				E241FCEAA9F14664A45919BA /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +108,7 @@
 				5D0BD03C1670AAA30088A383 /* UIKit.framework */,
 				5D0BD03E1670AAA30088A383 /* Foundation.framework */,
 				5D0BD0401670AAA30088A383 /* CoreGraphics.framework */,
+				6C6818BD3B3146F19D555AC7 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -122,6 +131,8 @@
 				5D0BD04B1670AAA30088A383 /* AppDelegate.h */,
 				5D0BD04C1670AAA30088A383 /* AppDelegate.m */,
 				5D0BD0431670AAA30088A383 /* Supporting Files */,
+				5D7F30391780DCE8009F0AC6 /* RKLetter.h */,
+				5D7F303A1780DCE8009F0AC6 /* RKLetter.m */,
 			);
 			path = crushes;
 			sourceTree = "<group>";
@@ -152,9 +163,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5D0BD0561670AAA30088A383 /* Build configuration list for PBXNativeTarget "crushes" */;
 			buildPhases = (
+				35E162E57B5949329163ACA5 /* Check Pods Manifest.lock */,
 				5D0BD0341670AAA30088A383 /* Sources */,
 				5D0BD0351670AAA30088A383 /* Frameworks */,
 				5D0BD0361670AAA30088A383 /* Resources */,
+				6B0B731996EA4863BE3D0D79 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -213,6 +226,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		35E162E57B5949329163ACA5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
+		6B0B731996EA4863BE3D0D79 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5D0BD0341670AAA30088A383 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -224,6 +268,7 @@
 				5D0BD0631670FEA70088A383 /* MoreViewController.m in Sources */,
 				5D0BD06C16710B920088A383 /* SendViewController.m in Sources */,
 				5D0BD07A16711F850088A383 /* WebViewController.m in Sources */,
+				5D7F303B1780DCE8009F0AC6 /* RKLetter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +338,7 @@
 		};
 		5D0BD0571670AAA30088A383 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E241FCEAA9F14664A45919BA /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = crushes/crushes.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -306,6 +352,7 @@
 		};
 		5D0BD0581670AAA30088A383 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E241FCEAA9F14664A45919BA /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = crushes/crushes.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
