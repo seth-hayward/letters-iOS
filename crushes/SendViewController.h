@@ -14,5 +14,6 @@
     __weak IBOutlet UIButton *sendButton;    
 }
 - (IBAction)backgroundTapped:(id)sender;
+- (IBAction)sendLetter:(id)sender;
 
 @end
