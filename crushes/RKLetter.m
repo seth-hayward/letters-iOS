@@ -9,14 +9,14 @@
 #import "RKLetter.h"
 
 @implementation RKLetter
-@synthesize lettertext, lettercountry;
+@synthesize letterText, letterCountry;
 
 - (id)initWithLetterMessage:(NSString *)message
 {
     self = [super init];
     
     if (self) {
-        [self setLettertext:message];
+        [self setLetterText:message];
     }
     
     return self;
