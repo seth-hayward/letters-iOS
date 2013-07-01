@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface RKMessage : NSObject
-- (id)initWithMessage:(int)new_message;
+- (id)initWithMessage:(NSString *)new_message;
 
-@property (nonatomic) int *response;
-@property (nonatomic) int *message;
+@property (nonatomic) NSNumber *response;
+@property (nonatomic) NSString *message;
 @property (nonatomic, copy) NSString *guid;
 
 @end

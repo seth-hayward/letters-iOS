@@ -11,7 +11,7 @@
 @implementation RKMessage
 @synthesize response, message, guid;
 
-- (id)initWithMessage:(int)new_message
+- (id)initWithMessage:(NSString *)new_message
 {
     self = [super init];
     
