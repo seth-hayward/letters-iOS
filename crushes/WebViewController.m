@@ -28,7 +28,7 @@
             [tbi2 setTitle:@"More"];
             [tbi2 setImage:[UIImage imageNamed:@"medical.png"]];
         }
-        
+    
     }
     
     return self;
@@ -47,7 +47,7 @@
         NSLog(@"Using more page...");
     }
     
-    [webView setScalesPageToFit:YES];
+    [webView setDelegate:self];
     
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     [webView loadRequest:req];
@@ -57,5 +57,25 @@
 - (void)viewDidUnload {
     webView = nil;
     [super viewDidUnload];
+}
+
+- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSString *urlString = [[request URL] absoluteString];
+    
+    if([urlString rangeOfString:@"http://www.letterstocrushes.com/letter/"].length > 0 &&
+       [urlString rangeOfString:@"/mobile"].location == NSNotFound) {
+        
+        // on all letter pages, we want to append /mobile to the url
+        urlString = [urlString stringByAppendingString:@"/mobile"];
+        
+        NSURL *url;
+        url = [NSURL URLWithString:urlString];
+        
+        NSURLRequest *req = [NSURLRequest requestWithURL:url];
+        [webView loadRequest:req];
+        
+    }
+    return YES;
 }
 @end

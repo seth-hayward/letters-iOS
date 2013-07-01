@@ -13,7 +13,7 @@ typedef enum {
     WebViewTypeMore
 } WebViewType;
 
-@interface WebViewController : UIViewController
+@interface WebViewController : UIViewController <UIWebViewDelegate>
 {
     __weak IBOutlet UIWebView *webView;
 }
