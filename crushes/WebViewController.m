@@ -20,13 +20,17 @@
         [self setViewType:type];
         
         if ([self viewType] == WebViewTypeHome) {
-            UITabBarItem *tbi = [self tabBarItem];
-            [tbi setTitle:@"Home"];
-            [tbi setImage:[UIImage imageNamed:@"home.png"]];
+            UITabBarItem *tbi_home = [self tabBarItem];
+            [tbi_home setTitle:@"Home"];
+            [tbi_home setImage:[UIImage imageNamed:@"home.png"]];
         } else if ([self viewType] == WebViewTypeMore) {
-            UITabBarItem *tbi2 = [self tabBarItem];
-            [tbi2 setTitle:@"More"];
-            [tbi2 setImage:[UIImage imageNamed:@"medical.png"]];
+            UITabBarItem *tbi_more = [self tabBarItem];
+            [tbi_more setTitle:@"More"];
+            [tbi_more setImage:[UIImage imageNamed:@"medical.png"]];
+        } else if ([self viewType] == WebViewTypeBookmarks) {
+            UITabBarItem *tbi_bookmarks = [self tabBarItem];
+            [tbi_bookmarks setTitle:@"Bookmarks"];
+            [tbi_bookmarks setImage:[UIImage imageNamed:@"bookmark.png"]];
         }
     
     }
@@ -40,11 +44,11 @@
     NSURL *url;
     
     if ([self viewType] == WebViewTypeHome) {
-        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/home?mobile=1"];
-        NSLog(@"Using home page...");
+        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile"];
     } else if ([self viewType] == WebViewTypeMore) {
-        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/more?mobile=1"];
-        NSLog(@"Using more page...");
+        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/more"];
+    } else if ([self viewType] == WebViewTypeBookmarks) {
+        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/login"];
     }
     
     [webView setDelegate:self];
@@ -66,8 +70,11 @@
     if([urlString rangeOfString:@"http://www.letterstocrushes.com/letter/"].length > 0 &&
        [urlString rangeOfString:@"/mobile"].location == NSNotFound) {
         
-        // on all letter pages, we want to append /mobile to the url
-        urlString = [urlString stringByAppendingString:@"/mobile"];
+        // on all letter pages, we want to use the mobile url:
+        // http://www.letterstocrushes.com/letter/150150 becomes
+        // http://www.letterstocrushes.com/mobile/letter/150150
+        
+        urlString = [urlString stringByReplacingOccurrencesOfString:@"/letter/" withString:@"/mobile/letter/"];
         
         NSURL *url;
         url = [NSURL URLWithString:urlString];

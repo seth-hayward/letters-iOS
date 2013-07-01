@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
 #import "SendViewController.h"
 #import "WebViewController.h"
 
@@ -24,12 +23,14 @@
     WebViewController *homeVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeHome];
     
     WebViewController *moreVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeMore];
+
+    WebViewController *bookmarksVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeBookmarks];
     
     SendViewController *sendVC = [[SendViewController alloc] init];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
-    NSArray *viewControllers = [NSArray arrayWithObjects:homeVC, moreVC, sendVC, nil];
+    NSArray *viewControllers = [NSArray arrayWithObjects:homeVC, moreVC, bookmarksVC, sendVC, nil];
     [tabBarController setViewControllers:viewControllers];
     
     [[self window] setRootViewController:tabBarController];
