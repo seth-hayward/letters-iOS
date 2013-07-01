@@ -23,16 +23,6 @@
         [tbi setImage:[UIImage imageNamed:@"pencil.png"]];
     }
     
-    NSLog(@"Hello from SendView.");
-    
-    NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com/"];  //http://example.com/v1/"];
-    [NSURL URLWithString:@"foo" relativeToURL:baseURL];                  // http://example.com/v1/foo
-    [NSURL URLWithString:@"foo?bar=baz" relativeToURL:baseURL];          // http://example.com/v1/foo?bar=baz
-    [NSURL URLWithString:@"/foo" relativeToURL:baseURL];                 // http://example.com/foo
-    [NSURL URLWithString:@"foo/" relativeToURL:baseURL];                 // http://example.com/v1/foo
-    [NSURL URLWithString:@"/foo/" relativeToURL:baseURL];                // http://example.com/foo/
-    [NSURL URLWithString:@"http://example2.com/" relativeToURL:baseURL]; // http://example2.com/
-    
     return self;
 }
 
