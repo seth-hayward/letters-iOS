@@ -48,7 +48,7 @@
     } else if ([self viewType] == WebViewTypeMore) {
         url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/more"];
     } else if ([self viewType] == WebViewTypeBookmarks) {
-        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/login"];
+        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/bookmarks"];
     }
     
     [webView setDelegate:self];
