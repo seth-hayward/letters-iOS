@@ -9,6 +9,7 @@
 #import "SendViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "RKLetter.h"
+#import "RKMessage.h"
 
 @implementation SendViewController
 
@@ -64,15 +65,41 @@
 	RKLetter* letter = [RKLetter new];
 	letter.letterText = letter_message;
     letter.letterCountry = @" ";
+
     
-	[[RKObjectManager sharedManager] postObject:letter path:@"http://www.letterstocrushes.com/Home/Mail" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
+    
+    [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+    
+    RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@%@", @"/Home/Mail?letterText=", letter_message, @"&letterCountry=US"];
+    NSString *safe_url = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    
+    [objectManager postObject:nil path:safe_url parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         UIAlertView *alert_success = [[UIAlertView alloc] initWithTitle:@"Success!" message: @"It was sent." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
         [alert_success show];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send Error" message: [error description] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
-        [alert show];        
+        [alert show];
     }];
     
-    NSLog(letter_message);
+//    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping];
+//    [requestMapping addAttributeMappingsFromArray:@[@"message", @"response"]];
+//    
+//    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[RKMessage class] rootKeyPath:@""];
+//    
+//    [objectManager addRequestDescriptor:requestDescriptor];
+//    
+//    [objectManager postObject:letter path:@"/home/mail" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+//        UIAlertView *alert_success = [[UIAlertView alloc] initWithTitle:@"Success!" message: @"It was sent." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+//        [alert_success show];
+//    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send Error" message: [error description] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+//        [alert show];
+//    }];
+ 
+    NSLog(@"hi");
 }
 @end
