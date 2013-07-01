@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-#import "MoreViewController.h"
 #import "SendViewController.h"
 #import "WebViewController.h"
 
