@@ -21,11 +21,9 @@
     RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
     
-    WebViewController *homeVC = [[WebViewController alloc] init];
-    [homeVC setViewType:WebViewTypeHome];
+    WebViewController *homeVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeHome];
     
-    WebViewController *moreVC = [[WebViewController alloc] init];
-    [moreVC setViewType:WebViewTypeMore];
+    WebViewController *moreVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeMore];
     
     SendViewController *sendVC = [[SendViewController alloc] init];
     

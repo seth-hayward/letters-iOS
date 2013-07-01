@@ -11,12 +11,24 @@
 @implementation WebViewController
 @synthesize viewType;
 
-- (id)initWithType:(WebViewType)type
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil viewType:(WebViewType)type
 {
-    self = [super init];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self) {
+        
         [self setViewType:type];
+        
+        if ([self viewType] == WebViewTypeHome) {
+            UITabBarItem *tbi = [self tabBarItem];
+            [tbi setTitle:@"Home"];
+            [tbi setImage:[UIImage imageNamed:@"home.png"]];
+        } else if ([self viewType] == WebViewTypeMore) {
+            UITabBarItem *tbi2 = [self tabBarItem];
+            [tbi2 setTitle:@"More"];
+            [tbi2 setImage:[UIImage imageNamed:@"medical.png"]];
+        }
+        
     }
     
     return self;
@@ -28,10 +40,10 @@
     NSURL *url;
     
     if ([self viewType] == WebViewTypeHome) {
-        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/home"];
+        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/home?mobile=1"];
         NSLog(@"Using home page...");
     } else if ([self viewType] == WebViewTypeMore) {
-        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/more"];
+        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/more?mobile=1"];
         NSLog(@"Using more page...");
     }
     

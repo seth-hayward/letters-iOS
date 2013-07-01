@@ -18,6 +18,8 @@ typedef enum {
     __weak IBOutlet UIWebView *webView;
 }
 
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil viewType:(WebViewType)type;
+
 @property (nonatomic) WebViewType viewType;
 
 @end
