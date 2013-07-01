@@ -14,7 +14,7 @@
 
 - (id)initWithLetterMessage:(NSString *)message;
 
-@property (nonatomic, copy) NSString *letterText;
-@property (nonatomic, copy) NSString *letterCountry;
+@property (nonatomic, copy) NSString *lettertext;
+@property (nonatomic, copy) NSString *lettercountry;
 
 @end

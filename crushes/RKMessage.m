@@ -9,9 +9,9 @@
 #import "RKMessage.h"
 
 @implementation RKMessage
-@synthesize response, message;
+@synthesize response, message, guid;
 
-- (id)initWithMessage:(NSString *)new_message
+- (id)initWithMessage:(int)new_message
 {
     self = [super init];
     
@@ -24,7 +24,7 @@
 
 - (id)init
 {
-    return [self initWithMessage:@" "];
+    return [self initWithMessage:0];
 }
 
 @end

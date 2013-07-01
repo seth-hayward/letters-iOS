@@ -63,8 +63,8 @@
     
 	// Create a new letter and POST it to the server
 	RKLetter* letter = [RKLetter new];
-	letter.letterText = letter_message;
-    letter.letterCountry = @" ";
+	letter.lettertext = letter_message;
+    letter.lettercountry = @" ";
 
     
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
@@ -73,6 +73,14 @@
     [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
     
     RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+    
+    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping];
+    [requestMapping addAttributeMappingsFromArray:@[@"message", @"response", @"guid"]];
+    
+    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[RKMessage class] rootKeyPath:@""];
+    
+    [objectManager addRequestDescriptor:requestDescriptor];
+    
     
     NSString *url = [NSString stringWithFormat:@"%@%@%@", @"/Home/Mail?letterText=", letter_message, @"&letterCountry=US"];
     NSString *safe_url = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
@@ -85,13 +93,7 @@
         [alert show];
     }];
     
-//    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping];
-//    [requestMapping addAttributeMappingsFromArray:@[@"message", @"response"]];
-//    
-//    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[RKMessage class] rootKeyPath:@""];
-//    
-//    [objectManager addRequestDescriptor:requestDescriptor];
-//    
+//
 //    [objectManager postObject:letter path:@"/home/mail" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
 //        UIAlertView *alert_success = [[UIAlertView alloc] initWithTitle:@"Success!" message: @"It was sent." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
 //        [alert_success show];
