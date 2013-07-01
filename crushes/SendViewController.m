@@ -20,7 +20,7 @@
     if (self) {
         UITabBarItem *tbi = [self tabBarItem];
         [tbi setTitle:@"Send"];
-        [tbi setImage:[UIImage imageNamed:@"pencil.png"]];
+        [tbi setImage:[UIImage imageNamed:@"envelope.png"]];
     }
     
     return self;
