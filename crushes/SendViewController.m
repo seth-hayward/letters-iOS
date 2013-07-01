@@ -62,17 +62,7 @@
     [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
     
     RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
-    
-//    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping];
-//    [requestMapping addAttributeMappingsFromArray:@[@"message", @"response", @"guid"]];
-//    
-//    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[RKMessage class] rootKeyPath:@""];
-//    
-//    [objectManager addRequestDescriptor:requestDescriptor];
-    
-    
-    // begin github sample
-    
+        
     RKObjectMapping* responseObjectMapping = [RKObjectMapping mappingForClass:[RKMessage class]];
     [responseObjectMapping addAttributeMappingsFromDictionary:@{
         @"response": @"response",
@@ -83,7 +73,6 @@
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
     NSString *url = [NSString stringWithFormat:@"%@%@%@", @"http://www.letterstocrushes.com/Home/Mail?letterText=", letter_message, @"&letterCountry=US"];
-    NSString *safe_url = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     NSString *real_url = @"http://www.letterstocrushes.com/home/mail";
     
     [objectManager addResponseDescriptor:responseDescriptor];
