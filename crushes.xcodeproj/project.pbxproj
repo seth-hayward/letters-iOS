@@ -30,6 +30,7 @@
 		5D0BD07A16711F850088A383 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0BD07916711F850088A383 /* WebViewController.m */; };
 		5D0BD07C16711FB30088A383 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD07B16711FB30088A383 /* WebViewController.xib */; };
 		5D7F303B1780DCE8009F0AC6 /* RKLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303A1780DCE8009F0AC6 /* RKLetter.m */; };
+		5D7F303E17810B3B009F0AC6 /* RKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303D17810B3B009F0AC6 /* RKMessage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,8 @@
 		5D0BD07B16711FB30088A383 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		5D7F30391780DCE8009F0AC6 /* RKLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLetter.h; sourceTree = "<group>"; };
 		5D7F303A1780DCE8009F0AC6 /* RKLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLetter.m; sourceTree = "<group>"; };
+		5D7F303C17810B3A009F0AC6 /* RKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKMessage.h; sourceTree = "<group>"; };
+		5D7F303D17810B3B009F0AC6 /* RKMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKMessage.m; sourceTree = "<group>"; };
 		6C6818BD3B3146F19D555AC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E241FCEAA9F14664A45919BA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -133,6 +136,8 @@
 				5D0BD0431670AAA30088A383 /* Supporting Files */,
 				5D7F30391780DCE8009F0AC6 /* RKLetter.h */,
 				5D7F303A1780DCE8009F0AC6 /* RKLetter.m */,
+				5D7F303C17810B3A009F0AC6 /* RKMessage.h */,
+				5D7F303D17810B3B009F0AC6 /* RKMessage.m */,
 			);
 			path = crushes;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				5D0BD06C16710B920088A383 /* SendViewController.m in Sources */,
 				5D0BD07A16711F850088A383 /* WebViewController.m in Sources */,
 				5D7F303B1780DCE8009F0AC6 /* RKLetter.m in Sources */,
+				5D7F303E17810B3B009F0AC6 /* RKMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
