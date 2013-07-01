@@ -37,6 +37,10 @@ Pods/
 RestKit/
 
 ####
+# Not sure if this should be ignored or not...
+crushes.xcworkspace/
+
+####
 # Xcode build files -
 #
 # NB: slash on the end, so we only remove the FOLDER, not any files that were badly named "DerivedData"
