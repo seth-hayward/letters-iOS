@@ -53,6 +53,7 @@
     
 	// Create a new letter and POST it to the server
 	RKLetter* letter = [RKLetter new];
+    letter.mobile = @"1";
 	letter.letterText = letter_message;
     letter.letterCountry = @"US";
     
@@ -62,7 +63,7 @@
     [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
     
     RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
-        
+    
     RKObjectMapping* responseObjectMapping = [RKObjectMapping mappingForClass:[RKMessage class]];
     [responseObjectMapping addAttributeMappingsFromDictionary:@{
         @"response": @"response",
@@ -72,10 +73,21 @@
     
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
-    NSString *url = [NSString stringWithFormat:@"%@%@%@", @"http://www.letterstocrushes.com/Home/Mail?letterText=", letter_message, @"&letterCountry=US"];
+    
+    RKObjectMapping* letterRequestMapping = [RKObjectMapping requestMapping];
+    [letterRequestMapping addAttributeMappingsFromDictionary:@{
+        @"letterText": @"letterText",
+        @"letterCountry" : @"letterCountry",
+        @"mobile": @"mobile"}];
+    
+    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:letterRequestMapping objectClass:[RKLetter class] rootKeyPath:@""];
+    [objectManager addRequestDescriptor:requestDescriptor];
+    
+    
     NSString *real_url = @"http://www.letterstocrushes.com/home/mail";
     
     [objectManager addResponseDescriptor:responseDescriptor];
+    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     
     [objectManager postObject:letter path:real_url parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
@@ -94,6 +106,8 @@
             // we good
             UIAlertView *alert_success = [[UIAlertView alloc] initWithTitle:@"Success!" message: @"It was sent." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
             [alert_success show];
+            
+            // now display a webview with the letter...
             
         }
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {

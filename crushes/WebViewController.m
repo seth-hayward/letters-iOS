@@ -66,6 +66,8 @@
 - (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString *urlString = [[request URL] absoluteString];
+
+    NSLog(urlString);
     
     if([urlString rangeOfString:@"http://www.letterstocrushes.com/letter/"].length > 0 &&
        [urlString rangeOfString:@"/mobile"].location == NSNotFound) {

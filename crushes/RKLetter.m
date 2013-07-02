@@ -9,7 +9,7 @@
 #import "RKLetter.h"
 
 @implementation RKLetter
-@synthesize letterText, letterCountry;
+@synthesize letterText, letterCountry; mobile;
 
 - (id)initWithLetterMessage:(NSString *)message
 {
