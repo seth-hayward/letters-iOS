@@ -63,11 +63,9 @@
     [super viewDidUnload];
 }
 
-- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+- (BOOL) webView:(UIWebView *)webViewActive shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString *urlString = [[request URL] absoluteString];
-
-    NSLog(urlString);
     
     if([urlString rangeOfString:@"http://www.letterstocrushes.com/letter/"].length > 0 &&
        [urlString rangeOfString:@"/mobile"].location == NSNotFound) {
@@ -82,7 +80,7 @@
         url = [NSURL URLWithString:urlString];
         
         NSURLRequest *req = [NSURLRequest requestWithURL:url];
-        [webView loadRequest:req];
+        [webViewActive loadRequest:req];
         
     }
     return YES;
