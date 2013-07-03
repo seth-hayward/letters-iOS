@@ -9,7 +9,7 @@
 #import "WebViewController.h"
 
 @implementation WebViewController
-@synthesize viewType;
+@synthesize viewType, currentWebView, _sessionChecked;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil viewType:(WebViewType)type
 {
@@ -32,7 +32,7 @@
             [tbi_bookmarks setTitle:@"Bookmarks"];
             [tbi_bookmarks setImage:[UIImage imageNamed:@"bookmark.png"]];
         }
-    
+        
     }
     
     return self;
@@ -44,18 +44,19 @@
     NSURL *url;
     
     if ([self viewType] == WebViewTypeHome) {
-        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile"];
+        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/page/1"];
     } else if ([self viewType] == WebViewTypeMore) {
-        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/more"];
+        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/more/page/1"];
     } else if ([self viewType] == WebViewTypeBookmarks) {
         url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/bookmarks"];
     }
     
     [webView setDelegate:self];
+    currentWebView = webView;
     
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     [webView loadRequest:req];
-    
+        
 }
 
 - (void)viewDidUnload {
@@ -63,10 +64,20 @@
     [super viewDidUnload];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [webView stopLoading];
+}
+
 - (BOOL) webView:(UIWebView *)webViewActive shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    
     NSString *urlString = [[request URL] absoluteString];
     
+    NSString *msg = [NSString stringWithFormat:@"Loading...%@", urlString];
+    
+    NSLog(msg);
+        
     if([urlString rangeOfString:@"http://www.letterstocrushes.com/letter/"].length > 0 &&
        [urlString rangeOfString:@"/mobile"].location == NSNotFound) {
         
@@ -78,11 +89,10 @@
         
         NSURL *url;
         url = [NSURL URLWithString:urlString];
-        
+
         NSURLRequest *req = [NSURLRequest requestWithURL:url];
         [webViewActive loadRequest:req];
-        
+        NSLog(@"replacing string...");
     }
-    return YES;
 }
 @end

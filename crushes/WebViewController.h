@@ -14,7 +14,7 @@ typedef enum {
     WebViewTypeBookmarks
 } WebViewType;
 
-@interface WebViewController : UIViewController <UIWebViewDelegate>
+@interface WebViewController : UIViewController <UIWebViewDelegate, NSURLConnectionDelegate>
 {
     __weak IBOutlet UIWebView *webView;
 }
@@ -22,5 +22,7 @@ typedef enum {
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil viewType:(WebViewType)type;
 
 @property (nonatomic) WebViewType viewType;
+@property (nonatomic) UIWebView *currentWebView;
+@property (nonatomic) BOOL _sessionChecked;
 
 @end
