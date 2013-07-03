@@ -31,6 +31,10 @@
 		5D7F303E17810B3B009F0AC6 /* RKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303D17810B3B009F0AC6 /* RKMessage.m */; };
 		5D7F304017820161009F0AC6 /* envelope.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F303F17820161009F0AC6 /* envelope.png */; };
 		5D7F30421782019E009F0AC6 /* medical.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F30411782019E009F0AC6 /* medical.png */; };
+		5D7F304A1784C3E5009F0AC6 /* ios-app-icon-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F30491784C3E5009F0AC6 /* ios-app-icon-114x114.png */; };
+		5D7F304C1784C3E9009F0AC6 /* ios-app-icon-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F304B1784C3E9009F0AC6 /* ios-app-icon-57x57.png */; };
+		5D7F30541784CA28009F0AC6 /* ios-app-icon-72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F30531784CA28009F0AC6 /* ios-app-icon-72x72.png */; };
+		5D7F30561784CA3D009F0AC6 /* ios-app-icon-144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F30551784CA3D009F0AC6 /* ios-app-icon-144x144.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +71,10 @@
 		5D7F303D17810B3B009F0AC6 /* RKMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKMessage.m; sourceTree = "<group>"; };
 		5D7F303F17820161009F0AC6 /* envelope.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = envelope.png; sourceTree = "<group>"; };
 		5D7F30411782019E009F0AC6 /* medical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = medical.png; sourceTree = "<group>"; };
+		5D7F30491784C3E5009F0AC6 /* ios-app-icon-114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ios-app-icon-114x114.png"; path = "../ios-app-icon-114x114.png"; sourceTree = "<group>"; };
+		5D7F304B1784C3E9009F0AC6 /* ios-app-icon-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ios-app-icon-57x57.png"; path = "../ios-app-icon-57x57.png"; sourceTree = "<group>"; };
+		5D7F30531784CA28009F0AC6 /* ios-app-icon-72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ios-app-icon-72x72.png"; path = "../ios-app-icon-72x72.png"; sourceTree = "<group>"; };
+		5D7F30551784CA3D009F0AC6 /* ios-app-icon-144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ios-app-icon-144x144.png"; path = "../ios-app-icon-144x144.png"; sourceTree = "<group>"; };
 		6C6818BD3B3146F19D555AC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E241FCEAA9F14664A45919BA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -155,6 +163,10 @@
 				5D0BD04E1670AAA30088A383 /* Default.png */,
 				5D0BD0501670AAA30088A383 /* Default@2x.png */,
 				5D0BD0521670AAA30088A383 /* Default-568h@2x.png */,
+				5D7F304B1784C3E9009F0AC6 /* ios-app-icon-57x57.png */,
+				5D7F30491784C3E5009F0AC6 /* ios-app-icon-114x114.png */,
+				5D7F30551784CA3D009F0AC6 /* ios-app-icon-144x144.png */,
+				5D7F30531784CA28009F0AC6 /* ios-app-icon-72x72.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -225,6 +237,10 @@
 				5D0BD07C16711FB30088A383 /* WebViewController.xib in Resources */,
 				5D7F304017820161009F0AC6 /* envelope.png in Resources */,
 				5D7F30421782019E009F0AC6 /* medical.png in Resources */,
+				5D7F304A1784C3E5009F0AC6 /* ios-app-icon-114x114.png in Resources */,
+				5D7F304C1784C3E9009F0AC6 /* ios-app-icon-57x57.png in Resources */,
+				5D7F30541784CA28009F0AC6 /* ios-app-icon-72x72.png in Resources */,
+				5D7F30561784CA3D009F0AC6 /* ios-app-icon-144x144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,8 +364,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "crushes/crushes-Prefix.pch";
 				INFOPLIST_FILE = "crushes/crushes-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -362,8 +379,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "crushes/crushes-Prefix.pch";
 				INFOPLIST_FILE = "crushes/crushes-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
