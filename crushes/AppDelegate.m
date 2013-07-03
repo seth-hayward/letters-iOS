@@ -29,6 +29,7 @@
     SendViewController *sendVC = [[SendViewController alloc] init];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    [tabBarController setDelegate:self];
     
     NSArray *viewControllers = [NSArray arrayWithObjects:homeVC, moreVC, bookmarksVC, sendVC, nil];
     [tabBarController setViewControllers:viewControllers];
@@ -65,6 +66,20 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)tabBarController:(UITabBarController *)theTabBarController didSelectViewController:(UIViewController *)viewController {
+    NSUInteger indexOfTab = [theTabBarController.viewControllers indexOfObject:viewController];
+    NSLog(@"Tab index = %u", indexOfTab);
+    
+    if(indexOfTab < 3) {
+        WebViewController *current_view = (WebViewController *)viewController;
+        
+//        NSString *url = [[[current_view currentWebView] request] URL];
+//        NSLog(url);
+        
+    }
+    
 }
 
 @end
