@@ -14,8 +14,6 @@
 		5D0BD0471670AAA30088A383 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD0451670AAA30088A383 /* InfoPlist.strings */; };
 		5D0BD0491670AAA30088A383 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0BD0481670AAA30088A383 /* main.m */; };
 		5D0BD04D1670AAA30088A383 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0BD04C1670AAA30088A383 /* AppDelegate.m */; };
-		5D0BD04F1670AAA30088A383 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD04E1670AAA30088A383 /* Default.png */; };
-		5D0BD0511670AAA30088A383 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD0501670AAA30088A383 /* Default@2x.png */; };
 		5D0BD0531670AAA30088A383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD0521670AAA30088A383 /* Default-568h@2x.png */; };
 		5D0BD05C1670FC390088A383 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0BD05B1670FC390088A383 /* MainViewController.m */; };
 		5D0BD0601670FDCB0088A383 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD05F1670FDCB0088A383 /* MainViewController.xib */; };
@@ -35,6 +33,8 @@
 		5D7F304C1784C3E9009F0AC6 /* ios-app-icon-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F304B1784C3E9009F0AC6 /* ios-app-icon-57x57.png */; };
 		5D7F30541784CA28009F0AC6 /* ios-app-icon-72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F30531784CA28009F0AC6 /* ios-app-icon-72x72.png */; };
 		5D7F30561784CA3D009F0AC6 /* ios-app-icon-144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F30551784CA3D009F0AC6 /* ios-app-icon-144x144.png */; };
+		5D7F30581784EFF3009F0AC6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F30571784EFF3009F0AC6 /* Default.png */; };
+		5D7F305A1784F007009F0AC6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F30591784F007009F0AC6 /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,8 +48,6 @@
 		5D0BD04A1670AAA30088A383 /* crushes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "crushes-Prefix.pch"; sourceTree = "<group>"; };
 		5D0BD04B1670AAA30088A383 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5D0BD04C1670AAA30088A383 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5D0BD04E1670AAA30088A383 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		5D0BD0501670AAA30088A383 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		5D0BD0521670AAA30088A383 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5D0BD0591670AADB0088A383 /* crushes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = crushes.entitlements; sourceTree = "<group>"; };
 		5D0BD05A1670FC390088A383 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = ../MainViewController.h; sourceTree = "<group>"; };
@@ -75,6 +73,8 @@
 		5D7F304B1784C3E9009F0AC6 /* ios-app-icon-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ios-app-icon-57x57.png"; path = "../ios-app-icon-57x57.png"; sourceTree = "<group>"; };
 		5D7F30531784CA28009F0AC6 /* ios-app-icon-72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ios-app-icon-72x72.png"; path = "../ios-app-icon-72x72.png"; sourceTree = "<group>"; };
 		5D7F30551784CA3D009F0AC6 /* ios-app-icon-144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ios-app-icon-144x144.png"; path = "../ios-app-icon-144x144.png"; sourceTree = "<group>"; };
+		5D7F30571784EFF3009F0AC6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		5D7F30591784F007009F0AC6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		6C6818BD3B3146F19D555AC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E241FCEAA9F14664A45919BA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -160,8 +160,8 @@
 				5D0BD0451670AAA30088A383 /* InfoPlist.strings */,
 				5D0BD0481670AAA30088A383 /* main.m */,
 				5D0BD04A1670AAA30088A383 /* crushes-Prefix.pch */,
-				5D0BD04E1670AAA30088A383 /* Default.png */,
-				5D0BD0501670AAA30088A383 /* Default@2x.png */,
+				5D7F30591784F007009F0AC6 /* Default@2x.png */,
+				5D7F30571784EFF3009F0AC6 /* Default.png */,
 				5D0BD0521670AAA30088A383 /* Default-568h@2x.png */,
 				5D7F304B1784C3E9009F0AC6 /* ios-app-icon-57x57.png */,
 				5D7F30491784C3E5009F0AC6 /* ios-app-icon-114x114.png */,
@@ -225,8 +225,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D0BD0471670AAA30088A383 /* InfoPlist.strings in Resources */,
-				5D0BD04F1670AAA30088A383 /* Default.png in Resources */,
-				5D0BD0511670AAA30088A383 /* Default@2x.png in Resources */,
 				5D0BD0531670AAA30088A383 /* Default-568h@2x.png in Resources */,
 				5D0BD0601670FDCB0088A383 /* MainViewController.xib in Resources */,
 				5D0BD067167109990088A383 /* home.png in Resources */,
@@ -241,6 +239,8 @@
 				5D7F304C1784C3E9009F0AC6 /* ios-app-icon-57x57.png in Resources */,
 				5D7F30541784CA28009F0AC6 /* ios-app-icon-72x72.png in Resources */,
 				5D7F30561784CA3D009F0AC6 /* ios-app-icon-144x144.png in Resources */,
+				5D7F30581784EFF3009F0AC6 /* Default.png in Resources */,
+				5D7F305A1784F007009F0AC6 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
