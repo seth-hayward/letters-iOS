@@ -94,5 +94,7 @@
         [webViewActive loadRequest:req];
         NSLog(@"replacing string...");
     }
+    
+    return YES;
 }
 @end

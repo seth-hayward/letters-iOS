@@ -11,6 +11,7 @@
 #import "WebViewController.h"
 
 @implementation AppDelegate
+@synthesize tabBar, moreWebViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -23,6 +24,7 @@
     WebViewController *homeVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeHome];
     
     WebViewController *moreVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeMore];
+    moreWebViewController = moreVC;
 
     WebViewController *bookmarksVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeBookmarks];
     
@@ -30,6 +32,8 @@
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     [tabBarController setDelegate:self];
+    
+    tabBar = tabBarController;
     
     NSArray *viewControllers = [NSArray arrayWithObjects:homeVC, moreVC, bookmarksVC, sendVC, nil];
     [tabBarController setViewControllers:viewControllers];

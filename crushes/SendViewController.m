@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "RKLetter.h"
 #import "RKMessage.h"
+#import "AppDelegate.h"
+#import "WebViewController.h"
 
 @implementation SendViewController
 
@@ -108,7 +110,19 @@
             [alert_success show];
             
             // now display a webview with the letter...
+
+            AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+            [appDelegate.tabBar setSelectedIndex:1];
             
+            // load a blank page, so they don't see the previous page... good idea or not?
+            [appDelegate.moreWebViewController.currentWebView loadHTMLString:@"" baseURL:[NSURL URLWithString:@"http://www.google.com"]];
+            
+            NSURL *url;
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.letterstocrushes.com/mobile/letter/%@", msg.message]];
+            
+            NSURLRequest *req = [NSURLRequest requestWithURL:url];
+            [appDelegate.moreWebViewController.currentWebView loadRequest:req];
+                         
         }
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         

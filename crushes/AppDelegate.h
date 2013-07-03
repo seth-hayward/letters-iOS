@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WebViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UITabBarController *tabBar;
+@property (strong, nonatomic) WebViewController *moreWebViewController;
 
 @end
