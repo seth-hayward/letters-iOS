@@ -75,15 +75,6 @@
 - (void)tabBarController:(UITabBarController *)theTabBarController didSelectViewController:(UIViewController *)viewController {
     NSUInteger indexOfTab = [theTabBarController.viewControllers indexOfObject:viewController];
     NSLog(@"Tab index = %u", indexOfTab);
-    
-    if(indexOfTab < 3) {
-        WebViewController *current_view = (WebViewController *)viewController;
-        
-//        NSString *url = [[[current_view currentWebView] request] URL];
-//        NSLog(url);
-        
-    }
-    
 }
 
 @end
