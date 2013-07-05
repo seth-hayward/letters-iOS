@@ -24,5 +24,6 @@ typedef enum {
 @property (nonatomic) WebViewType viewType;
 @property (nonatomic) UIWebView *currentWebView;
 @property (nonatomic) BOOL _sessionChecked;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 
 @end

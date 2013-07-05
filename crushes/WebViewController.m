@@ -9,7 +9,7 @@
 #import "WebViewController.h"
 
 @implementation WebViewController
-@synthesize viewType, currentWebView, _sessionChecked;
+@synthesize viewType, currentWebView, _sessionChecked, toolBar;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil viewType:(WebViewType)type
 {
@@ -33,9 +33,37 @@
             [tbi_bookmarks setImage:[UIImage imageNamed:@"bookmark.png"]];
         }
         
+
+        UIToolbar *default_toolbar = [[UIToolbar alloc] init];
+        default_toolbar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+        
+        // make toolbar transparent
+        [default_toolbar setBackgroundImage:[[UIImage alloc] init] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+        
+        NSMutableArray *items = [[NSMutableArray alloc] init];
+        
+        UIBarButtonItem *refresh_button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshWebView)];
+        
+        UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+
+        // adding the flexible item allows us to right align the button
+        // add another flexible after refresh_button and it will center it
+        
+        [items addObject:flexible];
+        [items addObject:refresh_button];
+        
+        [default_toolbar setItems:items animated:NO];
+        [self.view addSubview:default_toolbar];
+        
+        toolBar = default_toolbar;
     }
     
     return self;
+}
+
+- (void)refreshWebView
+{
+    [webView reload];
 }
 
 - (void)viewDidLoad
@@ -45,10 +73,13 @@
     
     if ([self viewType] == WebViewTypeHome) {
         url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/page/1"];
+//        [titleBar topItem].title = @"letters to crushes - home";
     } else if ([self viewType] == WebViewTypeMore) {
         url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/more/page/1"];
+//        [titleBar topItem].title = @"letters to crushes - more";
     } else if ([self viewType] == WebViewTypeBookmarks) {
         url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/bookmarks"];
+//        [titleBar topItem].title = @"letters to crushes - bookmarks";
     }
     
     [webView setDelegate:self];
