@@ -65,7 +65,7 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated
-{
+{    
     [webView stopLoading];
 }
 
@@ -73,28 +73,11 @@
 {
     
     NSString *urlString = [[request URL] absoluteString];
-    
+        
     NSString *msg = [NSString stringWithFormat:@"Loading...%@", urlString];
     
     NSLog(msg);
-        
-    if([urlString rangeOfString:@"http://www.letterstocrushes.com/letter/"].length > 0 &&
-       [urlString rangeOfString:@"/mobile"].location == NSNotFound) {
-        
-        // on all letter pages, we want to use the mobile url:
-        // http://www.letterstocrushes.com/letter/150150 becomes
-        // http://www.letterstocrushes.com/mobile/letter/150150
-        
-        urlString = [urlString stringByReplacingOccurrencesOfString:@"/letter/" withString:@"/mobile/letter/"];
-        
-        NSURL *url;
-        url = [NSURL URLWithString:urlString];
 
-        NSURLRequest *req = [NSURLRequest requestWithURL:url];
-        [webViewActive loadRequest:req];
-        NSLog(@"replacing string...");
-    }
-    
     return YES;
 }
 @end
