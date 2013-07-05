@@ -42,15 +42,29 @@
         
         NSMutableArray *items = [[NSMutableArray alloc] init];
         
-        UIBarButtonItem *refresh_button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshWebView)];
+        UIBarButtonItem *refresh_button_v2 = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(refreshWebView)];
+
+        UIImage *refresh_img = [[UIImage imageNamed:@"refresh.png"]
+                                resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
         
+        UIButton *refresh_button = [UIButton buttonWithType:UIButtonTypeInfoLight];
+        refresh_button.bounds = CGRectMake(0,0, refresh_img.size.width + 10, refresh_img.size.height+10);
+        
+        [refresh_button addTarget:self action:@selector(refreshWebView) forControlEvents:UIControlEventTouchDown];
+        
+        [refresh_button setImage:refresh_img forState:UIControlStateNormal];
+        
+        [refresh_button_v2 setBackgroundImage:refresh_img forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+
+        UIBarButtonItem *refresh_button_v3 = [[UIBarButtonItem alloc] initWithCustomView:refresh_button];
+               
         UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 
         // adding the flexible item allows us to right align the button
         // add another flexible after refresh_button and it will center it
         
         [items addObject:flexible];
-        [items addObject:refresh_button];
+        [items addObject:refresh_button_v3];
         
         [default_toolbar setItems:items animated:NO];
         [self.view addSubview:default_toolbar];
@@ -63,7 +77,17 @@
 
 - (void)refreshWebView
 {
-    [webView reload];
+    NSLog(@"Forcing refresh.");
+    
+    NSString *current_url = webView.request.URL.absoluteString;
+    
+    [webView stopLoading];    
+    
+    NSURL *url = [NSURL URLWithString: current_url];
+    
+    NSURLRequest *req = [NSURLRequest requestWithURL:url];
+    
+    [webView loadRequest:req];
 }
 
 - (void)viewDidLoad
@@ -73,13 +97,10 @@
     
     if ([self viewType] == WebViewTypeHome) {
         url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/page/1"];
-//        [titleBar topItem].title = @"letters to crushes - home";
     } else if ([self viewType] == WebViewTypeMore) {
         url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/more/page/1"];
-//        [titleBar topItem].title = @"letters to crushes - more";
     } else if ([self viewType] == WebViewTypeBookmarks) {
         url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/bookmarks"];
-//        [titleBar topItem].title = @"letters to crushes - bookmarks";
     }
     
     [webView setDelegate:self];
