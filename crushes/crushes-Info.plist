@@ -14,7 +14,6 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>ios-app-icon-small.png</string>
 				<string>ios-app-icon-114x114.png</string>
 				<string>ios-app-icon-57x57.png</string>
 				<string>ios-app-icon-72x72.png</string>
