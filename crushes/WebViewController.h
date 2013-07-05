@@ -16,7 +16,7 @@ typedef enum {
 
 @interface WebViewController : UIViewController <UIWebViewDelegate, NSURLConnectionDelegate>
 {
-    __weak IBOutlet UIWebView *webView;
+    __weak IBOutlet UIWebView *_webView;
 }
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil viewType:(WebViewType)type;

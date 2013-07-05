@@ -70,6 +70,7 @@
         [self.view addSubview:default_toolbar];
         
         toolBar = default_toolbar;
+            
     }
     
     return self;
@@ -79,19 +80,24 @@
 {
     NSLog(@"Forcing refresh.");
     
-    NSString *current_url = webView.request.URL.absoluteString;
+    NSString *current_url = _webView.request.URL.absoluteString;
     
-    [webView stopLoading];
+    if([current_url isEqualToString:@"about:blank"]) {
+        [self refreshOriginalPage];
+        return;
+    }
+    
+    [_webView stopLoading];
     
     // send to a blank page
     NSURL *blank_url = [NSURL URLWithString:@"about:blank"];
     NSURLRequest *blank_req = [NSURLRequest requestWithURL:blank_url];
-    [webView loadRequest:blank_req];
+    [_webView loadRequest:blank_req];
     
     NSURL *url = [NSURL URLWithString: current_url];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     
-    [webView loadRequest:req];
+    [_webView loadRequest:req];
 }
 
 - (void)refreshOriginalPage
@@ -111,48 +117,35 @@
             break;
     }
 
-    [webView stopLoading];
+    [_webView stopLoading];
     
     // send to a blank page
     NSURL *blank_url = [NSURL URLWithString:@"about:blank"];
     NSURLRequest *blank_req = [NSURLRequest requestWithURL:blank_url];
-    [webView loadRequest:blank_req];
+    [_webView loadRequest:blank_req];
     
     NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     
-    [webView loadRequest:req];
+    [_webView loadRequest:req];
+    NSLog(@"refreshOriginalPage.");
+    
+    [_webView setDelegate:self];
 
 }
 
 - (void)viewDidLoad
 {
-    
-    NSURL *url;
-    
-    if ([self viewType] == WebViewTypeHome) {
-        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/"];
-    } else if ([self viewType] == WebViewTypeMore) {
-        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/more/"];
-    } else if ([self viewType] == WebViewTypeBookmarks) {
-        url = [NSURL URLWithString:@"http://www.letterstocrushes.com/mobile/bookmarks"];
-    }
-    
-    [webView setDelegate:self];
-    currentWebView = webView;
-    
-    NSURLRequest *req = [NSURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageAllowed timeoutInterval:10];
-    [webView loadRequest:req];
-        
+    [self refreshOriginalPage];
 }
 
 - (void)viewDidUnload {
-    webView = nil;
+    _webView = nil;
     [super viewDidUnload];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
-{    
-    [webView stopLoading];
+{
+    [_webView stopLoading];
 }
 
 - (BOOL) webView:(UIWebView *)webViewActive shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -167,18 +160,20 @@
     return YES;
 }
 
-- (void) webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void) _webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     NSLog(@"Error: %@", error);
 }
 
--(void)webViewDidFinishLoad:(UIWebView *)active_webView
+-(void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    NSLog(@"Hiding...");
     [loadingIndicator stopAnimating];
 }
 
--(void)webViewDidStartLoad:(UIWebView *)active_webView
+-(void)webViewDidStartLoad:(UIWebView *)webView
 {
+    NSLog(@"Showing...");
     [loadingIndicator startAnimating];
 }
 
