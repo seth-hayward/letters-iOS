@@ -26,4 +26,7 @@ typedef enum {
 @property (nonatomic) BOOL _sessionChecked;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 
+-(void)refreshWebView;
+-(void)refreshOriginalPage;
+
 @end

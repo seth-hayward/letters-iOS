@@ -15,4 +15,9 @@
 @property (strong, nonatomic) UITabBarController *tabBar;
 @property (strong, nonatomic) WebViewController *moreWebViewController;
 
+
+@property (strong, nonatomic) NSDate *home_last_click;
+@property (strong, nonatomic) NSDate *more_last_click;
+@property (strong, nonatomic) NSDate *bookmarks_last_click;
+
 @end

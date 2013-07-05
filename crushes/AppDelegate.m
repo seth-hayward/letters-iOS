@@ -11,7 +11,7 @@
 #import "WebViewController.h"
 
 @implementation AppDelegate
-@synthesize tabBar, moreWebViewController;
+@synthesize tabBar, moreWebViewController, home_last_click, more_last_click, bookmarks_last_click;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -40,6 +40,13 @@
     
     [[self window] setRootViewController:tabBarController];
     
+    
+    // setup double tap on tabs
+    NSDate *now = [[NSDate alloc] init];
+    home_last_click = now;
+    more_last_click = now;
+    bookmarks_last_click = now;
+        
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
@@ -75,6 +82,33 @@
 - (void)tabBarController:(UITabBarController *)theTabBarController didSelectViewController:(UIViewController *)viewController {
     NSUInteger indexOfTab = [theTabBarController.viewControllers indexOfObject:viewController];
     NSLog(@"Tab index = %u", indexOfTab);
+    
+    double time_since_last_click = 0;
+    
+    NSDate *now = [[NSDate alloc] init];
+    
+    switch(indexOfTab) {
+        case 0:
+            time_since_last_click = fabs([home_last_click timeIntervalSinceDate:now]);
+            home_last_click = now;
+            break;
+        case 1:
+            time_since_last_click = fabs([more_last_click timeIntervalSinceDate:now]);
+            more_last_click = now;
+            break;
+        case 2:
+            time_since_last_click = fabs([now timeIntervalSinceDate:bookmarks_last_click]);
+            bookmarks_last_click = now;
+            break;
+    }
+    NSLog([NSString stringWithFormat:@"time since: %f", time_since_last_click]);
+
+    if(time_since_last_click < 0.5 && indexOfTab < 3) {
+        // force browser to reload
+        WebViewController *current_view = (WebViewController *)viewController;
+        [current_view refreshOriginalPage];
+    }
+    
 }
 
 @end
