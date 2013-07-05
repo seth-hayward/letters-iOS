@@ -392,11 +392,15 @@
 			baseConfigurationReference = E241FCEAA9F14664A45919BA /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = crushes/crushes.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Seth Hayward";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Seth Hayward";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "crushes/crushes-Prefix.pch";
 				INFOPLIST_FILE = "crushes/crushes-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "703DFDCF-0196-4297-B57F-0CF04B1773B0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "703DFDCF-0196-4297-B57F-0CF04B1773B0";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
