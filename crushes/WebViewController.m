@@ -9,7 +9,7 @@
 #import "WebViewController.h"
 
 @implementation WebViewController
-@synthesize viewType, currentWebView, _sessionChecked, toolBar;
+@synthesize viewType, currentWebView, _sessionChecked, toolBar, loadingIndicator;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil viewType:(WebViewType)type
 {
@@ -170,6 +170,16 @@
 - (void) webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     NSLog(@"Error: %@", error);
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)active_webView
+{
+    [loadingIndicator stopAnimating];
+}
+
+-(void)webViewDidStartLoad:(UIWebView *)active_webView
+{
+    [loadingIndicator startAnimating];
 }
 
 @end
