@@ -116,7 +116,7 @@
         }
         
         if(indexOfTab == 2) {
-            [bookmarksWebViewController refreshOriginalPage];            
+            [bookmarksWebViewController refreshOriginalPage];                              
         }
     }
 
