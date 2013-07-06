@@ -26,9 +26,6 @@ typedef enum {
 @property (nonatomic) BOOL _sessionChecked;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
-@property (weak, nonatomic) NSTimer *timeoutTimer;
-
-@property (nonatomic, strong) NSURL *originalUrl;
 
 -(void)refreshWebView;
 -(void)refreshOriginalPage;
