@@ -11,7 +11,7 @@
 #import "WebViewController.h"
 
 @implementation AppDelegate
-@synthesize tabBar, moreWebViewController, home_last_click, more_last_click, bookmarks_last_click;
+@synthesize tabBar, moreWebViewController, homeWebViewController, home_last_click, more_last_click, bookmarks_last_click;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -22,7 +22,8 @@
     RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
     
     WebViewController *homeVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeHome];
-    
+    homeWebViewController = homeVC;
+        
     WebViewController *moreVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeMore];
     moreWebViewController = moreVC;
 
@@ -104,9 +105,14 @@
     NSLog([NSString stringWithFormat:@"time since: %f", time_since_last_click]);
 
     if(time_since_last_click < 0.5 && indexOfTab < 3) {
-        // force browser to reload
-        WebViewController *current_view = (WebViewController *)viewController;
-        [current_view refreshOriginalPage];
+        // force browser to reload        
+        if(indexOfTab == 0) {
+            [homeWebViewController refreshOriginalPage];
+        }
+        
+        if(indexOfTab == 1) {
+            [moreWebViewController refreshOriginalPage];
+        }
     }
     
 }

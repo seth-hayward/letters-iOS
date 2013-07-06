@@ -9,7 +9,7 @@
 #import "WebViewController.h"
 
 @implementation WebViewController
-@synthesize viewType, currentWebView, _sessionChecked, toolBar, loadingIndicator;
+@synthesize viewType, currentWebView, _sessionChecked, toolBar, loadingIndicator, timeoutTimer;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil viewType:(WebViewType)type
 {
@@ -89,20 +89,20 @@
     
     [_webView stopLoading];
     
-    // send to a blank page
-    NSURL *blank_url = [NSURL URLWithString:@"about:blank"];
-    NSURLRequest *blank_req = [NSURLRequest requestWithURL:blank_url];
-    [_webView loadRequest:blank_req];
-    
     NSURL *url = [NSURL URLWithString: current_url];
-    NSURLRequest *req = [NSURLRequest requestWithURL:url];
     
-    [_webView loadRequest:req];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageAllowed timeoutInterval:20];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    [loadingIndicator startAnimating];
+    
 }
 
 - (void)refreshOriginalPage
 {
 
+    [_webView setDelegate:self];
+
+    
     NSString *url = @"http://www.letterstocrushes.com/mobile";
 
     switch(viewType) {
@@ -118,19 +118,19 @@
     }
 
     [_webView stopLoading];
+        
+    self.originalUrl = [NSURL URLWithString:url];
+    currentWebView = _webView;
     
-    // send to a blank page
-    NSURL *blank_url = [NSURL URLWithString:@"about:blank"];
-    NSURLRequest *blank_req = [NSURLRequest requestWithURL:blank_url];
-    [_webView loadRequest:blank_req];
+    NSURLRequest *request = [NSURLRequest requestWithURL:self.originalUrl cachePolicy:NSURLCacheStorageAllowed timeoutInterval:20];
     
-    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    
-    [_webView loadRequest:req];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    [loadingIndicator startAnimating];
     NSLog(@"refreshOriginalPage.");
     
-    [_webView setDelegate:self];
+    timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:2000.0 target:self selector:@selector(cancelWeb) userInfo:nil repeats:NO];
 
+    
 }
 
 - (void)viewDidLoad
@@ -145,36 +145,102 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    
     [_webView stopLoading];
 }
 
-- (BOOL) webView:(UIWebView *)webViewActive shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    
-    NSString *urlString = [[request URL] absoluteString];
-        
-    NSString *msg = [NSString stringWithFormat:@"Loading...%@", urlString];
-    
-    NSLog(msg);
+// this is where you could, intercept HTML requests and route them through
+// NSURLConnection, to see if the server responds successfully.
 
-    return YES;
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if (navigationType != UIWebViewNavigationTypeLinkClicked)
+        return YES;
+    
+    // if user clicked on a link and we haven't validated it yet, let's do so
+    
+    self.originalUrl = request.URL;
+    
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    // and if we're validating, don't bother to have the web view load it yet ...
+    // the `didReceiveResponse` will do that for us once the connection has been validated
+    
+    return NO;
 }
 
-- (void) _webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    NSLog(@"Error: %@", error);
+    NSLog(@"%s error=%@", __FUNCTION__, error);
+    //[_webView stopLoading];
+    //[self refreshWebView];
+    if([error code] == NSURLErrorCancelled) {
+        
+        return;
+    }
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSLog(@"Hiding...");
+//    NSLog(@"Hiding...");
     [loadingIndicator stopAnimating];
+    [timeoutTimer invalidate];
+    
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView
 {
-    NSLog(@"Showing...");
-    [loadingIndicator startAnimating];
+//    NSLog(@"Showing...");
+//    [loadingIndicator startAnimating];
 }
+
+-(void)cancelWeb
+{
+    NSLog(@"Timed out after 20 seconds. Forcing refresh.");
+    [_webView stopLoading];
+    [self refreshWebView];    
+}
+
+// This code inspired by http://www.ardalahmet.com/2011/08/18/how-to-detect-and-handle-http-status-codes-in-uiwebviews/
+// Given that some ISPs do redirects that one might otherwise prefer to see handled as errors, I'm also checking
+// to see if the original URL's host matches the response's URL. This logic may be too restrictive (some valid redirects
+// will be rejected, such as www.adobephotoshop.com which redirects you to www.adobe.com), but does capture the ISP
+// redirect problem I am concerned about.
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+    
+    NSString *originalUrlHostName = self.originalUrl.host;
+    NSString *responseUrlHostName = response.URL.host;
+    
+    NSRange originalInResponse = [responseUrlHostName rangeOfString:originalUrlHostName]; // handle where we went to "apple.com" and got redirected to "www.apple.com"
+    NSRange responseInOriginal = [originalUrlHostName rangeOfString:responseUrlHostName]; // handle where we went to "www.stackoverflow.com" and got redirected to "stackoverflow.com"
+    
+    if (originalInResponse.location == NSNotFound && responseInOriginal.location == NSNotFound)
+    {
+        NSLog(@"%s you were redirected from %@ to %@", __FUNCTION__, self.originalUrl.absoluteString, response.URL.absoluteString);
+    }
+    else if (httpResponse.statusCode < 200 || httpResponse.statusCode >= 300)
+    {
+        NSLog(@"%s request to %@ failed with statusCode=%d", __FUNCTION__, response.URL.absoluteString, httpResponse.statusCode);
+    }
+    else
+    {
+        [connection cancel];
+        
+        [_webView loadRequest:connection.originalRequest];
+        
+        return;
+    }
+    
+    [connection cancel];
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"Error: %@", error);
+}
+
 
 @end
