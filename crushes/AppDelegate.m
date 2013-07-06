@@ -11,7 +11,7 @@
 #import "WebViewController.h"
 
 @implementation AppDelegate
-@synthesize tabBar, moreWebViewController, homeWebViewController, home_last_click, more_last_click, bookmarks_last_click;
+@synthesize tabBar, moreWebViewController, homeWebViewController,bookmarksWebViewController, home_last_click, more_last_click, bookmarks_last_click;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -28,6 +28,7 @@
     moreWebViewController = moreVC;
 
     WebViewController *bookmarksVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeBookmarks];
+    bookmarksWebViewController = bookmarksVC;
     
     SendViewController *sendVC = [[SendViewController alloc] init];
     
@@ -113,8 +114,12 @@
         if(indexOfTab == 1) {
             [moreWebViewController refreshOriginalPage];
         }
+        
+        if(indexOfTab == 2) {
+            [bookmarksWebViewController refreshOriginalPage];            
+        }
     }
-    
+
 }
 
 @end
