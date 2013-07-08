@@ -12,7 +12,8 @@
 
 @implementation AppDelegate
 @synthesize tabBar, moreWebViewController, homeWebViewController,bookmarksWebViewController,
-            searchWebViewController, home_last_click, more_last_click, bookmarks_last_click;
+            searchWebViewController, home_last_click, more_last_click, bookmarks_last_click,
+            search_last_click;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -103,13 +104,19 @@
             more_last_click = now;
             break;
         case 2:
-            time_since_last_click = fabs([now timeIntervalSinceDate:bookmarks_last_click]);
+            time_since_last_click = fabs([bookmarks_last_click  timeIntervalSinceDate:now]);
             bookmarks_last_click = now;
             break;
+        case 3:
+            time_since_last_click = fabs([search_last_click timeIntervalSinceDate:now]);
+            search_last_click = now;
+            break;
+            
     }
-    NSLog([NSString stringWithFormat:@"time since: %f", time_since_last_click]);
+    
+    NSLog(@"time since: %f", time_since_last_click);
 
-    if(time_since_last_click < 0.5 && indexOfTab < 3) {
+    if(time_since_last_click < 0.5 && indexOfTab < 4) {
         // force browser to reload        
         if(indexOfTab == 0) {
             [homeWebViewController refreshOriginalPage];
@@ -121,6 +128,10 @@
         
         if(indexOfTab == 2) {
             [bookmarksWebViewController refreshOriginalPage];                              
+        }
+        
+        if(indexOfTab == 3) {
+            [searchWebViewController refreshOriginalPage];            
         }
     }
 
