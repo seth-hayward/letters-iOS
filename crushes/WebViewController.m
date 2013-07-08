@@ -31,9 +31,12 @@
             UITabBarItem *tbi_bookmarks = [self tabBarItem];
             [tbi_bookmarks setTitle:@"Bookmarks"];
             [tbi_bookmarks setImage:[UIImage imageNamed:@"bookmark.png"]];
+        } else if ([self viewType] == WebViewTypeSearch) {
+            UITabBarItem *tbi_search = [self tabBarItem];
+            [tbi_search setTitle:@"Search"];
+            [tbi_search setImage:[UIImage imageNamed:@"search.png"]];
         }
         
-
         UIToolbar *default_toolbar = [[UIToolbar alloc] init];
         default_toolbar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
         
@@ -115,6 +118,9 @@
         case WebViewTypeBookmarks:
             url = [url stringByAppendingString:@"/bookmarks"];
             break;
+        case WebViewTypeSearch:
+            url = [url stringByAppendingString:@"/search"];
+            break;
     }
 
     if([_webView isLoading]) {
@@ -157,6 +163,9 @@
 -(void)webViewDidStartLoad:(UIWebView *)webView
 {
     [loadingIndicator startAnimating];
+    
+    NSLog(@"Load started: %@", [[webView request] URL]);
+
 }
 
 -(void)cancelWeb

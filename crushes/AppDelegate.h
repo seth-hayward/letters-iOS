@@ -16,6 +16,7 @@
 @property (strong, nonatomic) WebViewController *moreWebViewController;
 @property (strong, nonatomic) WebViewController *homeWebViewController;
 @property (strong, nonatomic) WebViewController *bookmarksWebViewController;
+@property (strong, nonatomic) WebViewController *searchWebViewController;
 
 @property (strong, nonatomic) NSDate *home_last_click;
 @property (strong, nonatomic) NSDate *more_last_click;

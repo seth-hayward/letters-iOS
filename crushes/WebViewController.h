@@ -11,7 +11,8 @@
 typedef enum {
     WebViewTypeHome,
     WebViewTypeMore,
-    WebViewTypeBookmarks
+    WebViewTypeBookmarks,
+    WebViewTypeSearch
 } WebViewType;
 
 @interface WebViewController : UIViewController <UIWebViewDelegate, NSURLConnectionDelegate>

@@ -11,7 +11,8 @@
 #import "WebViewController.h"
 
 @implementation AppDelegate
-@synthesize tabBar, moreWebViewController, homeWebViewController,bookmarksWebViewController, home_last_click, more_last_click, bookmarks_last_click;
+@synthesize tabBar, moreWebViewController, homeWebViewController,bookmarksWebViewController,
+            searchWebViewController, home_last_click, more_last_click, bookmarks_last_click;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -30,16 +31,19 @@
     WebViewController *bookmarksVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeBookmarks];
     bookmarksWebViewController = bookmarksVC;
     
+    WebViewController *searchVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType:WebViewTypeSearch];
+    searchWebViewController = searchVC;
+    
     SendViewController *sendVC = [[SendViewController alloc] init];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     [tabBarController setDelegate:self];
-    
+        
     tabBar = tabBarController;
     
-    NSArray *viewControllers = [NSArray arrayWithObjects:homeVC, moreVC, bookmarksVC, sendVC, nil];
+    NSArray *viewControllers = [NSArray arrayWithObjects:homeVC, moreVC, bookmarksVC, searchVC, sendVC, nil];
     [tabBarController setViewControllers:viewControllers];
-    
+        
     [[self window] setRootViewController:tabBarController];
     
     
