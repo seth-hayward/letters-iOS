@@ -26,15 +26,19 @@
     
     WebViewController *homeVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeHome];
     homeWebViewController = homeVC;
+    homeWebViewController.trackedViewName = @"Home";
         
     WebViewController *moreVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeMore];
     moreWebViewController = moreVC;
+    moreWebViewController.trackedViewName = @"More";
 
     WebViewController *bookmarksVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeBookmarks];
     bookmarksWebViewController = bookmarksVC;
+    bookmarksWebViewController.trackedViewName = @"Bookmarks";
     
     WebViewController *searchVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType:WebViewTypeSearch];
     searchWebViewController = searchVC;
+    searchWebViewController.trackedViewName = @"Search";
     
     SendViewController *sendVC = [[SendViewController alloc] init];
     sendViewController = sendVC;

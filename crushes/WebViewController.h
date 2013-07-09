@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GAITrackedViewController.h"
 
 typedef enum {
     WebViewTypeHome,
@@ -15,7 +16,7 @@ typedef enum {
     WebViewTypeSearch
 } WebViewType;
 
-@interface WebViewController : UIViewController <UIWebViewDelegate, NSURLConnectionDelegate>
+@interface WebViewController : GAITrackedViewController <UIWebViewDelegate, NSURLConnectionDelegate>
 {
     __weak IBOutlet UIWebView *_webView;
 }
