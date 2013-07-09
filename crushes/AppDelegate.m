@@ -38,6 +38,7 @@
     
     SendViewController *sendVC = [[SendViewController alloc] init];
     sendViewController = sendVC;
+    sendViewController.trackedViewName = @"Send Letter";
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     [tabBarController setDelegate:self];
