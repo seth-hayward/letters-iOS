@@ -22,7 +22,7 @@
     // Override point for customization after application launch.
     
     RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
-    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+    //RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
     
     WebViewController *homeVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeHome];
     homeWebViewController = homeVC;
