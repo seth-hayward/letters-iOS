@@ -30,13 +30,13 @@
 
 - (void)viewDidLoad
 {
-    messageText.layer.borderWidth = 5.0f;
-    messageText.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.messageText.layer.borderWidth = 5.0f;
+    self.messageText.layer.borderColor = [[UIColor grayColor] CGColor];
 }
 
 - (void)viewDidUnload {
-    messageText = nil;
-    sendButton = nil;
+    self.messageText = nil;
+    self.sendButton = nil;
     [super viewDidUnload];
 }
 
@@ -51,7 +51,7 @@
 
 - (IBAction)sendLetter:(id)sender {
     // Read the value from the text field
-	NSString *letter_message = [messageText text];
+	NSString *letter_message = [self.messageText text];
     
 	// Create a new letter and POST it to the server
 	RKLetter* letter = [RKLetter new];

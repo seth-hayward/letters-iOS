@@ -7,6 +7,7 @@
 //
 
 #import "WebViewController.h"
+#import "AppDelegate.h"
 
 @implementation WebViewController
 @synthesize viewType, currentWebView, _sessionChecked, toolBar, loadingIndicator;
@@ -163,8 +164,32 @@
 -(void)webViewDidStartLoad:(UIWebView *)webView
 {
     [loadingIndicator startAnimating];
+}
+
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
     
-    NSLog(@"Load started: %@", [[webView request] URL]);
+    NSString *new_url = [[request URL] path];
+    NSLog(@"About to load %@", new_url);
+    
+
+    if([new_url rangeOfString:@"/edit/"].location == NSNotFound) {
+        // not an edit page, so lets load it
+        return YES;
+    } else {
+        
+        // get a reference to the send tab,
+        // we will need to populate this screen
+        // with data from the letter.
+        
+        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+        [appDelegate.tabBar setSelectedIndex:4];
+        
+        appDelegate.sendViewController.labelCallToAction.text = @"Edit your letter.";
+        [appDelegate.sendViewController.sendButton setTitle:@"Edit" forState:UIControlStateNormal];
+        
+        return NO;        
+    }
 
 }
 

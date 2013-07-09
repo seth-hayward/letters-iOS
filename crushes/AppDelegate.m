@@ -12,8 +12,8 @@
 
 @implementation AppDelegate
 @synthesize tabBar, moreWebViewController, homeWebViewController,bookmarksWebViewController,
-            searchWebViewController, home_last_click, more_last_click, bookmarks_last_click,
-            search_last_click;
+            searchWebViewController, sendViewController, home_last_click, more_last_click,
+            bookmarks_last_click, search_last_click;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -36,6 +36,7 @@
     searchWebViewController = searchVC;
     
     SendViewController *sendVC = [[SendViewController alloc] init];
+    sendViewController = sendVC;
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     [tabBarController setDelegate:self];

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WebViewController.h"
+#import "SendViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
@@ -17,6 +18,7 @@
 @property (strong, nonatomic) WebViewController *homeWebViewController;
 @property (strong, nonatomic) WebViewController *bookmarksWebViewController;
 @property (strong, nonatomic) WebViewController *searchWebViewController;
+@property (strong, nonatomic) SendViewController *sendViewController;
 
 @property (strong, nonatomic) NSDate *home_last_click;
 @property (strong, nonatomic) NSDate *more_last_click;

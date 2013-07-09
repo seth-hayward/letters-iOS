@@ -10,10 +10,11 @@
 
 @interface SendViewController : UIViewController <UITextFieldDelegate>
 {
-    __weak IBOutlet UITextView *messageText;
-    __weak IBOutlet UIButton *sendButton;    
 }
 - (IBAction)backgroundTapped:(id)sender;
 - (IBAction)sendLetter:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *labelCallToAction;
+@property (weak, nonatomic) IBOutlet UIButton *sendButton;
+@property (weak, nonatomic) IBOutlet UITextView *messageText;
 
 @end
