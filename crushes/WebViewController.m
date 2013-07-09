@@ -229,6 +229,10 @@
             NSLog(@"Loaded letter: %@", letter.letterMessage);
             appDelegate.sendViewController.messageText.text = letter.letterMessage;
             
+            appDelegate.sendViewController.isEditing = YES;
+            appDelegate.sendViewController.editingId = letter_id;
+            
+            
         } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
             NSLog(@"Error loading: %@", error);
         }];

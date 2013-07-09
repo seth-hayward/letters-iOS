@@ -14,6 +14,7 @@
 #import "WebViewController.h"
 
 @implementation SendViewController
+@synthesize isEditing, editingId;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

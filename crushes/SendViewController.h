@@ -17,5 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelCallToAction;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 @property (weak, nonatomic) IBOutlet UITextView *messageText;
+@property (nonatomic) BOOL *isEditing;
+@property (weak, nonatomic) NSString *editingId;
 
 @end
