@@ -9,5 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface RKEditMessage : NSObject
+{
+}
+- (id)initWithMessage:(NSString *)new_message;
+
+@property (nonatomic) NSNumber *response;
+@property (nonatomic) NSString *message;
 
 @end
