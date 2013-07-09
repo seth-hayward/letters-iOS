@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "RKLetter.h"
 #import "RKEditLetter.h"
+#import "RKEditMessage.h"
 #import "RKMessage.h"
 #import "AppDelegate.h"
 #import "WebViewController.h"
@@ -150,11 +151,14 @@
         // edit letter
         //
 
+        NSLog(@"editing letter: %@", editingId);
+        
         RKEditLetter* edit_letter = [RKEditLetter new];
         edit_letter.mobile = @"1";
         edit_letter.letterText = letter_message;
+        edit_letter.letterId = self.editingId;
         
-        responseObjectMapping = [RKObjectMapping mappingForClass:[RKMessage class]];
+        responseObjectMapping = [RKObjectMapping mappingForClass:[RKEditMessage class]];
         
         [responseObjectMapping addAttributeMappingsFromDictionary:@{
          @"response": @"response",
@@ -166,10 +170,10 @@
         RKObjectMapping* letterEditRequestMapping = [RKObjectMapping requestMapping];
         [letterEditRequestMapping addAttributeMappingsFromDictionary:@{
          @"letterText": @"letterText",
-         @"id" : @"id",
+         @"letterId" : @"id",
          @"mobile": @"mobile"}];
         
-        requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:letterEditRequestMapping objectClass:[RKLetter class] rootKeyPath:@""];
+        requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:letterEditRequestMapping objectClass:[RKEditLetter class] rootKeyPath:@""];
         [objectManager addRequestDescriptor:requestDescriptor];
         
         real_url = @"http://www.letterstocrushes.com/Home/EditLetter";
@@ -192,7 +196,7 @@
                 
             } else {
                 // we good
-                UIAlertView *alert_success = [[UIAlertView alloc] initWithTitle:@"Success!" message: @"Letter editted." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+                UIAlertView *alert_success = [[UIAlertView alloc] initWithTitle:@"Success!" message: @"Letter edited." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
                 [alert_success show];
                 
                 // now display a webview with the letter...
@@ -204,7 +208,7 @@
                 [appDelegate.moreWebViewController.currentWebView loadHTMLString:@"" baseURL:[NSURL URLWithString:@"http://www.google.com"]];
                 
                 NSURL *url;
-                url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.letterstocrushes.com/mobile/letter/%@", msg.message]];
+                url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.letterstocrushes.com/mobile/letter/%@", self.editingId]];
                 
                 NSURLRequest *req = [NSURLRequest requestWithURL:url];
                 [appDelegate.moreWebViewController.currentWebView loadRequest:req];

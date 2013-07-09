@@ -230,8 +230,9 @@
             appDelegate.sendViewController.messageText.text = letter.letterMessage;
             
             appDelegate.sendViewController.isEditing = YES;
-            appDelegate.sendViewController.editingId = letter_id;
-            appDelegate.sendViewController.tabBarItem.title = @"Edit";
+            appDelegate.sendViewController.editingId = [NSString stringWithFormat:@"%@", letter.Id];
+
+            appDelegate.sendViewController.tabBarItem.title = @"Edit";            
             
         } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
             NSLog(@"Error loading: %@", error);
