@@ -16,5 +16,6 @@
 
 @property (nonatomic) NSString *letterText;
 @property (nonatomic) NSString *id;
+@property (nonatomic) NSString *mobile;
 
 @end
