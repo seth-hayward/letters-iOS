@@ -27,6 +27,7 @@
 		5D0BD07C16711FB30088A383 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD07B16711FB30088A383 /* WebViewController.xib */; };
 		5D458D7B17875C1000B71314 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D458D7A17875C1000B71314 /* refresh.png */; };
 		5D458D7D178B731500B71314 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D458D7C178B731500B71314 /* search.png */; };
+		5D458D80178B954000B71314 /* RKFullLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D458D7F178B954000B71314 /* RKFullLetter.m */; };
 		5D7F303B1780DCE8009F0AC6 /* RKLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303A1780DCE8009F0AC6 /* RKLetter.m */; };
 		5D7F303E17810B3B009F0AC6 /* RKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303D17810B3B009F0AC6 /* RKMessage.m */; };
 		5D7F304017820161009F0AC6 /* envelope.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F303F17820161009F0AC6 /* envelope.png */; };
@@ -71,6 +72,8 @@
 		5D0BD07B16711FB30088A383 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		5D458D7A17875C1000B71314 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		5D458D7C178B731500B71314 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		5D458D7E178B954000B71314 /* RKFullLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKFullLetter.h; sourceTree = "<group>"; };
+		5D458D7F178B954000B71314 /* RKFullLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKFullLetter.m; sourceTree = "<group>"; };
 		5D7F30391780DCE8009F0AC6 /* RKLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLetter.h; sourceTree = "<group>"; };
 		5D7F303A1780DCE8009F0AC6 /* RKLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLetter.m; sourceTree = "<group>"; };
 		5D7F303C17810B3A009F0AC6 /* RKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKMessage.h; sourceTree = "<group>"; };
@@ -158,6 +161,8 @@
 				5D7F303A1780DCE8009F0AC6 /* RKLetter.m */,
 				5D7F303C17810B3A009F0AC6 /* RKMessage.h */,
 				5D7F303D17810B3B009F0AC6 /* RKMessage.m */,
+				5D458D7E178B954000B71314 /* RKFullLetter.h */,
+				5D458D7F178B954000B71314 /* RKFullLetter.m */,
 			);
 			path = crushes;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				5D0BD07A16711F850088A383 /* WebViewController.m in Sources */,
 				5D7F303B1780DCE8009F0AC6 /* RKLetter.m in Sources */,
 				5D7F303E17810B3B009F0AC6 /* RKMessage.m in Sources */,
+				5D458D80178B954000B71314 /* RKFullLetter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
