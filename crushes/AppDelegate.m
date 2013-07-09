@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "SendViewController.h"
 #import "WebViewController.h"
+#import "GAI.h"
 
 @implementation AppDelegate
 @synthesize tabBar, moreWebViewController, homeWebViewController,bookmarksWebViewController,
@@ -48,12 +49,24 @@
         
     [[self window] setRootViewController:tabBarController];
     
-    
     // setup double tap on tabs
     NSDate *now = [[NSDate alloc] init];
     home_last_click = now;
     more_last_click = now;
     bookmarks_last_click = now;
+    
+    //
+    // integrate with google analytics
+    //
+    
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    // Optional: set debug to YES for extra debugging information.
+    [GAI sharedInstance].debug = YES;
+    // Create tracker instance.
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-42351224-1"];
         
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
