@@ -9,7 +9,7 @@
 #import "RKEditLetter.h"
 
 @implementation RKEditLetter
-@synthesize letterText, id, mobile;
+@synthesize letterText, letterId, mobile;
 
 - (id)initWithLetterMessage:(NSString *)message
 {

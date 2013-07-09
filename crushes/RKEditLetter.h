@@ -15,7 +15,7 @@
 - (id)initWithLetterMessage:(NSString *)message;
 
 @property (nonatomic) NSString *letterText;
-@property (nonatomic) NSString *id;
+@property (nonatomic) NSString *letterId;
 @property (nonatomic) NSString *mobile;
 
 @end
