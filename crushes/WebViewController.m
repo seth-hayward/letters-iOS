@@ -136,14 +136,16 @@
     
 }
 
-- (void)viewDidLoad
-{
-    [self refreshOriginalPage];
-}
-
 - (void)viewDidUnload {
     _webView = nil;
     [super viewDidUnload];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if(currentWebView.request.URL.absoluteString.length == 0) {
+        [self refreshOriginalPage];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
