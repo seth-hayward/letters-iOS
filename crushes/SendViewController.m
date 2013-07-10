@@ -202,10 +202,10 @@
                 // set a cookie in UI web view manually, this used
                 // to be done in javascript following the post...
                 NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
-                [cookieProperties setObject:@"guid" forKey:NSHTTPCookieName];
-                [cookieProperties setObject:msg.guid forKey:NSHTTPCookieValue];
-                [cookieProperties setObject:@"www.letterstocrushes.com" forKey:NSHTTPCookieDomain];
-                [cookieProperties setObject:@"www.letterstocrushes.com" forKey:NSHTTPCookieOriginURL];
+                [cookieProperties setObject:msg.guid forKey:NSHTTPCookieName];
+                [cookieProperties setObject:@"0" forKey:NSHTTPCookieValue];
+                [cookieProperties setObject:@"letterstocrushes.com" forKey:NSHTTPCookieDomain];
+                [cookieProperties setObject:@"letterstocrushes.com" forKey:NSHTTPCookieOriginURL];
                 [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
                 [cookieProperties setObject:@"0" forKey:NSHTTPCookieVersion];
 
