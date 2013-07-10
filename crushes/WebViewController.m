@@ -40,10 +40,12 @@
         }
         
         UIToolbar *default_toolbar = [[UIToolbar alloc] init];
-        default_toolbar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+        default_toolbar.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 44);
         
         // make toolbar transparent
         [default_toolbar setBackgroundImage:[[UIImage alloc] init] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+        [default_toolbar setBarStyle:UIBarStyleBlackTranslucent];
+        [default_toolbar setShadowImage:[[UIImage alloc] init] forToolbarPosition:UIToolbarPositionAny];
         
         NSMutableArray *items = [[NSMutableArray alloc] init];
         
