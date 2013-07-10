@@ -121,6 +121,23 @@
                 // we good
                 UIAlertView *alert_success = [[UIAlertView alloc] initWithTitle:@"Success!" message: @"It was sent." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
                 [alert_success show];
+
+                // set a cookie in UI web view manually, this used
+                // to be done in javascript following the post...
+                NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
+                [cookieProperties setObject:msg.guid forKey:NSHTTPCookieName];
+                [cookieProperties setObject:@"0" forKey:NSHTTPCookieValue];
+                [cookieProperties setObject:@"www.letterstocrushes.com" forKey:NSHTTPCookieDomain];
+                [cookieProperties setObject:@"www.letterstocrushes.com" forKey:NSHTTPCookieOriginURL];
+                [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
+                [cookieProperties setObject:@"0" forKey:NSHTTPCookieVersion];
+                
+                // set expiration to be neeeever
+                [cookieProperties setObject:[[NSDate date] dateByAddingTimeInterval:2629743] forKey:NSHTTPCookieExpires];
+                
+                NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieProperties];
+                [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+
                 
                 // now display a webview with the letter...
                 
@@ -196,24 +213,6 @@
                 
             } else {
                 // we good
-                UIAlertView *alert_success = [[UIAlertView alloc] initWithTitle:@"Success!" message: @"Letter edited." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
-                [alert_success show];
-                
-                // set a cookie in UI web view manually, this used
-                // to be done in javascript following the post...
-                NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
-                [cookieProperties setObject:msg.guid forKey:NSHTTPCookieName];
-                [cookieProperties setObject:@"0" forKey:NSHTTPCookieValue];
-                [cookieProperties setObject:@"letterstocrushes.com" forKey:NSHTTPCookieDomain];
-                [cookieProperties setObject:@"letterstocrushes.com" forKey:NSHTTPCookieOriginURL];
-                [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
-                [cookieProperties setObject:@"0" forKey:NSHTTPCookieVersion];
-
-                // set expiration to be neeeever
-                [cookieProperties setObject:[[NSDate date] dateByAddingTimeInterval:2629743] forKey:NSHTTPCookieExpires];
-                
-                NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieProperties];
-                [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
                 
                 // now display a webview with the letter...
                 
@@ -228,6 +227,9 @@
                 
                 NSURLRequest *req = [NSURLRequest requestWithURL:url];
                 [appDelegate.moreWebViewController.currentWebView loadRequest:req];
+                UIAlertView *alert_success = [[UIAlertView alloc] initWithTitle:@"Success!" message: @"Letter edited." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+                [alert_success show];
+                
                 
             }
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
