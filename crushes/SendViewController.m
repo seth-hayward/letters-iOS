@@ -122,6 +122,10 @@
                 UIAlertView *alert_success = [[UIAlertView alloc] initWithTitle:@"Success!" message: @"It was sent." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
                 [alert_success show];
 
+                // clear send screen
+                [self.messageText setText:@""];
+                
+                
                 // set a cookie in UI web view manually, this used
                 // to be done in javascript following the post...
                 NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
@@ -213,6 +217,12 @@
                 
             } else {
                 // we good
+
+                // clear edit screen, reset to send screen
+                self.labelCallToAction.text = @"Write your letter.";
+                [self.sendButton setTitle:@"Send" forState:UIControlStateNormal];
+                self.messageText.text = @"";
+                [self.tabBarItem setTitle:@"Send"];
                 
                 // now display a webview with the letter...
                 
