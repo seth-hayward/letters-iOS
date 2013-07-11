@@ -28,6 +28,7 @@
 		5D458D80178B954000B71314 /* RKFullLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D458D7F178B954000B71314 /* RKFullLetter.m */; };
 		5D458D8F178C7DC600B71314 /* RKEditLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D458D8E178C7DC600B71314 /* RKEditLetter.m */; };
 		5D458D92178C86F800B71314 /* RKEditMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D458D91178C86F800B71314 /* RKEditMessage.m */; };
+		5D458D94178E318A00B71314 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D458D93178E318A00B71314 /* Default-568h@2x.png */; };
 		5D7F303B1780DCE8009F0AC6 /* RKLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303A1780DCE8009F0AC6 /* RKLetter.m */; };
 		5D7F303E17810B3B009F0AC6 /* RKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303D17810B3B009F0AC6 /* RKMessage.m */; };
 		5D7F304017820161009F0AC6 /* envelope.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F303F17820161009F0AC6 /* envelope.png */; };
@@ -75,6 +76,7 @@
 		5D458D8E178C7DC600B71314 /* RKEditLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKEditLetter.m; sourceTree = "<group>"; };
 		5D458D90178C86F800B71314 /* RKEditMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKEditMessage.h; sourceTree = "<group>"; };
 		5D458D91178C86F800B71314 /* RKEditMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKEditMessage.m; sourceTree = "<group>"; };
+		5D458D93178E318A00B71314 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5D7F30391780DCE8009F0AC6 /* RKLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLetter.h; sourceTree = "<group>"; };
 		5D7F303A1780DCE8009F0AC6 /* RKLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLetter.m; sourceTree = "<group>"; };
 		5D7F303C17810B3A009F0AC6 /* RKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKMessage.h; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		5D0BD02D1670AAA30088A383 = {
 			isa = PBXGroup;
 			children = (
+				5D458D93178E318A00B71314 /* Default-568h@2x.png */,
 				5D7F30611784FA07009F0AC6 /* Default-Portrait~ipad.png */,
 				5D7F305F1784FA01009F0AC6 /* Default-Portrait@2x~ipad.png */,
 				5D7F305D1784F9F8009F0AC6 /* Default-Landscape~ipad.png */,
@@ -271,6 +274,7 @@
 				5D7F30621784FA07009F0AC6 /* Default-Portrait~ipad.png in Resources */,
 				5D458D7B17875C1000B71314 /* refresh.png in Resources */,
 				5D458D7D178B731500B71314 /* search.png in Resources */,
+				5D458D94178E318A00B71314 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
