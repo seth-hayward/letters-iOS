@@ -14,7 +14,6 @@
 		5D0BD0471670AAA30088A383 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD0451670AAA30088A383 /* InfoPlist.strings */; };
 		5D0BD0491670AAA30088A383 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0BD0481670AAA30088A383 /* main.m */; };
 		5D0BD04D1670AAA30088A383 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0BD04C1670AAA30088A383 /* AppDelegate.m */; };
-		5D0BD0531670AAA30088A383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD0521670AAA30088A383 /* Default-568h@2x.png */; };
 		5D0BD067167109990088A383 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD066167109990088A383 /* home.png */; };
 		5D0BD069167109FD0088A383 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD068167109FD0088A383 /* heart.png */; };
 		5D0BD06C16710B920088A383 /* SendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0BD06B16710B920088A383 /* SendViewController.m */; };
@@ -56,7 +55,6 @@
 		5D0BD04A1670AAA30088A383 /* crushes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "crushes-Prefix.pch"; sourceTree = "<group>"; };
 		5D0BD04B1670AAA30088A383 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5D0BD04C1670AAA30088A383 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5D0BD0521670AAA30088A383 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5D0BD0591670AADB0088A383 /* crushes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = crushes.entitlements; sourceTree = "<group>"; };
 		5D0BD066167109990088A383 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		5D0BD068167109FD0088A383 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
@@ -76,7 +74,7 @@
 		5D458D8E178C7DC600B71314 /* RKEditLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKEditLetter.m; sourceTree = "<group>"; };
 		5D458D90178C86F800B71314 /* RKEditMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKEditMessage.h; sourceTree = "<group>"; };
 		5D458D91178C86F800B71314 /* RKEditMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKEditMessage.m; sourceTree = "<group>"; };
-		5D458D93178E318A00B71314 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		5D458D93178E318A00B71314 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		5D7F30391780DCE8009F0AC6 /* RKLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLetter.h; sourceTree = "<group>"; };
 		5D7F303A1780DCE8009F0AC6 /* RKLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLetter.m; sourceTree = "<group>"; };
 		5D7F303C17810B3A009F0AC6 /* RKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKMessage.h; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 		5D0BD02D1670AAA30088A383 = {
 			isa = PBXGroup;
 			children = (
-				5D458D93178E318A00B71314 /* Default-568h@2x.png */,
 				5D7F30611784FA07009F0AC6 /* Default-Portrait~ipad.png */,
 				5D7F305F1784FA01009F0AC6 /* Default-Portrait@2x~ipad.png */,
 				5D7F305D1784F9F8009F0AC6 /* Default-Landscape~ipad.png */,
@@ -175,6 +172,7 @@
 		5D0BD0431670AAA30088A383 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5D458D93178E318A00B71314 /* Default-568h@2x.png */,
 				5D458D7C178B731500B71314 /* search.png */,
 				5D458D7A17875C1000B71314 /* refresh.png */,
 				5D7F30411782019E009F0AC6 /* medical.png */,
@@ -190,7 +188,6 @@
 				5D0BD04A1670AAA30088A383 /* crushes-Prefix.pch */,
 				5D7F30591784F007009F0AC6 /* Default@2x.png */,
 				5D7F30571784EFF3009F0AC6 /* Default.png */,
-				5D0BD0521670AAA30088A383 /* Default-568h@2x.png */,
 				5D7F304B1784C3E9009F0AC6 /* ios-app-icon-57x57.png */,
 				5D7F30491784C3E5009F0AC6 /* ios-app-icon-114x114.png */,
 				5D7F30551784CA3D009F0AC6 /* ios-app-icon-144x144.png */,
@@ -253,7 +250,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D0BD0471670AAA30088A383 /* InfoPlist.strings in Resources */,
-				5D0BD0531670AAA30088A383 /* Default-568h@2x.png in Resources */,
 				5D0BD067167109990088A383 /* home.png in Resources */,
 				5D0BD069167109FD0088A383 /* heart.png in Resources */,
 				5D0BD06E16710BB70088A383 /* SendViewController.xib in Resources */,
