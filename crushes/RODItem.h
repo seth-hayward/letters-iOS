@@ -22,5 +22,6 @@ typedef enum {
 
 @property (nonatomic) NSString *caption;
 @property (nonatomic) ViewType viewType;
+@property (nonatomic) Boolean checked;
 
 @end

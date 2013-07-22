@@ -9,7 +9,7 @@
 #import "RODItem.h"
 
 @implementation RODItem
-@synthesize viewType, caption;
+@synthesize viewType, caption, checked;
 
 - (id) init {
     self = [super init];
@@ -30,15 +30,19 @@
     switch(new_viewType) {
         case ViewTypeHome:
             caption = @"Home";
+            checked = true;
             break;
         case ViewTypeMore:
             caption = @"More";
+            checked = false;
             break;
         case ViewTypeBookmarks:
             caption = @"Bookmarks";
+            checked = false;
             break;
         case ViewTypeSearch:
             caption = @"Search";
+            checked = false;
             break;
     }
     
