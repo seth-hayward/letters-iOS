@@ -21,7 +21,7 @@
         [[RODItemStore sharedStore] createItem:ViewTypeMore];
         [[RODItemStore sharedStore] createItem:ViewTypeBookmarks];
         [[RODItemStore sharedStore] createItem:ViewTypeSearch];
-                
+        
     }
     return self;
 }

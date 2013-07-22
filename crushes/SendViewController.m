@@ -25,7 +25,7 @@
     if (self) {
         UITabBarItem *tbi = [self tabBarItem];
         [tbi setTitle:@"Send"];
-        [tbi setImage:[UIImage imageNamed:@"envelope.png"]];
+        [tbi setImage:[UIImage imageNamed:@"envelope.png"]];        
     }
     
     return self;
@@ -149,13 +149,13 @@
                 [appDelegate.tabBar setSelectedIndex:1];
                 
                 // load a blank page, so they don't see the previous page... good idea or not?
-                [appDelegate.moreWebViewController.currentWebView loadHTMLString:@"" baseURL:[NSURL URLWithString:@"http://www.google.com"]];
+                [appDelegate.webViewController.currentWebView loadHTMLString:@"" baseURL:[NSURL URLWithString:@"http://www.google.com"]];
                 
                 NSURL *url;
                 url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.letterstocrushes.com/mobile/letter/%@", msg.message]];
                 
                 NSURLRequest *req = [NSURLRequest requestWithURL:url];
-                [appDelegate.moreWebViewController.currentWebView loadRequest:req];
+                [appDelegate.webViewController.currentWebView loadRequest:req];
                 
             }
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -230,13 +230,13 @@
                 [appDelegate.tabBar setSelectedIndex:1];
                 
                 // load a blank page, so they don't see the previous page... good idea or not?
-                [appDelegate.moreWebViewController.currentWebView loadHTMLString:@"" baseURL:[NSURL URLWithString:@"http://www.google.com"]];
+                [appDelegate.webViewController.currentWebView loadHTMLString:@"" baseURL:[NSURL URLWithString:@"http://www.google.com"]];
                 
                 NSURL *url;
                 url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.letterstocrushes.com/mobile/letter/%@", self.editingId]];
                 
                 NSURLRequest *req = [NSURLRequest requestWithURL:url];
-                [appDelegate.moreWebViewController.currentWebView loadRequest:req];
+                [appDelegate.webViewController.currentWebView loadRequest:req];
                 UIAlertView *alert_success = [[UIAlertView alloc] initWithTitle:@"Success!" message: @"Letter edited." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
                 [alert_success show];
                 

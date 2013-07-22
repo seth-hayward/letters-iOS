@@ -14,8 +14,7 @@
 #import "GAI.h"
 
 @implementation AppDelegate
-@synthesize tabBar, moreWebViewController, homeWebViewController,bookmarksWebViewController,
-            searchWebViewController, sendViewController, home_last_click, more_last_click,
+@synthesize tabBar, webViewController, sendViewController, home_last_click, more_last_click,
             bookmarks_last_click, search_last_click;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -26,38 +25,18 @@
     RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     //RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
     
-    WebViewController *homeVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeHome];
-    homeWebViewController = homeVC;
-    homeWebViewController.trackedViewName = @"Home";
-        
-    WebViewController *moreVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeMore];
-    moreWebViewController = moreVC;
-    moreWebViewController.trackedViewName = @"More";
-
-    WebViewController *bookmarksVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeBookmarks];
-    bookmarksWebViewController = bookmarksVC;
-    bookmarksWebViewController.trackedViewName = @"Bookmarks";
-    
-    WebViewController *searchVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType:WebViewTypeSearch];
-    searchWebViewController = searchVC;
-    searchWebViewController.trackedViewName = @"Search";
+    WebViewController *webVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeHome];
+    webViewController = webVC;
+    webViewController.trackedViewName = @"WebView";
     
     SendViewController *sendVC = [[SendViewController alloc] init];
     sendViewController = sendVC;
     sendViewController.trackedViewName = @"Send Letter";
     
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    [tabBarController setDelegate:self];
-
     MenuViewController * leftDrawer = [[MenuViewController alloc] init];
     
-    tabBar = tabBarController;
-    
-    NSArray *viewControllers = [NSArray arrayWithObjects:homeVC, moreVC, bookmarksVC, searchVC, sendVC, nil];
-    [tabBarController setViewControllers:viewControllers];
-    
     MMDrawerController * drawerController = [[MMDrawerController alloc]
-                                             initWithCenterViewController:tabBarController
+                                             initWithCenterViewController:webVC
                                              leftDrawerViewController:leftDrawer];
     
     [drawerController setMaximumLeftDrawerWidth:200.0];
@@ -148,24 +127,24 @@
     
     NSLog(@"time since: %f", time_since_last_click);
 
-    if(time_since_last_click < 0.5 && indexOfTab < 4) {
-        // force browser to reload        
-        if(indexOfTab == 0) {
-            [homeWebViewController refreshOriginalPage];
-        }
-        
-        if(indexOfTab == 1) {
-            [moreWebViewController refreshOriginalPage];
-        }
-        
-        if(indexOfTab == 2) {
-            [bookmarksWebViewController refreshOriginalPage];                              
-        }
-        
-        if(indexOfTab == 3) {
-            [searchWebViewController refreshOriginalPage];            
-        }
-    }
+//    if(time_since_last_click < 0.5 && indexOfTab < 4) {
+//        // force browser to reload        
+//        if(indexOfTab == 0) {
+//            [homeWebViewController refreshOriginalPage];
+//        }
+//        
+//        if(indexOfTab == 1) {
+//            [moreWebViewController refreshOriginalPage];
+//        }
+//        
+//        if(indexOfTab == 2) {
+//            [bookmarksWebViewController refreshOriginalPage];                              
+//        }
+//        
+//        if(indexOfTab == 3) {
+//            [searchWebViewController refreshOriginalPage];            
+//        }
+//    }
 
 }
 
