@@ -49,7 +49,27 @@
     
     [[cell textLabel] setText:[p caption]];
     
+    if([p checked]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    // set all items to be checked=false
+    for(int i = 0; i < [[[RODItemStore sharedStore] allMenuItems] count]; i++) {
+        [[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:i] setChecked:false];
+    }
+    
+    // set the selected item to be checked=true
+    [[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]] setChecked:true];
+    
+    [tableView reloadData];
 }
 
 @end
