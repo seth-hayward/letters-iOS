@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "RKFullLetter.h"
 #import "RODItem.h"
+#import "MMDrawerBarButtonItem.h"
 
 @implementation WebViewController
 @synthesize viewType, currentWebView, _sessionChecked, loadingIndicator;
@@ -22,27 +23,23 @@
         
         [self setViewType:type];
         
-        if ([self viewType] == WebViewTypeHome) {
-            UITabBarItem *tbi_home = [self tabBarItem];
-            [tbi_home setTitle:@"Home"];
-            [tbi_home setImage:[UIImage imageNamed:@"home.png"]];
-        } else if ([self viewType] == WebViewTypeMore) {
-            UITabBarItem *tbi_more = [self tabBarItem];
-            [tbi_more setTitle:@"More"];
-            [tbi_more setImage:[UIImage imageNamed:@"medical.png"]];
-        } else if ([self viewType] == WebViewTypeBookmarks) {
-            UITabBarItem *tbi_bookmarks = [self tabBarItem];
-            [tbi_bookmarks setTitle:@"Bookmarks"];
-            [tbi_bookmarks setImage:[UIImage imageNamed:@"bookmark.png"]];
-        } else if ([self viewType] == WebViewTypeSearch) {
-            UITabBarItem *tbi_search = [self tabBarItem];
-            [tbi_search setTitle:@"Search"];
-            [tbi_search setImage:[UIImage imageNamed:@"search.png"]];
-        }
-                
+        UIBarButtonItem *button_refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshOriginalPage)];
+        [[self navigationItem] setRightBarButtonItem:button_refresh];
+        
+        MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(openDrawer:)];
+        [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+        
     }
     
     return self;
+}
+
+- (void)openDrawer:(id)sender {
+    
+    // now tell the web view to change the page
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    
 }
 
 - (void)refreshWebView

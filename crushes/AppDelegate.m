@@ -15,7 +15,7 @@
 
 @implementation AppDelegate
 @synthesize tabBar, webViewController, sendViewController, home_last_click, more_last_click,
-            bookmarks_last_click, search_last_click;
+            bookmarks_last_click, search_last_click, drawer;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -40,6 +40,7 @@
     MMDrawerController * drawerController = [[MMDrawerController alloc]
                                              initWithCenterViewController:navController
                                              leftDrawerViewController:leftDrawer];
+    drawer = drawerController;
     
     [drawerController setMaximumLeftDrawerWidth:200.0];
     [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];

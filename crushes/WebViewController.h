@@ -32,5 +32,4 @@ typedef enum {
 -(void)refreshOriginalPage;
 -(void)cancelWeb;
 -(void)changePage:(WebViewType)page;
-
 @end
