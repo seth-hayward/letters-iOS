@@ -9,6 +9,7 @@
 #import "MenuViewController.h"
 #import "RODItem.h"
 #import "RODItemStore.h"
+#import "AppDelegate.h"
 
 @implementation MenuViewController
 
@@ -66,8 +67,16 @@
         [[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:i] setChecked:false];
     }
     
+    RODItem *selected_item = [[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]];
+    selected_item.checked = true;
+    
     // set the selected item to be checked=true
-    [[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]] setChecked:true];
+    //[[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]] setChecked:true];
+
+    // now tell the web view to change the page
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    appDelegate.webViewController.viewType = selected_item.viewType;
+    [appDelegate.webViewController refreshOriginalPage];
     
     [tableView reloadData];
 }

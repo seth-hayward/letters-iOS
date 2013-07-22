@@ -9,6 +9,7 @@
 #import "WebViewController.h"
 #import "AppDelegate.h"
 #import "RKFullLetter.h"
+#import "RODItem.h"
 
 @implementation WebViewController
 @synthesize viewType, currentWebView, _sessionChecked, loadingIndicator;
@@ -97,6 +98,12 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLCacheStorageAllowed timeoutInterval:20];
     [_webView loadRequest:request];
     
+}
+
+- (void)changePage:(WebViewType)page
+{
+    viewType = page;
+    [self refreshOriginalPage];
 }
 
 - (void)viewDidUnload {

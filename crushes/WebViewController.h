@@ -31,5 +31,6 @@ typedef enum {
 -(void)refreshWebView;
 -(void)refreshOriginalPage;
 -(void)cancelWeb;
+-(void)changePage:(WebViewType)page;
 
 @end
