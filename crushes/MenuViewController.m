@@ -8,16 +8,20 @@
 
 #import "MenuViewController.h"
 #import "RODItem.h"
+#import "RODItemStore.h"
 
 @implementation MenuViewController
 
 - (id) init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        
-        RODItem *test = [[RODItem alloc] initWithType:ViewTypeHome];
-        NSLog(@"test: %@", [test caption]);
-        
+
+        // hard code the creation of the items...
+        [[RODItemStore sharedStore] createItem:ViewTypeHome];
+        [[RODItemStore sharedStore] createItem:ViewTypeMore];
+        [[RODItemStore sharedStore] createItem:ViewTypeBookmarks];
+        [[RODItemStore sharedStore] createItem:ViewTypeSearch];
+                
     }
     return self;
 }
