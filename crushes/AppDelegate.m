@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "SendViewController.h"
 #import "WebViewController.h"
+#import "MMDrawerController.h"
 #import "GAI.h"
 
 @implementation AppDelegate
@@ -46,7 +47,17 @@
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     [tabBarController setDelegate:self];
-        
+
+    UIViewController * leftDrawer = [[UIViewController alloc] init];
+    UIViewController * center = [[UIViewController alloc] init];
+    UIViewController * rightDrawer = [[UIViewController alloc] init];
+    
+    MMDrawerController * drawerController = [[MMDrawerController alloc]
+                                             initWithCenterViewController:center
+                                             leftDrawerViewController:leftDrawer
+                                             rightDrawerViewController:rightDrawer];
+    
+    
     tabBar = tabBarController;
     
     NSArray *viewControllers = [NSArray arrayWithObjects:homeVC, moreVC, bookmarksVC, searchVC, sendVC, nil];
