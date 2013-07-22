@@ -44,6 +44,9 @@
             caption = @"Search";
             checked = false;
             break;
+        case ViewTypeSend:
+            caption = @"Send";
+            checked = false;
     }
     
     return self;

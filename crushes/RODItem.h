@@ -12,7 +12,8 @@ typedef enum {
     ViewTypeHome,
     ViewTypeMore,
     ViewTypeBookmarks,
-    ViewTypeSearch
+    ViewTypeSearch,
+    ViewTypeSend
 } ViewType;
 
 @interface RODItem : NSObject
