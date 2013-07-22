@@ -10,6 +10,7 @@
 #import "SendViewController.h"
 #import "WebViewController.h"
 #import "MMDrawerController.h"
+#import "MenuViewController.h"
 #import "GAI.h"
 
 @implementation AppDelegate
@@ -48,22 +49,23 @@
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     [tabBarController setDelegate:self];
 
-    UIViewController * leftDrawer = [[UIViewController alloc] init];
-    UIViewController * center = [[UIViewController alloc] init];
-    UIViewController * rightDrawer = [[UIViewController alloc] init];
-    
-    MMDrawerController * drawerController = [[MMDrawerController alloc]
-                                             initWithCenterViewController:center
-                                             leftDrawerViewController:leftDrawer
-                                             rightDrawerViewController:rightDrawer];
-    
+    MenuViewController * leftDrawer = [[MenuViewController alloc] init];
     
     tabBar = tabBarController;
     
     NSArray *viewControllers = [NSArray arrayWithObjects:homeVC, moreVC, bookmarksVC, searchVC, sendVC, nil];
     [tabBarController setViewControllers:viewControllers];
-        
-    [[self window] setRootViewController:tabBarController];
+    
+    MMDrawerController * drawerController = [[MMDrawerController alloc]
+                                             initWithCenterViewController:tabBarController
+                                             leftDrawerViewController:leftDrawer
+                                             rightDrawerViewController:leftDrawer];
+    
+    [drawerController setMaximumRightDrawerWidth:200.0];
+    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    
+    [[self window] setRootViewController:drawerController];
     
     // setup double tap on tabs
     NSDate *now = [[NSDate alloc] init];
