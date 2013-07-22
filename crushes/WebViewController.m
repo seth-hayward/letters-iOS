@@ -11,7 +11,7 @@
 #import "RKFullLetter.h"
 
 @implementation WebViewController
-@synthesize viewType, currentWebView, _sessionChecked, toolBar, loadingIndicator;
+@synthesize viewType, currentWebView, _sessionChecked, loadingIndicator;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil viewType:(WebViewType)type
 {
@@ -38,46 +38,7 @@
             [tbi_search setTitle:@"Search"];
             [tbi_search setImage:[UIImage imageNamed:@"search.png"]];
         }
-        
-        UIToolbar *default_toolbar = [[UIToolbar alloc] init];
-        default_toolbar.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 44);
-        
-        // make toolbar transparent
-        [default_toolbar setBackgroundImage:[[UIImage alloc] init] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
-        [default_toolbar setBarStyle:UIBarStyleBlackTranslucent];
-        [default_toolbar setShadowImage:[[UIImage alloc] init] forToolbarPosition:UIToolbarPositionAny];
-        
-        NSMutableArray *items = [[NSMutableArray alloc] init];
-        
-        UIBarButtonItem *refresh_button_v2 = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(refreshWebView)];
-
-        UIImage *refresh_img = [[UIImage imageNamed:@"refresh.png"]
-                                resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
-        
-        UIButton *refresh_button = [UIButton buttonWithType:UIButtonTypeInfoDark];
-        refresh_button.bounds = CGRectMake(0,0, refresh_img.size.width + 10, refresh_img.size.height+10);
-        
-        [refresh_button addTarget:self action:@selector(refreshWebView) forControlEvents:UIControlEventTouchDown];
-        
-        [refresh_button setImage:refresh_img forState:UIControlStateNormal];
-        
-        [refresh_button_v2 setBackgroundImage:refresh_img forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-
-        UIBarButtonItem *refresh_button_v3 = [[UIBarButtonItem alloc] initWithCustomView:refresh_button];
-               
-        UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-
-        // adding the flexible item allows us to right align the button
-        // add another flexible after refresh_button and it will center it
-        
-        [items addObject:flexible];
-        [items addObject:refresh_button_v3];
-        
-        [default_toolbar setItems:items animated:NO];
-        [self.view addSubview:default_toolbar];
-        
-        toolBar = default_toolbar;
-            
+                
     }
     
     return self;
