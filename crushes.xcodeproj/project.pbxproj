@@ -29,6 +29,7 @@
 		5D458D92178C86F800B71314 /* RKEditMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D458D91178C86F800B71314 /* RKEditMessage.m */; };
 		5D458D94178E318A00B71314 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D458D93178E318A00B71314 /* Default-568h@2x.png */; };
 		5D7609AE179CDD660018F27B /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609AC179CDD660018F27B /* MenuViewController.m */; };
+		5D7609B2179DBDF00018F27B /* RODItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609B1179DBDF00018F27B /* RODItem.m */; };
 		5D7F303B1780DCE8009F0AC6 /* RKLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303A1780DCE8009F0AC6 /* RKLetter.m */; };
 		5D7F303E17810B3B009F0AC6 /* RKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303D17810B3B009F0AC6 /* RKMessage.m */; };
 		5D7F304017820161009F0AC6 /* envelope.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F303F17820161009F0AC6 /* envelope.png */; };
@@ -78,6 +79,8 @@
 		5D458D93178E318A00B71314 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		5D7609AB179CDD660018F27B /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		5D7609AC179CDD660018F27B /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		5D7609B0179DBDF00018F27B /* RODItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RODItem.h; sourceTree = "<group>"; };
+		5D7609B1179DBDF00018F27B /* RODItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RODItem.m; sourceTree = "<group>"; };
 		5D7F30391780DCE8009F0AC6 /* RKLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLetter.h; sourceTree = "<group>"; };
 		5D7F303A1780DCE8009F0AC6 /* RKLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLetter.m; sourceTree = "<group>"; };
 		5D7F303C17810B3A009F0AC6 /* RKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKMessage.h; sourceTree = "<group>"; };
@@ -151,6 +154,8 @@
 			children = (
 				5D0BD06A16710B920088A383 /* SendViewController.h */,
 				5D0BD06B16710B920088A383 /* SendViewController.m */,
+				5D7609B0179DBDF00018F27B /* RODItem.h */,
+				5D7609B1179DBDF00018F27B /* RODItem.m */,
 				5D0BD06D16710BB70088A383 /* SendViewController.xib */,
 				5D0BD07816711F850088A383 /* WebViewController.h */,
 				5D0BD07B16711FB30088A383 /* WebViewController.xib */,
@@ -327,6 +332,7 @@
 				5D458D8F178C7DC600B71314 /* RKEditLetter.m in Sources */,
 				5D458D92178C86F800B71314 /* RKEditMessage.m in Sources */,
 				5D7609AE179CDD660018F27B /* MenuViewController.m in Sources */,
+				5D7609B2179DBDF00018F27B /* RODItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
