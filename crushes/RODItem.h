@@ -17,6 +17,9 @@ typedef enum {
 
 @interface RODItem : NSObject
 
+
+- (id) initWithType:(ViewType)new_viewType;
+
 @property (nonatomic) NSString *caption;
 @property (nonatomic) ViewType viewType;
 

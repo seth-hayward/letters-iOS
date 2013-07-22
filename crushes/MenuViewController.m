@@ -7,12 +7,16 @@
 //
 
 #import "MenuViewController.h"
+#import "RODItem.h"
 
 @implementation MenuViewController
 
 - (id) init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
+        
+        RODItem *test = [[RODItem alloc] initWithType:ViewTypeHome];
+        NSLog(@"test: %@", [test caption]);
         
     }
     return self;
