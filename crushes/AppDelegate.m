@@ -29,6 +29,8 @@
     webViewController = webVC;
     webViewController.trackedViewName = @"WebView";
     
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:webVC];
+    
     SendViewController *sendVC = [[SendViewController alloc] init];
     sendViewController = sendVC;
     sendViewController.trackedViewName = @"Send Letter";
@@ -36,7 +38,7 @@
     MenuViewController * leftDrawer = [[MenuViewController alloc] init];
     
     MMDrawerController * drawerController = [[MMDrawerController alloc]
-                                             initWithCenterViewController:webVC
+                                             initWithCenterViewController:navController
                                              leftDrawerViewController:leftDrawer];
     
     [drawerController setMaximumLeftDrawerWidth:200.0];

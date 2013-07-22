@@ -77,18 +77,22 @@
     switch(viewType) {
         case WebViewTypeHome:
             url = [url stringByAppendingString:@"/"];
+            [[self navigationItem] setTitle:@"letters to crushes"];
             break;
         case WebViewTypeMore:
             url = [url stringByAppendingString:@"/more"];
+            [[self navigationItem] setTitle:@"more"];
             break;
         case WebViewTypeBookmarks:
             url = [url stringByAppendingString:@"/bookmarks"];
+            [[self navigationItem] setTitle:@"bookmarks"];
             break;
         case WebViewTypeSearch:
             url = [url stringByAppendingString:@"/search"];
+            [[self navigationItem] setTitle:@"search"];
             break;
     }
-
+    
     if([_webView isLoading]) {
         [_webView stopLoading];
     }
