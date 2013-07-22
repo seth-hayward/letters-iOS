@@ -58,10 +58,9 @@
     
     MMDrawerController * drawerController = [[MMDrawerController alloc]
                                              initWithCenterViewController:tabBarController
-                                             leftDrawerViewController:leftDrawer
-                                             rightDrawerViewController:leftDrawer];
+                                             leftDrawerViewController:leftDrawer];
     
-    [drawerController setMaximumRightDrawerWidth:200.0];
+    [drawerController setMaximumLeftDrawerWidth:200.0];
     [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     
