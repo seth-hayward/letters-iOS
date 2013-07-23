@@ -107,13 +107,10 @@
         // now i need to tell the letters view controller that
         // it should reload the table view
         
-        
         AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
         [appDelegate.tabBar setSelectedIndex:1];
         
-        // load a blank page, so they don't see the previous page... good idea or not?
-        [appDelegate.webViewController.currentWebView loadHTMLString:@"" baseURL:[NSURL URLWithString:@"http://www.google.com"]];
-        
+        [appDelegate.lettersViewController.tableView reloadData];
         
         
     } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
