@@ -28,9 +28,7 @@
         
         [[self navigationItem] setTitle:@"letters to crushes"];
         
-        for(int i = 0; i < 10; i++) {
-            [[RODItemStore sharedStore] createLetter:[NSString stringWithFormat:@"New letter %d", i]];
-        }
+        [[RODItemStore sharedStore] loadLettersByPage:1 level:0];
 
     }
     return self;
