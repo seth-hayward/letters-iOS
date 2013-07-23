@@ -16,7 +16,7 @@
 
 @implementation AppDelegate
 @synthesize tabBar, webViewController, sendViewController, home_last_click, more_last_click,
-            bookmarks_last_click, search_last_click, drawer;
+            bookmarks_last_click, search_last_click, drawer, lettersViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -31,6 +31,7 @@
     webViewController.trackedViewName = @"WebView";
     
     LettersViewController *lettersVC = [[LettersViewController alloc] init];
+    lettersViewController = lettersVC;
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lettersVC];
     
