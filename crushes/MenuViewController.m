@@ -27,9 +27,33 @@
     return self;
 }
 
+- (IBAction)attemptLogin:(id)sender
+{
+    NSLog(@"Hello login.");
+}
+
 -(id) initWithStyle:(UITableViewStyle)style
 {
     return [self init];
+}
+
+- (UIView *)loginView
+{
+    if (!loginView) {
+        [[NSBundle mainBundle] loadNibNamed:@"LoginView" owner:self options:nil];
+    }
+    
+    return loginView;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [self loginView];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return [[self loginView] bounds].size.height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
