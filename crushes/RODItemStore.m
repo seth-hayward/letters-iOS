@@ -8,6 +8,7 @@
 
 #import "RODItemStore.h"
 #import "RODItem.h"
+#import "RKFullLetter.h"
 
 @implementation RODItemStore
 
@@ -15,6 +16,7 @@
     self = [super init];
     if(self) {
         allMenuItems = [[NSMutableArray alloc] init];
+        allLetters = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -25,10 +27,25 @@
     return allMenuItems;
 }
 
+- (NSArray *)allLetters
+{
+    return allLetters;
+}
+
 - (RODItem *)createItem:(ViewType) new_Type
 {
     RODItem *p = [[RODItem alloc] initWithType:new_Type];
     [allMenuItems addObject:p];
+    
+    return p;
+}
+
+- (RKFullLetter *)createLetter:(NSString *)letter
+{
+    
+    RKFullLetter *p = [[RKFullLetter alloc] init];
+    p.letterMessage = letter;
+    [allLetters addObject:p];
     
     return p;
 }

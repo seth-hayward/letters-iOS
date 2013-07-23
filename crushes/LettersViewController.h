@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LettersViewController : UITableViewController
+@interface LettersViewController : UITableViewController <UITableViewDelegate>
 
 @end
