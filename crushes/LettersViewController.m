@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "RKFullLetter.h"
 #import "RODItemStore.h"
+#import "LetterItemCell.h"
 
 @implementation LettersViewController
 
@@ -55,17 +56,26 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"letterCell"];
-    
-    if(!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"letterCell"];
-    }
-    
     RKFullLetter *p = [[[RODItemStore sharedStore] allLetters] objectAtIndex:[indexPath row]];
     
-    [[cell textLabel] setText:[p letterMessage]];
-        
+    LetterItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"letterCell"];
+
+    [[cell littleWebView] loadHTMLString:[p letterMessage] baseURL:nil];
+    [[cell buttonHeart] setTitle:[[p letterUp] stringValue] forState:UIControlStateNormal];
+    
     return cell;
+    
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // load the nib file
+    UINib *nib = [UINib nibWithNibName:@"LetterItemCell" bundle:nil];
+    
+    // register this nib which contains the cell
+    [[self tableView] registerNib:nib forCellReuseIdentifier:@"letterCell"];
     
 }
 

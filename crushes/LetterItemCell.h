@@ -10,4 +10,7 @@
 
 @interface LetterItemCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIWebView *littleWebView;
+@property (weak, nonatomic) IBOutlet UIButton *buttonHeart;
+
 @end
