@@ -31,6 +31,7 @@
 		5D7609AE179CDD660018F27B /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609AC179CDD660018F27B /* MenuViewController.m */; };
 		5D7609B2179DBDF00018F27B /* RODItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609B1179DBDF00018F27B /* RODItem.m */; };
 		5D7609B5179DCE100018F27B /* RODItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609B4179DCE100018F27B /* RODItemStore.m */; };
+		5D7609C1179F00ED0018F27B /* LettersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609C0179F00ED0018F27B /* LettersViewController.m */; };
 		5D7F303B1780DCE8009F0AC6 /* RKLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303A1780DCE8009F0AC6 /* RKLetter.m */; };
 		5D7F303E17810B3B009F0AC6 /* RKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303D17810B3B009F0AC6 /* RKMessage.m */; };
 		5D7F304017820161009F0AC6 /* envelope.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F303F17820161009F0AC6 /* envelope.png */; };
@@ -84,6 +85,8 @@
 		5D7609B1179DBDF00018F27B /* RODItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RODItem.m; sourceTree = "<group>"; };
 		5D7609B3179DCE100018F27B /* RODItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RODItemStore.h; sourceTree = "<group>"; };
 		5D7609B4179DCE100018F27B /* RODItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RODItemStore.m; sourceTree = "<group>"; };
+		5D7609BF179F00ED0018F27B /* LettersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LettersViewController.h; sourceTree = "<group>"; };
+		5D7609C0179F00ED0018F27B /* LettersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LettersViewController.m; sourceTree = "<group>"; };
 		5D7F30391780DCE8009F0AC6 /* RKLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLetter.h; sourceTree = "<group>"; };
 		5D7F303A1780DCE8009F0AC6 /* RKLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLetter.m; sourceTree = "<group>"; };
 		5D7F303C17810B3A009F0AC6 /* RKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKMessage.h; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				5D0BD07916711F850088A383 /* WebViewController.m */,
 				5D7609AB179CDD660018F27B /* MenuViewController.h */,
 				5D7609AC179CDD660018F27B /* MenuViewController.m */,
+				5D7609BF179F00ED0018F27B /* LettersViewController.h */,
+				5D7609C0179F00ED0018F27B /* LettersViewController.m */,
 				5D0BD04B1670AAA30088A383 /* AppDelegate.h */,
 				5D0BD04C1670AAA30088A383 /* AppDelegate.m */,
 				5D0BD0431670AAA30088A383 /* Supporting Files */,
@@ -339,6 +344,7 @@
 				5D7609AE179CDD660018F27B /* MenuViewController.m in Sources */,
 				5D7609B2179DBDF00018F27B /* RODItem.m in Sources */,
 				5D7609B5179DCE100018F27B /* RODItemStore.m in Sources */,
+				5D7609C1179F00ED0018F27B /* LettersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

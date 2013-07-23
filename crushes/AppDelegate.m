@@ -11,6 +11,7 @@
 #import "WebViewController.h"
 #import "MMDrawerController.h"
 #import "MenuViewController.h"
+#import "LettersViewController.h"
 #import "GAI.h"
 
 @implementation AppDelegate
@@ -29,7 +30,9 @@
     webViewController = webVC;
     webViewController.trackedViewName = @"WebView";
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:webVC];
+    LettersViewController *lettersVC = [[LettersViewController alloc] init];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lettersVC];
     
     SendViewController *sendVC = [[SendViewController alloc] init];
     sendViewController = sendVC;
