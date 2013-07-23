@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuViewController : UITableViewController <UITableViewDelegate>
+{
+    IBOutlet UIView *loginView;
+}
+
+- (UIView *)loginView;
+- (IBAction)attemptLogin:(id)sender;
 
 @end
