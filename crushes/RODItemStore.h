@@ -22,6 +22,7 @@
 - (NSArray *)allLetters;
 
 - (RODItem *)createItem:(ViewType) new_Type;
-- (RKFullLetter *)createLetter:(NSString *) letter;
+- (RKFullLetter *)addLetter:(RKFullLetter *) letter;
+- (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level;
 
 @end

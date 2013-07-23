@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Seth Hayward. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "RODItemStore.h"
 #import "RODItem.h"
 #import "RKFullLetter.h"
@@ -40,14 +41,10 @@
     return p;
 }
 
-- (RKFullLetter *)createLetter:(NSString *)letter
+- (RKFullLetter *)addLetter:(RKFullLetter *)letter
 {
-    
-    RKFullLetter *p = [[RKFullLetter alloc] init];
-    p.letterMessage = letter;
-    [allLetters addObject:p];
-    
-    return p;
+    [allLetters addObject:letter];
+    return letter;
 }
 
 + (RODItemStore *)sharedStore {
@@ -58,6 +55,75 @@
     
     return sharedStore;
 }
+
+- (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level
+{
+    
+    NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com/api/get_letters"];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
+    
+    [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+    
+    RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+    
+    RKRequestDescriptor* requestDescriptor;
+    
+    RKObjectMapping* responseObjectMapping = [RKObjectMapping mappingForClass:[RKFullLetter class]];
+    [responseObjectMapping addAttributeMappingsFromDictionary:@{
+     @"Id": @"Id",
+     @"letterMessage": @"letterMessage",
+     @"letterTags": @"letterTags",
+     @"letterPostDate": @"letterPostDate",
+     @"letterUp": @"letterUp",
+     @"letterLevel": @"letterLevel",
+     @"letterLanguage": @"letterLanguage",
+     @"senderIP": @"senderIP",
+     @"senderCountry": @"senderCountry",
+     @"senderRegion": @"senderRegion",
+     @"senderCity": @"senderCity",
+     @"letterComments": @"letterComments"
+     }];
+    
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    NSString *real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/api/get_letters/%d/%d", load_level, page];
+    
+    [objectManager addResponseDescriptor:responseDescriptor];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];
+    
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseDescriptor] ];
+    
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+        RKFullLetter *letter = mappingResult.array[0];
+        NSLog(@"Loaded letters: %d", [mappingResult count]);
+
+        // now loop through the result and add all of these
+        for(int i = 0; i<[mappingResult count]; i++) {
+            RKFullLetter *current_letter = mappingResult.array[i];            
+            [allLetters addObject:current_letter];
+        }
+        
+        // now i need to tell the letters view controller that
+        // it should reload the table view
+        
+        
+        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+        [appDelegate.tabBar setSelectedIndex:1];
+        
+        // load a blank page, so they don't see the previous page... good idea or not?
+        [appDelegate.webViewController.currentWebView loadHTMLString:@"" baseURL:[NSURL URLWithString:@"http://www.google.com"]];
+        
+        
+        
+    } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Error loading: %@", error);
+    }];
+    
+    [objectRequestOperation start];
+    
+}
+
 
 + (id)allocWithZone:(NSZone *)zone {
     return [self sharedStore];
