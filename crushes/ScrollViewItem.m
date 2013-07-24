@@ -11,13 +11,15 @@
 #import "RKFullLetter.h"
 
 @implementation ScrollViewItem
-@synthesize current_index;
+@synthesize current_index, webView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        NSLog(@"Initialized...");
+        //self.webView.delegate = self;
     }
     return self;
 }
@@ -33,17 +35,22 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
--(void)webViewDidFinishLoad:(UIWebView *)webView {
-    
-//    RKFullLetter *current_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:current_index];
-    
-    NSString *height = [webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
-
-    NSLog(@"Height: %@", height);
-    
-    //current_letter.letterTags = @"1";
-    
-}
+//
+//-(void)webViewDidStartLoad:(UIWebView *)a_webView
+//{
+//    NSLog(@"Started load.");
+//}
+//
+//-(void)webViewDidFinishLoad:(UIWebView *)a_webView {
+//    
+////    RKFullLetter *current_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:current_index];
+//    
+//    NSString *height = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
+//
+//    NSLog(@"Height: %@", height);
+//    
+//    //current_letter.letterTags = @"1";
+//    
+//}
 
 @end

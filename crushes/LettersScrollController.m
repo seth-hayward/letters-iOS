@@ -48,8 +48,6 @@
         scv.current_index = i;
         scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, from_letter);
 
-        //[scv.webView setDelegate:scv];
-        
         [scv.webView loadHTMLString:full_letter.letterMessage baseURL:nil];
         
         yOffset = yOffset + scv.view.bounds.size.height;
