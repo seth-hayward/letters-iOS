@@ -10,5 +10,8 @@
 #import "GAITrackedViewController.h"
 
 @interface LettersScrollController : GAITrackedViewController
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+-(void)loadLetterData;
 
 @end

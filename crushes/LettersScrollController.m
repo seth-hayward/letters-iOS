@@ -9,6 +9,7 @@
 #import "LettersScrollController.h"
 #import "MMDrawerBarButtonItem.h"
 #import "RODItemStore.h"
+#import "RKFullLetter.h"
 
 @implementation LettersScrollController
 
@@ -29,6 +30,32 @@
         
     }
     return self;
+}
+
+-(void)loadLetterData
+{
+    
+    int yOffset = 0;
+    
+    for(int i = 0; i < [[[RODItemStore sharedStore] allLetters] count]; i++) {
+        
+        RKFullLetter *full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:i];
+        
+        int from_letter = [full_letter.letterCountry integerValue];
+        
+        UIWebView *real_letter = [[UIWebView alloc] initWithFrame:CGRectMake(0, yOffset, self.view.bounds.size.width, from_letter)];
+        
+        [real_letter loadHTMLString:full_letter.letterMessage baseURL:nil];
+        
+        yOffset += from_letter;
+        [self.scrollView addSubview:real_letter.scrollView];
+        
+        NSLog(@"Size, offset: %@, %i", full_letter.letterCountry, yOffset);
+    
+    }
+    
+    [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
+    
 }
 
 @end

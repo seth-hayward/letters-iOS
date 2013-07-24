@@ -104,7 +104,7 @@
         for(int i = 0; i<[mappingResult count]; i++) {
             RKFullLetter *current_letter = mappingResult.array[i];
             
-            current_letter.letterCountry = @"0";
+            current_letter.letterCountry = @"100";
             current_letter.letterTags = @"0";
             [allLetters addObject:current_letter];
         }
@@ -113,9 +113,10 @@
         // it should reload the table view
         
         AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-        [appDelegate.tabBar setSelectedIndex:1];
+        //[appDelegate.tabBar setSelectedIndex:1];
         
-        [appDelegate.lettersViewController.tableView reloadData];
+        //[appDelegate.lettersViewController.tableView reloadData];
+        [appDelegate.lettersScrollController loadLetterData];
         
         
     } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
