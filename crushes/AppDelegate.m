@@ -16,7 +16,7 @@
 
 @implementation AppDelegate
 @synthesize tabBar, webViewController, sendViewController, home_last_click, more_last_click,
-            bookmarks_last_click, search_last_click, drawer, lettersViewController;
+bookmarks_last_click, search_last_click, drawer, lettersViewController, lettersScrollController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -33,13 +33,17 @@
     LettersViewController *lettersVC = [[LettersViewController alloc] init];
     lettersViewController = lettersVC;
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lettersVC];
-    
     SendViewController *sendVC = [[SendViewController alloc] init];
     sendViewController = sendVC;
     sendViewController.trackedViewName = @"Send Letter";
     
     MenuViewController * leftDrawer = [[MenuViewController alloc] init];
+    
+    LettersScrollController *lettersScrollVC = [[LettersScrollController alloc] init];
+    lettersScrollController = lettersScrollVC;
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lettersScrollVC];
+    
     
     MMDrawerController * drawerController = [[MMDrawerController alloc]
                                              initWithCenterViewController:navController
