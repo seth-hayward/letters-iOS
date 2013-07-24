@@ -7,12 +7,11 @@
 //
 
 #import "ScrollViewItem.h"
-
-@interface ScrollViewItem ()
-
-@end
+#import "RODItemStore.h"
+#import "RKFullLetter.h"
 
 @implementation ScrollViewItem
+@synthesize current_index;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +32,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
+    
+//    RKFullLetter *current_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:current_index];
+    
+    NSString *height = [webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
+
+    NSLog(@"Height: %@", height);
+    
+    //current_letter.letterTags = @"1";
+    
 }
 
 @end

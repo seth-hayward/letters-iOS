@@ -17,7 +17,7 @@
     self = [super init];
     if(self) {
         allMenuItems = [[NSMutableArray alloc] init];
-        allLetters = [[NSMutableArray alloc] init];
+        _allLetters = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -30,7 +30,7 @@
 
 - (NSArray *)allLetters
 {
-    return allLetters;
+    return _allLetters;
 }
 
 - (RODItem *)createItem:(ViewType) new_Type
@@ -43,7 +43,7 @@
 
 - (RKFullLetter *)addLetter:(RKFullLetter *)letter
 {
-    [allLetters addObject:letter];
+    [_allLetters addObject:letter];
     return letter;
 }
 
@@ -59,7 +59,7 @@
 - (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level
 {
     
-    [allLetters removeAllObjects];
+    [_allLetters removeAllObjects];
     
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com/api/get_letters"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
@@ -67,9 +67,7 @@
     [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
     
     RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
-    
-    RKRequestDescriptor* requestDescriptor;
-    
+        
     RKObjectMapping* responseObjectMapping = [RKObjectMapping mappingForClass:[RKFullLetter class]];
     [responseObjectMapping addAttributeMappingsFromDictionary:@{
      @"Id": @"Id",
@@ -98,7 +96,7 @@
     [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
         RKFullLetter *letter = mappingResult.array[0];
-        NSLog(@"Loaded letters: %d", [mappingResult count]);
+        NSLog(@"Loaded letters: %d, %d", [mappingResult count], [_allLetters count]);
 
         AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
 
@@ -107,15 +105,10 @@
         for(int i = 0; i<[mappingResult count]; i++) {
             RKFullLetter *current_letter = mappingResult.array[i];
             
-            current_letter.letterTags = @"0";
+            current_letter.letterTags = @"0";            
+            current_letter.letterCountry = @"100";
             
-            UIWebView *test_view = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, appDelegate.lettersScrollController.view.bounds.size.width, 100)];
-            
-            [test_view loadHTMLString:current_letter.letterMessage baseURL:nil];
-
-            current_letter.letterCountry = [test_view stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
-            
-            [allLetters addObject:current_letter];
+            [_allLetters addObject:current_letter];
         }
         
         // now i need to tell the letters view controller that

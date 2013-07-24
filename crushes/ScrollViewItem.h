@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScrollViewItem : UIViewController
+@interface ScrollViewItem : UIViewController <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonHearts;
+@property (nonatomic) int current_index;
 
 @end

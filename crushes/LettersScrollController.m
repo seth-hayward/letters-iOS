@@ -26,9 +26,7 @@
         [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
         
         [[self navigationItem] setTitle:@"letters to crushes"];
-        
-        [[RODItemStore sharedStore] loadLettersByPage:1 level:0];
-        
+                
     }
     return self;
 }
@@ -46,15 +44,18 @@
         int yOrigin = i * 100;
         
         ScrollViewItem *scv = [[ScrollViewItem alloc] init];
+        
+        scv.current_index = i;
         scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, from_letter);
-        [scv updateViewConstraints];
+
+        //[scv.webView setDelegate:scv];
         
         [scv.webView loadHTMLString:full_letter.letterMessage baseURL:nil];
         
         yOffset = yOffset + scv.view.bounds.size.height;
         [self.scrollView addSubview:scv.view];
         
-        NSLog(@"Size, offset: %@, %i", full_letter.letterCountry, yOffset);
+        NSLog(@"%i (%@) Size, offset: %@, %i", i, full_letter.Id, full_letter.letterCountry, yOffset);
     
     }
     

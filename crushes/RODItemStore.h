@@ -13,7 +13,7 @@
 @interface RODItemStore : NSObject
 {
     NSMutableArray *allMenuItems;
-    NSMutableArray *allLetters;
+    NSMutableArray *_allLetters;
 }
 
 + (RODItemStore *)sharedStore;

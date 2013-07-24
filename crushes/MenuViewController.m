@@ -111,10 +111,8 @@
 
     // now tell the letters view controller to change the page
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    [appDelegate.lettersViewController.tableView reloadData];
-    
-    
-    [tableView reloadData];
+    //[appDelegate.lettersViewController.tableView reloadData];
+    //[tableView reloadData];
 }
 
 @end
