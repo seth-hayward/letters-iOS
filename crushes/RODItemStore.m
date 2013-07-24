@@ -102,7 +102,10 @@
 
         // now loop through the result and add all of these
         for(int i = 0; i<[mappingResult count]; i++) {
-            RKFullLetter *current_letter = mappingResult.array[i];            
+            RKFullLetter *current_letter = mappingResult.array[i];
+            
+            current_letter.letterCountry = [NSString stringWithFormat:@"%d", [current_letter letterMessage].length];
+            
             [allLetters addObject:current_letter];
         }
         
