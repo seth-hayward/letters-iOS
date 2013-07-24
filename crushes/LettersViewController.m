@@ -51,6 +51,12 @@
     return [[[RODItemStore sharedStore] allLetters] count];
 }
 
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    RKFullLetter *p = [[[RODItemStore sharedStore] allLetters] objectAtIndex:[indexPath row]];
+    CGFloat height = [[p letterCountry] integerValue];
+    return height;    
+}
+
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
