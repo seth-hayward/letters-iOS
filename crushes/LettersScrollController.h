@@ -14,5 +14,6 @@
 @property (nonatomic) int current_receive;
 
 -(void)loadLetterData;
+-(void)redrawScroll;
 
 @end

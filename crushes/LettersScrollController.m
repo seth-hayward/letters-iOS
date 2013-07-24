@@ -77,6 +77,9 @@
 -(void)redrawScroll
 {
     
+    [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self loadLetterData];
+    
 }
 
 
@@ -95,18 +98,18 @@
 
 -(void)webViewDidFinishLoad:(UIWebView *)a_webView {
 
-    RKFullLetter *current_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:current_receive];
+//    RKFullLetter *current_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:current_receive];
 
     NSString *height = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
 
     NSLog(@"Height: %@ id - %@", height, [a_webView request] );
     
-    current_letter.letterTags = @"1";
-    current_receive++;
-    
+//    current_letter.letterTags = @"1";
+//    current_receive++;
+//    
 //    if(current_receive == 10) {
 //        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-//        [appDelegate.lettersScrollController loadLetterData];        
+//        [appDelegate.lettersScrollController redrawScroll];
 //    }
 
 }
