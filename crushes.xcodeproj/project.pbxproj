@@ -177,6 +177,9 @@
 				5D7609CC17A04D390018F27B /* LettersScrollController.h */,
 				5D7609CD17A04D390018F27B /* LettersScrollController.m */,
 				5D7609CF17A04DB90018F27B /* LettersScrollController.xib */,
+				5D7609D317A058890018F27B /* ScrollViewItem.h */,
+				5D7609D417A058890018F27B /* ScrollViewItem.m */,
+				5D7609D517A0588A0018F27B /* ScrollViewItem.xib */,
 				5D7609B3179DCE100018F27B /* RODItemStore.h */,
 				5D7609B4179DCE100018F27B /* RODItemStore.m */,
 				5D7609B0179DBDF00018F27B /* RODItem.h */,
@@ -205,9 +208,6 @@
 				5D0BD04B1670AAA30088A383 /* AppDelegate.h */,
 				5D0BD04C1670AAA30088A383 /* AppDelegate.m */,
 				5D0BD0431670AAA30088A383 /* Supporting Files */,
-				5D7609D317A058890018F27B /* ScrollViewItem.h */,
-				5D7609D417A058890018F27B /* ScrollViewItem.m */,
-				5D7609D517A0588A0018F27B /* ScrollViewItem.xib */,
 			);
 			path = crushes;
 			sourceTree = "<group>";

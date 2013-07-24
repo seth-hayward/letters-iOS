@@ -46,12 +46,12 @@
         int yOrigin = i * 100;
         
         ScrollViewItem *scv = [[ScrollViewItem alloc] init];
-        scv.view.frame = CGRectMake(0, yOrigin, self.view.bounds.size.width, from_letter);
+        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, from_letter);
         [scv updateViewConstraints];
         
         [scv.webView loadHTMLString:full_letter.letterMessage baseURL:nil];
         
-        yOffset += from_letter;
+        yOffset = yOffset + scv.view.bounds.size.height;
         [self.scrollView addSubview:scv.view];
         
         NSLog(@"Size, offset: %@, %i", full_letter.letterCountry, yOffset);
@@ -59,6 +59,9 @@
     }
     
     [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
+    
+    
+    // now try looping through and resetting everything?
     
 }
 

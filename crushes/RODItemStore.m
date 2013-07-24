@@ -100,19 +100,27 @@
         RKFullLetter *letter = mappingResult.array[0];
         NSLog(@"Loaded letters: %d", [mappingResult count]);
 
+        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+
+        
         // now loop through the result and add all of these
         for(int i = 0; i<[mappingResult count]; i++) {
             RKFullLetter *current_letter = mappingResult.array[i];
             
-            current_letter.letterCountry = @"100";
             current_letter.letterTags = @"0";
+            
+            UIWebView *test_view = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, appDelegate.lettersScrollController.view.bounds.size.width, 100)];
+            
+            [test_view loadHTMLString:current_letter.letterMessage baseURL:nil];
+
+            current_letter.letterCountry = [test_view stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
+            
             [allLetters addObject:current_letter];
         }
         
         // now i need to tell the letters view controller that
         // it should reload the table view
         
-        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
         //[appDelegate.tabBar setSelectedIndex:1];
         
         //[appDelegate.lettersViewController.tableView reloadData];
