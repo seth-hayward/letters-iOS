@@ -104,7 +104,7 @@
         for(int i = 0; i<[mappingResult count]; i++) {
             RKFullLetter *current_letter = mappingResult.array[i];
             
-            current_letter.letterCountry = [NSString stringWithFormat:@"%d", [current_letter letterMessage].length];
+            current_letter.letterCountry = @"0";
             
             [allLetters addObject:current_letter];
         }

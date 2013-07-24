@@ -63,9 +63,12 @@
     RKFullLetter *p = [[[RODItemStore sharedStore] allLetters] objectAtIndex:[indexPath row]];
     
     LetterItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"letterCell"];
-
+    cell.letter = p;
+    
     [[cell littleWebView] loadHTMLString:[p letterMessage] baseURL:nil];
     [[cell buttonHeart] setTitle:[[p letterUp] stringValue] forState:UIControlStateNormal];
+    
+    [[cell littleWebView] setDelegate:cell];
     
     return cell;
     

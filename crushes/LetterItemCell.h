@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RKFullLetter.h"
 
-@interface LetterItemCell : UITableViewCell
+@interface LetterItemCell : UITableViewCell <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *littleWebView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonHeart;
+
+@property (weak, nonatomic) RKFullLetter *letter;
 
 @end
