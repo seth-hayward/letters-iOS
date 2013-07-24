@@ -37,6 +37,8 @@
 		5D7609CB179F1B390018F27B /* LetterItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7609CA179F1B390018F27B /* LetterItemCell.xib */; };
 		5D7609CE17A04D3A0018F27B /* LettersScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609CD17A04D390018F27B /* LettersScrollController.m */; };
 		5D7609D017A04DBA0018F27B /* LettersScrollController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7609CF17A04DB90018F27B /* LettersScrollController.xib */; };
+		5D7609D617A0588B0018F27B /* ScrollViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609D417A058890018F27B /* ScrollViewItem.m */; };
+		5D7609D717A0588B0018F27B /* ScrollViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7609D517A0588A0018F27B /* ScrollViewItem.xib */; };
 		5D7F303B1780DCE8009F0AC6 /* RKLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303A1780DCE8009F0AC6 /* RKLetter.m */; };
 		5D7F303E17810B3B009F0AC6 /* RKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303D17810B3B009F0AC6 /* RKMessage.m */; };
 		5D7F304017820161009F0AC6 /* envelope.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F303F17820161009F0AC6 /* envelope.png */; };
@@ -99,6 +101,9 @@
 		5D7609CC17A04D390018F27B /* LettersScrollController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LettersScrollController.h; sourceTree = "<group>"; };
 		5D7609CD17A04D390018F27B /* LettersScrollController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LettersScrollController.m; sourceTree = "<group>"; };
 		5D7609CF17A04DB90018F27B /* LettersScrollController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LettersScrollController.xib; sourceTree = "<group>"; };
+		5D7609D317A058890018F27B /* ScrollViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewItem.h; sourceTree = "<group>"; };
+		5D7609D417A058890018F27B /* ScrollViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewItem.m; sourceTree = "<group>"; };
+		5D7609D517A0588A0018F27B /* ScrollViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScrollViewItem.xib; sourceTree = "<group>"; };
 		5D7F30391780DCE8009F0AC6 /* RKLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLetter.h; sourceTree = "<group>"; };
 		5D7F303A1780DCE8009F0AC6 /* RKLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLetter.m; sourceTree = "<group>"; };
 		5D7F303C17810B3A009F0AC6 /* RKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKMessage.h; sourceTree = "<group>"; };
@@ -200,6 +205,9 @@
 				5D0BD04B1670AAA30088A383 /* AppDelegate.h */,
 				5D0BD04C1670AAA30088A383 /* AppDelegate.m */,
 				5D0BD0431670AAA30088A383 /* Supporting Files */,
+				5D7609D317A058890018F27B /* ScrollViewItem.h */,
+				5D7609D417A058890018F27B /* ScrollViewItem.m */,
+				5D7609D517A0588A0018F27B /* ScrollViewItem.xib */,
 			);
 			path = crushes;
 			sourceTree = "<group>";
@@ -313,6 +321,7 @@
 				5D7609C6179F0C580018F27B /* LoginView.xib in Resources */,
 				5D7609CB179F1B390018F27B /* LetterItemCell.xib in Resources */,
 				5D7609D017A04DBA0018F27B /* LettersScrollController.xib in Resources */,
+				5D7609D717A0588B0018F27B /* ScrollViewItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +378,7 @@
 				5D7609C1179F00ED0018F27B /* LettersViewController.m in Sources */,
 				5D7609C9179F1AC90018F27B /* LetterItemCell.m in Sources */,
 				5D7609CE17A04D3A0018F27B /* LettersScrollController.m in Sources */,
+				5D7609D617A0588B0018F27B /* ScrollViewItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
