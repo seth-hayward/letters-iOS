@@ -30,9 +30,6 @@ bookmarks_last_click, search_last_click, drawer, lettersViewController, lettersS
     webViewController = webVC;
     webViewController.trackedViewName = @"WebView";
     
-    LettersViewController *lettersVC = [[LettersViewController alloc] init];
-    lettersViewController = lettersVC;
-    
     SendViewController *sendVC = [[SendViewController alloc] init];
     sendViewController = sendVC;
     sendViewController.trackedViewName = @"Send Letter";

@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "GAITrackedViewController.h"
 
-@interface LettersScrollController : GAITrackedViewController
+@interface LettersScrollController : GAITrackedViewController <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic) int current_receive;
 
 -(void)loadLetterData;
 

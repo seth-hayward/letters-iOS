@@ -97,6 +97,7 @@
     switch([selected_item viewType])
     {
         case ViewTypeHome:
+            NSLog(@"Loading home..");
             [[RODItemStore sharedStore] loadLettersByPage:1  level:0];
             break;
         case ViewTypeMore:
