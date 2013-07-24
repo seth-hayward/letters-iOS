@@ -59,6 +59,8 @@
 - (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level
 {
     
+    [allLetters removeAllObjects];
+    
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com/api/get_letters"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
     

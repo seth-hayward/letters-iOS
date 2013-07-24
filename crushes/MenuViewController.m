@@ -94,13 +94,25 @@
     RODItem *selected_item = [[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]];
     selected_item.checked = true;
     
+    switch([selected_item viewType])
+    {
+        case ViewTypeHome:
+            [[RODItemStore sharedStore] loadLettersByPage:1  level:0];
+            break;
+        case ViewTypeMore:
+            [[RODItemStore sharedStore] loadLettersByPage:1 level:-1];
+            break;
+        default:
+            break;
+    }
+    
     // set the selected item to be checked=true
     //[[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]] setChecked:true];
 
-    // now tell the web view to change the page
+    // now tell the letters view controller to change the page
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    appDelegate.webViewController.viewType = selected_item.viewType;
-    [appDelegate.webViewController refreshOriginalPage];
+    [appDelegate.lettersViewController.tableView reloadData];
+    
     
     [tableView reloadData];
 }
