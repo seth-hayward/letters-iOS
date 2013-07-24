@@ -11,11 +11,16 @@
 
 @implementation LetterItemCell
 
-@synthesize letter;
+@synthesize letter, loaded;
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     NSLog(@"Error: %@", error);
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    loaded = false;
+    letter.letterTags = @"0";
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -29,11 +34,19 @@
     frame.size = fittingSize;
     webView.frame = frame;
     
-    update_height = [NSString stringWithFormat:@"%i", (int)fittingSize.height];
+    if(fittingSize.height > 2000) {
+        update_height = @"2000";       
+    } else {
+        update_height = [NSString stringWithFormat:@"%i", (int)fittingSize.height];
+    }
+    
     
     letter.letterCountry = update_height;
+    letter.letterTags = @"1";
     
-//    NSLog(@"Height set: %@", letter.letterCountry, letter.letterMessage);
+    
+    NSLog(@"Height set: %@", letter.letterCountry);
+    loaded = true;
 }
 
 @end

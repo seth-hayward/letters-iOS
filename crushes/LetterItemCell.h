@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UIWebView *littleWebView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonHeart;
+@property (nonatomic) Boolean *loaded;
 
 @property (weak, nonatomic) RKFullLetter *letter;
 

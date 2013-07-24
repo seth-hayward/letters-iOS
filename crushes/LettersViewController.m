@@ -53,8 +53,14 @@
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     RKFullLetter *p = [[[RODItemStore sharedStore] allLetters] objectAtIndex:[indexPath row]];
-    CGFloat height = [[p letterCountry] integerValue];
-    return height;    
+
+    CGFloat height = 10;
+    
+    if([p.letterTags isEqualToString:@"1"] == false) {
+        height = [[p letterCountry] integerValue];
+    }
+    
+    return height;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,8 +71,11 @@
     LetterItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"letterCell"];
     cell.letter = p;
     
+    [[[cell littleWebView] scrollView] setScrollEnabled:NO];
+    [[[cell littleWebView] scrollView] setBounces:NO];
     [[cell littleWebView] loadHTMLString:[p letterMessage] baseURL:nil];
     [[cell buttonHeart] setTitle:[[p letterUp] stringValue] forState:UIControlStateNormal];
+    
     
     [[cell littleWebView] setDelegate:cell];
     

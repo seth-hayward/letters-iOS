@@ -105,7 +105,7 @@
             RKFullLetter *current_letter = mappingResult.array[i];
             
             current_letter.letterCountry = @"0";
-            
+            current_letter.letterTags = @"0";
             [allLetters addObject:current_letter];
         }
         
