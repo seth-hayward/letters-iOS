@@ -96,22 +96,28 @@
     NSLog(@"Started load.");
 }
 
+-(void)refreshOriginalPage
+{
+    [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self loadLetterData];
+}
+
 -(void)webViewDidFinishLoad:(UIWebView *)a_webView {
 
-//    RKFullLetter *current_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:current_receive];
-
     NSString *height = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
+    NSString *found_html = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
 
-    NSLog(@"Height: %@ id - %@", height, [a_webView request] );
+    NSLog(@"Height: %@ html - %@", height, found_html);
     
-//    current_letter.letterTags = @"1";
-//    current_receive++;
-//    
-//    if(current_receive == 10) {
-//        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-//        [appDelegate.lettersScrollController redrawScroll];
-//    }
-
+    for(int i=0; i<[[[RODItemStore sharedStore] allLetters] count]; i++) {
+        RKFullLetter *current_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:i];
+        
+        if([current_letter.letterMessage isEqualToString:found_html]) {
+            current_letter.letterCountry = height;
+        }
+        
+    }
+    
 }
 
 @end
