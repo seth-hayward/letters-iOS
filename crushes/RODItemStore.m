@@ -33,6 +33,21 @@
     return _allLetters;
 }
 
+- (NSArray *)webviewReferences
+{
+    return _webviewReferences;
+}
+
+- (void)addReference:(UIWebView *)watch_this
+{    
+    [_webviewReferences addObject:watch_this];
+}
+
+- (void)removeReferences
+{
+    [_webviewReferences removeAllObjects];    
+}
+
 - (RODItem *)createItem:(ViewType) new_Type
 {
     RODItem *p = [[RODItem alloc] initWithType:new_Type];

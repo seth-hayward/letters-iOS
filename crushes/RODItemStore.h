@@ -14,15 +14,20 @@
 {
     NSMutableArray *allMenuItems;
     NSMutableArray *_allLetters;
+    NSMutableArray *_webviewReferences;
 }
 
 + (RODItemStore *)sharedStore;
 
 - (NSArray *)allMenuItems;
 - (NSArray *)allLetters;
+- (NSArray *)webviewReferences;
 
 - (RODItem *)createItem:(ViewType) new_Type;
 - (RKFullLetter *)addLetter:(RKFullLetter *) letter;
 - (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level;
+
+- (void)addReference:(UIWebView *)watch_this;
+- (void)removeReferences;
 
 @end
