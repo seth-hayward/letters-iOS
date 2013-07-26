@@ -95,11 +95,9 @@
     
     [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
-        RKFullLetter *letter = mappingResult.array[0];
         NSLog(@"Loaded letters: %d, %d", [mappingResult count], [_allLetters count]);
 
         AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-
         
         // now loop through the result and add all of these
         for(int i = 0; i<[mappingResult count]; i++) {

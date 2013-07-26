@@ -36,12 +36,11 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIWebView" id="494957859">
+					<object class="IBUIWebView" id="993215885">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{9, 62}, {302, 173}}</string>
+						<string key="NSFrame">{{9, 42}, {302, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -52,13 +51,12 @@
 						<int key="IBUIDataDetectorTypes">1</int>
 						<bool key="IBUIDetectsPhoneNumbers">YES</bool>
 					</object>
-					<object class="IBUIButton" id="239343018">
+					<object class="IBUIButton" id="297157396">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">289</int>
-						<string key="NSFrame">{{247, 8}, {60, 48}}</string>
+						<string key="NSFrame">{{247, 6}, {64, 33}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="494957859"/>
+						<reference key="NSNextKeyView" ref="993215885"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -93,10 +91,9 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 243}</string>
+				<string key="NSFrameSize">{320, 127}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="239343018"/>
+				<reference key="NSNextKeyView" ref="297157396"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -125,7 +122,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">webView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="494957859"/>
+						<reference key="destination" ref="993215885"/>
 					</object>
 					<int key="connectionID">18</int>
 				</object>
@@ -133,14 +130,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">buttonHearts</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="239343018"/>
+						<reference key="destination" ref="297157396"/>
 					</object>
 					<int key="connectionID">19</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="494957859"/>
+						<reference key="source" ref="993215885"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">22</int>
@@ -158,8 +155,8 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="494957859"/>
-							<reference ref="239343018"/>
+							<reference ref="993215885"/>
+							<reference ref="297157396"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -176,13 +173,13 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
-						<reference key="object" ref="494957859"/>
+						<reference key="object" ref="993215885"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
-						<reference key="object" ref="239343018"/>
+						<reference key="object" ref="297157396"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
