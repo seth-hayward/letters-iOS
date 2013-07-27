@@ -34,5 +34,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)webviewDidFinishLoading
+{
+    NSLog(@"Finished loading with current_index = %d", current_index);
+}
 
 @end

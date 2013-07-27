@@ -56,15 +56,16 @@
         scv.current_index = i;
         // the height of the padding around the
         // heart button and the frame of the scrollviewitem is about 40px.
-        
+                
         scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, from_letter + 80);
-        [scv.webView setDelegate:self];
-
+        
         [scv.webView loadHTMLString:full_letter.letterMessage baseURL:nil];
         
         yOffset = yOffset + (from_letter + 80);
         
         [self.scrollView addSubview:scv.view];
+        
+        //[[RODItemStore sharedStore] addReference:scv.webView];
         
         NSLog(@"%i (%@) Size, offset: %@, %i", i, full_letter.Id, full_letter.letterCountry, yOffset);
     
@@ -97,9 +98,8 @@
         scv.current_index = i;
         // the height of the padding around the
         // heart button and the frame of the scrollviewitem is about 40px.
-        
+                
         scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, from_letter + 80);
-        [scv.webView setDelegate:self];
         
         [scv.webView loadHTMLString:full_letter.letterMessage baseURL:nil];
         
@@ -120,10 +120,9 @@
 
 -(void)redrawScroll
 {
-    
+    [[RODItemStore sharedStore] removeReferences];
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self loadLetterData];
-    
 }
 
 
@@ -135,53 +134,49 @@
     
 }
 
--(void)webViewDidStartLoad:(UIWebView *)a_webView
-{
-    NSLog(@"Started load.");
-}
-
 -(void)refreshOriginalPage
 {
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self loadLetterData];
 }
 
+
+-(void)webViewDidStartLoad:(UIWebView *)a_webView
+{
+    NSLog(@"Started load.");
+}
+
 -(void)webViewDidFinishLoad:(UIWebView *)a_webView {
-
-    current_receive++;
     
+    NSLog(@"Finished!");
+    
+    ScrollViewItem *parent_scv = (ScrollViewItem *)a_webView.superview.superview;
+    
+    int current_index =  parent_scv.current_index;
     NSString *height = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
-    NSString *found_html = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+    NSLog(@"Found current index: %d", current_index);
     
-    for(int i=0; i<[[[RODItemStore sharedStore] allLetters] count]; i++) {
-        RKFullLetter *current_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:i];
+    //RKFullLetter *current_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:current_index];
+    //current_letter.letterCountry = height;
+    //current_letter.letterTags = @"1";
         
-        NSRange range = [current_letter.letterMessage rangeOfString:found_html];
-        
-        if(range.length > 0) {
-            current_letter.letterCountry = height;
-            current_letter.letterTags = @"1";
-            NSLog(@"Height: %@ - id: %@", height, current_letter.Id);
-            //[self redrawScroll];
-        }
-    
-    }
-
     // check to see if all of the other letters
     // have had their height set.
-
+    
     Boolean found_default_value = false;
-
+    
     for(int i=0; i<[[[RODItemStore sharedStore] allLetters] count]; i++) {
-         
+        
         RKFullLetter *letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:i];
         if([letter.letterTags isEqualToString:@"0"]) {
             found_default_value = true;
             break;
         }
-    
+        
     }
-
+    
 }
+
+
 
 @end
