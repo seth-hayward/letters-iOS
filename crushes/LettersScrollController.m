@@ -65,6 +65,8 @@
                 
         scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, letter_height + 80);
         
+        [scv.webView setDelegate:self];
+        
         [scv.webView loadHTMLString:full_letter.letterMessage baseURL:nil];
         
         yOffset = yOffset + (letter_height + 80);
@@ -114,32 +116,11 @@
 
 -(void)webViewDidFinishLoad:(UIWebView *)a_webView {
     
-    NSLog(@"Finished!");
     
-    ScrollViewItem *parent_scv = (ScrollViewItem *)a_webView.superview.superview;
-    
-    int current_index =  parent_scv.current_index;
     NSString *height = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
-    NSLog(@"Found current index: %d", current_index);
+    NSString *hidden_id = [a_webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('letter_id').innerHTML"];
     
-    //RKFullLetter *current_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:current_index];
-    //current_letter.letterCountry = height;
-    //current_letter.letterTags = @"1";
-        
-    // check to see if all of the other letters
-    // have had their height set.
-    
-    Boolean found_default_value = false;
-    
-    for(int i=0; i<[[[RODItemStore sharedStore] allLetters] count]; i++) {
-        
-        RKFullLetter *letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:i];
-        if([letter.letterTags isEqualToString:@"0"]) {
-            found_default_value = true;
-            break;
-        }
-        
-    }
+    NSLog(@"Found height for id %@: %@", hidden_id, height);
     
 }
 

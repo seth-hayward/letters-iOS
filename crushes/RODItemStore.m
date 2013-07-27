@@ -118,8 +118,12 @@
         for(int i = 0; i<[mappingResult count]; i++) {
             RKFullLetter *current_letter = mappingResult.array[i];
             
+            
+            NSString *hidden_id = [NSString stringWithFormat:@"<div id='letter_id' style='display: none'>%@</div>", current_letter.Id];
+            
             current_letter.letterTags = @"0";            
             current_letter.letterCountry = @"100";
+            current_letter.letterMessage = [NSString stringWithFormat:@"%@%@", hidden_id, current_letter.letterMessage];
             
             [_allLetters addObject:current_letter];
         }
