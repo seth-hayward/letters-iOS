@@ -78,46 +78,6 @@
     
 }
 
-
--(void)resizeScroll
-{
-    
-    int yOffset = 0;
-    
-    ScrollViewItem *scv;
-    
-    for(int i = 0; i < [[[RODItemStore sharedStore] allLetters] count]; i++) {
-        
-        RKFullLetter *full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:i];
-        
-        int from_letter = [full_letter.letterCountry integerValue];
-        int yOrigin = i * 100;
-        
-        scv = [[ScrollViewItem alloc] init];
-        
-        scv.current_index = i;
-        // the height of the padding around the
-        // heart button and the frame of the scrollviewitem is about 40px.
-                
-        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, from_letter + 80);
-        
-        [scv.webView loadHTMLString:full_letter.letterMessage baseURL:nil];
-        
-        yOffset = yOffset + (from_letter + 80);
-        
-        [self.scrollView addSubview:scv.view];
-        
-        NSLog(@"%i (%@) Size, offset: %@, %i", i, full_letter.Id, full_letter.letterCountry, yOffset);
-        
-    }
-    
-    [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
-    
-    
-    // now try looping through and resetting everything?
-    
-}
-
 -(void)redrawScroll
 {
     [[RODItemStore sharedStore] removeReferences];
