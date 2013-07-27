@@ -48,8 +48,14 @@
         
         RKFullLetter *full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:i];
         
-        int from_letter = [full_letter.letterCountry integerValue];
-        int yOrigin = i * 100;
+
+        int letter_height = 0;
+        
+        if([full_letter.letterTags isEqualToString:@"1"]) {
+            letter_height = [full_letter.letterCountry integerValue];
+        } else {
+            letter_height = 100;
+        }
         
         scv = [[ScrollViewItem alloc] init];
         
@@ -57,11 +63,11 @@
         // the height of the padding around the
         // heart button and the frame of the scrollviewitem is about 40px.
                 
-        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, from_letter + 80);
+        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, letter_height + 80);
         
         [scv.webView loadHTMLString:full_letter.letterMessage baseURL:nil];
         
-        yOffset = yOffset + (from_letter + 80);
+        yOffset = yOffset + (letter_height + 80);
         
         [self.scrollView addSubview:scv.view];
         
