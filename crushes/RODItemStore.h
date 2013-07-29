@@ -23,6 +23,8 @@
 - (NSArray *)allLetters;
 - (NSArray *)webviewReferences;
 
+- (void) updateLetter:(NSNumber *)letter_id letter_height:(NSString *)height;
+
 - (RODItem *)createItem:(ViewType) new_Type;
 - (RKFullLetter *)addLetter:(RKFullLetter *) letter;
 - (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level;

@@ -14,7 +14,7 @@
 #import "AppDelegate.h"
 
 @implementation LettersScrollController
-@synthesize current_receive;
+@synthesize current_receive, loaded;
 
 - (id)init
 {
@@ -32,6 +32,7 @@
         [[RODItemStore sharedStore] loadLettersByPage:1 level:0];
         
         current_receive = 0;
+        loaded = false;
         
     }
     return self;
@@ -56,6 +57,8 @@
         } else {
             letter_height = 100;
         }
+        
+        NSLog(@"id: %@, tag: %@, height: %d", full_letter.Id, full_letter.letterTags, letter_height);
         
         scv = [[ScrollViewItem alloc] init];
         
@@ -104,6 +107,7 @@
 
 -(void)refreshOriginalPage
 {
+    NSLog(@"Refresh.");
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self loadLetterData];
 }
@@ -116,11 +120,44 @@
 
 -(void)webViewDidFinishLoad:(UIWebView *)a_webView {
     
+    if(loaded == true) {        
+        return;
+    }
     
     NSString *height = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
     NSString *hidden_id = [a_webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('letter_id').innerHTML"];
     
     NSLog(@"Found height for id %@: %@", hidden_id, height);
+    
+    // now loop through the data store
+    // assign the value
+    // then check to see if th eothers have finished loading
+    // if so, then ask the panel to redraw itself
+
+    Boolean found_default = false;
+    
+    for(int i = 0; i < [[[RODItemStore sharedStore] allLetters] count]; i++)
+    {
+        
+        RKFullLetter *letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:i];
+        if([[letter.Id stringValue] isEqualToString:hidden_id]) {
+            NSLog(@"in lettersScrollCOntainer, id is %@", letter.Id);
+            [[RODItemStore sharedStore] updateLetter:letter.Id letter_height:height];
+        }
+        
+        if([letter.letterTags isEqualToString:@"0"]) {
+            found_default = true;
+        }
+        
+    }
+    
+    if(found_default == false) {
+        loaded = true;
+        [self loadLetterData];
+    }
+    // now, see if the rest of the letters have received
+    // their height settings, which will allow us to reload
+    
     
 }
 

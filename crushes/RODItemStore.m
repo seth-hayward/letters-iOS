@@ -71,6 +71,24 @@
     return sharedStore;
 }
 
+- (void)updateLetter:(NSNumber *)letter_id letter_height:(NSString *)height
+{
+
+    for(int i = 0; i<[_allLetters count]; i++) {
+        RKFullLetter *current_letter = [_allLetters objectAtIndex:i];
+        NSNumber *current_letter_id = current_letter.Id;
+
+        NSLog(@"Looking for id = %@ against %@", current_letter_id, letter_id);
+        if([current_letter_id isEqualToNumber:letter_id]) {
+            current_letter.letterTags = @"1";
+            current_letter.letterCountry = height;
+            NSLog(@"Updated item in _allLetters.");
+        }
+        
+    }
+    
+}
+
 - (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level
 {
     

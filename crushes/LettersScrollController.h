@@ -12,6 +12,7 @@
 @interface LettersScrollController : GAITrackedViewController <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic) int current_receive;
+@property (nonatomic) Boolean loaded;
 
 -(void)loadLetterData;
 -(void)redrawScroll;
