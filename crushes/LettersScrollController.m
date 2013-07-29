@@ -30,6 +30,8 @@
         [[self navigationItem] setTitle:@"letters to crushes"];
 
         [[RODItemStore sharedStore] loadLettersByPage:1 level:0];
+
+        [self.view setHidden:true];
         
         current_receive = 0;
         loaded = false;
@@ -49,7 +51,6 @@
         
         RKFullLetter *full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:i];
         
-
         int letter_height = 0;
         
         if([full_letter.letterTags isEqualToString:@"1"]) {
@@ -57,8 +58,6 @@
         } else {
             letter_height = 100;
         }
-        
-        NSLog(@"id: %@, tag: %@, height: %d", full_letter.Id, full_letter.letterTags, letter_height);
         
         scv = [[ScrollViewItem alloc] init];
         
@@ -78,8 +77,6 @@
         
         //[[RODItemStore sharedStore] addReference:scv.webView];
         
-        NSLog(@"%i (%@) Size, offset: %@, %i", i, full_letter.Id, full_letter.letterCountry, yOffset);
-    
     }
     
     [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
@@ -107,7 +104,6 @@
 
 -(void)refreshOriginalPage
 {
-    NSLog(@"Refresh.");
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self loadLetterData];
 }
@@ -115,7 +111,6 @@
 
 -(void)webViewDidStartLoad:(UIWebView *)a_webView
 {
-    NSLog(@"Started load.");
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)a_webView {
@@ -126,9 +121,7 @@
     
     NSString *height = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
     NSString *hidden_id = [a_webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('letter_id').innerHTML"];
-    
-    NSLog(@"Found height for id %@: %@", hidden_id, height);
-    
+        
     // now loop through the data store
     // assign the value
     // then check to see if th eothers have finished loading
@@ -141,7 +134,6 @@
         
         RKFullLetter *letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:i];
         if([[letter.Id stringValue] isEqualToString:hidden_id]) {
-            NSLog(@"in lettersScrollCOntainer, id is %@", letter.Id);
             [[RODItemStore sharedStore] updateLetter:letter.Id letter_height:height];
         }
         
@@ -153,6 +145,7 @@
     
     if(found_default == false) {
         loaded = true;
+        [self.view setHidden:false];
         [self loadLetterData];
     }
     // now, see if the rest of the letters have received
