@@ -107,10 +107,14 @@
             break;
     }
     
+    // reload the data so the checkbox updates
+    [tableView reloadData];
+    
     // now tell the letters view controller to change the page
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate.lettersScrollController setLoaded:false];
     [appDelegate.lettersScrollController loadLetterData];
+    
 }
 
 @end
