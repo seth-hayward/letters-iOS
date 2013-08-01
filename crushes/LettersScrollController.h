@@ -10,6 +10,7 @@
 #import "GAITrackedViewController.h"
 
 @interface LettersScrollController : GAITrackedViewController <UIWebViewDelegate>
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic) int current_receive;
 @property (nonatomic) Boolean loaded;

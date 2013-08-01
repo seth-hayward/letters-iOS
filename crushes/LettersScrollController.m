@@ -32,7 +32,8 @@
         [[RODItemStore sharedStore] loadLettersByPage:1 level:0];
 
         [self.view setHidden:true];
-        
+ 
+        [self.indicator startAnimating];
         current_receive = 0;
         loaded = false;
         
@@ -145,6 +146,7 @@
     
     if(found_default == false) {
         loaded = true;
+        [self.indicator stopAnimating];
         [self.view setHidden:false];
         [self loadLetterData];
     }
