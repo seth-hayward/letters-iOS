@@ -11,6 +11,7 @@
 #import "RODItemStore.h"
 #import "AppDelegate.h"
 
+
 @implementation MenuViewController
 
 - (id) init {
@@ -97,7 +98,6 @@
     switch([selected_item viewType])
     {
         case ViewTypeHome:
-            NSLog(@"Loading home..");
             [[RODItemStore sharedStore] loadLettersByPage:1  level:0];
             break;
         case ViewTypeMore:
@@ -107,13 +107,10 @@
             break;
     }
     
-    // set the selected item to be checked=true
-    //[[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]] setChecked:true];
-
     // now tell the letters view controller to change the page
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    //[appDelegate.lettersViewController.tableView reloadData];
-    //[tableView reloadData];
+    [appDelegate.lettersScrollController setLoaded:false];
+    [appDelegate.lettersScrollController loadLetterData];
 }
 
 @end
