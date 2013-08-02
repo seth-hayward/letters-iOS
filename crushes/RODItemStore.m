@@ -78,11 +78,9 @@
         RKFullLetter *current_letter = [_allLetters objectAtIndex:i];
         NSNumber *current_letter_id = current_letter.Id;
 
-        NSLog(@"Looking for id = %@ against %@", current_letter_id, letter_id);
         if([current_letter_id isEqualToNumber:letter_id]) {
             current_letter.letterTags = @"1";
             current_letter.letterCountry = height;
-            NSLog(@"Updated item in _allLetters.");
         }
         
     }
@@ -139,9 +137,18 @@
             
             NSString *hidden_id = [NSString stringWithFormat:@"<div id='letter_id' style='display: none'>%@</div>", current_letter.Id];
             
+            NSString *letterHTML = [NSString stringWithFormat:@"<html> \n"
+                                           "<head> \n"
+                                           "<style type=\"text/css\"> \n"
+                                           "body {font-family: \"%@\"; font-size: %@;}\n"
+                                           "</style> \n"
+                                           "</head> \n"
+                                           "<body>%@%@</body> \n"
+                                           "</html>", @"helvetica", [NSNumber numberWithInt:14], hidden_id, current_letter.letterMessage];
+            
             current_letter.letterTags = @"0";            
             current_letter.letterCountry = @"100";
-            current_letter.letterMessage = [NSString stringWithFormat:@"%@%@", hidden_id, current_letter.letterMessage];
+            current_letter.letterMessage = letterHTML;
             
             [_allLetters addObject:current_letter];
         }
