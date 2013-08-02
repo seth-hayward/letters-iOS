@@ -71,6 +71,9 @@
         [scv.webView setDelegate:self];
         
         [scv.webView loadHTMLString:full_letter.letterMessage baseURL:nil];
+        [scv.buttonHearts setTitle:[full_letter.letterUp stringValue] forState:UIScrollViewDecelerationRateNormal];
+        
+        
         
         yOffset = yOffset + (letter_height + 80);
         
