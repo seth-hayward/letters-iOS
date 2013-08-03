@@ -11,7 +11,7 @@
 #import "RKFullLetter.h"
 
 @implementation ScrollViewItem
-@synthesize current_index;
+@synthesize current_index, current_letter;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -19,7 +19,7 @@
     if (self) {
         // Custom initialization
     }
-        
+    
     return self;
 }
 
@@ -27,12 +27,18 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)clickedHeart
+{
+    
 }
 
 @end

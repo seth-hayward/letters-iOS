@@ -34,6 +34,8 @@
         [self.view setHidden:true];
  
         [self.indicator startAnimating];
+        
+        [self.scrollView setDelegate:self];
         current_receive = 0;
         loaded = false;
         
@@ -72,6 +74,8 @@
         
         [scv.webView loadHTMLString:full_letter.letterMessage baseURL:nil];
         [scv.buttonHearts setTitle:[full_letter.letterUp stringValue] forState:UIScrollViewDecelerationRateNormal];
+        [scv.buttonHearts addTarget:self action:@selector(clickedHeart:) forControlEvents:UIControlEventTouchUpInside];
+        [scv.buttonHearts setTag:[full_letter.Id integerValue]];
         
         if([full_letter.letterComments isEqualToNumber:[NSNumber numberWithInt:0]]) {
             [scv.buttonComments setHidden:true];
@@ -79,12 +83,11 @@
             [scv.buttonComments setTitle:[NSString stringWithFormat:@"%@", full_letter.letterComments] forState:UIScrollViewDecelerationRateNormal];
         }
         
+        [scv setCurrent_letter:full_letter];
         
         yOffset = yOffset + (letter_height + 80);
-        
+                
         [self.scrollView addSubview:scv.view];
-        
-        //[[RODItemStore sharedStore] addReference:scv.webView];
         
     }
     
@@ -95,10 +98,73 @@
     
 }
 
+-(void)clickedHeart:(UIButton *)button
+{
+    
+    NSLog(@"Clicked heart.");
+    
+    NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
+    
+    [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+    
+    RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+    
+    RKObjectMapping* responseObjectMapping = [RKObjectMapping mappingForClass:[RKFullLetter class]];
+    [responseObjectMapping addAttributeMappingsFromDictionary:@{
+     @"Id": @"Id",
+     @"letterMessage": @"letterMessage",
+     @"letterTags": @"letterTags",
+     @"letterPostDate": @"letterPostDate",
+     @"letterUp": @"letterUp",
+     @"letterLevel": @"letterLevel",
+     @"letterLanguage": @"letterLanguage",
+     @"senderIP": @"senderIP",
+     @"senderCountry": @"senderCountry",
+     @"senderRegion": @"senderRegion",
+     @"senderCity": @"senderCity",
+     @"letterComments": @"letterComments"
+     }];
+    
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    NSString *real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/home/vote/%d", button.tag];
+    
+    [objectManager addResponseDescriptor:responseDescriptor];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];
+    
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseDescriptor] ];
+    
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+        RKFullLetter *letter = mappingResult.array[0];
+        NSLog(@"Voted on letter %@", letter.Id);
+        
+        [button setTitle:[NSString stringWithFormat:@"%@", letter.letterUp] forState:UIControlStateNormal];
+        
+    } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Error voting: %@", error);
+    }];
+    
+    [objectRequestOperation start];
+
+}
+
 -(void)redrawScroll
 {
     [[RODItemStore sharedStore] removeReferences];
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    // get new height of scrollview from all subviews
+    // thanks to William Jockusch on stackoverflow.com/questions/4018729
+    
+    CGRect contentRect = CGRectZero;
+    for (UIView *view in self.scrollView.subviews) {
+        contentRect = CGRectUnion(contentRect, view.frame);
+    }
+    
+    self.scrollView.contentSize = contentRect.size;
+    
     [self loadLetterData];
 }
 

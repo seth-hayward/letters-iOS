@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GAITrackedViewController.h"
 
-@interface LettersScrollController : GAITrackedViewController <UIWebViewDelegate>
+@interface LettersScrollController : GAITrackedViewController <UIWebViewDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic) int current_receive;
