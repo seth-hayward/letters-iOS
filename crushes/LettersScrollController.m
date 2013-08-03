@@ -73,6 +73,11 @@
         [scv.webView loadHTMLString:full_letter.letterMessage baseURL:nil];
         [scv.buttonHearts setTitle:[full_letter.letterUp stringValue] forState:UIScrollViewDecelerationRateNormal];
         
+        if([full_letter.letterComments isEqualToNumber:[NSNumber numberWithInt:0]]) {
+            [scv.buttonComments setHidden:true];
+        } else {
+            [scv.buttonComments setTitle:[NSString stringWithFormat:@"%@", full_letter.letterComments] forState:UIScrollViewDecelerationRateNormal];
+        }
         
         
         yOffset = yOffset + (letter_height + 80);

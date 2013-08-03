@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonHearts;
+@property (weak, nonatomic) IBOutlet UIButton *buttonComments;
 @property (nonatomic) int current_index;
 
 @end
