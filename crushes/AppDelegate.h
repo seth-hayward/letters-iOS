@@ -10,7 +10,6 @@
 #import "WebViewController.h"
 #import "SendViewController.h"
 #import "MMDrawerController.h"
-#import "LettersViewController.h"
 #import "LettersScrollController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
@@ -20,7 +19,6 @@
 @property (strong, nonatomic) WebViewController *webViewController;
 @property (strong, nonatomic) SendViewController *sendViewController;
 @property (strong, nonatomic) MMDrawerController *drawer;
-@property (strong, nonatomic) LettersViewController *lettersViewController;
 @property (strong, nonatomic) LettersScrollController *lettersScrollController;
 
 @property (strong, nonatomic) NSDate *home_last_click;

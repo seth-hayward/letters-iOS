@@ -11,12 +11,11 @@
 #import "WebViewController.h"
 #import "MMDrawerController.h"
 #import "MenuViewController.h"
-#import "LettersViewController.h"
 #import "GAI.h"
 
 @implementation AppDelegate
 @synthesize tabBar, webViewController, sendViewController, home_last_click, more_last_click,
-bookmarks_last_click, search_last_click, drawer, lettersViewController, lettersScrollController;
+bookmarks_last_click, search_last_click, drawer, lettersScrollController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
