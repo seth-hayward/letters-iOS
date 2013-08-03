@@ -77,11 +77,19 @@
         [scv.buttonHearts addTarget:self action:@selector(clickedHeart:) forControlEvents:UIControlEventTouchUpInside];
         [scv.buttonHearts setTag:[full_letter.Id integerValue]];
         
+        [scv.labelHearts setText:[full_letter.letterUp stringValue]];
+        
         if([full_letter.letterComments isEqualToNumber:[NSNumber numberWithInt:0]]) {
-            [scv.buttonComments setHidden:true];
+            [scv.labelComments  setHidden:true];
         } else {
-            [scv.buttonComments setTitle:[NSString stringWithFormat:@"%@", full_letter.letterComments] forState:UIScrollViewDecelerationRateNormal];
-        }
+            
+            if([full_letter.letterComments integerValue] < 2) {
+                [scv.labelComments setText:@"1 comment"];
+            } else {
+                [scv.labelComments setText:[NSString stringWithFormat:@"%@ comments", full_letter.letterComments]];
+            }
+                 
+      }
         
         [scv setCurrent_letter:full_letter];
         
@@ -100,8 +108,6 @@
 
 -(void)clickedHeart:(UIButton *)button
 {
-    
-    NSLog(@"Clicked heart.");
     
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];

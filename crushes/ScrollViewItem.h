@@ -13,10 +13,11 @@
 {
     
 }
+@property (weak, nonatomic) IBOutlet UILabel *labelHearts;
+@property (weak, nonatomic) IBOutlet UILabel *labelComments;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonHearts;
-@property (weak, nonatomic) IBOutlet UIButton *buttonComments;
 @property (nonatomic) int current_index;
 @property (nonatomic) RKFullLetter *current_letter;
 - (void)clickedHeart;
