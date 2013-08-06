@@ -32,8 +32,6 @@
 		5D7609B2179DBDF00018F27B /* RODItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609B1179DBDF00018F27B /* RODItem.m */; };
 		5D7609B5179DCE100018F27B /* RODItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609B4179DCE100018F27B /* RODItemStore.m */; };
 		5D7609C6179F0C580018F27B /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7609C5179F0C580018F27B /* LoginView.xib */; };
-		5D7609CE17A04D3A0018F27B /* LettersScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609CD17A04D390018F27B /* LettersScrollController.m */; };
-		5D7609D017A04DBA0018F27B /* LettersScrollController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7609CF17A04DB90018F27B /* LettersScrollController.xib */; };
 		5D7609D617A0588B0018F27B /* ScrollViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609D417A058890018F27B /* ScrollViewItem.m */; };
 		5D7609D717A0588B0018F27B /* ScrollViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7609D517A0588A0018F27B /* ScrollViewItem.xib */; };
 		5D7F303B1780DCE8009F0AC6 /* RKLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F303A1780DCE8009F0AC6 /* RKLetter.m */; };
@@ -51,6 +49,11 @@
 		5D7F30601784FA01009F0AC6 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F305F1784FA01009F0AC6 /* Default-Portrait@2x~ipad.png */; };
 		5D7F30621784FA07009F0AC6 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F30611784FA07009F0AC6 /* Default-Portrait~ipad.png */; };
 		5DE2531C17ACC2150069EC96 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2531B17ACC2150069EC96 /* comment.png */; };
+		5DE2533317B130790069EC96 /* LetterCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2533117B130790069EC96 /* LetterCommentsViewController.m */; };
+		5DE2533417B130790069EC96 /* LetterCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2533217B130790069EC96 /* LetterCommentsViewController.xib */; };
+		5DE2533817B132070069EC96 /* LettersScrollController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2533517B132070069EC96 /* LettersScrollController.xib */; };
+		5DE2533917B132070069EC96 /* LettersScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2533717B132070069EC96 /* LettersScrollController.m */; };
+		5DE2533B17B134840069EC96 /* border.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2533A17B134840069EC96 /* border.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,9 +94,6 @@
 		5D7609B3179DCE100018F27B /* RODItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RODItemStore.h; sourceTree = "<group>"; };
 		5D7609B4179DCE100018F27B /* RODItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RODItemStore.m; sourceTree = "<group>"; };
 		5D7609C5179F0C580018F27B /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
-		5D7609CC17A04D390018F27B /* LettersScrollController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LettersScrollController.h; sourceTree = "<group>"; };
-		5D7609CD17A04D390018F27B /* LettersScrollController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LettersScrollController.m; sourceTree = "<group>"; };
-		5D7609CF17A04DB90018F27B /* LettersScrollController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LettersScrollController.xib; sourceTree = "<group>"; };
 		5D7609D317A058890018F27B /* ScrollViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewItem.h; sourceTree = "<group>"; };
 		5D7609D417A058890018F27B /* ScrollViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewItem.m; sourceTree = "<group>"; };
 		5D7609D517A0588A0018F27B /* ScrollViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScrollViewItem.xib; sourceTree = "<group>"; };
@@ -114,6 +114,13 @@
 		5D7F305F1784FA01009F0AC6 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "../Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		5D7F30611784FA07009F0AC6 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		5DE2531B17ACC2150069EC96 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
+		5DE2533017B130790069EC96 /* LetterCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterCommentsViewController.h; sourceTree = "<group>"; };
+		5DE2533117B130790069EC96 /* LetterCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterCommentsViewController.m; sourceTree = "<group>"; };
+		5DE2533217B130790069EC96 /* LetterCommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LetterCommentsViewController.xib; sourceTree = "<group>"; };
+		5DE2533517B132070069EC96 /* LettersScrollController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LettersScrollController.xib; sourceTree = "<group>"; };
+		5DE2533617B132070069EC96 /* LettersScrollController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LettersScrollController.h; sourceTree = "<group>"; };
+		5DE2533717B132070069EC96 /* LettersScrollController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LettersScrollController.m; sourceTree = "<group>"; };
+		5DE2533A17B134840069EC96 /* border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border.png; sourceTree = "<group>"; };
 		6C6818BD3B3146F19D555AC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E241FCEAA9F14664A45919BA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -165,12 +172,12 @@
 		5D0BD0421670AAA30088A383 /* crushes */ = {
 			isa = PBXGroup;
 			children = (
+				5DE2533517B132070069EC96 /* LettersScrollController.xib */,
+				5DE2533617B132070069EC96 /* LettersScrollController.h */,
+				5DE2533717B132070069EC96 /* LettersScrollController.m */,
 				5D0BD06B16710B920088A383 /* SendViewController.m */,
 				5D0BD06A16710B920088A383 /* SendViewController.h */,
 				5D0BD06D16710BB70088A383 /* SendViewController.xib */,
-				5D7609CC17A04D390018F27B /* LettersScrollController.h */,
-				5D7609CD17A04D390018F27B /* LettersScrollController.m */,
-				5D7609CF17A04DB90018F27B /* LettersScrollController.xib */,
 				5D7609D317A058890018F27B /* ScrollViewItem.h */,
 				5D7609D417A058890018F27B /* ScrollViewItem.m */,
 				5D7609D517A0588A0018F27B /* ScrollViewItem.xib */,
@@ -178,6 +185,9 @@
 				5D7609B4179DCE100018F27B /* RODItemStore.m */,
 				5D7609B0179DBDF00018F27B /* RODItem.h */,
 				5D7609B1179DBDF00018F27B /* RODItem.m */,
+				5DE2533017B130790069EC96 /* LetterCommentsViewController.h */,
+				5DE2533117B130790069EC96 /* LetterCommentsViewController.m */,
+				5DE2533217B130790069EC96 /* LetterCommentsViewController.xib */,
 				5D0BD07816711F850088A383 /* WebViewController.h */,
 				5D0BD07B16711FB30088A383 /* WebViewController.xib */,
 				5D0BD07916711F850088A383 /* WebViewController.m */,
@@ -204,6 +214,7 @@
 		5D0BD0431670AAA30088A383 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5DE2533A17B134840069EC96 /* border.png */,
 				5D7F30611784FA07009F0AC6 /* Default-Portrait~ipad.png */,
 				5D7F305F1784FA01009F0AC6 /* Default-Portrait@2x~ipad.png */,
 				5D7F305D1784F9F8009F0AC6 /* Default-Landscape~ipad.png */,
@@ -309,9 +320,11 @@
 				5D458D7D178B731500B71314 /* search.png in Resources */,
 				5D458D94178E318A00B71314 /* Default-568h@2x.png in Resources */,
 				5D7609C6179F0C580018F27B /* LoginView.xib in Resources */,
-				5D7609D017A04DBA0018F27B /* LettersScrollController.xib in Resources */,
 				5D7609D717A0588B0018F27B /* ScrollViewItem.xib in Resources */,
 				5DE2531C17ACC2150069EC96 /* comment.png in Resources */,
+				5DE2533417B130790069EC96 /* LetterCommentsViewController.xib in Resources */,
+				5DE2533817B132070069EC96 /* LettersScrollController.xib in Resources */,
+				5DE2533B17B134840069EC96 /* border.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,8 +378,9 @@
 				5D7609AE179CDD660018F27B /* MenuViewController.m in Sources */,
 				5D7609B2179DBDF00018F27B /* RODItem.m in Sources */,
 				5D7609B5179DCE100018F27B /* RODItemStore.m in Sources */,
-				5D7609CE17A04D3A0018F27B /* LettersScrollController.m in Sources */,
 				5D7609D617A0588B0018F27B /* ScrollViewItem.m in Sources */,
+				5DE2533317B130790069EC96 /* LetterCommentsViewController.m in Sources */,
+				5DE2533917B132070069EC96 /* LettersScrollController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
