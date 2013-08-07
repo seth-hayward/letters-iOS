@@ -15,7 +15,7 @@
 
 @implementation AppDelegate
 @synthesize tabBar, webViewController, sendViewController, home_last_click, more_last_click,
-bookmarks_last_click, search_last_click, drawer, lettersScrollController;
+bookmarks_last_click, search_last_click, drawer, lettersScrollController, navigationController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -39,7 +39,7 @@ bookmarks_last_click, search_last_click, drawer, lettersScrollController;
     lettersScrollController = lettersScrollVC;
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lettersScrollVC];
-    
+    navigationController = navController;
     
     MMDrawerController * drawerController = [[MMDrawerController alloc]
                                              initWithCenterViewController:navController
