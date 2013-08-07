@@ -20,6 +20,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonHearts;
 @property (nonatomic) int current_index;
 @property (nonatomic) RKFullLetter *current_letter;
-- (void)clickedHeart;
 
 @end

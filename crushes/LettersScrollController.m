@@ -76,8 +76,15 @@
         [scv.buttonHearts setTitle:[full_letter.letterUp stringValue] forState:UIScrollViewDecelerationRateNormal];
         [scv.buttonHearts addTarget:self action:@selector(clickedHeart:) forControlEvents:UIControlEventTouchUpInside];
         [scv.buttonHearts setTag:[full_letter.Id integerValue]];
+
+        [scv.labelComments setUserInteractionEnabled:true];
         
-        [scv.labelHearts setText:[full_letter.letterUp stringValue]];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedComments:)];
+        [scv.labelComments addGestureRecognizer:tapGesture];
+        
+        [scv.labelComments setTag:([full_letter.Id integerValue] * 100)];
+        
+        [scv.labelHearts setText:[NSString stringWithFormat:@"%@ hearts", [full_letter.letterUp stringValue]]];
         
         if([full_letter.letterComments isEqualToNumber:[NSNumber numberWithInt:0]]) {
             [scv.labelComments  setHidden:true];
@@ -105,6 +112,26 @@
     // now try looping through and resetting everything?
     
 }
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"Touches.");
+    UITouch *touch = [touches anyObject];
+    if(touch.view.tag == 420) {
+        NSLog(@"Pop it.");
+    }
+    
+}
+
+
+- (void)clickedComments:(UITapGestureRecognizer *)tapGesture
+{
+    
+    int *letter_id = [tapGesture.view tag] / 100;
+    NSLog(@"Load comments for letter id %d", letter_id);
+    
+}
+
 
 -(void)clickedHeart:(UIButton *)button
 {
