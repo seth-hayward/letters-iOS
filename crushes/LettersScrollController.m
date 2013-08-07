@@ -31,7 +31,7 @@
 
         [[RODItemStore sharedStore] loadLettersByPage:1 level:0];
 
-        [self.view setHidden:true];
+        [self.scrollView setHidden:true];
  
         [self.indicator startAnimating];
         
@@ -228,6 +228,7 @@
         loaded = true;
         [self.indicator stopAnimating];
         [self.view setHidden:false];
+        [self.scrollView setHidden:false];
         [self loadLetterData];
     }
     // now, see if the rest of the letters have received

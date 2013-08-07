@@ -114,13 +114,13 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">2</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="390985349">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="789263434">
 							<string key="name">HelveticaNeue-Light</string>
 							<string key="family">Helvetica Neue</string>
 							<int key="traits">0</int>
 							<double key="pointSize">13</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="869122378">
+						<object class="NSFont" key="IBUIFont" id="739882032">
 							<string key="NSName">HelveticaNeue-Medium</string>
 							<double key="NSSize">13</double>
 							<int key="NSfFlags">16</int>
@@ -147,11 +147,11 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">2</int>
-						<reference key="IBUIFontDescription" ref="390985349"/>
-						<reference key="IBUIFont" ref="869122378"/>
+						<reference key="IBUIFontDescription" ref="789263434"/>
+						<reference key="IBUIFont" ref="739882032"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUIImageView" id="208316953">
+					<object class="IBUIImageView" id="927824646">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{7, -5}, {302, 16}}</string>
@@ -242,7 +242,7 @@
 							<reference ref="254697221"/>
 							<reference ref="814372659"/>
 							<reference ref="993215885"/>
-							<reference ref="208316953"/>
+							<reference ref="927824646"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -280,7 +280,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">45</int>
-						<reference key="object" ref="208316953"/>
+						<reference key="object" ref="927824646"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
