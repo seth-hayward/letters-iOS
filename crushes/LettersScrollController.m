@@ -7,6 +7,7 @@
 //
 
 #import "LettersScrollController.h"
+#import "LetterCommentsViewController.h"
 #import "MMDrawerBarButtonItem.h"
 #import "RODItemStore.h"
 #import "RKFullLetter.h"
@@ -127,8 +128,15 @@
 - (void)clickedComments:(UITapGestureRecognizer *)tapGesture
 {
     
-    int *letter_id = [tapGesture.view tag] / 100;
+    int letter_id = [tapGesture.view tag] / 100;
     NSLog(@"Load comments for letter id %d", letter_id);
+    
+    LetterCommentsViewController *comments = [[LetterCommentsViewController alloc] init];
+    
+    // now tell the web view to change the page
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.navigationController pushViewController:comments animated:true];
+    
     
 }
 
