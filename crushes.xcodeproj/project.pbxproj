@@ -55,6 +55,8 @@
 		5DE2533917B132070069EC96 /* LettersScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2533717B132070069EC96 /* LettersScrollController.m */; };
 		5DE2533B17B134840069EC96 /* border.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2533A17B134840069EC96 /* border.png */; };
 		5DE2534117B301050069EC96 /* RKComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2534017B301050069EC96 /* RKComment.m */; };
+		5DE2534517B438D10069EC96 /* CommentScrollViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2534317B438D00069EC96 /* CommentScrollViewItem.m */; };
+		5DE2534617B438D10069EC96 /* CommentScrollViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2534417B438D10069EC96 /* CommentScrollViewItem.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +126,9 @@
 		5DE2533A17B134840069EC96 /* border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border.png; sourceTree = "<group>"; };
 		5DE2533F17B301050069EC96 /* RKComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKComment.h; sourceTree = "<group>"; };
 		5DE2534017B301050069EC96 /* RKComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKComment.m; sourceTree = "<group>"; };
+		5DE2534217B438D00069EC96 /* CommentScrollViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentScrollViewItem.h; sourceTree = "<group>"; };
+		5DE2534317B438D00069EC96 /* CommentScrollViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentScrollViewItem.m; sourceTree = "<group>"; };
+		5DE2534417B438D10069EC96 /* CommentScrollViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentScrollViewItem.xib; sourceTree = "<group>"; };
 		6C6818BD3B3146F19D555AC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E241FCEAA9F14664A45919BA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -184,6 +189,9 @@
 				5D7609D317A058890018F27B /* ScrollViewItem.h */,
 				5D7609D417A058890018F27B /* ScrollViewItem.m */,
 				5D7609D517A0588A0018F27B /* ScrollViewItem.xib */,
+				5DE2534217B438D00069EC96 /* CommentScrollViewItem.h */,
+				5DE2534317B438D00069EC96 /* CommentScrollViewItem.m */,
+				5DE2534417B438D10069EC96 /* CommentScrollViewItem.xib */,
 				5D7609B3179DCE100018F27B /* RODItemStore.h */,
 				5D7609B4179DCE100018F27B /* RODItemStore.m */,
 				5D7609B0179DBDF00018F27B /* RODItem.h */,
@@ -330,6 +338,7 @@
 				5DE2533417B130790069EC96 /* LetterCommentsViewController.xib in Resources */,
 				5DE2533817B132070069EC96 /* LettersScrollController.xib in Resources */,
 				5DE2533B17B134840069EC96 /* border.png in Resources */,
+				5DE2534617B438D10069EC96 /* CommentScrollViewItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +396,7 @@
 				5DE2533317B130790069EC96 /* LetterCommentsViewController.m in Sources */,
 				5DE2533917B132070069EC96 /* LettersScrollController.m in Sources */,
 				5DE2534117B301050069EC96 /* RKComment.m in Sources */,
+				5DE2534517B438D10069EC96 /* CommentScrollViewItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
