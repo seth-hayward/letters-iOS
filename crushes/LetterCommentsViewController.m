@@ -13,7 +13,7 @@
 
 
 @implementation LetterCommentsViewController
-@synthesize letter_id, scrollView;
+@synthesize letter_id;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -68,8 +68,6 @@
         for(int i = 0; i < mappingResult.array.count; i++) {
             
             RKComment *com = mappingResult.array[i];
-            com.commentMessage = @"hello";
-            NSLog(@"Loaded %@", [com Id]);
             [[RODItemStore sharedStore] addComment:com];
             
         }
@@ -130,6 +128,11 @@
         [self.scrollView addSubview:scv.view];
         
     }
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    if(yOffset < screenHeight)
+        yOffset = screenHeight;
     
     [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
     

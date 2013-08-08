@@ -8,10 +8,6 @@
 
 #import "CommentScrollViewItem.h"
 
-@interface CommentScrollViewItem ()
-
-@end
-
 @implementation CommentScrollViewItem
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
