@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "RODItem.h"
 #import "RKFullLetter.h"
+#import "RKComment.h"
 
 @interface RODItemStore : NSObject
 {
     NSMutableArray *allMenuItems;
     NSMutableArray *_allLetters;
+    NSMutableArray *_allComments;
     NSMutableArray *_webviewReferences;
 }
 
@@ -21,12 +23,16 @@
 
 - (NSArray *)allMenuItems;
 - (NSArray *)allLetters;
+- (NSArray *)allComments;
+
 - (NSArray *)webviewReferences;
 
 - (void) updateLetter:(NSNumber *)letter_id letter_height:(NSString *)height;
 
 - (RODItem *)createItem:(ViewType) new_Type;
 - (RKFullLetter *)addLetter:(RKFullLetter *) letter;
+- (RKComment *)addComment:(RKComment *) comment;
+
 - (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level;
 
 - (void)addReference:(UIWebView *)watch_this;

@@ -10,6 +10,7 @@
 #import "RODItemStore.h"
 #import "RODItem.h"
 #import "RKFullLetter.h"
+#import "RKComment.h"
 
 @implementation RODItemStore
 
@@ -18,6 +19,7 @@
     if(self) {
         allMenuItems = [[NSMutableArray alloc] init];
         _allLetters = [[NSMutableArray alloc] init];
+        _allComments = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -31,6 +33,11 @@
 - (NSArray *)allLetters
 {
     return _allLetters;
+}
+
+- (NSArray *)allComments
+{
+    return _allComments;
 }
 
 - (NSArray *)webviewReferences
@@ -56,10 +63,17 @@
     return p;
 }
 
+
 - (RKFullLetter *)addLetter:(RKFullLetter *)letter
 {
     [_allLetters addObject:letter];
     return letter;
+}
+
+- (RKComment *)addComment:(RKComment *)comment
+{
+    [_allComments addObject:comment];
+    return comment;
 }
 
 + (RODItemStore *)sharedStore {

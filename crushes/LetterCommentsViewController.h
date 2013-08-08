@@ -13,4 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic) int letter_id;
 
+-(void)loadLetterData;
+-(void)redrawScroll;
+
 @end

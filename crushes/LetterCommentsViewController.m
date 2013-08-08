@@ -8,6 +8,9 @@
 
 #import "LetterCommentsViewController.h"
 #import "RKComment.h"
+#import "CommentScrollViewItem.h"
+#import "RODItemStore.h"
+
 
 @implementation LetterCommentsViewController
 @synthesize letter_id, scrollView;
@@ -62,6 +65,7 @@
         
         for(int i = 0; i < mappingResult.array.count; i++) {
             
+            [[RODItemStore sharedStore] addComment:mappingResult.array[i]];
             
         }
         
@@ -77,6 +81,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)loadLetterData
+{
+    
+    
 }
 
 @end
