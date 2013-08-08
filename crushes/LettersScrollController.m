@@ -69,7 +69,7 @@
         // the height of the padding around the
         // heart button and the frame of the scrollviewitem is about 40px.
                 
-        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, letter_height + 80);
+        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, letter_height + 40);
         
         [scv.webView setDelegate:self];
         
@@ -84,6 +84,7 @@
         [scv.labelComments addGestureRecognizer:tapGesture];
         
         [scv.labelComments setTag:([full_letter.Id integerValue] * 100)];
+        [scv.webView.scrollView setScrollEnabled:false];
         
         [scv.labelHearts setText:[NSString stringWithFormat:@"%@ hearts", [full_letter.letterUp stringValue]]];
         
@@ -101,7 +102,7 @@
         
         [scv setCurrent_letter:full_letter];
         
-        yOffset = yOffset + (letter_height + 80);
+        yOffset = yOffset + (letter_height + 40);
                 
         [self.scrollView addSubview:scv.view];
         

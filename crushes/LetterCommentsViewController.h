@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LetterCommentsViewController : UIViewController
+@interface LetterCommentsViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic) int letter_id;
 
--(void)loadLetterData;
+-(void)loadCommentData;
 -(void)redrawScroll;
 
 @end

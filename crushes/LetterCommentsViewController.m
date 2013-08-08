@@ -20,6 +20,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        [self.scrollView setDelegate:self];
     }
     return self;
 }
@@ -65,9 +67,14 @@
         
         for(int i = 0; i < mappingResult.array.count; i++) {
             
-            [[RODItemStore sharedStore] addComment:mappingResult.array[i]];
+            RKComment *com = mappingResult.array[i];
+            com.commentMessage = @"hello";
+            NSLog(@"Loaded %@", [com Id]);
+            [[RODItemStore sharedStore] addComment:com];
             
         }
+        
+        [self loadCommentData];
         
     } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"Error loading comments: %@", error);
@@ -83,9 +90,51 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadLetterData
+-(void)loadCommentData
 {
     
+    int yOffset = 0;
+    
+    CommentScrollViewItem *scv;
+    
+    for(int i = 0; i < [[[RODItemStore sharedStore] allComments] count]; i++) {
+        
+        RKComment *full_comment = [[[RODItemStore sharedStore] allComments] objectAtIndex:i];
+        
+        int comment_height = 0;
+        
+        if([full_comment.commenterIP isEqualToString:@"1"]) {
+            comment_height = [full_comment.commenterGuid integerValue];
+        } else {
+            comment_height = 100;
+        }
+        
+        scv = [[CommentScrollViewItem alloc] init];
+        
+        // the height of the padding around the
+        // heart button and the frame of the scrollviewitem is about 40px.
+        
+        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, comment_height + 40);
+        
+        [scv.webView setDelegate:self];
+        
+        [scv.webView loadHTMLString:full_comment.commentMessage baseURL:nil];
+        [scv.webView setTag:[full_comment.Id integerValue]];
+
+        [scv.commenterName setText:full_comment.commenterName];
+
+        //[scv setCurrent_comment:full_comment];
+        
+        yOffset = yOffset + (comment_height + 40);
+        
+        [self.scrollView addSubview:scv.view];
+        
+    }
+    
+    [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
+    
+    
+    // now try looping through and resetting everything?
     
 }
 
