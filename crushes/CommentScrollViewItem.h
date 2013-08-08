@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RKComment.h"
 
 @interface CommentScrollViewItem : UIViewController
+{
+    
+}
+@property (weak, nonatomic) IBOutlet UILabel *commenterName;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (nonatomic) RKComment *current_comment;
 
 @end
