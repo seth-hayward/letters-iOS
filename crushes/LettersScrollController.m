@@ -129,9 +129,9 @@
 {
     
     int letter_id = [tapGesture.view tag] / 100;
-    NSLog(@"Load comments for letter id %d", letter_id);
     
     LetterCommentsViewController *comments = [[LetterCommentsViewController alloc] init];
+    comments.letter_id = letter_id;
     
     // now tell the web view to change the page
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];

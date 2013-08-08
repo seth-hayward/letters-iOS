@@ -11,5 +11,6 @@
 @interface LetterCommentsViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic) int letter_id;
 
 @end
