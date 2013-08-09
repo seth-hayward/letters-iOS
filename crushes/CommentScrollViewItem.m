@@ -9,6 +9,7 @@
 #import "CommentScrollViewItem.h"
 
 @implementation CommentScrollViewItem
+@synthesize current_comment;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

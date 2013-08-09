@@ -13,7 +13,7 @@
 {
     
 }
-@property (weak, nonatomic) IBOutlet UILabel *commenterName;
+@property (weak, nonatomic) IBOutlet UILabel *labelCommenterName;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (nonatomic) RKComment *current_comment;
 

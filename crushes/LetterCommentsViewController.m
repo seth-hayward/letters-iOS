@@ -53,6 +53,7 @@
      @"commenterEmail": @"commenterEmail",
      @"commenterGuid": @"commenterGuid",
      @"commenterIP": @"commenterIP",
+     @"commenterName": @"commenterName"
      }];
     
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
@@ -71,6 +72,21 @@
         for(int i = 0; i < mappingResult.array.count; i++) {
             
             RKComment *com = mappingResult.array[i];
+            
+            if([com.commenterName isKindOfClass:[NSNull class]]) {
+                com.commenterName = @"anonymous lover";
+            }
+            
+            NSString *commentHTML = [NSString stringWithFormat:@"<html> \n"
+                                    "<head> \n"
+                                    "<style type=\"text/css\"> \n"
+                                    "body {font-family: \"%@\"; font-size: %@;}\n"
+                                    "</style> \n"
+                                    "</head> \n"
+                                    "<body>%@</body> \n"
+                                    "</html>", @"helvetica", [NSNumber numberWithInt:14], com.commentMessage];
+            com.commentMessage = commentHTML;
+            
             [[RODItemStore sharedStore] addComment:com];
             
         }
@@ -122,9 +138,9 @@
         [scv.webView loadHTMLString:full_comment.commentMessage baseURL:nil];
         [scv.webView setTag:[full_comment.Id integerValue]];
 
-        [scv.commenterName setText:full_comment.commenterName];
+        [scv.labelCommenterName setText:full_comment.commenterName];
 
-        //[scv setCurrent_comment:full_comment];
+        [scv setCurrent_comment:full_comment];
         
         yOffset = yOffset + (comment_height + 40);
         
