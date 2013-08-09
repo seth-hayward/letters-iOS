@@ -30,6 +30,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
+    // clear previous comments
+    [[RODItemStore sharedStore] clearComments];
     
     
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
@@ -90,7 +93,7 @@
 
 -(void)loadCommentData
 {
-    
+        
     int yOffset = 0;
     
     CommentScrollViewItem *scv;

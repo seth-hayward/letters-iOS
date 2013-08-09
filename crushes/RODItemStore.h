@@ -38,4 +38,6 @@
 - (void)addReference:(UIWebView *)watch_this;
 - (void)removeReferences;
 
+- (void)clearComments;
+
 @end

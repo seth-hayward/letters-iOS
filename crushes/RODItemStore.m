@@ -70,6 +70,11 @@
     return letter;
 }
 
+-(void)clearComments
+{
+    [_allComments removeAllObjects];
+}
+
 - (RKComment *)addComment:(RKComment *)comment
 {
     [_allComments addObject:comment];
