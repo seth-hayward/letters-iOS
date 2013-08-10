@@ -86,7 +86,31 @@
         [scv.labelComments setTag:([full_letter.Id integerValue] * 100)];
         [scv.webView.scrollView setScrollEnabled:false];
         
-        [scv.labelHearts setText:[NSString stringWithFormat:@"%@ hearts", [full_letter.letterUp stringValue]]];
+        // OMG JUST PUT A FUCKING UNDERLINE IN THE LABEL JESUS
+
+        NSMutableAttributedString *attributeStringHearts = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ hearts", [full_letter.letterUp stringValue]]];
+
+        NSMutableAttributedString *attributeStringComments = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ comments", [full_letter.letterComments stringValue]]];
+        
+        [attributeStringHearts addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:1] range:(NSRange){0,[attributeStringHearts length]}];
+        [attributeStringComments addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:1] range:(NSRange){0,[attributeStringHearts length]}];
+        
+        UIFont *normalFont = [UIFont systemFontOfSize:13];
+        
+        NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys: normalFont, NSFontAttributeName,
+                               [UIColor colorWithRed:0/255.0
+                                               green:51/255.0
+                                                blue:255/255.0
+                                               alpha:1.0], NSForegroundColorAttributeName, nil];
+        
+        [attributeStringHearts addAttributes:attrs range:(NSRange){0, [attributeStringHearts length]}];
+        [attributeStringComments addAttributes:attrs range:(NSRange){0, [attributeStringComments length]}];
+        
+        [scv.labelHearts setAttributedText:attributeStringHearts];
+        [scv.labelComments setAttributedText:attributeStringComments];
+        
+        
+        // JESUS CHRIST
         
         if([full_letter.letterComments isEqualToNumber:[NSNumber numberWithInt:0]]) {
             [scv.labelComments  setHidden:true];
