@@ -57,6 +57,7 @@
 		5DE2534117B301050069EC96 /* RKComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2534017B301050069EC96 /* RKComment.m */; };
 		5DE2534517B438D10069EC96 /* CommentScrollViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2534317B438D00069EC96 /* CommentScrollViewItem.m */; };
 		5DE2534617B438D10069EC96 /* CommentScrollViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2534417B438D10069EC96 /* CommentScrollViewItem.xib */; };
+		5DE2534917B6D16F0069EC96 /* WCAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2534817B6D16F0069EC96 /* WCAlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,6 +130,8 @@
 		5DE2534217B438D00069EC96 /* CommentScrollViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentScrollViewItem.h; sourceTree = "<group>"; };
 		5DE2534317B438D00069EC96 /* CommentScrollViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentScrollViewItem.m; sourceTree = "<group>"; };
 		5DE2534417B438D10069EC96 /* CommentScrollViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentScrollViewItem.xib; sourceTree = "<group>"; };
+		5DE2534717B6D16F0069EC96 /* WCAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCAlertView.h; sourceTree = "<group>"; };
+		5DE2534817B6D16F0069EC96 /* WCAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCAlertView.m; sourceTree = "<group>"; };
 		6C6818BD3B3146F19D555AC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E241FCEAA9F14664A45919BA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -227,6 +230,8 @@
 		5D0BD0431670AAA30088A383 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5DE2534717B6D16F0069EC96 /* WCAlertView.h */,
+				5DE2534817B6D16F0069EC96 /* WCAlertView.m */,
 				5DE2533A17B134840069EC96 /* border.png */,
 				5D7F30611784FA07009F0AC6 /* Default-Portrait~ipad.png */,
 				5D7F305F1784FA01009F0AC6 /* Default-Portrait@2x~ipad.png */,
@@ -397,6 +402,7 @@
 				5DE2533917B132070069EC96 /* LettersScrollController.m in Sources */,
 				5DE2534117B301050069EC96 /* RKComment.m in Sources */,
 				5DE2534517B438D10069EC96 /* CommentScrollViewItem.m in Sources */,
+				5DE2534917B6D16F0069EC96 /* WCAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
