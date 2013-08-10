@@ -38,12 +38,29 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
+					<object class="IBUIImageView" id="398732107">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrame">{{9, 35}, {302, 2}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="814372659"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<int key="IBUIContentMode">2</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">border.png</string>
+						</object>
+					</object>
 					<object class="IBUIWebView" id="993215885">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{9, 42}, {302, 41}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -133,7 +150,7 @@
 					<object class="IBUILabel" id="814372659">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">289</int>
-						<string key="NSFrame">{{116, 10}, {84, 21}}</string>
+						<string key="NSFrame">{{125, 10}, {84, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="254697221"/>
@@ -154,22 +171,6 @@
 						<reference key="IBUIFontDescription" ref="696892765"/>
 						<reference key="IBUIFont" ref="1006480859"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-					</object>
-					<object class="IBUIImageView" id="398732107">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">302</int>
-						<string key="NSFrame">{{9, 13}, {119, 16}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="814372659"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">border.png</string>
-						</object>
 					</object>
 				</array>
 				<string key="NSFrameSize">{317, 89}</string>
