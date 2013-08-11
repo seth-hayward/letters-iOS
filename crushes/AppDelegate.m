@@ -80,7 +80,7 @@ bookmarks_last_click, search_last_click, drawer, lettersScrollController, naviga
     }];
     
     
-    [WCAlertView showAlertWithTitle:@"Welcome to Letters to Crushes!" message:@"Would you like to browse anonymously or log in?" customizationBlock:^(WCAlertView *alertView) {
+    [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"Would you like to browse anonymously or log in?" customizationBlock:^(WCAlertView *alertView) {
         
         // You can also set different appearance for this alert using customization block
         
@@ -88,9 +88,24 @@ bookmarks_last_click, search_last_click, drawer, lettersScrollController, naviga
         //        alertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
     } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
         if (buttonIndex == alertView.cancelButtonIndex) {
-            NSLog(@"Cancel");
-        } else {
-            NSLog(@"Ok");
+            
+            // now show the login alert
+
+            [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"Please enter your password." customizationBlock:^(WCAlertView *alertView) {
+                
+                // You can also set different appearance for this alert using customization block
+                
+                alertView.style = WCAlertViewStyleBlackHatched;
+                alertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+            } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+                if (buttonIndex == alertView.cancelButtonIndex) {
+                    
+                    // now show the login alert
+                    
+                }
+            } cancelButtonTitle:@"login" otherButtonTitles:@"anon", nil];
+            
+            
         }
     } cancelButtonTitle:@"login" otherButtonTitles:@"anon", nil];
     
