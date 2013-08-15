@@ -189,6 +189,12 @@
     
 }
 
+- (Boolean) login:(NSString *)email password:(NSString *)password
+{
+    NSLog(@"Plz login '%@' with password '%@'", email, password);
+    return false;
+}
+
 
 + (id)allocWithZone:(NSZone *)zone {
     return [self sharedStore];

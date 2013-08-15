@@ -17,6 +17,7 @@
     NSMutableArray *_allLetters;
     NSMutableArray *_allComments;
     NSMutableArray *_webviewReferences;
+    NSNumber *_loginStatus;
 }
 
 + (RODItemStore *)sharedStore;
@@ -24,6 +25,9 @@
 - (NSArray *)allMenuItems;
 - (NSArray *)allLetters;
 - (NSArray *)allComments;
+
+- (NSNumber *)loginStatus;
+- (Boolean) login:(NSString *)email password:(NSString *)password;
 
 - (NSArray *)webviewReferences;
 

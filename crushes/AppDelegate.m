@@ -13,6 +13,7 @@
 #import "MenuViewController.h"
 #import "GAI.h"
 #import "WCAlertView.h"
+#import "RODItemStore.h"
 
 @implementation AppDelegate
 @synthesize tabBar, webViewController, sendViewController, drawer, lettersScrollController, navigationController;
@@ -91,9 +92,18 @@
                 alertView.style = WCAlertViewStyleBlackHatched;
                 alertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
             } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+
+                if (buttonIndex == 1) {
+                
+                    [[RODItemStore sharedStore] login:[alertView textFieldAtIndex:0].text password:[alertView textFieldAtIndex:1].text];
+                    
+                }
+                
                 if (buttonIndex == alertView.cancelButtonIndex) {
                     
-                    // now show the login alert
+                    // whatever, they cancelled
+                    
+                    
                     
                 }
             } cancelButtonTitle:@"cancel" otherButtonTitles:@"login", nil];
