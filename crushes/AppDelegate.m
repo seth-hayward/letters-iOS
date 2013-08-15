@@ -15,8 +15,7 @@
 #import "WCAlertView.h"
 
 @implementation AppDelegate
-@synthesize tabBar, webViewController, sendViewController, home_last_click, more_last_click,
-bookmarks_last_click, search_last_click, drawer, lettersScrollController, navigationController;
+@synthesize tabBar, webViewController, sendViewController, drawer, lettersScrollController, navigationController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -53,12 +52,6 @@ bookmarks_last_click, search_last_click, drawer, lettersScrollController, naviga
     
     [[self window] setRootViewController:drawerController];
     
-    // setup double tap on tabs
-    NSDate *now = [[NSDate alloc] init];
-    home_last_click = now;
-    more_last_click = now;
-    bookmarks_last_click = now;
-    
     //
     // show login/welcome message
     //
@@ -87,7 +80,7 @@ bookmarks_last_click, search_last_click, drawer, lettersScrollController, naviga
         alertView.style = WCAlertViewStyleBlackHatched;
         //        alertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
     } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
-        if (buttonIndex == alertView.cancelButtonIndex) {
+        if (buttonIndex == 1) {
             
             // now show the login alert
 
@@ -103,11 +96,11 @@ bookmarks_last_click, search_last_click, drawer, lettersScrollController, naviga
                     // now show the login alert
                     
                 }
-            } cancelButtonTitle:@"login" otherButtonTitles:@"anon", nil];
+            } cancelButtonTitle:@"cancel" otherButtonTitles:@"login", nil];
             
             
         }
-    } cancelButtonTitle:@"login" otherButtonTitles:@"anon", nil];
+    } cancelButtonTitle:@"cancel" otherButtonTitles:@"login", nil];
     
     //
     // integrate with google analytics
@@ -154,56 +147,5 @@ bookmarks_last_click, search_last_click, drawer, lettersScrollController, naviga
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
-- (void)tabBarController:(UITabBarController *)theTabBarController didSelectViewController:(UIViewController *)viewController {
-    NSUInteger indexOfTab = [theTabBarController.viewControllers indexOfObject:viewController];
-    NSLog(@"Tab index = %u", indexOfTab);
-    
-    double time_since_last_click = 0;
-    
-    NSDate *now = [[NSDate alloc] init];
-    
-    switch(indexOfTab) {
-        case 0:
-            time_since_last_click = fabs([home_last_click timeIntervalSinceDate:now]);
-            home_last_click = now;
-            break;
-        case 1:
-            time_since_last_click = fabs([more_last_click timeIntervalSinceDate:now]);
-            more_last_click = now;
-            break;
-        case 2:
-            time_since_last_click = fabs([bookmarks_last_click  timeIntervalSinceDate:now]);
-            bookmarks_last_click = now;
-            break;
-        case 3:
-            time_since_last_click = fabs([search_last_click timeIntervalSinceDate:now]);
-            search_last_click = now;
-            break;
-            
-    }
-    
-    NSLog(@"time since: %f", time_since_last_click);
-
-//    if(time_since_last_click < 0.5 && indexOfTab < 4) {
-//        // force browser to reload        
-//        if(indexOfTab == 0) {
-//            [homeWebViewController refreshOriginalPage];
-//        }
-//        
-//        if(indexOfTab == 1) {
-//            [moreWebViewController refreshOriginalPage];
-//        }
-//        
-//        if(indexOfTab == 2) {
-//            [bookmarksWebViewController refreshOriginalPage];                              
-//        }
-//        
-//        if(indexOfTab == 3) {
-//            [searchWebViewController refreshOriginalPage];            
-//        }
-//    }
-
-}
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 @end
