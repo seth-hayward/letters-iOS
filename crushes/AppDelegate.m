@@ -12,7 +12,6 @@
 #import "MMDrawerController.h"
 #import "MenuViewController.h"
 #import "GAI.h"
-#import "WCAlertView.h"
 #import "RODItemStore.h"
 
 @implementation AppDelegate
@@ -53,65 +52,8 @@
     
     [[self window] setRootViewController:drawerController];
     
-    //
-    // show login/welcome message
-    //
-    
-    [WCAlertView setDefaultCustomiaztonBlock:^(WCAlertView *alertView) {
-        alertView.labelTextColor = [UIColor colorWithRed:0.11f green:0.08f blue:0.39f alpha:1.00f];
-        alertView.labelShadowColor = [UIColor whiteColor];
+    [[RODItemStore sharedStore] doLogin];
         
-        UIColor *topGradient = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f];
-        UIColor *middleGradient = [UIColor colorWithRed:0.93f green:0.94f blue:0.96f alpha:1.0f];
-        UIColor *bottomGradient = [UIColor colorWithRed:0.89f green:0.89f blue:0.92f alpha:1.00f];
-        alertView.gradientColors = @[topGradient,middleGradient,bottomGradient];
-        
-        alertView.outerFrameColor = [UIColor colorWithRed:250.0f/255.0f green:250.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
-        
-        alertView.buttonTextColor = [UIColor colorWithRed:0.11f green:0.08f blue:0.39f alpha:1.00f];
-        alertView.buttonShadowColor = [UIColor whiteColor];
-        
-    }];
-    
-    
-    [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"Would you like to browse anonymously or log in?" customizationBlock:^(WCAlertView *alertView) {
-        
-        // You can also set different appearance for this alert using customization block
-        
-        alertView.style = WCAlertViewStyleBlackHatched;
-        //        alertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-    } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
-        if (buttonIndex == 1) {
-            
-            // now show the login alert
-
-            [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"Please enter your password." customizationBlock:^(WCAlertView *alertView) {
-                
-                // You can also set different appearance for this alert using customization block
-                
-                alertView.style = WCAlertViewStyleBlackHatched;
-                alertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-            } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
-
-                if (buttonIndex == 1) {
-                
-                    [[RODItemStore sharedStore] login:[alertView textFieldAtIndex:0].text password:[alertView textFieldAtIndex:1].text];
-                    
-                }
-                
-                if (buttonIndex == alertView.cancelButtonIndex) {
-                    
-                    // whatever, they cancelled
-                    
-                    
-                    
-                }
-            } cancelButtonTitle:@"cancel" otherButtonTitles:@"login", nil];
-            
-            
-        }
-    } cancelButtonTitle:@"cancel" otherButtonTitles:@"login", nil];
-    
     //
     // integrate with google analytics
     //

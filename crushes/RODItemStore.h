@@ -28,6 +28,7 @@
 
 - (NSNumber *)loginStatus;
 - (Boolean) login:(NSString *)email password:(NSString *)password;
+- (void) doLogin;
 
 - (NSArray *)webviewReferences;
 
