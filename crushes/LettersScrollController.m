@@ -114,15 +114,7 @@
         
         if([full_letter.letterComments isEqualToNumber:[NSNumber numberWithInt:0]]) {
             [scv.labelComments  setHidden:true];
-        } else {
-            
-            if([full_letter.letterComments integerValue] < 2) {
-                [scv.labelComments setText:@"1 comment"];
-            } else {
-                [scv.labelComments setText:[NSString stringWithFormat:@"%@ comments", full_letter.letterComments]];
-            }
-                 
-      }
+        }
         
         [scv setCurrent_letter:full_letter];
         
