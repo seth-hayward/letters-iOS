@@ -26,8 +26,9 @@
 - (NSArray *)allLetters;
 - (NSArray *)allComments;
 
-- (NSNumber *)loginStatus;
-- (Boolean) login:(NSString *)email password:(NSString *)password;
+@property (nonatomic) NSNumber *loginStatus;
+
+- (void) login:(NSString *)email password:(NSString *)password;
 - (void) doLogin;
 
 - (NSArray *)webviewReferences;

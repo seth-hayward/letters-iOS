@@ -10,12 +10,14 @@
 #import "RODItemStore.h"
 #import "RODItem.h"
 #import "RKFullLetter.h"
+#import "RKMessage.h"
 #import "RKLogin.h"
 #import "RKComment.h"
 #import "WCAlertView.h"
 
 
 @implementation RODItemStore
+@synthesize loginStatus;
 
 - (id)init {
     self = [super init];
@@ -192,7 +194,11 @@
     
 }
 
-- (Boolean)login:(NSString *)email password:(NSString *)password
+-(void) didFinishComputation:(int)valid {
+    self.loginStatus = [NSNumber numberWithInt:valid];
+}
+
+- (void)login:(NSString *)email password:(NSString *)password
 {
     NSLog(@"Plz login '%@' with password '%@'", email, password);
     
@@ -200,9 +206,7 @@
 	RKLogin* login = [RKLogin new];
     login.email = email;
     login.password = password;
-    
-    __block int login_result = 0;
-    
+        
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
     
@@ -214,7 +218,12 @@
     RKResponseDescriptor* responseDescriptor;
     RKRequestDescriptor* requestDescriptor;
     
-    responseObjectMapping = [RKObjectMapping mappingForClass:[NSNumber class]];
+    responseObjectMapping = [RKObjectMapping mappingForClass:[RKMessage class]];
+    [responseObjectMapping addAttributeMappingsFromDictionary:@{
+     @"response": @"response",
+     @"message": @"message",
+     @"guid": @"guid"
+     }];
     
     responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
@@ -226,22 +235,48 @@
     requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:letterRequestMapping objectClass:[RKLogin class] rootKeyPath:@""];
     [objectManager addRequestDescriptor:requestDescriptor];
     
-    NSString *real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/home/mobilelogin?a=%@&b=%@", login.email, login.password];
+    NSString *real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/account/mobilelogin?a=%@&b=%@", login.email, login.password];
     
     [objectManager addResponseDescriptor:responseDescriptor];
     objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     
-    [objectManager postObject:login path:real_url parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [objectManager postObject:nil path:real_url parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
         // now we just need to check the response
         // there may have been an error on the server that
         // we want to check for
-        int result = mappingResult;
         
-        NSLog(@"Result: %d", result);
+        //NSLog("Mapping result: %@", mappingResult.);
+        
+        RKMessage *server_says = (RKMessage *)mappingResult.array[0];
+        
+        if([server_says.response isEqualToNumber:[NSNumber numberWithInt:1]]) {
+            // correct login
 
-        if(result == 1) {
-            login_result = (int)1;
+            [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"You have logged in. Welcome back!" customizationBlock:^(WCAlertView *alertView) {
+                alertView.style = WCAlertViewStyleBlackHatched;
+            } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+                if(buttonIndex == 1) {
+                    [self generateLoginAlert];
+                }
+            } cancelButtonTitle:@"ok" otherButtonTitles: nil
+             ];
+            
+            
+        } else {
+            self.loginStatus = [NSNumber numberWithInt:0];
+            // show the alert agian, give them another chance
+            [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"Invalid login, please try again." customizationBlock:^(WCAlertView *alertView) {
+                alertView.style = WCAlertViewStyleBlackHatched;
+            } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+                if(buttonIndex == 1) {
+                    [self generateLoginAlert];
+                }
+            } cancelButtonTitle:@"cancel" otherButtonTitles:@"try again", nil
+             ];
+            
+            
+            
         }
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -251,15 +286,9 @@
         //UIAlertView *alert_post_error = [[UIAlertView alloc] initWithTitle:@"iOS Post Error" message: [error description] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
         //[alert_post_error show];
         
-        login_result = 0;
+        self.loginStatus = [NSNumber numberWithInt:0];
     }];
     
-    
-    if(login_result == 1) {
-        return true;
-    } else {
-        return false;
-    }
 }
 
 - (void) setWCAlertDefaults
@@ -326,21 +355,10 @@
             
             // keep showing a login view until they get it, or
             // press cancel
-            
-            if([[RODItemStore sharedStore] login:[alertView textFieldAtIndex:0].text password:[alertView textFieldAtIndex:1].text] == false) {
+            [[RODItemStore sharedStore] login:[alertView textFieldAtIndex:0].text password:[alertView textFieldAtIndex:1].text];
+            //if([[RODItemStore sharedStore] login:[alertView textFieldAtIndex:0].text password:[alertView textFieldAtIndex:1].text] == false) {
 
-                [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"Invalid login, please try again." customizationBlock:^(WCAlertView *alertView) {
-                    alertView.style = WCAlertViewStyleBlackHatched;
-                } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
-                    if(buttonIndex == 1) {
-                        [self generateLoginAlert];                        
-                    }
-                } cancelButtonTitle:@"cancel" otherButtonTitles:@"try again", nil
-                 ];
-
-                
-                
-            };
+            //};
             
         }
         
