@@ -131,17 +131,6 @@
     
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    NSLog(@"Touches.");
-    UITouch *touch = [touches anyObject];
-    if(touch.view.tag == 420) {
-        NSLog(@"Pop it.");
-    }
-    
-}
-
-
 - (void)clickedComments:(UITapGestureRecognizer *)tapGesture
 {
     
