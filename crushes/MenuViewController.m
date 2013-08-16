@@ -87,6 +87,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
     // set all items to be checked=false
     for(int i = 0; i < [[[RODItemStore sharedStore] allMenuItems] count]; i++) {
         [[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:i] setChecked:false];
@@ -103,6 +105,10 @@
         case ViewTypeMore:
             [[RODItemStore sharedStore] loadLettersByPage:1 level:-1];
             break;
+        case ViewTypeSend:
+            // now tell the web view to change the page
+            [appDelegate.navigationController pushViewController:appDelegate.sendViewController animated:true];
+            break;
         default:
             break;
     }
@@ -110,10 +116,12 @@
     // reload the data so the checkbox updates
     [tableView reloadData];
     
-    // now tell the letters view controller to change the page
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    [appDelegate.lettersScrollController setLoaded:false];
-    [appDelegate.lettersScrollController loadLetterData];
+    if([selected_item viewType] == ViewTypeHome || [selected_item viewType] == ViewTypeMore) {
+        // now tell the letters view controller to change the page
+        [appDelegate.lettersScrollController setLoaded:false];
+        [appDelegate.lettersScrollController loadLetterData];
+        
+    }
     
 }
 
