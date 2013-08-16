@@ -226,7 +226,7 @@
     requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:letterRequestMapping objectClass:[RKLogin class] rootKeyPath:@""];
     [objectManager addRequestDescriptor:requestDescriptor];
     
-    NSString *real_url = @"http://www.letterstocrushes.com/home/mobilelogin";
+    NSString *real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/home/mobilelogin?a=%@&b=%@", login.email, login.password];
     
     [objectManager addResponseDescriptor:responseDescriptor];
     objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
