@@ -10,6 +10,7 @@
 #import "RODItemStore.h"
 #import "RODItem.h"
 #import "RKFullLetter.h"
+#import "RKLogin.h"
 #import "RKComment.h"
 #import "WCAlertView.h"
 
@@ -194,7 +195,71 @@
 - (Boolean)login:(NSString *)email password:(NSString *)password
 {
     NSLog(@"Plz login '%@' with password '%@'", email, password);
-    return false;
+    
+	// Create a new login object and POST it to the server
+	RKLogin* login = [RKLogin new];
+    login.email = email;
+    login.password = password;
+    
+    __block int login_result = 0;
+    
+    NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
+    
+    [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+    
+    RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+    
+    RKObjectMapping* responseObjectMapping;
+    RKResponseDescriptor* responseDescriptor;
+    RKRequestDescriptor* requestDescriptor;
+    
+    responseObjectMapping = [RKObjectMapping mappingForClass:[NSNumber class]];
+    
+    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    RKObjectMapping* letterRequestMapping = [RKObjectMapping requestMapping];
+    [letterRequestMapping addAttributeMappingsFromDictionary:@{
+     @"email": @"email",
+     @"password" : @"password"}];
+    
+    requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:letterRequestMapping objectClass:[RKLogin class] rootKeyPath:@""];
+    [objectManager addRequestDescriptor:requestDescriptor];
+    
+    NSString *real_url = @"http://www.letterstocrushes.com/home/mobilelogin";
+    
+    [objectManager addResponseDescriptor:responseDescriptor];
+    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
+    
+    [objectManager postObject:login path:real_url parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+        // now we just need to check the response
+        // there may have been an error on the server that
+        // we want to check for
+        int result = mappingResult;
+        
+        NSLog(@"Result: %d", result);
+
+        if(result == 1) {
+            login_result = (int)1;
+        }
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        
+        // this occurs when restkit can not send a post -- this could happen
+        // if the user does not have internet connection at the time
+        //UIAlertView *alert_post_error = [[UIAlertView alloc] initWithTitle:@"iOS Post Error" message: [error description] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+        //[alert_post_error show];
+        
+        login_result = 0;
+    }];
+    
+    
+    if(login_result == 1) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 - (void) setWCAlertDefaults
