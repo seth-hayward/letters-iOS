@@ -93,7 +93,7 @@
         NSMutableAttributedString *attributeStringComments = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ comments", [full_letter.letterComments stringValue]]];
         
         [attributeStringHearts addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:1] range:(NSRange){0,[attributeStringHearts length]}];
-        [attributeStringComments addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:1] range:(NSRange){0,[attributeStringHearts length]}];
+        [attributeStringComments addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:1] range:(NSRange){0,[attributeStringComments length]}];
         
         UIFont *normalFont = [UIFont systemFontOfSize:13];
         
