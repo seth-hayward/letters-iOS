@@ -15,6 +15,5 @@
 @property (nonatomic) int letter_id;
 
 -(void)loadCommentData;
--(void)redrawScroll;
 
 @end

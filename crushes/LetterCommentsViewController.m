@@ -13,7 +13,7 @@
 
 
 @implementation LetterCommentsViewController
-@synthesize letter_id;
+@synthesize letter_id, scrollView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
