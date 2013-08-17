@@ -111,6 +111,13 @@
     
 }
 
+- (void)updatComment:(int)comment_index comment_height:(NSString *)height
+{
+    RKComment *comment = [_allComments objectAtIndex:comment_index];
+    comment.commenterIP = @"1";
+    comment.commenterGuid = height;
+}
+
 - (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level
 {
     

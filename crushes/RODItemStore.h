@@ -34,6 +34,7 @@
 - (NSArray *)webviewReferences;
 
 - (void) updateLetter:(NSNumber *)letter_id letter_height:(NSString *)height;
+- (void)updatComment:(int)comment_index comment_height:(NSString *)height;
 
 - (RODItem *)createItem:(ViewType) new_Type;
 - (RKFullLetter *)addLetter:(RKFullLetter *) letter;

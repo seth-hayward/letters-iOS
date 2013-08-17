@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RKComment.h"
 
-@interface CommentScrollViewItem : UIViewController
+@interface CommentScrollViewItem : UIViewController <UIWebViewDelegate>
 {
     
 }

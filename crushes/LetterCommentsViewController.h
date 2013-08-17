@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
 
-@interface LetterCommentsViewController : GAITrackedViewController <UIWebViewDelegate, UIScrollViewDelegate>
+@interface LetterCommentsViewController : GAITrackedViewController <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic) int letter_id;
+@property (nonatomic) int comment_index;
+@property (weak, nonatomic) IBOutlet UIWebView *testWebView;
 
 -(void)loadCommentData;
 

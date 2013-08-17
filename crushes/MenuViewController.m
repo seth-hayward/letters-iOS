@@ -105,6 +105,9 @@
         case ViewTypeMore:
             [[RODItemStore sharedStore] loadLettersByPage:1 level:-1];
             break;
+        case ViewTypeBookmarks:
+            
+            break;
         case ViewTypeSend:
             // now tell the web view to change the page
             [appDelegate.navigationController pushViewController:appDelegate.sendViewController animated:true];

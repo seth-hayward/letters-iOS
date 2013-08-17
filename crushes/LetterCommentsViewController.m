@@ -20,8 +20,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
-        [self.scrollView setDelegate:self];
     }
     return self;
 }
@@ -34,6 +32,7 @@
     // clear previous comments
     [[RODItemStore sharedStore] clearComments];
     
+    self.testWebView.delegate = self;
     
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
@@ -107,20 +106,54 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)webViewDidStartLoad:(UIWebView *)webView
+{
+    NSLog(@"testWebView started load.");    
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{    
+    NSString *height = [webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
+    NSLog(@"finished loading comment %d with height of %@", self.comment_index, height );
+    [[RODItemStore sharedStore] updatComment:self.comment_index comment_height:height];
+    
+    if(self.comment_index == [[[RODItemStore sharedStore] allComments] count] - 1) {
+        [self drawComments];
+    }
+}
+
 -(void)loadCommentData
 {
-        
+    
+    NSLog(@"loadCommentData");
+    RKComment *full_comment;
+    
+    // do a preload to get the height
+    for(int i = 0; i < [[[RODItemStore sharedStore] allComments] count]; i++) {
+        self.comment_index = i;
+        full_comment = [[[RODItemStore sharedStore] allComments] objectAtIndex:i];
+        [self.testWebView loadHTMLString:full_comment.commentMessage baseURL:nil];    
+    }
+    
+}
+
+-(void)drawComments
+{
+    
     int yOffset = 0;
     
     CommentScrollViewItem *scv;
+    RKComment *full_comment;
     
     for(int i = 0; i < [[[RODItemStore sharedStore] allComments] count]; i++) {
         
-        RKComment *full_comment = [[[RODItemStore sharedStore] allComments] objectAtIndex:i];
+        full_comment = [[[RODItemStore sharedStore] allComments] objectAtIndex:i];
         
         int comment_height = 0;
         
+        NSLog(@"TIME TO LOAD");
         if([full_comment.commenterIP isEqualToString:@"1"]) {
+            NSLog(@"Loaded preset height: %@", full_comment.commenterGuid);
             comment_height = [full_comment.commenterGuid integerValue];
         } else {
             comment_height = 100;
@@ -133,13 +166,14 @@
         
         scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, comment_height + 40);
         
-        [scv.webView setDelegate:self];
+        //        [scv.webView setDelegate:self];
+        //        [scv.webView setDelegate:scv.view];
         
         [scv.webView loadHTMLString:full_comment.commentMessage baseURL:nil];
         [scv.webView setTag:[full_comment.Id integerValue]];
-
+        
         [scv.labelCommenterName setText:full_comment.commenterName];
-
+        
         [scv setCurrent_comment:full_comment];
         
         yOffset = yOffset + (comment_height + 40);
@@ -157,6 +191,7 @@
     
     
     // now try looping through and resetting everything?
+    
     
 }
 
