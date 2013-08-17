@@ -38,9 +38,9 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIScrollView" id="729222271">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">282</int>
+						<int key="NSvFlags">274</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{0, 20}, {320, 348}}</string>
+						<string key="NSFrameSize">{320, 368}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -52,7 +52,7 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIWebView" id="546582046">
+					<object class="IBUIWebView" id="603722579">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 20}</string>
@@ -72,7 +72,7 @@
 				<string key="NSFrameSize">{320, 368}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="546582046"/>
+				<reference key="NSNextKeyView" ref="603722579"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
@@ -98,7 +98,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">testWebView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="546582046"/>
+						<reference key="destination" ref="603722579"/>
 					</object>
 					<int key="connectionID">43</int>
 				</object>
@@ -123,7 +123,7 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="546582046"/>
+							<reference ref="603722579"/>
 							<reference ref="729222271"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -147,7 +147,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">42</int>
-						<reference key="object" ref="546582046"/>
+						<reference key="object" ref="603722579"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>

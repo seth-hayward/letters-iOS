@@ -31,7 +31,7 @@
 
     // clear previous comments
     [[RODItemStore sharedStore] clearComments];
-    
+
     self.testWebView.delegate = self;
     
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
@@ -119,27 +119,34 @@
     
     if(self.comment_index == [[[RODItemStore sharedStore] allComments] count] - 1) {
         [self drawComments];
+        return;
     }
+    
+    RKComment *full_comment;
+    full_comment = [[[RODItemStore sharedStore] allComments] objectAtIndex:self.comment_index];
+    [self.testWebView loadHTMLString:full_comment.commentMessage baseURL:nil];
+
+    self.comment_index++;
+    
 }
 
 -(void)loadCommentData
 {
     
     NSLog(@"loadCommentData");
-    RKComment *full_comment;
     
     // do a preload to get the height
-    for(int i = 0; i < [[[RODItemStore sharedStore] allComments] count]; i++) {
-        self.comment_index = i;
-        full_comment = [[[RODItemStore sharedStore] allComments] objectAtIndex:i];
-        [self.testWebView loadHTMLString:full_comment.commentMessage baseURL:nil];    
-    }
+    // start the preload chain
+    RKComment *full_comment;
+    full_comment = [[[RODItemStore sharedStore] allComments] objectAtIndex:0];
+    [self.testWebView loadHTMLString:full_comment.commentMessage baseURL:nil];
     
 }
 
 -(void)drawComments
 {
     
+    [self.testWebView setHidden:true];
     int yOffset = 0;
     
     CommentScrollViewItem *scv;
@@ -164,7 +171,7 @@
         // the height of the padding around the
         // heart button and the frame of the scrollviewitem is about 40px.
         
-        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, comment_height + 40);
+        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, comment_height + 50);
         
         //        [scv.webView setDelegate:self];
         //        [scv.webView setDelegate:scv.view];
@@ -176,7 +183,7 @@
         
         [scv setCurrent_comment:full_comment];
         
-        yOffset = yOffset + (comment_height + 40);
+        yOffset = yOffset + (comment_height + 50);
         
         [self.scrollView addSubview:scv.view];
         
