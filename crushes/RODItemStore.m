@@ -143,7 +143,19 @@
     // this should be refactored, but for now we'll go with this...
     // TODO
     
-    NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com/api/get_letters"];
+    NSURL *baseURL;
+    baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com/api/get_letters"];
+    
+    NSString *real_url;
+    
+    if(load_level < 100) {
+        real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/api/get_letters/%d/%d", load_level, page];
+    } else {
+        real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/account/getbookmarks/%d", page];
+        baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com/account/getbookmarks"];
+        
+    }
+    
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
     
     [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
@@ -163,18 +175,12 @@
      @"senderCountry": @"senderCountry",
      @"senderRegion": @"senderRegion",
      @"senderCity": @"senderCity",
-     @"letterComments": @"letterComments"
+     @"letterComments": @"letterComments",
+     @"fromFacebookUID": @"fromFacebookUID",
+     @"toFacebookUID": @"toFacebookUID"
      }];
     
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    NSString *real_url;
-    
-    if(load_level < 100) {
-        real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/api/get_letters/%d/%d", load_level, page];
-    } else {
-        real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/account/getbookmarks/%d", page];
-    }
     
     [objectManager addResponseDescriptor:responseDescriptor];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];

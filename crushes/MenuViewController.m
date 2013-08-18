@@ -32,12 +32,12 @@
     NSLog(@"Hello login.");
 }
 
--(void)viewDidLoad
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    NSLog(@"viewWillAppear on the menu.");
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
     
-    [self.tableView setNeedsDisplay];
-    NSLog(@"viewDidLoad.");
 }
 
 -(id) initWithStyle:(UITableViewStyle)style

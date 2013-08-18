@@ -10,7 +10,7 @@
 
 @implementation RKFullLetter
 @synthesize Id, letterMessage, letterTags, letterPostDate, letterUp, letterLevel, letterLanguage,
-            senderIP, senderCountry, senderRegion, senderCity, letterComments;
+            senderIP, senderCountry, senderRegion, senderCity, letterComments, fromFacebookUID, toFacebookUID;
 
 - (id)initWithLetterMessage:(NSString *)message
 {

@@ -28,4 +28,7 @@
 @property (nonatomic) NSString *senderCity;
 @property (nonatomic) NSNumber *letterComments;
 
+@property (nonatomic) NSNumber *fromFacebookUID;
+@property (nonatomic) NSNumber *toFacebookUID;
+
 @end
