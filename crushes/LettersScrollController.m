@@ -134,8 +134,14 @@
     PagerViewController *pager = [[PagerViewController alloc] init];
     pager.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, pager.view.frame.size.height);
     
-    [pager.buttonBack addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-
+    if([[RODItemStore sharedStore] current_page] > 1) {
+        [pager.buttonBack setHidden:false];
+        [pager.buttonBack addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+    } else {
+        [pager.buttonBack setHidden:true];
+    }
+    
     [pager.buttonNext addTarget:self action:@selector(nextButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.scrollView addSubview:pager.view];
