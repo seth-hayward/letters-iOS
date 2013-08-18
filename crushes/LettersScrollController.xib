@@ -66,7 +66,7 @@
 						<bool key="IBUIAnimating">YES</bool>
 						<int key="IBUIStyle">0</int>
 					</object>
-					<object class="IBUIWebView" id="822774635">
+					<object class="IBUIWebView" id="105620929">
 						<reference key="NSNextResponder" ref="375358246"/>
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{-1, 0}, {320, 18}}</string>
@@ -86,7 +86,7 @@
 				<string key="NSFrameSize">{320, 493}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="822774635"/>
+				<reference key="NSNextKeyView" ref="105620929"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -128,6 +128,14 @@
 					</object>
 					<int key="connectionID">9</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">testWebView</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="105620929"/>
+					</object>
+					<int key="connectionID">10</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -154,7 +162,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="322863361"/>
 							<reference ref="495612017"/>
-							<reference ref="822774635"/>
+							<reference ref="105620929"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -171,7 +179,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
-						<reference key="object" ref="822774635"/>
+						<reference key="object" ref="105620929"/>
 						<reference key="parent" ref="375358246"/>
 					</object>
 				</array>
@@ -190,7 +198,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">9</int>
+			<int key="maxID">10</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -208,6 +216,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="indicator">UIActivityIndicatorView</string>
 						<string key="scrollView">UIScrollView</string>
+						<string key="testWebView">UIWebView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="indicator">
@@ -217,6 +226,10 @@
 						<object class="IBToOneOutletInfo" key="scrollView">
 							<string key="name">scrollView</string>
 							<string key="candidateClassName">UIScrollView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="testWebView">
+							<string key="name">testWebView</string>
+							<string key="candidateClassName">UIWebView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

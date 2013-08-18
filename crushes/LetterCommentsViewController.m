@@ -115,7 +115,7 @@
 {    
     NSString *height = [webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
     NSLog(@"finished loading comment %d with height of %@", self.comment_index, height );
-    [[RODItemStore sharedStore] updatComment:self.comment_index comment_height:height];
+    [[RODItemStore sharedStore] updateComment:self.comment_index comment_height:height];
     
     if(self.comment_index == [[[RODItemStore sharedStore] allComments] count] - 1) {
         [self drawComments];

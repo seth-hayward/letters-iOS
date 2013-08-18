@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 
 @implementation LettersScrollController
-@synthesize current_receive, loaded;
+@synthesize current_receive, loaded, letter_index;
 
 - (id)init
 {
@@ -240,45 +240,64 @@
     
     NSLog(@"lettersWebView did finish load.");
     
-    if(loaded == true) {        
+    NSString *height = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
+    NSLog(@"finished loading letter %d with height of %@", self.letter_index, height );    
+    [[RODItemStore sharedStore] updateLetterByIndex:self.letter_index letter_height:height];
+    
+    if(self.letter_index == [[[RODItemStore sharedStore] allLetters] count] - 1) {
+        [self drawLetters];
         return;
     }
     
-    NSString *height = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
-    NSString *hidden_id = [a_webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('letter_id').innerHTML"];
-        
-    // now loop through the data store
-    // assign the value
-    // then check to see if th eothers have finished loading
-    // if so, then ask the panel to redraw itself
+    RKFullLetter *full_letter;
+    full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:self.letter_index];
+    [self.testWebView loadHTMLString:full_letter.letterMessage baseURL:nil];
+    
+    self.letter_index++;
+    
+//    if(loaded == true) {        
+//        return;
+//    }
+//    NSString *height = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
+//    NSString *hidden_id = [a_webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('letter_id').innerHTML"];
+//        
+//    // now loop through the data store
+//    // assign the value
+//    // then check to see if th eothers have finished loading
+//    // if so, then ask the panel to redraw itself
+//
+//    Boolean found_default = false;
+//    
+//    for(int i = 0; i < [[[RODItemStore sharedStore] allLetters] count]; i++)
+//    {
+//        
+//        RKFullLetter *letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:i];
+//        if([[letter.Id stringValue] isEqualToString:hidden_id]) {
+//            [[RODItemStore sharedStore] updateLetter:letter.Id letter_height:height];
+//        }
+//        
+//        if([letter.letterTags isEqualToString:@"0"]) {
+//            found_default = true;
+//        }
+//        
+//    }
+//    
+//    if(found_default == false) {
+//        loaded = true;
+//        [self.indicator stopAnimating];
+//        [self.view setHidden:false];
+//        [self.scrollView setHidden:false];
+//        [self loadLetterData];
+//    }
+//    // now, see if the rest of the letters have received
+//    // their height settings, which will allow us to reload
+    
+    
+}
 
-    Boolean found_default = false;
-    
-    for(int i = 0; i < [[[RODItemStore sharedStore] allLetters] count]; i++)
-    {
-        
-        RKFullLetter *letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:i];
-        if([[letter.Id stringValue] isEqualToString:hidden_id]) {
-            [[RODItemStore sharedStore] updateLetter:letter.Id letter_height:height];
-        }
-        
-        if([letter.letterTags isEqualToString:@"0"]) {
-            found_default = true;
-        }
-        
-    }
-    
-    if(found_default == false) {
-        loaded = true;
-        [self.indicator stopAnimating];
-        [self.view setHidden:false];
-        [self.scrollView setHidden:false];
-        [self loadLetterData];
-    }
-    // now, see if the rest of the letters have received
-    // their height settings, which will allow us to reload
-    
-    
+-(void)drawLetters
+{
+    NSLog(@"Draw letters called.");
 }
 
 

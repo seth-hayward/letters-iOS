@@ -28,6 +28,7 @@
 		5D458D8F178C7DC600B71314 /* RKEditLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D458D8E178C7DC600B71314 /* RKEditLetter.m */; };
 		5D458D92178C86F800B71314 /* RKEditMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D458D91178C86F800B71314 /* RKEditMessage.m */; };
 		5D458D94178E318A00B71314 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D458D93178E318A00B71314 /* Default-568h@2x.png */; };
+		5D528C9917C1207100AAB762 /* border.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D528C9817C1207100AAB762 /* border.png */; };
 		5D7609AE179CDD660018F27B /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609AC179CDD660018F27B /* MenuViewController.m */; };
 		5D7609B2179DBDF00018F27B /* RODItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609B1179DBDF00018F27B /* RODItem.m */; };
 		5D7609B5179DCE100018F27B /* RODItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609B4179DCE100018F27B /* RODItemStore.m */; };
@@ -53,7 +54,6 @@
 		5DE2533417B130790069EC96 /* LetterCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2533217B130790069EC96 /* LetterCommentsViewController.xib */; };
 		5DE2533817B132070069EC96 /* LettersScrollController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2533517B132070069EC96 /* LettersScrollController.xib */; };
 		5DE2533917B132070069EC96 /* LettersScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2533717B132070069EC96 /* LettersScrollController.m */; };
-		5DE2533B17B134840069EC96 /* border.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2533A17B134840069EC96 /* border.png */; };
 		5DE2534117B301050069EC96 /* RKComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2534017B301050069EC96 /* RKComment.m */; };
 		5DE2534517B438D10069EC96 /* CommentScrollViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2534317B438D00069EC96 /* CommentScrollViewItem.m */; };
 		5DE2534617B438D10069EC96 /* CommentScrollViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2534417B438D10069EC96 /* CommentScrollViewItem.xib */; };
@@ -92,6 +92,7 @@
 		5D458D90178C86F800B71314 /* RKEditMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKEditMessage.h; sourceTree = "<group>"; };
 		5D458D91178C86F800B71314 /* RKEditMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKEditMessage.m; sourceTree = "<group>"; };
 		5D458D93178E318A00B71314 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		5D528C9817C1207100AAB762 /* border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border.png; sourceTree = "<group>"; };
 		5D7609AB179CDD660018F27B /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		5D7609AC179CDD660018F27B /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		5D7609B0179DBDF00018F27B /* RODItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RODItem.h; sourceTree = "<group>"; };
@@ -125,7 +126,6 @@
 		5DE2533517B132070069EC96 /* LettersScrollController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LettersScrollController.xib; sourceTree = "<group>"; };
 		5DE2533617B132070069EC96 /* LettersScrollController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LettersScrollController.h; sourceTree = "<group>"; };
 		5DE2533717B132070069EC96 /* LettersScrollController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LettersScrollController.m; sourceTree = "<group>"; };
-		5DE2533A17B134840069EC96 /* border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border.png; sourceTree = "<group>"; };
 		5DE2533F17B301050069EC96 /* RKComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKComment.h; sourceTree = "<group>"; };
 		5DE2534017B301050069EC96 /* RKComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKComment.m; sourceTree = "<group>"; };
 		5DE2534217B438D00069EC96 /* CommentScrollViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentScrollViewItem.h; sourceTree = "<group>"; };
@@ -237,10 +237,10 @@
 			children = (
 				5DE2534717B6D16F0069EC96 /* WCAlertView.h */,
 				5DE2534817B6D16F0069EC96 /* WCAlertView.m */,
-				5DE2533A17B134840069EC96 /* border.png */,
 				5D7F30611784FA07009F0AC6 /* Default-Portrait~ipad.png */,
 				5D7F305F1784FA01009F0AC6 /* Default-Portrait@2x~ipad.png */,
 				5D7F305D1784F9F8009F0AC6 /* Default-Landscape~ipad.png */,
+				5D528C9817C1207100AAB762 /* border.png */,
 				5D7F305B1784F9F2009F0AC6 /* Default-Landscape@2x~ipad.png */,
 				5D458D93178E318A00B71314 /* Default-568h@2x.png */,
 				5D458D7C178B731500B71314 /* search.png */,
@@ -347,8 +347,8 @@
 				5DE2531C17ACC2150069EC96 /* comment.png in Resources */,
 				5DE2533417B130790069EC96 /* LetterCommentsViewController.xib in Resources */,
 				5DE2533817B132070069EC96 /* LettersScrollController.xib in Resources */,
-				5DE2533B17B134840069EC96 /* border.png in Resources */,
 				5DE2534617B438D10069EC96 /* CommentScrollViewItem.xib in Resources */,
+				5D528C9917C1207100AAB762 /* border.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic) int current_receive;
 @property (nonatomic) Boolean loaded;
+@property (nonatomic) int letter_index;
+@property (weak, nonatomic) IBOutlet UIWebView *testWebView;
 
 -(void)loadLetterData;
 -(void)redrawScroll;
