@@ -23,32 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    NSLog(@"I loaded.");
-    // Do any additional setup after loading the view from its nib.
 }
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    NSLog(@"I appear");
-    
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    NSLog(@"See ya.");
-    
-}
-
--(void)webViewDidStartLoad:(UIWebView *)a_webView
-{
-    NSLog(@"I started to load a web page.");
-}
-
--(void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    NSLog(@"Finished loading comment.");
-}
-
 
 - (void)didReceiveMemoryWarning
 {

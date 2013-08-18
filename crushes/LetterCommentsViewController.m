@@ -106,15 +106,9 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)webViewDidStartLoad:(UIWebView *)webView
-{
-    NSLog(@"testWebView started load.");    
-}
-
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {    
     NSString *height = [webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
-    NSLog(@"finished loading comment %d with height of %@", self.comment_index, height );
     [[RODItemStore sharedStore] updateComment:self.comment_index comment_height:height];
     
     if(self.comment_index == [[[RODItemStore sharedStore] allComments] count] - 1) {
@@ -158,9 +152,7 @@
         
         int comment_height = 0;
         
-        NSLog(@"TIME TO LOAD");
         if([full_comment.commenterIP isEqualToString:@"1"]) {
-            NSLog(@"Loaded preset height: %@", full_comment.commenterGuid);
             comment_height = [full_comment.commenterGuid integerValue];
         } else {
             comment_height = 100;
