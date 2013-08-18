@@ -233,9 +233,12 @@
 
 -(void)webViewDidStartLoad:(UIWebView *)a_webView
 {
+    NSLog(@"lettersWebView did start load.");
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)a_webView {
+    
+    NSLog(@"lettersWebView did finish load.");
     
     if(loaded == true) {        
         return;
