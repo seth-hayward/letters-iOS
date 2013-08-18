@@ -220,28 +220,6 @@
 
 }
 
--(void)redrawScroll
-{
-    
-    NSLog(@"Redraw scroll called.");
-    
-    [[RODItemStore sharedStore] removeReferences];
-    [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    
-    // get new height of scrollview from all subviews
-    // thanks to William Jockusch on stackoverflow.com/questions/4018729
-    
-    CGRect contentRect = CGRectZero;
-    for (UIView *view in self.scrollView.subviews) {
-        contentRect = CGRectUnion(contentRect, view.frame);
-    }
-    
-    self.scrollView.contentSize = contentRect.size;
-    
-    [self loadLetterData];
-}
-
-
 - (void)openDrawer:(id)sender {
     
     // now tell the web view to change the page
@@ -298,6 +276,8 @@
             [subview performSelector:@selector(removeFromSuperview)];
         }
     }
+    
+    self.scrollView.contentSize = self.scrollView.frame.size;
     
     [self.scrollView setContentOffset:CGPointZero animated:YES];
     [self.indicator startAnimating];

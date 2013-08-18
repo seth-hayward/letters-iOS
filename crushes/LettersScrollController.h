@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIWebView *testWebView;
 
 -(void)loadLetterData;
--(void)redrawScroll;
 -(void)clearLettersAndReset;
 
 @end
