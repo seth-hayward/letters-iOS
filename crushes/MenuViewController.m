@@ -122,8 +122,7 @@
     if([selected_item viewType] == ViewTypeHome || [selected_item viewType] == ViewTypeMore) {
         // now tell the letters view controller to change the page
         [appDelegate.lettersScrollController setLoaded:false];
-        [appDelegate.lettersScrollController loadLetterData];
-        
+        [appDelegate.lettersScrollController loadLetterData];        
     }
     
 }

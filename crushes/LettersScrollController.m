@@ -49,13 +49,13 @@
 {
 
     NSLog(@"viewDidAppear.");
+    [self.testWebView setDelegate:self];
     
-    if(self.loaded == false) {
-        RKFullLetter *full_letter;
-        full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:self.letter_index];
-        [self.testWebView setDelegate:self];
-        [self.testWebView loadHTMLString:full_letter.letterMessage baseURL:nil];        
-    }
+    //if(self.loaded == false) {
+    //    RKFullLetter *full_letter;
+    //    full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:self.letter_index];
+    //    [self.testWebView loadHTMLString:full_letter.letterMessage baseURL:nil];
+    //}
     
 }
 
@@ -244,6 +244,7 @@
 
 -(void)refreshOriginalPage
 {
+    NSLog(@"refreshOriginalPage");
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self loadLetterData];
 }

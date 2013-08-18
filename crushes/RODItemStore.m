@@ -130,6 +130,8 @@
 - (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level
 {
     
+    NSLog(@"Load letters by page called.");
+    
     [_allLetters removeAllObjects];
     
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com/api/get_letters"];
@@ -200,6 +202,10 @@
         
         //[appDelegate.lettersViewController.tableView reloadData];
         [appDelegate.lettersScrollController loadLetterData];
+        
+        RKFullLetter *full_letter;
+        full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:0];
+        [appDelegate.lettersScrollController.testWebView loadHTMLString:full_letter.letterMessage baseURL:nil];
         
         
     } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
