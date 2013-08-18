@@ -31,8 +31,6 @@
         [[self navigationItem] setTitle:@"letters to crushes"];
 
         [[RODItemStore sharedStore] loadLettersByPage:1 level:0];
-
-        [self.scrollView setHidden:true];
  
         [self.indicator startAnimating];
         
@@ -52,10 +50,12 @@
 
     NSLog(@"viewDidAppear.");
     
-    RKFullLetter *full_letter;
-    full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:self.letter_index];
-    [self.testWebView setDelegate:self];
-    [self.testWebView loadHTMLString:full_letter.letterMessage baseURL:nil];
+    if(self.loaded == false) {
+        RKFullLetter *full_letter;
+        full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:self.letter_index];
+        [self.testWebView setDelegate:self];
+        [self.testWebView loadHTMLString:full_letter.letterMessage baseURL:nil];        
+    }
     
 }
 
@@ -214,6 +214,9 @@
 
 -(void)redrawScroll
 {
+    
+    NSLog(@"Redraw scroll called.");
+    
     [[RODItemStore sharedStore] removeReferences];
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
@@ -262,6 +265,7 @@
     self.letter_index++;    
     
     if(self.letter_index == [[[RODItemStore sharedStore] allLetters] count]) {
+        self.loaded = true;
         [self loadLetterData];
         return;
     }
