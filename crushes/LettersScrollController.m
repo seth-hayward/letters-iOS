@@ -83,10 +83,7 @@
         //[scv.webView setDelegate:self];
         
         [scv.webView loadHTMLString:full_letter.letterMessage baseURL:nil];
-        [scv.buttonHearts setTitle:[full_letter.letterUp stringValue] forState:UIScrollViewDecelerationRateNormal];
-        [scv.buttonHearts addTarget:self action:@selector(clickedHeart:) forControlEvents:UIControlEventTouchUpInside];
-        [scv.buttonHearts setTag:[full_letter.Id integerValue]];
-
+        
         [scv.labelComments setUserInteractionEnabled:true];
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedComments:)];
@@ -136,7 +133,13 @@
     // now add the pager control
     PagerViewController *pager = [[PagerViewController alloc] init];
     pager.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, pager.view.frame.size.height);
+    
+    [pager.buttonBack addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+
+    [pager.buttonNext addTarget:self action:@selector(nextButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.scrollView addSubview:pager.view];
+
     
     yOffset = yOffset + pager.view.frame.size.height;
     
@@ -267,6 +270,14 @@
         
 }
 
+- (void)nextButtonClicked:(UIButton *)button
+{
+    NSLog(@"Clicked next.");
+}
 
+-(void)backButtonClicked:(UIButton *)button
+{
+    NSLog(@"Clicked back.");
+}
 
 @end
