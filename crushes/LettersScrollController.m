@@ -86,10 +86,17 @@
         
         [scv.labelComments setUserInteractionEnabled:true];
         
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedComments:)];
-        [scv.labelComments addGestureRecognizer:tapGesture];
+        UITapGestureRecognizer *tapComments = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedComments:)];
+        [scv.labelComments addGestureRecognizer:tapComments];
+        
+        [scv.labelHearts setUserInteractionEnabled:true];
+        
+        UITapGestureRecognizer *tapHearts = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedHeart:)];
+        [scv.labelHearts addGestureRecognizer:tapHearts];
         
         [scv.labelComments setTag:([full_letter.Id integerValue] * 100)];
+        [scv.labelHearts setTag:([full_letter.Id integerValue] * 1000)];
+        
         [scv.webView.scrollView setScrollEnabled:false];
         
         // OMG JUST PUT A FUCKING UNDERLINE IN THE LABEL JESUS
@@ -170,8 +177,12 @@
 }
 
 
--(void)clickedHeart:(UIButton *)button
+-(void)clickedHeart:(UITapGestureRecognizer *)tapGesture;
 {
+    
+    NSLog(@"Clicked heart.");
+    
+    int letter_id = [tapGesture.view tag] / 1000;
     
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
@@ -198,7 +209,7 @@
     
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
-    NSString *real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/home/vote/%d", button.tag];
+    NSString *real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/home/vote/%d", letter_id];
     
     [objectManager addResponseDescriptor:responseDescriptor];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];
@@ -210,7 +221,11 @@
         RKFullLetter *letter = mappingResult.array[0];
         NSLog(@"Voted on letter %@", letter.Id);
         
-        [button setTitle:[NSString stringWithFormat:@"%@", letter.letterUp] forState:UIControlStateNormal];
+        [[RODItemStore sharedStore] updateLetterHearts:[NSNumber numberWithInt:letter_id] hearts: letter.letterUp];
+        
+        [self refreshOriginalPage];
+        
+        //[button setTitle:[NSString stringWithFormat:@"%@", letter.letterUp] forState:UIControlStateNormal];
         
     } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"Error voting: %@", error);

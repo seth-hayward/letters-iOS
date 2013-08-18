@@ -95,7 +95,7 @@
     return sharedStore;
 }
 
-- (void)updateLetter:(NSNumber *)letter_id letter_height:(NSString *)height
+- (void)updateLetterHearts:(NSNumber *)letter_id hearts:(NSNumber *)l_hearts
 {
 
     for(int i = 0; i<[_allLetters count]; i++) {
@@ -103,8 +103,8 @@
         NSNumber *current_letter_id = current_letter.Id;
 
         if([current_letter_id isEqualToNumber:letter_id]) {
-            current_letter.letterTags = @"1";
-            current_letter.letterCountry = height;
+            current_letter.letterUp = l_hearts;
+            return;
         }
         
     }

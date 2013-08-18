@@ -42,6 +42,8 @@
 - (void)updateLetter:(NSNumber *)letter_id letter_height:(NSString *)height;
 - (void)updateLetterByIndex:(int)letter_index letter_height:(NSString *)height;
 - (void)updateComment:(int)comment_index comment_height:(NSString *)height;
+- (void)updateLetterHearts:(NSNumber *)letter_id hearts:(NSNumber *)l_hearts;
+
 
 - (RODItem *)createItem:(ViewType) new_Type;
 - (RKFullLetter *)addLetter:(RKFullLetter *) letter;
