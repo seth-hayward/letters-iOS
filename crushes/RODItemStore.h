@@ -16,9 +16,7 @@
     NSMutableArray *allMenuItems;
     NSMutableArray *_allLetters;
     NSMutableArray *_allComments;
-    NSMutableArray *_webviewReferences;
-    NSNumber *_loginStatus;
-    
+    NSMutableArray *_webviewReferences;    
 }
 
 + (RODItemStore *)sharedStore;
@@ -39,7 +37,6 @@
 
 - (NSArray *)webviewReferences;
 
-- (void)updateLetter:(NSNumber *)letter_id letter_height:(NSString *)height;
 - (void)updateLetterByIndex:(int)letter_index letter_height:(NSString *)height;
 - (void)updateComment:(int)comment_index comment_height:(NSString *)height;
 - (void)updateLetterHearts:(NSNumber *)letter_id hearts:(NSNumber *)l_hearts;

@@ -21,7 +21,6 @@
         // hard code the creation of the items...
         [[RODItemStore sharedStore] createItem:ViewTypeHome];
         [[RODItemStore sharedStore] createItem:ViewTypeMore];
-        [[RODItemStore sharedStore] createItem:ViewTypeBookmarks];
         [[RODItemStore sharedStore] createItem:ViewTypeSearch];
         [[RODItemStore sharedStore] createItem:ViewTypeSend];
     }
@@ -79,6 +78,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
     }
     
+    
     RODItem *p = [[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]];
     
     [[cell textLabel] setText:[p caption]];
@@ -116,7 +116,8 @@
             [[RODItemStore sharedStore] loadLettersByPage:1 level:-1];
             break;
         case ViewTypeBookmarks:
-            
+            [appDelegate.lettersScrollController clearLettersAndReset];
+            [[RODItemStore sharedStore] loadLettersByPage:1 level:100];
             break;
         case ViewTypeSend:
             // now tell the web view to change the page

@@ -25,6 +25,7 @@
         allMenuItems = [[NSMutableArray alloc] init];
         _allLetters = [[NSMutableArray alloc] init];
         _allComments = [[NSMutableArray alloc] init];
+        loginStatus = [NSNumber numberWithInt:0];
     }
     
     return self;
@@ -137,6 +138,11 @@
     
     [_allLetters removeAllObjects];
     
+    
+    // if load_level = 100, we're looking for loading the bookmarks
+    // this should be refactored, but for now we'll go with this...
+    // TODO
+    
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com/api/get_letters"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
     
@@ -162,7 +168,13 @@
     
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
-    NSString *real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/api/get_letters/%d/%d", load_level, page];
+    NSString *real_url;
+    
+    if(load_level < 100) {
+        real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/api/get_letters/%d/%d", load_level, page];
+    } else {
+        real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/account/getbookmarks/%d", page];
+    }
     
     [objectManager addResponseDescriptor:responseDescriptor];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];
@@ -277,6 +289,8 @@
         
         if([server_says.response isEqualToNumber:[NSNumber numberWithInt:1]]) {
             // correct login
+            
+            [[RODItemStore sharedStore] createItem:ViewTypeBookmarks];
 
             [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"You have logged in. Welcome back!" customizationBlock:^(WCAlertView *alertView) {
                 alertView.style = WCAlertViewStyleBlackHatched;
@@ -332,6 +346,7 @@
         
         alertView.buttonTextColor = [UIColor colorWithRed:0.11f green:0.08f blue:0.39f alpha:1.00f];
         alertView.buttonShadowColor = [UIColor whiteColor];
+        
         
     }];
     
@@ -390,18 +405,12 @@
         if (buttonIndex == alertView.cancelButtonIndex) {
             
             // whatever, they cancelled
-            
-            
+            loginStatus = [NSNumber numberWithInt:0];
             
         }
     } cancelButtonTitle:@"cancel" otherButtonTitles:@"login", nil];
 
     
-}
-
-- (NSNumber *)loginStatus
-{
-    return _loginStatus;
 }
 
 - (void)goBackPage
