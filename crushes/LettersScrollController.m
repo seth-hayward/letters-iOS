@@ -78,7 +78,7 @@
         // the height of the padding around the
         // heart button and the frame of the scrollviewitem is about 40px.
                 
-        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, letter_height + 51);
+        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width - 5, letter_height + 51);
         
         //[scv.webView setDelegate:self];
         
@@ -286,8 +286,15 @@
 
 -(void)clearLettersAndReset
 {
-    [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    for (UIView *subview in self.scrollView.subviews) {        
+        if([subview class] == [PagerViewController class] || [subview class] == [ScrollViewItem class]) {
+            [subview performSelector:@selector(removeFromSuperview)];
+        }
+    }
+    
     [self.scrollView setContentOffset:CGPointZero animated:YES];
+    [self.indicator startAnimating];
     
     self.loaded = false;
     self.letter_index = 0;
