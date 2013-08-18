@@ -13,6 +13,7 @@
 #import "RKFullLetter.h"
 #import "ScrollViewItem.h"
 #import "AppDelegate.h"
+#import "PagerViewController.h"
 
 @implementation LettersScrollController
 @synthesize current_receive, loaded, letter_index;
@@ -132,8 +133,14 @@
         
     }
     
-    [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
+    // now add the pager control
+    PagerViewController *pager = [[PagerViewController alloc] init];
+    pager.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, pager.view.frame.size.height);
+    [self.scrollView addSubview:pager.view];
     
+    yOffset = yOffset + pager.view.frame.size.height;
+    
+    [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
     
     // now try looping through and resetting everything?
     
@@ -150,8 +157,7 @@
     // now tell the web view to change the page
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate.navigationController pushViewController:comments animated:true];
-    
-    
+        
 }
 
 
