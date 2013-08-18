@@ -37,11 +37,26 @@
         [self.indicator startAnimating];
         
         [self.scrollView setDelegate:self];
+        
+        self.letter_index = 0;
+        
         current_receive = 0;
         loaded = false;
         
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+
+    NSLog(@"viewDidAppear.");
+    
+    RKFullLetter *full_letter;
+    full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:self.letter_index];
+    [self.testWebView setDelegate:self];
+    [self.testWebView loadHTMLString:full_letter.letterMessage baseURL:nil];
+    
 }
 
 -(void)loadLetterData
@@ -71,7 +86,7 @@
                 
         scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, letter_height + 40);
         
-        [scv.webView setDelegate:self];
+        //[scv.webView setDelegate:self];
         
         [scv.webView loadHTMLString:full_letter.letterMessage baseURL:nil];
         [scv.buttonHearts setTitle:[full_letter.letterUp stringValue] forState:UIScrollViewDecelerationRateNormal];
@@ -244,16 +259,16 @@
     NSLog(@"finished loading letter %d with height of %@", self.letter_index, height );    
     [[RODItemStore sharedStore] updateLetterByIndex:self.letter_index letter_height:height];
     
-    if(self.letter_index == [[[RODItemStore sharedStore] allLetters] count] - 1) {
-        [self drawLetters];
+    self.letter_index++;    
+    
+    if(self.letter_index == [[[RODItemStore sharedStore] allLetters] count]) {
+        [self loadLetterData];
         return;
     }
     
     RKFullLetter *full_letter;
     full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:self.letter_index];
     [self.testWebView loadHTMLString:full_letter.letterMessage baseURL:nil];
-    
-    self.letter_index++;
     
 //    if(loaded == true) {        
 //        return;
@@ -293,11 +308,6 @@
 //    // their height settings, which will allow us to reload
     
     
-}
-
--(void)drawLetters
-{
-    NSLog(@"Draw letters called.");
 }
 
 
