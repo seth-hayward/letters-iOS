@@ -15,9 +15,9 @@
 @implementation MenuViewController
 
 - (id) init {
-    self = [super initWithStyle:UITableViewStyleGrouped];
+    self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
-
+        
         // hard code the creation of the items...
         [[RODItemStore sharedStore] createItem:ViewTypeHome];
         [[RODItemStore sharedStore] createItem:ViewTypeMore];
@@ -31,6 +31,14 @@
 - (IBAction)attemptLogin:(id)sender
 {
     NSLog(@"Hello login.");
+}
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self.tableView setNeedsDisplay];
+    NSLog(@"viewDidLoad.");
 }
 
 -(id) initWithStyle:(UITableViewStyle)style
