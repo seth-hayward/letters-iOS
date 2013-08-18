@@ -62,6 +62,8 @@
 -(void)loadLetterData
 {
     
+    NSLog(@"loadLetterData called.");
+    
     int yOffset = 0;
     
     ScrollViewItem *scv;

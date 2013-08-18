@@ -201,7 +201,7 @@
         //[appDelegate.tabBar setSelectedIndex:1];
         
         //[appDelegate.lettersViewController.tableView reloadData];
-        [appDelegate.lettersScrollController loadLetterData];
+        //[appDelegate.lettersScrollController loadLetterData];
         
         RKFullLetter *full_letter;
         full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:0];
