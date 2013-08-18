@@ -100,9 +100,11 @@
     switch([selected_item viewType])
     {
         case ViewTypeHome:
+            [appDelegate.lettersScrollController clearLettersAndReset];
             [[RODItemStore sharedStore] loadLettersByPage:1  level:0];
             break;
         case ViewTypeMore:
+            [appDelegate.lettersScrollController clearLettersAndReset];            
             [[RODItemStore sharedStore] loadLettersByPage:1 level:-1];
             break;
         case ViewTypeBookmarks:
@@ -118,12 +120,6 @@
     
     // reload the data so the checkbox updates
     [tableView reloadData];
-    
-    if([selected_item viewType] == ViewTypeHome || [selected_item viewType] == ViewTypeMore) {
-        // now tell the letters view controller to change the page
-        [appDelegate.lettersScrollController setLoaded:false];
-        [appDelegate.lettersScrollController loadLetterData];        
-    }
     
 }
 

@@ -19,5 +19,6 @@
 
 -(void)loadLetterData;
 -(void)redrawScroll;
+-(void)clearLettersAndReset;
 
 @end

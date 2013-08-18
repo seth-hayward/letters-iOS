@@ -17,7 +17,7 @@
 
 
 @implementation RODItemStore
-@synthesize loginStatus;
+@synthesize loginStatus, current_load_level, current_page;
 
 - (id)init {
     self = [super init];
@@ -131,6 +131,9 @@
 {
     
     NSLog(@"Load letters by page called.");
+    
+    current_load_level = load_level;
+    current_page = page;
     
     [_allLetters removeAllObjects];
     
@@ -399,6 +402,18 @@
 - (NSNumber *)loginStatus
 {
     return _loginStatus;
+}
+
+- (void)goBackPage
+{
+    self.current_page--;
+    [self loadLettersByPage:self.current_page level:self.current_load_level];
+}
+
+- (void)goNextPage
+{
+    self.current_page++;
+    [self loadLettersByPage:self.current_page level:self.current_load_level];
 }
 
 + (id)allocWithZone:(NSZone *)zone {

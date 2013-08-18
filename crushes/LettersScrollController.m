@@ -272,12 +272,25 @@
 
 - (void)nextButtonClicked:(UIButton *)button
 {
-    NSLog(@"Clicked next.");
+    [self clearLettersAndReset];
+    [[RODItemStore sharedStore] goNextPage];
 }
 
 -(void)backButtonClicked:(UIButton *)button
 {
-    NSLog(@"Clicked back.");
+    if([[RODItemStore sharedStore] current_page] > 1) {
+        [self clearLettersAndReset];
+        [[RODItemStore sharedStore] goBackPage];
+    }
+}
+
+-(void)clearLettersAndReset
+{
+    [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.scrollView setContentOffset:CGPointZero animated:YES];
+    
+    self.loaded = false;
+    self.letter_index = 0;
 }
 
 @end
