@@ -9,5 +9,5 @@
 #import "RODSettings.h"
 
 @implementation RODSettings
-
+@synthesize loginStatus;
 @end

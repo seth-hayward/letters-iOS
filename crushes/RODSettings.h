@@ -9,5 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface RODSettings : NSObject
+{
+    
+}
+
+@property (nonatomic) NSNumber *loginStatus;
+
 
 @end
