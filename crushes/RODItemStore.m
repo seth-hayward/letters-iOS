@@ -431,6 +431,22 @@
     [self loadLettersByPage:self.current_page level:self.current_load_level];
 }
 
+- (NSString *)settingsArchivePath
+{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    // get one and only docuent directory from that list
+    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+    
+    return [documentDirectory stringByAppendingPathComponent:@"settings.archive"];
+}
+
+- (BOOL) saveSettings
+{
+    NSString *path = [self settingsArchivePath];
+    return [NSKeyedArchiver archiveRootObject:[self settings] toFile:path];
+}
+
 + (id)allocWithZone:(NSZone *)zone {
     return [self sharedStore];
 }

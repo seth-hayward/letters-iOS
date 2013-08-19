@@ -10,13 +10,15 @@
 #import "RODItem.h"
 #import "RKFullLetter.h"
 #import "RKComment.h"
+#import "RODSettings.h"
 
 @interface RODItemStore : NSObject
 {
     NSMutableArray *allMenuItems;
     NSMutableArray *_allLetters;
     NSMutableArray *_allComments;
-    NSMutableArray *_webviewReferences;    
+    NSMutableArray *_webviewReferences;
+    RODSettings *_settings;
 }
 
 + (RODItemStore *)sharedStore;
@@ -24,6 +26,9 @@
 - (NSArray *)allMenuItems;
 - (NSArray *)allLetters;
 - (NSArray *)allComments;
+- (RODSettings *)settings;
+
+- (NSString*)settingsArchivePath;
 
 @property (nonatomic) int current_page;
 @property (nonatomic) int current_load_level;
@@ -34,6 +39,7 @@
 
 - (void) login:(NSString *)email password:(NSString *)password;
 - (void) doLogin;
+- (BOOL) saveSettings;
 
 - (NSArray *)webviewReferences;
 
