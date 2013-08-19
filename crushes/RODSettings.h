@@ -14,6 +14,8 @@
 }
 
 @property (nonatomic) NSNumber *loginStatus;
+@property (nonatomic) NSString *userName;
+@property (nonatomic) NSString *password;
 
 
 @end

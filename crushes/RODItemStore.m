@@ -26,6 +26,24 @@
         _allLetters = [[NSMutableArray alloc] init];
         _allComments = [[NSMutableArray alloc] init];
         loginStatus = [NSNumber numberWithInt:0];
+        
+        NSString *path = [self settingsArchivePath];
+        
+        _settings = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+
+        NSLog(@"Loaded settings, _settings.loginStatus = %@", _settings.loginStatus);
+        
+        // If we were unable to load the object,
+        // then we can assume it's a new user and
+        // they are logged out.
+        if(!_settings) {
+            _settings = [[RODSettings alloc] init];
+            _settings.loginStatus = [NSNumber numberWithInt:0];
+        }
+
+        NSLog(@"Loaded settings, _settings.loginStatus = %@", _settings.loginStatus);
+
+        
     }
     
     return self;
@@ -49,6 +67,11 @@
 - (NSArray *)webviewReferences
 {
     return _webviewReferences;
+}
+
+- (RODSettings *)settings
+{
+    return _settings;
 }
 
 - (void)addReference:(UIWebView *)watch_this
@@ -249,6 +272,9 @@
 	RKLogin* login = [RKLogin new];
     login.email = email;
     login.password = password;
+    
+    _settings.userName = email;
+    _settings.password = password;
         
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
@@ -295,6 +321,9 @@
         
         if([server_says.response isEqualToNumber:[NSNumber numberWithInt:1]]) {
             // correct login
+            _settings.loginStatus = [NSNumber numberWithInt:1];
+            
+            [[RODItemStore sharedStore] saveSettings];
             
             [[RODItemStore sharedStore] createItem:ViewTypeBookmarks];
 
