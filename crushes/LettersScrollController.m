@@ -97,6 +97,13 @@
         [scv.labelComments setTag:([full_letter.Id integerValue] * 100)];
         [scv.labelHearts setTag:([full_letter.Id integerValue] * 1000)];
         
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setTimeStyle:NSDateFormatterShortStyle];
+        [formatter setDateStyle:NSDateFormatterFullStyle];
+        
+        //[formatter setDateFormat:@"yyyy mm dd"];
+        [scv.labelDate setText:[formatter stringFromDate:[self getDateFromJSON:full_letter.letterPostDate]]];
+        NSLog(@"Date: %@", full_letter.letterPostDate);
         [scv.webView.scrollView setScrollEnabled:false];
         
         // OMG JUST PUT A FUCKING UNDERLINE IN THE LABEL JESUS
@@ -299,6 +306,18 @@
     
     self.loaded = false;
     self.letter_index = 0;
+}
+
+- (NSDate*) getDateFromJSON:(NSString *)dateString
+{
+    // Expect date in this format "/Date(1268123281843)/"
+    int startPos = [dateString rangeOfString:@"("].location+1;
+    int endPos = [dateString rangeOfString:@")"].location;
+    NSRange range = NSMakeRange(startPos,endPos-startPos);
+    unsigned long long milliseconds = [[dateString substringWithRange:range] longLongValue];
+//    NSLog(@"%llu",milliseconds);
+    NSTimeInterval interval = milliseconds/1000;
+    return [NSDate dateWithTimeIntervalSince1970:interval];
 }
 
 @end
