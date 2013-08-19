@@ -19,5 +19,6 @@
 
 -(void)loadLetterData;
 -(void)clearLettersAndReset;
+-(void)refreshOriginalPage;
 
 @end

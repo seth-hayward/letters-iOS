@@ -17,7 +17,7 @@
 
 
 @implementation RODItemStore
-@synthesize loginStatus, current_load_level, current_page;
+@synthesize loginStatus, current_load_level, current_page, last_device_orientation;
 
 - (id)init {
     self = [super init];
@@ -30,7 +30,10 @@
         NSString *path = [self settingsArchivePath];
         
         _settings = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-
+        
+        UIDevice *device = [UIDevice currentDevice];
+        last_device_orientation = device.orientation;
+        
         NSLog(@"Loaded settings, _settings.loginStatus = %@", _settings.loginStatus);
         
         // If we were unable to load the object,

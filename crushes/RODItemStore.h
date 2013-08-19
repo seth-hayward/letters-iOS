@@ -33,6 +33,7 @@
 @property (nonatomic) int current_page;
 @property (nonatomic) int current_load_level;
 @property (nonatomic) NSNumber *loginStatus;
+@property (nonatomic) UIDeviceOrientation last_device_orientation;
 
 - (void)goNextPage;
 - (void)goBackPage;

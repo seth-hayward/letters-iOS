@@ -39,6 +39,8 @@
     lettersScrollController = lettersScrollVC;
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lettersScrollVC];
+    navController.navigationBar.tintColor = [UIColor blackColor];
+    
     navigationController = navController;
     
     MMDrawerController * drawerController = [[MMDrawerController alloc]
@@ -118,13 +120,22 @@
 
 - (void)orientationChanged:(NSNotification *)note
 {
-    NSLog(@"orientationChanged: fired.");
     // tell the letters scroll controller to recalculate
     // everything
     
-    if(lettersScrollController.loaded == true) {
-        [lettersScrollController clearLettersAndReset];
-        [[RODItemStore sharedStore] loadLettersByPage:[RODItemStore sharedStore].current_page level:[RODItemStore sharedStore].current_load_level];        
+    UIDeviceOrientation current = [UIDevice currentDevice].orientation;
+    UIDeviceOrientation previously = [RODItemStore sharedStore].last_device_orientation;
+
+    NSLog(@"current: %d, past: %d, orientation: %d", current, previously, [UIDevice currentDevice].orientation);
+    
+    if(current != previously) {
+        NSLog(@"It changed.");
+        if(lettersScrollController.loaded == true) {
+            [lettersScrollController refreshOriginalPage];
+        }
+        [RODItemStore sharedStore].last_device_orientation = current;
+    } else {
+        NSLog(@"Did not change.");
     }
     
 }
