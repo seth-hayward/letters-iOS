@@ -39,9 +39,22 @@
         if(!_settings) {
             _settings = [[RODSettings alloc] init];
             _settings.loginStatus = [NSNumber numberWithInt:0];
+        } else {
+            // they have some saved settings, so let's try logging in with
+            // their stuff
+            
+            NSLog(@"Found some pre-saved stuff, going to try to login with it.");
+
+            if(([_settings.userName length] > 0) && ([_settings.password length] > 0))
+            {
+                [self login:_settings.userName password:_settings.password];
+            } else {
+                [self doLogin];                
+            }
+        
+            
         }
 
-        NSLog(@"Loaded settings, _settings.loginStatus = %@", _settings.loginStatus);
 
         
     }

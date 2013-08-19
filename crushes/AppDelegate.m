@@ -52,9 +52,7 @@
     [drawerController setShowsShadow:false];
     
     [[self window] setRootViewController:drawerController];
-    
-    [[RODItemStore sharedStore] doLogin];
-        
+            
     //
     // integrate with google analytics
     //
