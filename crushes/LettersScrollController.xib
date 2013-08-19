@@ -43,9 +43,10 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIActivityIndicatorView" id="495612017">
 								<reference key="NSNextResponder" ref="322863361"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{142, 20}, {37, 37}}</string>
+								<int key="NSvFlags">293</int>
+								<string key="NSFrame">{{142, 89}, {37, 37}}</string>
 								<reference key="NSSuperview" ref="322863361"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -55,6 +56,7 @@
 						</array>
 						<string key="NSFrameSize">{320, 493}</string>
 						<reference key="NSSuperview" ref="375358246"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="495612017"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -65,11 +67,12 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIWebView" id="991135295">
+					<object class="IBUIWebView" id="770296028">
 						<reference key="NSNextResponder" ref="375358246"/>
 						<int key="NSvFlags">-2147483358</int>
 						<string key="NSFrame">{{-1, 0}, {320, 6}}</string>
 						<reference key="NSSuperview" ref="375358246"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="322863361"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -83,7 +86,8 @@
 				</array>
 				<string key="NSFrameSize">{320, 493}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="991135295"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="770296028"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -121,7 +125,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">testWebView</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="991135295"/>
+						<reference key="destination" ref="770296028"/>
 					</object>
 					<int key="connectionID">10</int>
 				</object>
@@ -157,7 +161,7 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="375358246"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="991135295"/>
+							<reference ref="770296028"/>
 							<reference ref="322863361"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -172,7 +176,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
-						<reference key="object" ref="991135295"/>
+						<reference key="object" ref="770296028"/>
 						<reference key="parent" ref="375358246"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -198,7 +202,45 @@
 			<nil key="sourceID"/>
 			<int key="maxID">10</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">GAITrackedViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GAITrackedViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">LettersScrollController</string>
+					<string key="superclassName">GAITrackedViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="indicator">UIActivityIndicatorView</string>
+						<string key="scrollView">UIScrollView</string>
+						<string key="testWebView">UIWebView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="indicator">
+							<string key="name">indicator</string>
+							<string key="candidateClassName">UIActivityIndicatorView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="scrollView">
+							<string key="name">scrollView</string>
+							<string key="candidateClassName">UIScrollView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="testWebView">
+							<string key="name">testWebView</string>
+							<string key="candidateClassName">UIWebView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/LettersScrollController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

@@ -96,14 +96,13 @@
         
         [scv.labelComments setTag:([full_letter.Id integerValue] * 100)];
         [scv.labelHearts setTag:([full_letter.Id integerValue] * 1000)];
+        [scv.view setTag:([full_letter.Id integerValue] * 10000)];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setTimeStyle:NSDateFormatterShortStyle];
         [formatter setDateStyle:NSDateFormatterFullStyle];
-        
-        //[formatter setDateFormat:@"yyyy mm dd"];
         [scv.labelDate setText:[formatter stringFromDate:[self getDateFromJSON:full_letter.letterPostDate]]];
-        NSLog(@"Date: %@", full_letter.letterPostDate);
+        
         [scv.webView.scrollView setScrollEnabled:false];
         
         // OMG JUST PUT A FUCKING UNDERLINE IN THE LABEL JESUS
@@ -293,15 +292,16 @@
 -(void)clearLettersAndReset
 {
     
-    for (UIView *subview in self.scrollView.subviews) {        
-        if([subview class] == [PagerViewController class] || [subview class] == [ScrollViewItem class]) {
+    for (UIView *subview in self.scrollView.subviews) {
+        if([subview tag] > 0) {
             [subview performSelector:@selector(removeFromSuperview)];
         }
     }
     
-    self.scrollView.contentSize = self.scrollView.frame.size;
+    self.scrollView.contentSize = CGSizeMake(0,0);
     
-    [self.scrollView setContentOffset:CGPointZero animated:YES];
+    [self.scrollView setNeedsDisplay];
+    
     [self.indicator startAnimating];
     
     self.loaded = false;
