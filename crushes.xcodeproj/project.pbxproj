@@ -31,6 +31,7 @@
 		5D528C9917C1207100AAB762 /* border.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D528C9817C1207100AAB762 /* border.png */; };
 		5D528C9D17C12FEF00AAB762 /* PagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D528C9B17C12FEF00AAB762 /* PagerViewController.m */; };
 		5D528C9E17C12FEF00AAB762 /* PagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D528C9C17C12FEF00AAB762 /* PagerViewController.xib */; };
+		5D528CA117C2B6AD00AAB762 /* RODSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D528CA017C2B6AD00AAB762 /* RODSettings.m */; };
 		5D7609AE179CDD660018F27B /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609AC179CDD660018F27B /* MenuViewController.m */; };
 		5D7609B2179DBDF00018F27B /* RODItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609B1179DBDF00018F27B /* RODItem.m */; };
 		5D7609B5179DCE100018F27B /* RODItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609B4179DCE100018F27B /* RODItemStore.m */; };
@@ -98,6 +99,8 @@
 		5D528C9A17C12FEF00AAB762 /* PagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagerViewController.h; sourceTree = "<group>"; };
 		5D528C9B17C12FEF00AAB762 /* PagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagerViewController.m; sourceTree = "<group>"; };
 		5D528C9C17C12FEF00AAB762 /* PagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PagerViewController.xib; sourceTree = "<group>"; };
+		5D528C9F17C2B6AC00AAB762 /* RODSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RODSettings.h; sourceTree = "<group>"; };
+		5D528CA017C2B6AD00AAB762 /* RODSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RODSettings.m; sourceTree = "<group>"; };
 		5D7609AB179CDD660018F27B /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		5D7609AC179CDD660018F27B /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		5D7609B0179DBDF00018F27B /* RODItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RODItem.h; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 				5D458D91178C86F800B71314 /* RKEditMessage.m */,
 				5DE2534A17BD92D60069EC96 /* RKLogin.h */,
 				5DE2534B17BD92D70069EC96 /* RKLogin.m */,
+				5D528C9F17C2B6AC00AAB762 /* RODSettings.h */,
+				5D528CA017C2B6AD00AAB762 /* RODSettings.m */,
 				5D0BD04B1670AAA30088A383 /* AppDelegate.h */,
 				5D0BD04C1670AAA30088A383 /* AppDelegate.m */,
 				5D0BD0431670AAA30088A383 /* Supporting Files */,
@@ -419,6 +424,7 @@
 				5DE2534917B6D16F0069EC96 /* WCAlertView.m in Sources */,
 				5DE2534C17BD92D80069EC96 /* RKLogin.m in Sources */,
 				5D528C9D17C12FEF00AAB762 /* PagerViewController.m in Sources */,
+				5D528CA117C2B6AD00AAB762 /* RODSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
