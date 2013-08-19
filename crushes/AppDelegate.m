@@ -52,7 +52,17 @@
     [drawerController setShowsShadow:false];
     
     [[self window] setRootViewController:drawerController];
-            
+
+    //
+    // hook up rotation notification listeners
+    //
+    
+    UIDevice *device = [UIDevice currentDevice];
+    [device beginGeneratingDeviceOrientationNotifications];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    
+    [nc addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:device];
+        
     //
     // integrate with google analytics
     //
@@ -105,5 +115,18 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+
+- (void)orientationChanged:(NSNotification *)note
+{
+    NSLog(@"orientationChanged: fired.");
+    // tell the letters scroll controller to recalculate
+    // everything
+    
+    if(lettersScrollController.loaded == true) {
+        [lettersScrollController clearLettersAndReset];
+        [[RODItemStore sharedStore] loadLettersByPage:[RODItemStore sharedStore].current_page level:[RODItemStore sharedStore].current_load_level];        
+    }
+    
+}
+
 @end
