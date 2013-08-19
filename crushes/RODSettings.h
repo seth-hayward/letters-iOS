@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RODSettings : NSObject
+@interface RODSettings : NSObject <NSCoding>
 {
     
 }

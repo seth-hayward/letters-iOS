@@ -10,4 +10,21 @@
 
 @implementation RODSettings
 @synthesize loginStatus;
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    
+    if (self) {
+        [self setLoginStatus:[aDecoder decodeObjectForKey:@"loginStatus"]];
+    }
+    
+    return self;
+}
+
+- (void) encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:loginStatus forKey:@"loginStatus"];
+}
+
 @end
