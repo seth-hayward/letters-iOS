@@ -100,7 +100,7 @@
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setTimeStyle:NSDateFormatterShortStyle];
-        [formatter setDateStyle:NSDateFormatterFullStyle];
+        [formatter setDateStyle:NSDateFormatterShortStyle];
         [scv.labelDate setText:[formatter stringFromDate:[self getDateFromJSON:full_letter.letterPostDate]]];
         
         [scv.webView.scrollView setScrollEnabled:false];
