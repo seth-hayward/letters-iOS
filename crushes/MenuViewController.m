@@ -24,6 +24,8 @@
         [[RODItemStore sharedStore] createItem:ViewTypeSearch];
         [[RODItemStore sharedStore] createItem:ViewTypeSend];
         
+        self.tableView.scrollEnabled = NO;
+        
         // border
         
         [self.tableView.layer setBorderWidth: 1.0];
@@ -34,17 +36,10 @@
     return self;
 }
 
-- (IBAction)attemptLogin:(id)sender
-{
-    NSLog(@"Hello login.");
-}
-
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"viewWillAppear on the menu.");
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
-    
+    [self.tableView reloadData];    
 }
 
 -(id) initWithStyle:(UITableViewStyle)style
@@ -64,6 +59,17 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     return [self loginView];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *little_blanky = [[UIView alloc] init];
+    return little_blanky;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

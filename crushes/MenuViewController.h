@@ -15,6 +15,5 @@
 }
 
 - (UIView *)loginView;
-- (IBAction)attemptLogin:(id)sender;
 
 @end
