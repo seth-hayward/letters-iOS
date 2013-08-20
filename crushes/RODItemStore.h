@@ -37,6 +37,7 @@
 
 - (BOOL) shouldShowHideButton:(NSNumber *)letter_id;
 - (BOOL) shouldShowEditButton:(NSNumber *)letter_id;
+- (BOOL) isLetterInSentLetters:(NSNumber *)input_id;
 
 - (void)goNextPage;
 - (void)goBackPage;

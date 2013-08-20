@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "RODSentLetter.h"
 #import "RODItemStore.h"
 #import "RODItem.h"
 #import "RKFullLetter.h"
@@ -496,11 +497,28 @@
 
 - (BOOL) shouldShowHideButton:(NSNumber *)letter_id
 {
-    return NO;
+    BOOL result = [self isLetterInSentLetters:letter_id];
+    return result;
 }
 
 - (BOOL) shouldShowEditButton:(NSNumber *)letter_id
 {
+    BOOL result = [self isLetterInSentLetters:letter_id];
+    return result;
+}
+
+- (BOOL) isLetterInSentLetters:(NSNumber *)input_id
+{
+    
+    for(int i = 0; i < [self.settings.sentLetters count]; i++) {
+     
+        RODSentLetter *current = [self.settings.sentLetters objectAtIndex:i];
+        if([current.letter_id isEqualToNumber:input_id]) {
+            return YES;
+        }
+    }
+    
+    
     return NO;
 }
 

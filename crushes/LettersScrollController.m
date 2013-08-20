@@ -81,14 +81,6 @@
         // the height of the padding around the
         // heart button and the frame of the scrollviewitem is about 40px.
         
-        if([[RODItemStore sharedStore] shouldShowEditButton:full_letter.Id] == NO)
-        {
-            [scv.labelEdit setHidden:YES];
-        }
-        
-        if ([[RODItemStore sharedStore] shouldShowHideButton:full_letter.Id]) {
-            [scv.labelHide setHidden:YES];
-        }
         
         scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width - 5, letter_view_height);
         
@@ -174,6 +166,15 @@
         
         [scv setCurrent_letter:full_letter];
         
+        if([[RODItemStore sharedStore] shouldShowEditButton:full_letter.Id] == NO)
+        {
+            [scv.labelEdit setHidden:YES];
+        }
+        
+        if ([[RODItemStore sharedStore] shouldShowHideButton:full_letter.Id] == NO) {
+            [scv.labelHide setHidden:YES];
+        }
+        
         yOffset = yOffset + letter_view_height;
                 
         [self.scrollView addSubview:scv.view];
@@ -196,6 +197,8 @@
     
     [self.scrollView addSubview:pager.view];
 
+    
+    
     
     yOffset = yOffset + pager.view.frame.size.height;
     
