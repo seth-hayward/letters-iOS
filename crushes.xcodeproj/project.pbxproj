@@ -32,6 +32,8 @@
 		5D528C9D17C12FEF00AAB762 /* PagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D528C9B17C12FEF00AAB762 /* PagerViewController.m */; };
 		5D528C9E17C12FEF00AAB762 /* PagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D528C9C17C12FEF00AAB762 /* PagerViewController.xib */; };
 		5D528CA117C2B6AD00AAB762 /* RODSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D528CA017C2B6AD00AAB762 /* RODSettings.m */; };
+		5D528CA817C3F69300AAB762 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D528CA617C3F69200AAB762 /* SearchViewController.m */; };
+		5D528CA917C3F69300AAB762 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D528CA717C3F69200AAB762 /* SearchViewController.xib */; };
 		5D7609AE179CDD660018F27B /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609AC179CDD660018F27B /* MenuViewController.m */; };
 		5D7609B2179DBDF00018F27B /* RODItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609B1179DBDF00018F27B /* RODItem.m */; };
 		5D7609B5179DCE100018F27B /* RODItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609B4179DCE100018F27B /* RODItemStore.m */; };
@@ -101,6 +103,9 @@
 		5D528C9C17C12FEF00AAB762 /* PagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PagerViewController.xib; sourceTree = "<group>"; };
 		5D528C9F17C2B6AC00AAB762 /* RODSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RODSettings.h; sourceTree = "<group>"; };
 		5D528CA017C2B6AD00AAB762 /* RODSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RODSettings.m; sourceTree = "<group>"; };
+		5D528CA517C3F69100AAB762 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		5D528CA617C3F69200AAB762 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		5D528CA717C3F69200AAB762 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		5D7609AB179CDD660018F27B /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		5D7609AC179CDD660018F27B /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		5D7609B0179DBDF00018F27B /* RODItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RODItem.h; sourceTree = "<group>"; };
@@ -213,6 +218,9 @@
 				5D7609B4179DCE100018F27B /* RODItemStore.m */,
 				5D7609B0179DBDF00018F27B /* RODItem.h */,
 				5D7609B1179DBDF00018F27B /* RODItem.m */,
+				5D528CA517C3F69100AAB762 /* SearchViewController.h */,
+				5D528CA617C3F69200AAB762 /* SearchViewController.m */,
+				5D528CA717C3F69200AAB762 /* SearchViewController.xib */,
 				5D0BD07816711F850088A383 /* WebViewController.h */,
 				5D0BD07916711F850088A383 /* WebViewController.m */,
 				5D0BD07B16711FB30088A383 /* WebViewController.xib */,
@@ -363,6 +371,7 @@
 				5DE2534617B438D10069EC96 /* CommentScrollViewItem.xib in Resources */,
 				5D528C9917C1207100AAB762 /* border.png in Resources */,
 				5D528C9E17C12FEF00AAB762 /* PagerViewController.xib in Resources */,
+				5D528CA917C3F69300AAB762 /* SearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +434,7 @@
 				5DE2534C17BD92D80069EC96 /* RKLogin.m in Sources */,
 				5D528C9D17C12FEF00AAB762 /* PagerViewController.m in Sources */,
 				5D528CA117C2B6AD00AAB762 /* RODSettings.m in Sources */,
+				5D528CA817C3F69300AAB762 /* SearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
