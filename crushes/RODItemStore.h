@@ -30,6 +30,7 @@
 
 - (NSString*)settingsArchivePath;
 
+@property (nonatomic) ViewType current_viewtype;
 @property (nonatomic) int current_page;
 @property (nonatomic) int current_load_level;
 @property (nonatomic) NSNumber *loginStatus;

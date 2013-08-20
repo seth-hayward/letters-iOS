@@ -108,8 +108,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     
+    // if the previous view type was
+    // the send screen, we want to pop
+    // that one off the top
+    if([RODItemStore sharedStore].current_viewtype == ViewTypeSend) {
+        [appDelegate.navigationController popViewControllerAnimated:YES];
+    }
+    
+        
     // set all items to be checked=false
     for(int i = 0; i < [[[RODItemStore sharedStore] allMenuItems] count]; i++) {
         [[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:i] setChecked:false];
@@ -117,6 +126,7 @@
     
     RODItem *selected_item = [[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]];
     selected_item.checked = true;
+    [RODItemStore sharedStore].current_viewtype = selected_item.viewType;
     
     switch([selected_item viewType])
     {

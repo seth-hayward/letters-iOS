@@ -18,7 +18,7 @@
 
 
 @implementation RODItemStore
-@synthesize loginStatus, current_load_level, current_page, last_device_orientation;
+@synthesize loginStatus, current_load_level, current_page, last_device_orientation, current_viewtype;
 
 - (id)init {
     self = [super init];
@@ -34,6 +34,8 @@
         
         UIDevice *device = [UIDevice currentDevice];
         last_device_orientation = device.orientation;
+        
+        current_viewtype = ViewTypeHome;
         
         NSLog(@"Loaded settings, _settings.loginStatus = %@, sentLetters.count = %d", _settings.loginStatus, [_settings.sentLetters count]);
         

@@ -17,6 +17,7 @@
 #import "WCAlertView.h"
 #import "RODSentLetter.h"
 #import "RODItemStore.h"
+#import "MMDrawerBarButtonItem.h"
 
 @implementation SendViewController
 @synthesize isEditing, editingId;
@@ -26,9 +27,13 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self) {
-        UITabBarItem *tbi = [self tabBarItem];
-        [tbi setTitle:@"Send"];
-        [tbi setImage:[UIImage imageNamed:@"envelope.png"]];        
+
+        MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(openDrawer:)];
+        [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+        
+        [[self navigationItem] setTitle:@"write your letter"];
+        
+        
     }
     
     return self;
@@ -54,6 +59,15 @@
 - (IBAction)backgroundTapped:(id)sender {
     [[self view] endEditing:YES];
    }
+
+- (void)openDrawer:(id)sender {
+    
+    // now tell the web view to change the page
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    
+}
+
 
 - (IBAction)sendLetter:(id)sender {
     // Read the value from the text field
