@@ -52,7 +52,7 @@
 								<bool key="IBUIAnimating">YES</bool>
 								<int key="IBUIStyle">0</int>
 							</object>
-							<object class="IBUIWebView" id="730976606">
+							<object class="IBUIWebView" id="76356857">
 								<reference key="NSNextResponder" ref="322863361"/>
 								<int key="NSvFlags">-2147483358</int>
 								<string key="NSFrameSize">{320, 6}</string>
@@ -83,7 +83,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 493}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="730976606"/>
+				<reference key="NSNextKeyView" ref="76356857"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -129,7 +129,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">testWebView</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="730976606"/>
+						<reference key="destination" ref="76356857"/>
 					</object>
 					<int key="connectionID">10</int>
 				</object>
@@ -166,7 +166,7 @@
 						<reference key="object" ref="322863361"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="495612017"/>
-							<reference ref="730976606"/>
+							<reference ref="76356857"/>
 						</array>
 						<reference key="parent" ref="375358246"/>
 					</object>
@@ -177,7 +177,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
-						<reference key="object" ref="730976606"/>
+						<reference key="object" ref="76356857"/>
 						<reference key="parent" ref="322863361"/>
 					</object>
 				</array>

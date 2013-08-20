@@ -342,6 +342,7 @@
             [[RODItemStore sharedStore] saveSettings];
             
             [[RODItemStore sharedStore] createItem:ViewTypeBookmarks];
+            [[RODItemStore sharedStore] createItem:ViewTypeLogout];
 
             [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"You have logged in. Welcome back!" customizationBlock:^(WCAlertView *alertView) {
                 alertView.style = WCAlertViewStyleBlackHatched;

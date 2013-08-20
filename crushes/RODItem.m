@@ -47,6 +47,15 @@
         case ViewTypeSend:
             caption = @"Send";
             checked = false;
+            break;
+        case ViewTypeLogin:
+            caption = @"Login";
+            checked = false;
+            break;
+        case ViewTypeLogout:
+            caption = @"Logout";
+            checked = false;
+            break;
     }
     
     return self;
