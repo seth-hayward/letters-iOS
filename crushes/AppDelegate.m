@@ -13,9 +13,10 @@
 #import "MenuViewController.h"
 #import "GAI.h"
 #import "RODItemStore.h"
+#import "SearchViewController.h"
 
 @implementation AppDelegate
-@synthesize tabBar, webViewController, sendViewController, drawer, lettersScrollController, navigationController;
+@synthesize tabBar, webViewController, sendViewController, drawer, lettersScrollController, navigationController, searchViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -28,6 +29,9 @@
     WebViewController *webVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeHome];
     webViewController = webVC;
     webViewController.trackedViewName = @"WebView";
+    
+    SearchViewController *searchVC = [[SearchViewController alloc] init];
+    searchViewController = searchVC;
     
     SendViewController *sendVC = [[SendViewController alloc] init];
     sendViewController = sendVC;

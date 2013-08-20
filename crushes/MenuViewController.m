@@ -114,7 +114,7 @@
     // if the previous view type was
     // the send screen, we want to pop
     // that one off the top
-    if([RODItemStore sharedStore].current_viewtype == ViewTypeSend) {
+    if([RODItemStore sharedStore].current_viewtype == ViewTypeSend || [RODItemStore sharedStore].current_viewtype == ViewTypeSearch) {
         [appDelegate.navigationController popViewControllerAnimated:YES];
     }
     
@@ -144,8 +144,10 @@
             break;
         case ViewTypeSend:
             // now tell the web view to change the page
-            [appDelegate.navigationController pushViewController:appDelegate.sendViewController animated:true];
+            [appDelegate.navigationController pushViewController:appDelegate.sendViewController animated:YES];
             break;
+        case ViewTypeSearch:
+            [appDelegate.navigationController pushViewController:appDelegate.searchViewController animated:YES];
         default:
             break;
     }
