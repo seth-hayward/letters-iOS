@@ -23,6 +23,13 @@
         [[RODItemStore sharedStore] createItem:ViewTypeMore];
         [[RODItemStore sharedStore] createItem:ViewTypeSearch];
         [[RODItemStore sharedStore] createItem:ViewTypeSend];
+        
+        // border
+        
+        [self.tableView.layer setBorderWidth: 1.0];
+        [self.tableView.layer setMasksToBounds:YES];
+        [self.tableView.layer setBorderColor:[[UIColor blackColor] CGColor]];
+                
     }
     return self;
 }
@@ -54,12 +61,12 @@
     return loginView;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     return [self loginView];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return [[self loginView] bounds].size.height;
 }
