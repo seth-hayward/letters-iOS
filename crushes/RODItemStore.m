@@ -42,6 +42,7 @@
         if(!_settings) {
             _settings = [[RODSettings alloc] init];
             _settings.loginStatus = [NSNumber numberWithInt:0];
+            _settings.sentLetters = [[NSMutableArray alloc] init];
         } else {
             // they have some saved settings, so let's try logging in with
             // their stuff
