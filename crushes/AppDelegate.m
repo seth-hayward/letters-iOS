@@ -127,8 +127,7 @@
     UIDeviceOrientation previously = [RODItemStore sharedStore].last_device_orientation;
 
     NSLog(@"current: %d, past: %d, orientation: %d", current, previously, [UIDevice currentDevice].orientation);
-    
-    if(current != previously) {
+    if(UIDeviceOrientationIsPortrait(current) == UIDeviceOrientationIsPortrait(previously)) {
         NSLog(@"It changed.");
         if(lettersScrollController.loaded == true) {
             [lettersScrollController refreshOriginalPage];
