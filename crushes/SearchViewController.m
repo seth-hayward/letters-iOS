@@ -7,10 +7,8 @@
 //
 
 #import "SearchViewController.h"
-
-@interface SearchViewController ()
-
-@end
+#import "MMDrawerBarButtonItem.h"
+#import "AppDelegate.h"
 
 @implementation SearchViewController
 
@@ -19,9 +17,23 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(openDrawer:)];
+        [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+        
+        [[self navigationItem] setTitle:@"search"];
+        
     }
     return self;
 }
+
+- (void)openDrawer:(id)sender {
+    
+    // now tell the web view to change the page
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
 
 - (void)viewDidLoad
 {
