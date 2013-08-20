@@ -14,6 +14,9 @@
 #import "RKMessage.h"
 #import "AppDelegate.h"
 #import "WebViewController.h"
+#import "WCAlertView.h"
+#import "RODSentLetter.h"
+#import "RODItemStore.h"
 
 @implementation SendViewController
 @synthesize isEditing, editingId;
@@ -119,12 +122,31 @@
                 
             } else {
                 // we good
-                UIAlertView *alert_success = [[UIAlertView alloc] initWithTitle:@"Success!" message: @"It was sent." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
-                [alert_success show];
 
+                [WCAlertView showAlertWithTitle:@"Success!" message:@"Your letter has been sent." customizationBlock:^(WCAlertView *alertView) {
+                    alertView.style = WCAlertViewStyleBlackHatched;
+                } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+                } cancelButtonTitle:@"Great!" otherButtonTitles:nil];
+                
                 // clear send screen
                 [self.messageText setText:@""];
                 
+                // add add RODSentLetter object to the settings object
+                // We keep track of these objects so we know which letters
+                // to show the hide/edit buttons on, really this should be
+                // done on the server....
+                
+                RODSentLetter *sent_letter = [[RODSentLetter alloc] init];
+                sent_letter.guid = msg.guid;
+                
+                NSNumberFormatter *formatNumber = [[NSNumberFormatter alloc] init];
+                [formatNumber setNumberStyle:NSNumberFormatterDecimalStyle];
+                
+                NSNumber *found_id = [formatNumber numberFromString:msg.message];
+                sent_letter.letter_id = found_id;
+                
+                [[[[RODItemStore sharedStore] settings] sentLetters] addObject:sent_letter];
+                [[RODItemStore sharedStore] saveSettings];
                 
                 // set a cookie in UI web view manually, this used
                 // to be done in javascript following the post...
