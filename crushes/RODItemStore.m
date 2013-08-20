@@ -34,7 +34,7 @@
         UIDevice *device = [UIDevice currentDevice];
         last_device_orientation = device.orientation;
         
-        NSLog(@"Loaded settings, _settings.loginStatus = %@", _settings.loginStatus);
+        NSLog(@"Loaded settings, _settings.loginStatus = %@, sentLetters.count = %d", _settings.loginStatus, [_settings.sentLetters count]);
         
         // If we were unable to load the object,
         // then we can assume it's a new user and
@@ -492,6 +492,16 @@
 {
     NSString *path = [self settingsArchivePath];
     return [NSKeyedArchiver archiveRootObject:[self settings] toFile:path];
+}
+
+- (BOOL) shouldShowHideButton:(NSNumber *)letter_id
+{
+    return NO;
+}
+
+- (BOOL) shouldShowEditButton:(NSNumber *)letter_id
+{
+    return NO;
 }
 
 + (id)allocWithZone:(NSZone *)zone {

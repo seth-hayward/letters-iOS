@@ -35,6 +35,9 @@
 @property (nonatomic) NSNumber *loginStatus;
 @property (nonatomic) UIDeviceOrientation last_device_orientation;
 
+- (BOOL) shouldShowHideButton:(NSNumber *)letter_id;
+- (BOOL) shouldShowEditButton:(NSNumber *)letter_id;
+
 - (void)goNextPage;
 - (void)goBackPage;
 

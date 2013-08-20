@@ -57,6 +57,7 @@
     NSLog(@"loadLetterData called.");
     
     int yOffset = 0;
+    int letter_view_height = 0;
     
     ScrollViewItem *scv;
     
@@ -72,13 +73,24 @@
             letter_height = 100;
         }
         
+        letter_view_height = letter_height + 90;
+        
         scv = [[ScrollViewItem alloc] init];
         
         scv.current_index = i;
         // the height of the padding around the
         // heart button and the frame of the scrollviewitem is about 40px.
-                
-        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width - 5, letter_height + 51);
+        
+        if([[RODItemStore sharedStore] shouldShowEditButton:full_letter.Id] == NO)
+        {
+            [scv.labelEdit setHidden:YES];
+        }
+        
+        if ([[RODItemStore sharedStore] shouldShowHideButton:full_letter.Id]) {
+            [scv.labelHide setHidden:YES];
+        }
+        
+        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width - 5, letter_view_height);
         
         //[scv.webView setDelegate:self];
         
@@ -126,8 +138,15 @@
 
         NSMutableAttributedString *attributeStringComments = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ comments", [full_letter.letterComments stringValue]]];
         
+        NSMutableAttributedString *attributeStringEdit = [[NSMutableAttributedString alloc] initWithString:@"edit"];
+        
+        NSMutableAttributedString *attributeStringHide = [[NSMutableAttributedString alloc] initWithString:@"hide"];
+        
         [attributeStringHearts addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:1] range:(NSRange){0,[attributeStringHearts length]}];
         [attributeStringComments addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:1] range:(NSRange){0,[attributeStringComments length]}];
+
+        [attributeStringEdit addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:1] range:(NSRange){0,[attributeStringEdit length]}];
+        [attributeStringHide addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:1] range:(NSRange){0,[attributeStringHide length]}];
         
         UIFont *normalFont = [UIFont systemFontOfSize:13];
         
@@ -139,10 +158,13 @@
         
         [attributeStringHearts addAttributes:attrs range:(NSRange){0, [attributeStringHearts length]}];
         [attributeStringComments addAttributes:attrs range:(NSRange){0, [attributeStringComments length]}];
+        [attributeStringEdit addAttributes:attrs range:(NSRange){0, [attributeStringEdit length]}];
+        [attributeStringHide addAttributes:attrs range:(NSRange){0, [attributeStringHide length]}];
         
         [scv.labelHearts setAttributedText:attributeStringHearts];
         [scv.labelComments setAttributedText:attributeStringComments];
-        
+        [scv.labelEdit setAttributedText:attributeStringEdit];
+        [scv.labelHide setAttributedText:attributeStringHide];
         
         // JESUS CHRIST
         
@@ -152,7 +174,7 @@
         
         [scv setCurrent_letter:full_letter];
         
-        yOffset = yOffset + (letter_height + 51);
+        yOffset = yOffset + letter_view_height;
                 
         [self.scrollView addSubview:scv.view];
         
