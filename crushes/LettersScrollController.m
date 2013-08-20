@@ -99,8 +99,23 @@
         [scv.view setTag:([full_letter.Id integerValue] * 10000)];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+
         [formatter setTimeStyle:NSDateFormatterShortStyle];
-        [formatter setDateStyle:NSDateFormatterShortStyle];
+        [formatter setDateStyle:NSDateFormatterMediumStyle];
+        
+        
+        if([[RODItemStore sharedStore] current_load_level] == -1) {
+            // more page
+            [formatter setDateStyle:NSDateFormatterMediumStyle];
+            [formatter setTimeStyle:NSDateFormatterShortStyle];
+        }
+        
+        if([[RODItemStore sharedStore] current_load_level] == 0) {
+            // home page
+            [formatter setDateStyle:NSDateFormatterLongStyle];
+            [formatter setTimeStyle:NSDateFormatterNoStyle];
+        }
+        
         [scv.labelDate setText:[formatter stringFromDate:[self getDateFromJSON:full_letter.letterPostDate]]];
         
         [scv.webView.scrollView setScrollEnabled:false];
