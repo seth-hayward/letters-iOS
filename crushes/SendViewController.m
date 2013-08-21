@@ -137,10 +137,6 @@
             } else {
                 // we good
 
-                [WCAlertView showAlertWithTitle:@"Success!" message:@"Your letter has been sent." customizationBlock:^(WCAlertView *alertView) {
-                    alertView.style = WCAlertViewStyleBlackHatched;
-                } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
-                } cancelButtonTitle:@"Great!" otherButtonTitles:nil];
                 
                 // clear send screen
                 [self.messageText setText:@""];
@@ -177,21 +173,19 @@
                 
                 NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieProperties];
                 [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-
                 
                 // now display a webview with the letter...
                 
                 AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-                [appDelegate.tabBar setSelectedIndex:1];
+                [appDelegate.navigationController popViewControllerAnimated:YES];
                 
-                // load a blank page, so they don't see the previous page... good idea or not?
-                [appDelegate.webViewController.currentWebView loadHTMLString:@"" baseURL:[NSURL URLWithString:@"http://www.google.com"]];
+                [appDelegate.lettersScrollController clearLettersAndReset];
+                [[RODItemStore sharedStore] loadLettersByPage:1 level:-1];
                 
-                NSURL *url;
-                url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.letterstocrushes.com/mobile/letter/%@", msg.message]];
-                
-                NSURLRequest *req = [NSURLRequest requestWithURL:url];
-                [appDelegate.webViewController.currentWebView loadRequest:req];
+                [WCAlertView showAlertWithTitle:@"Success!" message:@"Your letter has been sent." customizationBlock:^(WCAlertView *alertView) {
+                    alertView.style = WCAlertViewStyleBlackHatched;
+                } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+                } cancelButtonTitle:@"Great!" otherButtonTitles:nil];
                 
             }
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
