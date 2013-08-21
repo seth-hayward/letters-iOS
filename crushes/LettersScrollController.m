@@ -329,7 +329,8 @@
 -(void)refreshOriginalPage
 {
     NSLog(@"refreshOriginalPage");
-    [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    //[self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self clearLettersAndReset];
     [self loadLetterData];
 }
 
