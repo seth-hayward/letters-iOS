@@ -44,6 +44,7 @@
 - (void)goBackPage;
 
 - (void) login:(NSString *)email password:(NSString *)password;
+- (void) hideLetter:(NSNumber *)letter_id;
 - (void) doLogin;
 - (BOOL) saveSettings;
 

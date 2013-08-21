@@ -436,6 +436,23 @@
     
 }
 
+- (void) hideLetter:(NSNumber *)letter_id
+{
+
+    [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"Are you sure you want to hide this letter? This cannot be undone." customizationBlock:^(WCAlertView *alertView) {
+        alertView.style = WCAlertViewStyleBlackHatched;
+    } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+        if (buttonIndex == 1) {
+            
+            // now show the login alert
+            NSLog(@"Hide letter %@", letter_id);
+            
+            
+        }
+    } cancelButtonTitle:@"cancel" otherButtonTitles:@"hide letter", nil];
+    
+}
+
 - (void) generateLoginAlert
 {
 

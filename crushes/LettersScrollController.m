@@ -105,7 +105,10 @@
         [scv.labelHide setUserInteractionEnabled:true];
         UITapGestureRecognizer *tapHide = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedHide:)];
         [scv.labelHide addGestureRecognizer:tapHide];
-        
+
+        [scv.labelEdit setTag:([full_letter.Id integerValue] + 100000)];
+        [scv.labelHide setTag:([full_letter.Id integerValue] + 200000)];
+                
         [scv.labelComments setTag:([full_letter.Id integerValue] * 100)];
         [scv.labelHearts setTag:([full_letter.Id integerValue] * 1000)];
         [scv.view setTag:([full_letter.Id integerValue] * 10000)];
@@ -231,12 +234,15 @@
 
 -(void)clickedEdit:(UITapGestureRecognizer *)tapGesture
 {
-    NSLog(@"Edit clicked.");
+    NSNumber *letter_id = [NSNumber numberWithInt:[tapGesture.view tag] - 100000];
+    NSLog(@"Edit clicked, tag: %@", letter_id);
+    
 }
 
 -(void)clickedHide:(UITapGestureRecognizer *)tapGesture
 {
-    NSLog(@"Hide clicked.");
+    NSNumber *letter_id = [NSNumber numberWithInt:[tapGesture.view tag] - 200000];
+    [[RODItemStore sharedStore] hideLetter:letter_id];
 }
 
 
