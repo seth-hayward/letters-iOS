@@ -262,11 +262,6 @@
         // now i need to tell the letters view controller that
         // it should reload the table view
         
-        //[appDelegate.tabBar setSelectedIndex:1];
-        
-        //[appDelegate.lettersViewController.tableView reloadData];
-        //[appDelegate.lettersScrollController loadLetterData];
-        
         RKFullLetter *full_letter;
         full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:0];
         [appDelegate.lettersScrollController.testWebView loadHTMLString:full_letter.letterMessage baseURL:nil];
@@ -446,7 +441,59 @@
             
             // now show the login alert
             NSLog(@"Hide letter %@", letter_id);
+
             
+            NSURL *baseURL;
+            baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com/home/hideletter"];
+            
+            NSString *real_url;
+            real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/home/hideletter/%@", letter_id];
+            
+            AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
+            
+            [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+            
+            RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+            
+            RKObjectMapping* responseObjectMapping = [RKObjectMapping mappingForClass:[RKMessage class]];
+            [responseObjectMapping addAttributeMappingsFromDictionary:@{
+             @"response": @"response",
+             @"message": @"message",
+             @"guid": @"guid"
+             }];
+            
+            RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+            
+            [objectManager addResponseDescriptor:responseDescriptor];
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];
+            
+            RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseDescriptor] ];
+            
+            [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                
+                RKMessage *server_says = (RKMessage *)mappingResult.array[0];
+                NSLog(@"hideletter result, msg: %@, %@", server_says.response, server_says.message);
+                
+                // now show a wcalert with the result
+                
+                [WCAlertView showAlertWithTitle:@"letters to crushes" message:server_says.message customizationBlock:^(WCAlertView *alertView) {
+                    alertView.style = WCAlertViewStyleBlackHatched;
+                } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+                        // reload the page
+                    
+                    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+                    [appDelegate.lettersScrollController clearLettersAndReset];
+                    [[RODItemStore sharedStore] loadLettersByPage:current_page level:current_load_level];
+                    
+                    
+                } cancelButtonTitle:@"okay" otherButtonTitles:nil];
+                
+            } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
+                NSLog(@"Error loading: %@", error);
+            }];
+            
+            [objectRequestOperation start];
+
             
         }
     } cancelButtonTitle:@"cancel" otherButtonTitles:@"hide letter", nil];
@@ -482,7 +529,6 @@
             
         }
     } cancelButtonTitle:@"cancel" otherButtonTitles:@"login", nil];
-
     
 }
 
