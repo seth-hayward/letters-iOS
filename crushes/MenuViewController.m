@@ -149,8 +149,6 @@
             break;
         case ViewTypeSend:
             // now tell the web view to change the page
-            
-            
             [appDelegate.navigationController pushViewController:appDelegate.sendViewController animated:YES];
             break;
         case ViewTypeSearch:

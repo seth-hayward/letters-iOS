@@ -207,9 +207,6 @@
     
     [self.scrollView addSubview:pager.view];
 
-    
-    
-    
     yOffset = yOffset + pager.view.frame.size.height;
     
     [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
@@ -236,6 +233,7 @@
 {
     NSNumber *letter_id = [NSNumber numberWithInt:[tapGesture.view tag] - 100000];
     NSLog(@"Edit clicked, tag: %@", letter_id);
+    [[RODItemStore sharedStore] editLetter:letter_id];
     
 }
 
@@ -335,7 +333,6 @@
 -(void)refreshOriginalPage
 {
     NSLog(@"refreshOriginalPage");
-    //[self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self clearLettersAndReset];
     [self loadLetterData];
 }

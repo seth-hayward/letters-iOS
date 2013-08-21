@@ -31,7 +31,7 @@
         MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(openDrawer:)];
         [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
         
-        [[self navigationItem] setTitle:@"write your letter"];
+        [[self navigationItem] setTitle:@"letters to crushes"];
         
         
     }
@@ -258,23 +258,22 @@
                 self.labelCallToAction.text = @"Write your letter.";
                 [self.sendButton setTitle:@"Send" forState:UIControlStateNormal];
                 self.messageText.text = @"";
-                [self.tabBarItem setTitle:@"Send"];
                 
                 // now display a webview with the letter...
-                
+
+                // reload the page
                 AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-                [appDelegate.tabBar setSelectedIndex:1];
+                [appDelegate.navigationController popViewControllerAnimated:YES];
                 
-                // load a blank page, so they don't see the previous page... good idea or not?
-                [appDelegate.webViewController.currentWebView loadHTMLString:@"" baseURL:[NSURL URLWithString:@"http://www.google.com"]];
+                [appDelegate.lettersScrollController clearLettersAndReset];
+                [[RODItemStore sharedStore] loadLettersByPage:[RODItemStore sharedStore].current_page level:[RODItemStore sharedStore].current_load_level];
                 
-                NSURL *url;
-                url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.letterstocrushes.com/mobile/letter/%@", self.editingId]];
+                [WCAlertView showAlertWithTitle:@"Success!" message:@"Your letter was edited." customizationBlock:^(WCAlertView *alertView) {
+                    alertView.style = WCAlertViewStyleBlackHatched;
+                } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+                    
+                } cancelButtonTitle:@"Great!" otherButtonTitles:nil];
                 
-                NSURLRequest *req = [NSURLRequest requestWithURL:url];
-                [appDelegate.webViewController.currentWebView loadRequest:req];
-                UIAlertView *alert_success = [[UIAlertView alloc] initWithTitle:@"Success!" message: @"Letter edited." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
-                [alert_success show];
                 
                 
             }

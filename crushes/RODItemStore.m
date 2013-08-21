@@ -431,6 +431,71 @@
     
 }
 
+- (void) editLetter:(NSNumber *)letter_id
+{
+    // setup the send view with the edit screen
+
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+        
+    NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
+    
+    [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+    
+    RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+    
+    RKObjectMapping* responseObjectMapping = [RKObjectMapping mappingForClass:[RKFullLetter class]];
+    [responseObjectMapping addAttributeMappingsFromDictionary:@{
+     @"Id": @"Id",
+     @"letterMessage": @"letterMessage",
+     @"letterTags": @"letterTags",
+     @"letterPostDate": @"letterPostDate",
+     @"letterUp": @"letterUp",
+     @"letterLevel": @"letterLevel",
+     @"letterLanguage": @"letterLanguage",
+     @"senderIP": @"senderIP",
+     @"senderCountry": @"senderCountry",
+     @"senderRegion": @"senderRegion",
+     @"senderCity": @"senderCity",
+     @"letterComments": @"letterComments"
+     }];
+    
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    NSString *real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/home/getletter/%@", letter_id];
+    
+    [objectManager addResponseDescriptor:responseDescriptor];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];
+    
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseDescriptor] ];
+    
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+        [appDelegate.navigationController pushViewController:appDelegate.sendViewController animated:YES];
+
+        [RODItemStore sharedStore].current_viewtype = ViewTypeSend;
+                
+        RKFullLetter *letter = mappingResult.array[0];
+        NSLog(@"Loaded letter: %@", letter.letterMessage);
+        appDelegate.sendViewController.messageText.text = letter.letterMessage;
+        
+        appDelegate.sendViewController.labelCallToAction.text = @"Edit your letter.";
+        [appDelegate.sendViewController.sendButton setTitle:@"Edit" forState:UIControlStateNormal];
+        
+        appDelegate.sendViewController.isEditing = YES;
+        appDelegate.sendViewController.editingId = [NSString stringWithFormat:@"%@", letter.Id];
+        
+        appDelegate.sendViewController.tabBarItem.title = @"Edit";
+        
+        
+    } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Error loading: %@", error);
+    }];
+    
+    [objectRequestOperation start];
+
+}
+
 - (void) hideLetter:(NSNumber *)letter_id
 {
 
