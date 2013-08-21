@@ -98,6 +98,14 @@
         UITapGestureRecognizer *tapHearts = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedHeart:)];
         [scv.labelHearts addGestureRecognizer:tapHearts];
         
+        [scv.labelEdit setUserInteractionEnabled:true];
+        UITapGestureRecognizer *tapEdit = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedEdit:)];
+        [scv.labelEdit addGestureRecognizer:tapEdit];
+
+        [scv.labelHide setUserInteractionEnabled:true];
+        UITapGestureRecognizer *tapHide = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedHide:)];
+        [scv.labelHide addGestureRecognizer:tapHide];
+        
         [scv.labelComments setTag:([full_letter.Id integerValue] * 100)];
         [scv.labelHearts setTag:([full_letter.Id integerValue] * 1000)];
         [scv.view setTag:([full_letter.Id integerValue] * 10000)];
@@ -106,8 +114,7 @@
 
         [formatter setTimeStyle:NSDateFormatterShortStyle];
         [formatter setDateStyle:NSDateFormatterMediumStyle];
-        
-        
+                
         if([[RODItemStore sharedStore] current_load_level] == -1) {
             // more page
             [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -222,13 +229,45 @@
         
 }
 
+-(void)clickedEdit:(UITapGestureRecognizer *)tapGesture
+{
+    NSLog(@"Edit clicked.");
+}
+
+-(void)clickedHide:(UITapGestureRecognizer *)tapGesture
+{
+    NSLog(@"Hide clicked.");
+}
+
 
 -(void)clickedHeart:(UITapGestureRecognizer *)tapGesture;
 {
     
-    NSLog(@"Clicked heart.");
+    NSInteger tag_int = [tapGesture.view tag];
     
-    int letter_id = [tapGesture.view tag] / 1000;
+    int letter_id = tag_int / 10000;
+    
+    NSLog(@"Clicked heart: %d", tag_int);
+    
+    // find dat view
+//    for(int x = 0; x < [self.scrollView.subviews count]; x++) {
+//        
+//        UIView *current = [self.scrollView.subviews objectAtIndex:x];
+//        if(current.tag > 0) {
+//            ScrollViewItem *lil = (ScrollViewItem *)current;
+//            if([lil.current_letter.Id isEqualToNumber:[NSNumber numberWithInt:letter_id]]) {
+//                NSLog(@"Found it!!!!");
+//                lil.current_letter.letterUp = [NSNumber numberWithInt:[lil.current_letter.letterUp integerValue] + 1];
+//                lil.labelHearts = [NSString stringWithFormat:@"%@ hearts", lil.current_letter.letterUp];
+//                break;
+//                
+//                
+//            }
+//            
+//            
+//        }
+//        
+//    }
     
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
@@ -267,9 +306,7 @@
         RKFullLetter *letter = mappingResult.array[0];
         NSLog(@"Voted on letter %@", letter.Id);
         
-        [[RODItemStore sharedStore] updateLetterHearts:[NSNumber numberWithInt:letter_id] hearts: letter.letterUp];
-        
-        [self refreshOriginalPage];
+        //[[RODItemStore sharedStore] updateLetterHearts:[NSNumber numberWithInt:letter_id] hearts: letter.letterUp];
         
         //[button setTitle:[NSString stringWithFormat:@"%@", letter.letterUp] forState:UIControlStateNormal];
         
