@@ -10,7 +10,7 @@
 #import "RODItem.h"
 #import "RODItemStore.h"
 #import "AppDelegate.h"
-
+#import "WCAlertView.h"
 
 @implementation MenuViewController
 
@@ -153,6 +153,20 @@
             break;
         case ViewTypeSearch:
             [appDelegate.navigationController pushViewController:appDelegate.searchViewController animated:YES];
+            break;
+        case ViewTypeLogout:
+
+            [WCAlertView showAlertWithTitle:@"logout?" message:@"Are you sure you want to logout?" customizationBlock:^(WCAlertView *alertView) {
+                alertView.style = WCAlertViewStyleBlackHatched;
+            } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+                // reload the page
+                
+                if(buttonIndex == 1) {
+                    NSLog(@"Do logout.");
+                }
+                                
+            } cancelButtonTitle:@"cancel" otherButtonTitles:@"logout", nil];
+            
             break;
         default:
             break;
