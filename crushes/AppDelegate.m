@@ -48,7 +48,7 @@
                                              leftDrawerViewController:leftDrawer];
     drawer = drawerController;
     
-    [drawerController setMaximumLeftDrawerWidth:200.0];
+    [drawerController setMaximumLeftDrawerWidth:150.0];
     [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     [drawerController setShowsShadow:false];

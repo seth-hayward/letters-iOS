@@ -36,7 +36,7 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">266</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUILabel" id="905580292">
+					<object class="IBUILabel" id="803110854">
 						<reference key="NSNextResponder" ref="1055514699"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{8, 1}, {147, 21}}</string>
@@ -51,9 +51,14 @@
 						<string key="IBUIText">Navigation</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
+							<bytes key="NSRGB">MSAxIDEAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
+						<object class="NSColor" key="IBUIShadowColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
+						</object>
+						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
@@ -66,7 +71,7 @@
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUIImageView" id="527703464">
+					<object class="IBUIImageView" id="733584916">
 						<reference key="NSNextResponder" ref="1055514699"/>
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{0, 21}, {175, 1}}</string>
@@ -84,12 +89,12 @@
 				<string key="NSFrameSize">{175, 22}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="905580292"/>
+				<reference key="NSNextKeyView" ref="803110854"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSHuggingPriority">{1000, 250}</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+					<bytes key="NSWhite">MAA</bytes>
 				</object>
 				<int key="IBUIContentMode">1</int>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
@@ -133,19 +138,19 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="1055514699"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="527703464"/>
-							<reference ref="905580292"/>
+							<reference ref="733584916"/>
+							<reference ref="803110854"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">51</int>
-						<reference key="object" ref="905580292"/>
+						<reference key="object" ref="803110854"/>
 						<reference key="parent" ref="1055514699"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">52</int>
-						<reference key="object" ref="527703464"/>
+						<reference key="object" ref="733584916"/>
 						<reference key="parent" ref="1055514699"/>
 					</object>
 				</array>
