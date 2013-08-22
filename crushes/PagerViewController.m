@@ -7,6 +7,7 @@
 //
 
 #import "PagerViewController.h"
+#import "J1Button.h"
 
 @interface PagerViewController ()
 
@@ -27,6 +28,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
+    self.buttonBack.color = J1ButtonColorGray;
+    self.buttonNext.color = J1ButtonColorGray;
+
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "J1Button.h"
 
 @interface PagerViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIButton *buttonNext;
-@property (weak, nonatomic) IBOutlet UIButton *buttonBack;
+@property (weak, nonatomic) IBOutlet J1Button *buttonNext;
+@property (weak, nonatomic) IBOutlet J1Button *buttonBack;
 
 @end
