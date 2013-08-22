@@ -205,6 +205,8 @@
     
     [pager.buttonNext addTarget:self action:@selector(nextButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+    pager.view.tag = 7;
+    
     [self.scrollView addSubview:pager.view];
 
     yOffset = yOffset + pager.view.frame.size.height;
