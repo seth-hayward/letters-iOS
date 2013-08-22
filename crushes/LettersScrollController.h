@@ -10,6 +10,9 @@
 #import "GAITrackedViewController.h"
 
 @interface LettersScrollController : GAITrackedViewController <UIWebViewDelegate, UIScrollViewDelegate>
+{
+    NSMutableArray *_items;
+}
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic) int current_receive;

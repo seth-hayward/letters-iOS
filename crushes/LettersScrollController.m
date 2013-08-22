@@ -14,6 +14,7 @@
 #import "ScrollViewItem.h"
 #import "AppDelegate.h"
 #import "PagerViewController.h"
+#import "J1Button.h"
 
 @implementation LettersScrollController
 @synthesize current_receive, loaded, letter_index;
@@ -39,6 +40,8 @@
         
         self.letter_index = 0;
         
+        _items = [[NSMutableArray alloc] init];
+        
         current_receive = 0;
         loaded = false;
         
@@ -53,6 +56,8 @@
 
 -(void)loadLetterData
 {
+    
+    [_items removeAllObjects];
     
     NSLog(@"loadLetterData called.");
     
@@ -98,6 +103,8 @@
         UITapGestureRecognizer *tapHearts = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedHeart:)];
         [scv.labelHearts addGestureRecognizer:tapHearts];
         
+        [scv.btnHearts addTarget:self action:@selector(btnHeartClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
         [scv.labelEdit setUserInteractionEnabled:true];
         UITapGestureRecognizer *tapEdit = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedEdit:)];
         [scv.labelEdit addGestureRecognizer:tapEdit];
@@ -111,6 +118,9 @@
                 
         [scv.labelComments setTag:([full_letter.Id integerValue] * 100)];
         [scv.labelHearts setTag:([full_letter.Id integerValue] * 1000)];
+        
+        [scv.btnHearts setTag:([full_letter.Id integerValue] + 300000)];
+                
         [scv.view setTag:([full_letter.Id integerValue] * 10000)];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -189,6 +199,7 @@
                 
         [self.scrollView addSubview:scv.view];
         
+        [_items addObject:scv];
     }
     
     // now add the pager control
@@ -245,35 +256,67 @@
     [[RODItemStore sharedStore] hideLetter:letter_id];
 }
 
+- (void)btnHeartClicked:(J1Button *)button
+{
+    
+    int letter_id = button.tag - 300000;
+    int check_id = letter_id * 10000;
+    NSLog(@"Clicked heart: %d", letter_id);
+    
+    
+    // find dat view
+        for(int x = 0; x < [self.scrollView.subviews count]; x++) {
+    
+            UIView *current = [self.scrollView.subviews objectAtIndex:x];
+            if(current.tag > 0) {
+                int tag_value = current.tag;
+                
+                if(tag_value == check_id) {
+                    
+                    ScrollViewItem *lil = [[ScrollViewItem alloc] init];
+                    NSLog(@"Found it!!!!");
+                    lil.current_letter.letterUp = [NSNumber numberWithInt:[lil.current_letter.letterUp integerValue] + 1];
+                    lil.labelHearts.text = [NSString stringWithFormat:@"%@ hearts", lil.current_letter.letterUp];
+                    current = lil.view;
+                    
+                    for(int y = 0; y < [current.subviews count]; y++) {
+
+                        UIView *subview_current = [current.subviews objectAtIndex:y];
+                        
+                        int check_heart_id = letter_id * 1000;
+                        NSLog(@"Tag: %d", (int)subview_current.tag);
+                        
+                        if(check_heart_id == subview_current.tag) {
+                            UILabel *lol = (UILabel *)subview_current;
+                            lol.text = [NSString stringWithFormat:@"%d hearts", 1];
+                            [subview_current setNeedsDisplay];
+                            [self.scrollView setNeedsDisplay];
+                            break;
+                            
+                        }
+                        
+                    }
+    
+    
+                }
+    
+                
+            }
+            
+        }
+    
+    
+}
+
 
 -(void)clickedHeart:(UITapGestureRecognizer *)tapGesture;
 {
     
     NSInteger tag_int = [tapGesture.view tag];
     
-    int letter_id = tag_int / 10000;
+    int letter_id = tag_int / 1000;
     
-    NSLog(@"Clicked heart: %d", tag_int);
-    
-    // find dat view
-//    for(int x = 0; x < [self.scrollView.subviews count]; x++) {
-//        
-//        UIView *current = [self.scrollView.subviews objectAtIndex:x];
-//        if(current.tag > 0) {
-//            ScrollViewItem *lil = (ScrollViewItem *)current;
-//            if([lil.current_letter.Id isEqualToNumber:[NSNumber numberWithInt:letter_id]]) {
-//                NSLog(@"Found it!!!!");
-//                lil.current_letter.letterUp = [NSNumber numberWithInt:[lil.current_letter.letterUp integerValue] + 1];
-//                lil.labelHearts = [NSString stringWithFormat:@"%@ hearts", lil.current_letter.letterUp];
-//                break;
-//                
-//                
-//            }
-//            
-//            
-//        }
-//        
-//    }
+    NSLog(@"Clicked heart: %d", letter_id);
     
     NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
@@ -310,9 +353,35 @@
     [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
         RKFullLetter *letter = mappingResult.array[0];
-        NSLog(@"Voted on letter %@", letter.Id);
+        NSLog(@"Voted on letter %d, hearts: %@", letter_id, letter.letterUp);
+
         
-        //[[RODItemStore sharedStore] updateLetterHearts:[NSNumber numberWithInt:letter_id] hearts: letter.letterUp];
+        [[RODItemStore sharedStore] updateLetterHearts:[NSNumber numberWithInt:letter_id] hearts:letter.letterUp];
+        
+
+        for(int z = 0; z < [_items count]; z++) {
+            ScrollViewItem *lil_b = [_items objectAtIndex:z];
+            
+            if([lil_b.current_letter.Id isEqualToNumber:[NSNumber numberWithInt:letter_id]]) {
+                
+                NSMutableAttributedString *attributeStringHearts = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d hearts", [lil_b.current_letter.letterUp integerValue]]];
+                                
+                [attributeStringHearts addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:1] range:(NSRange){0,[attributeStringHearts length]}];
+                
+                UIFont *normalFont = [UIFont systemFontOfSize:13];
+                
+                NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys: normalFont, NSFontAttributeName,
+                                       [UIColor colorWithRed:0/255.0
+                                                       green:51/255.0
+                                                        blue:255/255.0
+                                                       alpha:1.0], NSForegroundColorAttributeName, nil];
+                
+                [attributeStringHearts addAttributes:attrs range:(NSRange){0, [attributeStringHearts length]}];
+                [lil_b.labelHearts setAttributedText:attributeStringHearts];
+                
+                return;
+            }
+        }
         
         //[button setTitle:[NSString stringWithFormat:@"%@", letter.letterUp] forState:UIControlStateNormal];
         
