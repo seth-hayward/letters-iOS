@@ -14,7 +14,7 @@
 
 @interface RODItemStore : NSObject
 {
-    NSMutableArray *allMenuItems;
+    NSMutableArray *_allMenuItems;
     NSMutableArray *_allLetters;
     NSMutableArray *_allComments;
     NSMutableArray *_webviewReferences;
@@ -43,6 +43,7 @@
 - (void)goNextPage;
 - (void)goBackPage;
 
+- (void) logout;
 - (void) login:(NSString *)email password:(NSString *)password;
 - (void) hideLetter:(NSNumber *)letter_id;
 - (void) editLetter:(NSNumber *)letter_id;

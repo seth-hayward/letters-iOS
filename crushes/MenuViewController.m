@@ -168,7 +168,7 @@
                 // reload the page
                 
                 if(buttonIndex == 1) {
-                    NSLog(@"Do logout.");
+                    [[RODItemStore sharedStore] logout];
                 }
                                 
             } cancelButtonTitle:@"cancel" otherButtonTitles:@"logout", nil];

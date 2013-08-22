@@ -11,6 +11,7 @@
 #import "MMDrawerController.h"
 #import "LettersScrollController.h"
 #import "SearchViewController.h"
+#import "MenuViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
@@ -19,6 +20,7 @@
 @property (strong, nonatomic) SearchViewController *searchViewController;
 @property (strong, nonatomic) MMDrawerController *drawer;
 @property (strong, nonatomic) LettersScrollController *lettersScrollController;
+@property (strong, nonatomic) MenuViewController *menuViewController;
 @property (strong, nonatomic) UINavigationController *navigationController;
 
 @end

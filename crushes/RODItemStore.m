@@ -23,7 +23,7 @@
 - (id)init {
     self = [super init];
     if(self) {
-        allMenuItems = [[NSMutableArray alloc] init];
+        _allMenuItems = [[NSMutableArray alloc] init];
         _allLetters = [[NSMutableArray alloc] init];
         _allComments = [[NSMutableArray alloc] init];
         loginStatus = [NSNumber numberWithInt:0];
@@ -71,7 +71,7 @@
 
 - (NSArray *)allMenuItems
 {
-    return allMenuItems;
+    return _allMenuItems;
 }
 
 - (NSArray *)allLetters
@@ -107,7 +107,7 @@
 - (RODItem *)createItem:(ViewType) new_Type
 {
     RODItem *p = [[RODItem alloc] initWithType:new_Type];
-    [allMenuItems addObject:p];
+    [_allMenuItems addObject:p];
     
     return p;
 }
@@ -378,6 +378,67 @@
         
         self.loginStatus = [NSNumber numberWithInt:0];
     }];
+    
+}
+
+- (void) logout
+{
+    
+    NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
+    
+    [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+    
+    RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+    
+    RKObjectMapping* responseObjectMapping;
+    
+    responseObjectMapping = [RKObjectMapping mappingForClass:[RKMessage class]];
+    [responseObjectMapping addAttributeMappingsFromDictionary:@{
+     @"response": @"response",
+     @"message": @"message",
+     @"guid": @"guid"
+     }];
+    
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    NSString *real_url = @"http://www.letterstocrushes.com/account/mobilelogout";
+    
+    [objectManager addResponseDescriptor:responseDescriptor];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];
+    
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseDescriptor] ];
+    
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+        // display wcalert saying they logged out
+        [WCAlertView showAlertWithTitle:@"bye, come back soon" message:@"You have logged out." customizationBlock:^(WCAlertView *alertView) {
+            alertView.style = WCAlertViewStyleBlackHatched;
+        } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+        } cancelButtonTitle:@"okay" otherButtonTitles:nil];
+        
+        // rebuild the menu table
+        // remove Login item and Bookmark item, add login
+        [_allMenuItems removeLastObject];
+        [_allMenuItems removeLastObject];
+        [self createItem:ViewTypeLogin];
+        
+        
+        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+        [appDelegate.menuViewController.tableView reloadData];
+        
+        // update settings object
+        _settings.loginStatus = [NSNumber numberWithInt:0];
+        _settings.userName = @"";
+        _settings.password = @"";
+        [self saveSettings];
+        
+        
+    } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Error voting: %@", error);
+    }];
+    
+    [objectRequestOperation start];
     
 }
 

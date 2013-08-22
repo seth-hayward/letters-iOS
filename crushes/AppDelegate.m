@@ -15,7 +15,7 @@
 #import "SearchViewController.h"
 
 @implementation AppDelegate
-@synthesize sendViewController, drawer, lettersScrollController, navigationController, searchViewController;
+@synthesize sendViewController, drawer, lettersScrollController, navigationController, searchViewController, menuViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -33,6 +33,7 @@
     sendViewController.trackedViewName = @"Send Letter";
     
     MenuViewController * leftDrawer = [[MenuViewController alloc] init];
+    menuViewController = leftDrawer;
     
     LettersScrollController *lettersScrollVC = [[LettersScrollController alloc] init];
     lettersScrollController = lettersScrollVC;
