@@ -348,8 +348,11 @@
             
             [[RODItemStore sharedStore] saveSettings];
             
-            [[RODItemStore sharedStore] createItem:ViewTypeBookmarks];
-            [[RODItemStore sharedStore] createItem:ViewTypeLogout];
+            // remove login item
+            [_allMenuItems removeLastObject];
+            
+            [self createItem:ViewTypeBookmarks];
+            [self createItem:ViewTypeLogout];
 
             [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"You have logged in. Welcome back!" customizationBlock:^(WCAlertView *alertView) {
                 alertView.style = WCAlertViewStyleBlackHatched;
@@ -426,7 +429,7 @@
         } cancelButtonTitle:@"okay" otherButtonTitles:nil];
         
         // rebuild the menu table
-        // remove Login item and Bookmark item, add login
+        // remove Logout item and Bookmark item, add login
         [_allMenuItems removeLastObject];
         [_allMenuItems removeLastObject];
         [self createItem:ViewTypeLogin];
@@ -489,7 +492,7 @@
     } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
         if (buttonIndex == 0) {
             // they pressed cancel, setup the anon interface
-            [self addLoginMenuOption];            
+            // it should already be set up
         }
         if (buttonIndex == 1) {
             // now show the login alert            
