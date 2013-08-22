@@ -36,7 +36,7 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">266</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUILabel" id="19441246">
+					<object class="IBUILabel" id="905580292">
 						<reference key="NSNextResponder" ref="1055514699"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{8, 1}, {147, 21}}</string>
@@ -66,7 +66,7 @@
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUIImageView" id="924442047">
+					<object class="IBUIImageView" id="527703464">
 						<reference key="NSNextResponder" ref="1055514699"/>
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{0, 21}, {175, 1}}</string>
@@ -84,12 +84,12 @@
 				<string key="NSFrameSize">{175, 22}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="19441246"/>
+				<reference key="NSNextKeyView" ref="905580292"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSHuggingPriority">{1000, 250}</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MCAwAA</bytes>
+					<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 				</object>
 				<int key="IBUIContentMode">1</int>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
@@ -133,19 +133,19 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="1055514699"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="924442047"/>
-							<reference ref="19441246"/>
+							<reference ref="527703464"/>
+							<reference ref="905580292"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">51</int>
-						<reference key="object" ref="19441246"/>
+						<reference key="object" ref="905580292"/>
 						<reference key="parent" ref="1055514699"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">52</int>
-						<reference key="object" ref="924442047"/>
+						<reference key="object" ref="527703464"/>
 						<reference key="parent" ref="1055514699"/>
 					</object>
 				</array>
@@ -170,17 +170,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">MenuViewController</string>
 					<string key="superclassName">UITableViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">attemptLogin:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">attemptLogin:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">attemptLogin:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">loginView</string>
 						<string key="NS.object.0">UIView</string>
