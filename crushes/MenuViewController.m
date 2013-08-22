@@ -126,19 +126,14 @@
 
     RODItem *selected_item = [[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]];
     
-    
-    
-    if(selected_item.viewType != ViewTypeLogout) {
-        selected_item.checked = true;
-        [RODItemStore sharedStore].current_viewtype = selected_item.viewType;
-        
-        
-        // set all items to be checked=false
-        for(int i = 0; i < [[[RODItemStore sharedStore] allMenuItems] count]; i++) {
-            [[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:i] setChecked:false];
-        }        
+    // set all items to be checked=false
+    for(int i = 0; i < [[[RODItemStore sharedStore] allMenuItems] count]; i++) {
+        [[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:i] setChecked:false];
     }
     
+    selected_item.checked = true;
+    [RODItemStore sharedStore].current_viewtype = selected_item.viewType;
+        
     switch([selected_item viewType])
     {
         case ViewTypeHome:
@@ -160,8 +155,10 @@
         case ViewTypeSearch:
             [appDelegate.navigationController pushViewController:appDelegate.searchViewController animated:YES];
             break;
+        case ViewTypeLogin:
+            [[RODItemStore sharedStore] doLogin];
+            break;
         case ViewTypeLogout:
-
             [WCAlertView showAlertWithTitle:@"logout?" message:@"Are you sure you want to logout?" customizationBlock:^(WCAlertView *alertView) {
                 alertView.style = WCAlertViewStyleBlackHatched;
             } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {

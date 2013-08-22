@@ -107,8 +107,16 @@
 - (RODItem *)createItem:(ViewType) new_Type
 {
     RODItem *p = [[RODItem alloc] initWithType:new_Type];
-    [_allMenuItems addObject:p];
     
+    for(int i = 0; i < [_allMenuItems count]; i++) {
+        
+        RODItem *exist = [_allMenuItems objectAtIndex:i];
+        if(exist.viewType == new_Type) {
+            return p;
+        }
+    }
+    
+    [_allMenuItems addObject:p];
     return p;
 }
 
@@ -423,7 +431,6 @@
         [_allMenuItems removeLastObject];
         [self createItem:ViewTypeLogin];
         
-        
         AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
         [appDelegate.menuViewController.tableView reloadData];
         
@@ -480,12 +487,13 @@
         alertView.style = WCAlertViewStyleBlackHatched;
         //        alertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
     } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+        if (buttonIndex == 0) {
+            // they pressed cancel, setup the anon interface
+            [self addLoginMenuOption];            
+        }
         if (buttonIndex == 1) {
-            
             // now show the login alert            
             [self generateLoginAlert];
-            
-            
         }
     } cancelButtonTitle:@"cancel" otherButtonTitles:@"login", nil];
 
@@ -642,20 +650,26 @@
             // keep showing a login view until they get it, or
             // press cancel
             [[RODItemStore sharedStore] login:[alertView textFieldAtIndex:0].text password:[alertView textFieldAtIndex:1].text];
-            //if([[RODItemStore sharedStore] login:[alertView textFieldAtIndex:0].text password:[alertView textFieldAtIndex:1].text] == false) {
-
-            //};
             
         }
         
-        if (buttonIndex == alertView.cancelButtonIndex) {
+        if (buttonIndex == 0) {
             
             // whatever, they cancelled
             loginStatus = [NSNumber numberWithInt:0];
+            [self addLoginMenuOption];
             
         }
     } cancelButtonTitle:@"cancel" otherButtonTitles:@"login", nil];
     
+}
+
+- (void)addLoginMenuOption
+{
+    [self createItem:ViewTypeLogin];
+    
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.menuViewController.tableView reloadData];
 }
 
 - (void)goBackPage
