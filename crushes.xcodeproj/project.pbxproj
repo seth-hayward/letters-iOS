@@ -102,6 +102,7 @@
 		5D528D3617C6C57C00AAB762 /* J1-red-small-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D528CF217C6C57C00AAB762 /* J1-red-small-normal@2x.png */; };
 		5D528D3717C6C57C00AAB762 /* J1-red-small-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D528CF317C6C57C00AAB762 /* J1-red-small-selected.png */; };
 		5D528D3817C6C57C00AAB762 /* J1-red-small-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D528CF417C6C57C00AAB762 /* J1-red-small-selected@2x.png */; };
+		5D528D3A17C6CA3B00AAB762 /* heart-15px.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D528D3917C6CA3B00AAB762 /* heart-15px.png */; };
 		5D7609AE179CDD660018F27B /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609AC179CDD660018F27B /* MenuViewController.m */; };
 		5D7609B2179DBDF00018F27B /* RODItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609B1179DBDF00018F27B /* RODItem.m */; };
 		5D7609B5179DCE100018F27B /* RODItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609B4179DCE100018F27B /* RODItemStore.m */; };
@@ -243,6 +244,7 @@
 		5D528CF217C6C57C00AAB762 /* J1-red-small-normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "J1-red-small-normal@2x.png"; sourceTree = "<group>"; };
 		5D528CF317C6C57C00AAB762 /* J1-red-small-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "J1-red-small-selected.png"; sourceTree = "<group>"; };
 		5D528CF417C6C57C00AAB762 /* J1-red-small-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "J1-red-small-selected@2x.png"; sourceTree = "<group>"; };
+		5D528D3917C6CA3B00AAB762 /* heart-15px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-15px.png"; sourceTree = "<group>"; };
 		5D7609AB179CDD660018F27B /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		5D7609AC179CDD660018F27B /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		5D7609B0179DBDF00018F27B /* RODItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RODItem.h; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				5D528CB017C6C43600AAB762 /* J1ButtonImages */,
+				5D528D3917C6CA3B00AAB762 /* heart-15px.png */,
 				5DE2534717B6D16F0069EC96 /* WCAlertView.h */,
 				5DE2534817B6D16F0069EC96 /* WCAlertView.m */,
 				5D7F30611784FA07009F0AC6 /* Default-Portrait~ipad.png */,
@@ -653,6 +656,7 @@
 				5D528D3617C6C57C00AAB762 /* J1-red-small-normal@2x.png in Resources */,
 				5D528D3717C6C57C00AAB762 /* J1-red-small-selected.png in Resources */,
 				5D528D3817C6C57C00AAB762 /* J1-red-small-selected@2x.png in Resources */,
+				5D528D3A17C6CA3B00AAB762 /* heart-15px.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

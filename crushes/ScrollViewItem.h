@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RKFullLetter.h"
+#import "J1Button.h"
 
 @interface ScrollViewItem : UIViewController
 {
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelDate;
 @property (weak, nonatomic) IBOutlet UILabel *labelEdit;
 @property (weak, nonatomic) IBOutlet UILabel *labelHide;
+@property (weak, nonatomic) IBOutlet J1Button *btnHearts;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonHearts;

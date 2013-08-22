@@ -9,6 +9,7 @@
 #import "ScrollViewItem.h"
 #import "RODItemStore.h"
 #import "RKFullLetter.h"
+#import "J1Button.h"
 
 @implementation ScrollViewItem
 @synthesize current_index, current_letter;
@@ -29,6 +30,9 @@
     [super viewDidLoad];
     [self.webView.scrollView setScrollEnabled:false];
 
+    self.btnHearts.color = J1ButtonColorGray;
+    self.btnHearts.size = J1ButtonSizeSmall;
+    
     // Do any additional setup after loading the view from its nib.
     
 }
