@@ -123,15 +123,21 @@
         [appDelegate.navigationController popViewControllerAnimated:NO];
     }
 
-    
-    // set all items to be checked=false
-    for(int i = 0; i < [[[RODItemStore sharedStore] allMenuItems] count]; i++) {
-        [[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:i] setChecked:false];
-    }
-    
+
     RODItem *selected_item = [[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]];
-    selected_item.checked = true;
-    [RODItemStore sharedStore].current_viewtype = selected_item.viewType;
+    
+    
+    
+    if(selected_item.viewType != ViewTypeLogout) {
+        selected_item.checked = true;
+        [RODItemStore sharedStore].current_viewtype = selected_item.viewType;
+        
+        
+        // set all items to be checked=false
+        for(int i = 0; i < [[[RODItemStore sharedStore] allMenuItems] count]; i++) {
+            [[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:i] setChecked:false];
+        }        
+    }
     
     switch([selected_item viewType])
     {
