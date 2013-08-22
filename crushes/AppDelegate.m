@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "SendViewController.h"
-#import "WebViewController.h"
 #import "MMDrawerController.h"
 #import "MenuViewController.h"
 #import "GAI.h"
@@ -16,7 +15,7 @@
 #import "SearchViewController.h"
 
 @implementation AppDelegate
-@synthesize tabBar, webViewController, sendViewController, drawer, lettersScrollController, navigationController, searchViewController;
+@synthesize sendViewController, drawer, lettersScrollController, navigationController, searchViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -25,10 +24,6 @@
     
     //RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     //RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
-    
-    WebViewController *webVC = [[WebViewController alloc] initWithNibName:nil bundle:nil viewType: WebViewTypeHome];
-    webViewController = webVC;
-    webViewController.trackedViewName = @"WebView";
     
     SearchViewController *searchVC = [[SearchViewController alloc] init];
     searchViewController = searchVC;
@@ -130,15 +125,12 @@
     UIDeviceOrientation current = [UIDevice currentDevice].orientation;
     UIDeviceOrientation previously = [RODItemStore sharedStore].last_device_orientation;
 
-    NSLog(@"current: %d, past: %d, orientation: %d", current, previously, [UIDevice currentDevice].orientation);
     if(UIDeviceOrientationIsPortrait(current) == UIDeviceOrientationIsPortrait(previously)) {
-        NSLog(@"It changed.");
         if(lettersScrollController.loaded == true) {
+            NSLog(@"Refreshed page.");            
             [lettersScrollController refreshOriginalPage];
         }
         [RODItemStore sharedStore].last_device_orientation = current;
-    } else {
-        NSLog(@"Did not change.");
     }
     
 }
