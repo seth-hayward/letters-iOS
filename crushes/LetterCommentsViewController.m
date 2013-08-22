@@ -163,7 +163,7 @@
         // the height of the padding around the
         // heart button and the frame of the scrollviewitem is about 40px.
         
-        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width - 5, comment_height + 50);
+        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width - 5, comment_height + 65);
         
         //        [scv.webView setDelegate:self];
         //        [scv.webView setDelegate:scv.view];
@@ -175,7 +175,7 @@
         
         [scv setCurrent_comment:full_comment];
         
-        yOffset = yOffset + (comment_height + 50);
+        yOffset = yOffset + (comment_height + 65);
         
         [self.scrollView addSubview:scv.view];
         
