@@ -47,4 +47,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)clickedSearch:(id)sender {
+    NSLog(@"Please search for %@", [self.searchTerms text]);
+}
 @end

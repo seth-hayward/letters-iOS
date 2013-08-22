@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchViewController : UIViewController
+- (IBAction)clickedSearch:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *searchTerms;
 
 @end
