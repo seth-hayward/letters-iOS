@@ -195,15 +195,15 @@
     // TODO
     
     NSURL *baseURL;
-    baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com/api/get_letters"];
+    baseURL = [NSURL URLWithString:@"http://letterstocrushes.com/api/get_letters"];
     
     NSString *real_url;
     
     if(load_level < 100) {
-        real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/api/get_letters/%d/%d", load_level, page];
+        real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/api/get_letters/%d/%d", load_level, page];
     } else {
-        real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/account/getbookmarks/%d", page];
-        baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com/account/getbookmarks"];
+        real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/account/getbookmarks/%d", page];
+        baseURL = [NSURL URLWithString:@"http://letterstocrushes.com/account/getbookmarks"];
         
     }
     
@@ -299,7 +299,7 @@
     _settings.userName = email;
     _settings.password = password;
         
-    NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
+    NSURL *baseURL = [NSURL URLWithString:@"http://letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
     
     [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
@@ -327,7 +327,7 @@
     requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:letterRequestMapping objectClass:[RKLogin class] rootKeyPath:@""];
     [objectManager addRequestDescriptor:requestDescriptor];
     
-    NSString *real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/account/mobilelogin?a=%@&b=%@", login.email, login.password];
+    NSString *real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/account/mobilelogin?a=%@&b=%@", login.email, login.password];
     
     [objectManager addResponseDescriptor:responseDescriptor];
     objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
@@ -395,7 +395,7 @@
 - (void) logout
 {
     
-    NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
+    NSURL *baseURL = [NSURL URLWithString:@"http://letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
     
     [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
@@ -413,7 +413,7 @@
     
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
-    NSString *real_url = @"http://www.letterstocrushes.com/account/mobilelogout";
+    NSString *real_url = @"http://letterstocrushes.com/account/mobilelogout";
     
     [objectManager addResponseDescriptor:responseDescriptor];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];
@@ -509,7 +509,7 @@
 
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
         
-    NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
+    NSURL *baseURL = [NSURL URLWithString:@"http://letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
     
     [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
@@ -534,7 +534,7 @@
     
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
-    NSString *real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/home/getletter/%@", letter_id];
+    NSString *real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/home/getletter/%@", letter_id];
     
     [objectManager addResponseDescriptor:responseDescriptor];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];
@@ -581,10 +581,10 @@
 
             
             NSURL *baseURL;
-            baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com/home/hideletter"];
+            baseURL = [NSURL URLWithString:@"http://letterstocrushes.com/home/hideletter"];
             
             NSString *real_url;
-            real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/home/hideletter/%@", letter_id];
+            real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/home/hideletter/%@", letter_id];
             
             AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
             

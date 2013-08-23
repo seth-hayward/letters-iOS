@@ -78,7 +78,7 @@
 	letter.letterText = letter_message;
     letter.letterCountry = @"US";
     
-    NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
+    NSURL *baseURL = [NSURL URLWithString:@"http://letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
     
     [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
@@ -115,7 +115,7 @@
         requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:letterRequestMapping objectClass:[RKLetter class] rootKeyPath:@""];
         [objectManager addRequestDescriptor:requestDescriptor];
         
-        real_url = @"http://www.letterstocrushes.com/home/mail";
+        real_url = @"http://letterstocrushes.com/home/mail";
         
         [objectManager addResponseDescriptor:responseDescriptor];
         objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
@@ -162,8 +162,8 @@
                 NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
                 [cookieProperties setObject:msg.guid forKey:NSHTTPCookieName];
                 [cookieProperties setObject:@"0" forKey:NSHTTPCookieValue];
-                [cookieProperties setObject:@"www.letterstocrushes.com" forKey:NSHTTPCookieDomain];
-                [cookieProperties setObject:@"www.letterstocrushes.com" forKey:NSHTTPCookieOriginURL];
+                [cookieProperties setObject:@"letterstocrushes.com" forKey:NSHTTPCookieDomain];
+                [cookieProperties setObject:@"letterstocrushes.com" forKey:NSHTTPCookieOriginURL];
                 [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
                 [cookieProperties setObject:@"0" forKey:NSHTTPCookieVersion];
                 
@@ -226,7 +226,7 @@
         requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:letterEditRequestMapping objectClass:[RKEditLetter class] rootKeyPath:@""];
         [objectManager addRequestDescriptor:requestDescriptor];
         
-        real_url = @"http://www.letterstocrushes.com/Home/EditLetter";
+        real_url = @"http://letterstocrushes.com/Home/EditLetter";
         
         [objectManager addResponseDescriptor:responseDescriptor];
         objectManager.requestSerializationMIMEType = RKMIMETypeJSON;

@@ -330,7 +330,7 @@
     
     NSLog(@"Clicked heart: %d", letter_id);
     
-    NSURL *baseURL = [NSURL URLWithString:@"http://www.letterstocrushes.com"];
+    NSURL *baseURL = [NSURL URLWithString:@"http://letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
     
     [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
@@ -355,7 +355,7 @@
     
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
-    NSString *real_url = [NSString stringWithFormat:@"http://www.letterstocrushes.com/home/vote/%d", letter_id];
+    NSString *real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/home/vote/%d", letter_id];
     
     [objectManager addResponseDescriptor:responseDescriptor];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];
