@@ -732,7 +732,7 @@
 - (NSString *) cleanText:(NSString * )incoming
 {
     
-    incoming = [incoming stringByReplacingOccurrencesOfString:@"fuck" withString:@"f__"];
+    incoming = [incoming stringByReplacingOccurrencesOfString:@"fuck" withString:@"f__" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [incoming length])];
     
     return incoming;
 }
