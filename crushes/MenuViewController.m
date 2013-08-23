@@ -21,7 +21,7 @@
         // hard code the creation of the items...
         [[RODItemStore sharedStore] createItem:ViewTypeHome];
         [[RODItemStore sharedStore] createItem:ViewTypeMore];
-        [[RODItemStore sharedStore] createItem:ViewTypeSearch];
+        //[[RODItemStore sharedStore] createItem:ViewTypeSearch];
         [[RODItemStore sharedStore] createItem:ViewTypeSend];
         [[RODItemStore sharedStore] createItem:ViewTypeLogin];
         
