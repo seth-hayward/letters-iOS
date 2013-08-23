@@ -145,10 +145,22 @@
         [scv.webView.scrollView setScrollEnabled:false];
         
         // OMG JUST PUT A FUCKING UNDERLINE IN THE LABEL JESUS
-
-        NSMutableAttributedString *attributeStringHearts = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ hearts", [full_letter.letterUp stringValue]]];
-
-        NSMutableAttributedString *attributeStringComments = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ comments", [full_letter.letterComments stringValue]]];
+        
+        NSMutableAttributedString *attributeStringHearts;
+        
+        if([full_letter.letterUp isEqualToNumber:[NSNumber numberWithInt:1]]) {
+            attributeStringHearts = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ heart", [full_letter.letterUp stringValue]]];
+        } else {
+            attributeStringHearts = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ hearts", [full_letter.letterUp stringValue]]];
+        }
+        
+        NSMutableAttributedString *attributeStringComments;
+        
+        if([full_letter.letterComments isEqualToNumber:[NSNumber numberWithInt:1]]) {
+            attributeStringComments = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ comment", [full_letter.letterComments stringValue]]];
+        } else {
+            attributeStringComments = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ comments", [full_letter.letterComments stringValue]]];
+        }
         
         NSMutableAttributedString *attributeStringEdit = [[NSMutableAttributedString alloc] initWithString:@"edit"];
         
@@ -470,6 +482,14 @@
 //    NSLog(@"%llu",milliseconds);
     NSTimeInterval interval = milliseconds/1000;
     return [NSDate dateWithTimeIntervalSince1970:interval];
+}
+
+- (NSString *) cleanText:(NSString * )incoming
+{
+    
+    incoming = [incoming stringByReplacingOccurrencesOfString:@"fuck" withString:@"f__"];
+    
+    return incoming;
 }
 
 @end
