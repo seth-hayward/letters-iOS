@@ -50,8 +50,7 @@
 - (void) editLetter:(NSNumber *)letter_id;
 - (void) doLogin;
 - (BOOL) saveSettings;
-
-- (NSArray *)webviewReferences;
+- (NSString *) cleanText:(NSString * )incoming;
 
 - (void)updateLetterByIndex:(int)letter_index letter_height:(NSString *)height;
 - (void)updateComment:(int)comment_index comment_height:(NSString *)height;

@@ -72,6 +72,9 @@
             
             RKComment *com = mappingResult.array[i];
             
+            com.commentMessage = [[RODItemStore sharedStore] cleanText:com.commentMessage];
+            com.commenterName = [[RODItemStore sharedStore] cleanText:com.commenterName];
+            
             if([com.commenterName isKindOfClass:[NSNull class]]) {
                 com.commenterName = @"anonymous lover";
             }
