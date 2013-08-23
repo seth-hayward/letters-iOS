@@ -479,17 +479,16 @@
     int endPos = [dateString rangeOfString:@")"].location;
     NSRange range = NSMakeRange(startPos,endPos-startPos);
     unsigned long long milliseconds = [[dateString substringWithRange:range] longLongValue];
-//    NSLog(@"%llu",milliseconds);
     NSTimeInterval interval = milliseconds/1000;
-    return [NSDate dateWithTimeIntervalSince1970:interval];
+        
+    // convert to the local time
+    int offset = [NSTimeZone systemTimeZone].secondsFromGMT;
+    
+    NSDate *resulting_date = [NSDate dateWithTimeIntervalSince1970:interval];
+    resulting_date = [resulting_date dateByAddingTimeInterval:offset];
+    
+    return resulting_date;
 }
 
-- (NSString *) cleanText:(NSString * )incoming
-{
-    
-    incoming = [incoming stringByReplacingOccurrencesOfString:@"fuck" withString:@"f__"];
-    
-    return incoming;
-}
 
 @end

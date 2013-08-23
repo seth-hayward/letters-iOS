@@ -247,18 +247,17 @@
         // now loop through the result and add all of these
         for(int i = 0; i<[mappingResult count]; i++) {
             RKFullLetter *current_letter = mappingResult.array[i];
-            
-            
-            NSString *hidden_id = [NSString stringWithFormat:@"<div id='letter_id' style='display: none'>%@</div>", current_letter.Id];
-            
+                        
+            current_letter.letterMessage = [self cleanText:current_letter.letterMessage];
+                                    
             NSString *letterHTML = [NSString stringWithFormat:@"<html> \n"
                                            "<head> \n"
                                            "<style type=\"text/css\"> \n"
                                            "body {font-family: \"%@\"; font-size: %@;}\n"
                                            "</style> \n"
                                            "</head> \n"
-                                           "<body>%@%@</body> \n"
-                                           "</html>", @"helvetica", [NSNumber numberWithInt:14], hidden_id, current_letter.letterMessage];
+                                           "<body>%@</body> \n"
+                                           "</html>", @"helvetica", [NSNumber numberWithInt:14], current_letter.letterMessage];
             
             current_letter.letterTags = @"0";            
             current_letter.letterCountry = @"100";
@@ -728,6 +727,14 @@
     
     
     return NO;
+}
+
+- (NSString *) cleanText:(NSString * )incoming
+{
+    
+    incoming = [incoming stringByReplacingOccurrencesOfString:@"fuck" withString:@"f__"];
+    
+    return incoming;
 }
 
 + (id)allocWithZone:(NSZone *)zone {
