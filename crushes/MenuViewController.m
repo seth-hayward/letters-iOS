@@ -157,7 +157,7 @@
             [appDelegate.navigationController pushViewController:appDelegate.searchViewController animated:YES];
             break;
         case ViewTypeLogin:
-            [[RODItemStore sharedStore] doLogin];
+            [[RODItemStore sharedStore] generateLoginAlert];
             break;
         case ViewTypeLogout:
             [WCAlertView showAlertWithTitle:@"logout?" message:@"Are you sure you want to logout?" customizationBlock:^(WCAlertView *alertView) {

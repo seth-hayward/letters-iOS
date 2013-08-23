@@ -43,6 +43,7 @@
 - (void)goNextPage;
 - (void)goBackPage;
 
+- (void) generateLoginAlert;
 - (void) logout;
 - (void) login:(NSString *)email password:(NSString *)password;
 - (void) hideLetter:(NSNumber *)letter_id;
