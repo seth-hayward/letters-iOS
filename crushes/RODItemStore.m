@@ -732,8 +732,14 @@
 - (NSString *) cleanText:(NSString * )incoming
 {
     
-    incoming = [incoming stringByReplacingOccurrencesOfString:@"fuck" withString:@"f__" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [incoming length])];
-    
+    incoming = [incoming stringByReplacingOccurrencesOfString:@"shit" withString:@"s___" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [incoming length])];
+    incoming = [incoming stringByReplacingOccurrencesOfString:@"piss" withString:@"p___" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [incoming length])];
+    incoming = [incoming stringByReplacingOccurrencesOfString:@"fuck" withString:@"f___" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [incoming length])];
+    incoming = [incoming stringByReplacingOccurrencesOfString:@"cunt" withString:@"c___" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [incoming length])];
+    incoming = [incoming stringByReplacingOccurrencesOfString:@"cocksucker" withString:@"c________" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [incoming length])];
+    incoming = [incoming stringByReplacingOccurrencesOfString:@"motherfucker" withString:@"m___________" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [incoming length])];
+    incoming = [incoming stringByReplacingOccurrencesOfString:@"tits" withString:@"t___" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [incoming length])];
+
     return incoming;
 }
 
