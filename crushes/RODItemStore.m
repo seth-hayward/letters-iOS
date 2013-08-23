@@ -331,6 +331,9 @@
     [objectManager addResponseDescriptor:responseDescriptor];
     objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.menuViewController.tableView reloadData];
+    
     [objectManager postObject:nil path:real_url parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
         // now we just need to check the response
@@ -352,7 +355,10 @@
             
             [self createItem:ViewTypeBookmarks];
             [self createItem:ViewTypeLogout];
-
+            
+            AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+            [appDelegate.menuViewController.tableView reloadData];
+            
             [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"You have logged in. Welcome back!" customizationBlock:^(WCAlertView *alertView) {
                 alertView.style = WCAlertViewStyleBlackHatched;
             } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
