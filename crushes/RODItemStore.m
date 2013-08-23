@@ -498,7 +498,7 @@
             // now show the login alert            
             [self generateLoginAlert];
         }
-    } cancelButtonTitle:@"cancel" otherButtonTitles:@"login", nil];
+    } cancelButtonTitle:@"anon" otherButtonTitles:@"login", nil];
 
     
 }
