@@ -268,59 +268,6 @@
     [[RODItemStore sharedStore] hideLetter:letter_id];
 }
 
-- (void)btnHeartClicked:(J1Button *)button
-{
-    
-    int letter_id = button.tag - 300000;
-    int check_id = letter_id * 10000;
-    NSLog(@"Clicked heart: %d", letter_id);
-    
-    
-    // find dat view
-        for(int x = 0; x < [self.scrollView.subviews count]; x++) {
-    
-            UIView *current = [self.scrollView.subviews objectAtIndex:x];
-            if(current.tag > 0) {
-                int tag_value = current.tag;
-                
-                if(tag_value == check_id) {
-                    
-                    ScrollViewItem *lil = [[ScrollViewItem alloc] init];
-                    NSLog(@"Found it!!!!");
-                    lil.current_letter.letterUp = [NSNumber numberWithInt:[lil.current_letter.letterUp integerValue] + 1];
-                    lil.labelHearts.text = [NSString stringWithFormat:@"%@ hearts", lil.current_letter.letterUp];
-                    current = lil.view;
-                    
-                    for(int y = 0; y < [current.subviews count]; y++) {
-
-                        UIView *subview_current = [current.subviews objectAtIndex:y];
-                        
-                        int check_heart_id = letter_id * 1000;
-                        NSLog(@"Tag: %d", (int)subview_current.tag);
-                        
-                        if(check_heart_id == subview_current.tag) {
-                            UILabel *lol = (UILabel *)subview_current;
-                            lol.text = [NSString stringWithFormat:@"%d hearts", 1];
-                            [subview_current setNeedsDisplay];
-                            [self.scrollView setNeedsDisplay];
-                            break;
-                            
-                        }
-                        
-                    }
-    
-    
-                }
-    
-                
-            }
-            
-        }
-    
-    
-}
-
-
 -(void)clickedHeart:(UITapGestureRecognizer *)tapGesture;
 {
     
