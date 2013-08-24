@@ -361,41 +361,39 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];
     
     RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseDescriptor] ];
+
+    // run update interface code before calling web service    
+    for(int z = 0; z < [_items count]; z++) {
+        ScrollViewItem *lil_b = [_items objectAtIndex:z];
+        
+        if([lil_b.current_letter.Id isEqualToNumber:[NSNumber numberWithInt:letter_id]]) {
+            
+            NSMutableAttributedString *attributeStringHearts = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d hearts", [lil_b.current_letter.letterUp integerValue] + 1]];
+            
+            [attributeStringHearts addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:1] range:(NSRange){0,[attributeStringHearts length]}];
+            
+            UIFont *normalFont = [UIFont systemFontOfSize:13];
+            
+            NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys: normalFont, NSFontAttributeName,
+                                   [UIColor colorWithRed:0/255.0
+                                                   green:51/255.0
+                                                    blue:255/255.0
+                                                   alpha:1.0], NSForegroundColorAttributeName, nil];
+            
+            [attributeStringHearts addAttributes:attrs range:(NSRange){0, [attributeStringHearts length]}];
+            [lil_b.labelHearts setAttributedText:attributeStringHearts];
+            
+            break;
+        }
+    }
     
     [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        
+
         RKFullLetter *letter = mappingResult.array[0];
         NSLog(@"Voted on letter %d, hearts: %@", letter_id, letter.letterUp);
 
-        
         [[RODItemStore sharedStore] updateLetterHearts:[NSNumber numberWithInt:letter_id] hearts:letter.letterUp];
         
-
-        for(int z = 0; z < [_items count]; z++) {
-            ScrollViewItem *lil_b = [_items objectAtIndex:z];
-            
-            if([lil_b.current_letter.Id isEqualToNumber:[NSNumber numberWithInt:letter_id]]) {
-                
-                NSMutableAttributedString *attributeStringHearts = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d hearts", [lil_b.current_letter.letterUp integerValue]]];
-                                
-                [attributeStringHearts addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:1] range:(NSRange){0,[attributeStringHearts length]}];
-                
-                UIFont *normalFont = [UIFont systemFontOfSize:13];
-                
-                NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys: normalFont, NSFontAttributeName,
-                                       [UIColor colorWithRed:0/255.0
-                                                       green:51/255.0
-                                                        blue:255/255.0
-                                                       alpha:1.0], NSForegroundColorAttributeName, nil];
-                
-                [attributeStringHearts addAttributes:attrs range:(NSRange){0, [attributeStringHearts length]}];
-                [lil_b.labelHearts setAttributedText:attributeStringHearts];
-                
-                return;
-            }
-        }
-        
-        //[button setTitle:[NSString stringWithFormat:@"%@", letter.letterUp] forState:UIControlStateNormal];
         
     } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"Error voting: %@", error);
