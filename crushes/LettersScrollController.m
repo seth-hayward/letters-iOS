@@ -230,9 +230,16 @@
     
     pager.view.tag = 7;
     
-    [self.scrollView addSubview:pager.view];
+    if([[[RODItemStore sharedStore] allLetters] count] > 9) {
+        // got rejected for this!
+        // hide the buttons if there are no letters
+        
+        [self.scrollView addSubview:pager.view];
+        yOffset = yOffset + pager.view.frame.size.height;
+        
+    }
+    
 
-    yOffset = yOffset + pager.view.frame.size.height;
     
     [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
     
