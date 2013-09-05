@@ -178,18 +178,15 @@
     letter.letterCountry = height;
 }
 
-
-- (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level
+- (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level terms:(NSString *)_terms
 {
-    
     NSLog(@"Load letters by page called.");
     
     current_load_level = load_level;
     current_page = page;
     
     [_allLetters removeAllObjects];
-    
-    
+        
     // if load_level = 100, we're looking for loading the bookmarks
     // this should be refactored, but for now we'll go with this...
     // TODO
@@ -199,12 +196,19 @@
     
     NSString *real_url;
     
-    if(load_level < 100) {
-        real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/api/get_letters/%d/%d", load_level, page];
-    } else {
+    if(load_level == 120) {
+        real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/api/search/%@", _terms];
+        baseURL = [NSURL URLWithString:@"http://letterstocrushes.com/api/search"];        
+    }
+    
+    if(load_level == 100) {
         real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/account/getbookmarks/%d", page];
         baseURL = [NSURL URLWithString:@"http://letterstocrushes.com/account/getbookmarks"];
-        
+    }
+    
+    if(load_level == 0 || load_level == -1)
+    {
+        real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/api/get_letters/%d/%d", load_level, page];
     }
     
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
@@ -212,7 +216,7 @@
     [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
     
     RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
-        
+    
     RKObjectMapping* responseObjectMapping = [RKObjectMapping mappingForClass:[RKFullLetter class]];
     [responseObjectMapping addAttributeMappingsFromDictionary:@{
      @"Id": @"Id",
@@ -241,25 +245,25 @@
     [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
         NSLog(@"Loaded letters: %d, %d", [mappingResult count], [_allLetters count]);
-
+        
         AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
         
         // now loop through the result and add all of these
         for(int i = 0; i<[mappingResult count]; i++) {
             RKFullLetter *current_letter = mappingResult.array[i];
-                        
-            current_letter.letterMessage = [self cleanText:current_letter.letterMessage];
-                                    
-            NSString *letterHTML = [NSString stringWithFormat:@"<html> \n"
-                                           "<head> \n"
-                                           "<style type=\"text/css\"> \n"
-                                           "body {font-family: \"%@\"; font-size: %@;}\n"
-                                           "</style> \n"
-                                           "</head> \n"
-                                           "<body>%@</body> \n"
-                                           "</html>", @"helvetica", [NSNumber numberWithInt:14], current_letter.letterMessage];
             
-            current_letter.letterTags = @"0";            
+            current_letter.letterMessage = [self cleanText:current_letter.letterMessage];
+            
+            NSString *letterHTML = [NSString stringWithFormat:@"<html> \n"
+                                    "<head> \n"
+                                    "<style type=\"text/css\"> \n"
+                                    "body {font-family: \"%@\"; font-size: %@;}\n"
+                                    "</style> \n"
+                                    "</head> \n"
+                                    "<body>%@</body> \n"
+                                    "</html>", @"helvetica", [NSNumber numberWithInt:14], current_letter.letterMessage];
+            
+            current_letter.letterTags = @"0";
             current_letter.letterCountry = @"100";
             current_letter.letterMessage = letterHTML;
             
@@ -279,7 +283,12 @@
     }];
     
     [objectRequestOperation start];
-    
+
+}
+
+- (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level
+{
+    [self loadLettersByPage:page level:load_level terms:nil];
 }
 
 -(void) didFinishComputation:(int)valid {

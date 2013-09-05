@@ -26,6 +26,7 @@
 - (NSArray *)allMenuItems;
 - (NSArray *)allLetters;
 - (NSArray *)allComments;
+
 - (RODSettings *)settings;
 
 - (NSString*)settingsArchivePath;
@@ -62,6 +63,7 @@
 - (RKComment *)addComment:(RKComment *) comment;
 
 - (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level;
+- (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level terms:(NSString *)_terms;
 
 - (void)addReference:(UIWebView *)watch_this;
 - (void)removeReferences;

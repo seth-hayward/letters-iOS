@@ -239,9 +239,14 @@
         
     }
     
-
-    
     [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
+    
+    NSLog(@"Finished loading letters for load_level %d", [[RODItemStore sharedStore] current_load_level]);
+    
+    if([[RODItemStore sharedStore] current_load_level] == 120) {
+        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+        [appDelegate.navigationController popViewControllerAnimated:true];
+    }
     
     // now try looping through and resetting everything?
     
@@ -258,7 +263,7 @@
     // now tell the web view to change the page
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate.navigationController pushViewController:comments animated:true];
-        
+    
 }
 
 -(void)clickedEdit:(UITapGestureRecognizer *)tapGesture
