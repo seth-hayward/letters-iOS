@@ -11,5 +11,6 @@
 @interface SearchViewController : UIViewController
 - (IBAction)clickedSearch:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *searchTerms;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
 @end

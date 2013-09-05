@@ -18,7 +18,7 @@
 
 
 @implementation RODItemStore
-@synthesize loginStatus, current_load_level, current_page, last_device_orientation, current_viewtype;
+@synthesize loginStatus, current_load_level, current_page, last_device_orientation, current_viewtype, current_search_terms;
 
 - (id)init {
     self = [super init];
@@ -197,8 +197,9 @@
     NSString *real_url;
     
     if(load_level == 120) {
-        real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/api/search/%@", _terms];
-        baseURL = [NSURL URLWithString:@"http://letterstocrushes.com/api/search"];        
+        real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/api/search/%@/%d", _terms, page];
+        baseURL = [NSURL URLWithString:@"http://letterstocrushes.com/api/search"];
+        current_search_terms = _terms;
     }
     
     if(load_level == 100) {
@@ -272,6 +273,12 @@
         
         // now i need to tell the letters view controller that
         // it should reload the table view
+        
+        // first, i clear it for the search function though...
+        if(current_load_level == 120) {
+            AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+            [appDelegate.lettersScrollController clearLettersAndReset];
+        }
         
         RKFullLetter *full_letter;
         full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:0];
@@ -692,13 +699,13 @@
 - (void)goBackPage
 {
     self.current_page--;
-    [self loadLettersByPage:self.current_page level:self.current_load_level];
+    [self loadLettersByPage:self.current_page level:self.current_load_level terms:current_search_terms];
 }
 
 - (void)goNextPage
 {
     self.current_page++;
-    [self loadLettersByPage:self.current_page level:self.current_load_level];
+    [self loadLettersByPage:self.current_page level:self.current_load_level terms:current_search_terms];
 }
 
 - (NSString *)settingsArchivePath

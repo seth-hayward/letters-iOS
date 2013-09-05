@@ -50,9 +50,9 @@
 
 - (IBAction)clickedSearch:(id)sender {
     NSLog(@"Please search for %@", [self.searchTerms text]);
+    [self.indicator startAnimating];
+    [self.view setNeedsDisplay];
 
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    [appDelegate.lettersScrollController clearLettersAndReset];
     [[RODItemStore sharedStore] loadLettersByPage:1 level:120 terms:[self.searchTerms text]];
 }
 @end
