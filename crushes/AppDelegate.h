@@ -13,6 +13,7 @@
 #import "SearchViewController.h"
 #import "MenuViewController.h"
 #import "ChatNameViewController.h"
+#import "ChatViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
@@ -23,6 +24,7 @@
 @property (strong, nonatomic) LettersScrollController *lettersScrollController;
 @property (strong, nonatomic) MenuViewController *menuViewController;
 @property (strong, nonatomic) ChatNameViewController *chatNameViewController;
+@property (strong, nonatomic) ChatViewController *chatViewController;
 @property (strong, nonatomic) UINavigationController *navigationController;
 
 @end

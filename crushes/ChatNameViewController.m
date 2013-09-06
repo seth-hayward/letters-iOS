@@ -70,7 +70,11 @@
     
     [RODItemStore sharedStore].settings.chatName = check_name;
     [[RODItemStore sharedStore] saveSettings];
+
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     
+    [appDelegate.navigationController pushViewController:appDelegate.chatViewController animated:YES];
+        
     NSLog(@"Start chatting with name: %@", [self.textChatName text]);
 }
 

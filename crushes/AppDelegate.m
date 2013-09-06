@@ -15,14 +15,14 @@
 #import "SearchViewController.h"
 
 @implementation AppDelegate
-@synthesize sendViewController, drawer, lettersScrollController, navigationController, searchViewController, menuViewController;
+@synthesize sendViewController, drawer, lettersScrollController, navigationController, searchViewController, menuViewController, chatViewController, chatNameViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    //RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     //RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
     
     SearchViewController *searchVC = [[SearchViewController alloc] init];
@@ -36,6 +36,7 @@
     menuViewController = leftDrawer;
     
     self.chatNameViewController = [[ChatNameViewController alloc] init];
+    self.chatViewController = [[ChatViewController alloc] init];
     
     LettersScrollController *lettersScrollVC = [[LettersScrollController alloc] init];
     lettersScrollController = lettersScrollVC;
