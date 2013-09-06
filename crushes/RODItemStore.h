@@ -34,6 +34,7 @@
 @property (nonatomic) ViewType current_viewtype;
 @property (nonatomic) int current_page;
 @property (nonatomic) int current_load_level;
+@property (nonatomic) BOOL connected_to_chat;
 @property (nonatomic) NSString *current_search_terms;
 @property (nonatomic) NSNumber *loginStatus;
 @property (nonatomic) UIDeviceOrientation last_device_orientation;

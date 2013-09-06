@@ -7,7 +7,9 @@
 //
 
 #import "ChatViewController.h"
+#import "RODItemStore.h"
 #import "SignalR.h"
+#import "AppDelegate.h"
 
 @implementation ChatViewController
 @synthesize chatHub;
@@ -26,22 +28,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSLog(@"Hello, let's try to connect to the chat server.");
     SRHubConnection *hubConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
     
     chatHub = [hubConnection createHubProxy:@"VisitorUpdate"];
     [chatHub on:@"addMessage" perform:self selector:@selector(addMessage:)];
         
     hubConnection.started = ^{
-        NSLog(@"Tried to invoke the event.");
-        [self addMessage:@"hi "];
-        [chatHub invoke:@"admin" withArgs:[NSArray arrayWithObject:@"lolcats"]];
+        [chatHub invoke:@"join" withArgs:[NSArray arrayWithObject:[RODItemStore sharedStore].settings.chatName]];
         
     };
     
     [hubConnection start];
     
-    NSLog(@"started.");
     
 }
 
@@ -51,13 +49,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    [textView resignFirstResponder];
+    [self sendChat];
+    return YES;
+}
+
+- (void)sendChat {
+    NSString *txt = self.textMessage.text;
+    [chatHub invoke:@"sendChat" withArgs:[NSArray arrayWithObject:txt]];
+    [self.textMessage setText:@""];    
+}
+
 - (IBAction)btnSend:(id)sender {
-    [chatHub invoke:@"admin" withArgs:[NSArray arrayWithObject:@"lolcats"]];
-    
+    [self sendChat];
 }
 
 - (void)addMessage:(NSString *)message {
     NSLog(@"Msg: %@", message);
-    self.textMessage.text = message;
+    //self.textMessage.text = message;
 }
 @end

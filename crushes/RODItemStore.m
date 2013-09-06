@@ -18,7 +18,7 @@
 
 
 @implementation RODItemStore
-@synthesize loginStatus, current_load_level, current_page, last_device_orientation, current_viewtype, current_search_terms;
+@synthesize loginStatus, current_load_level, current_page, last_device_orientation, current_viewtype, current_search_terms, connected_to_chat;
 
 - (id)init {
     self = [super init];
@@ -37,7 +37,7 @@
         
         current_viewtype = ViewTypeHome;
         
-        NSLog(@"Loaded settings, _settings.loginStatus = %@, sentLetters.count = %d", _settings.loginStatus, [_settings.sentLetters count]);
+        connected_to_chat = false;
         
         // If we were unable to load the object,
         // then we can assume it's a new user and
@@ -51,19 +51,14 @@
             // they have some saved settings, so let's try logging in with
             // their stuff
             
-            NSLog(@"Found some pre-saved stuff, going to try to login with it.");
-
             if(([_settings.userName length] > 0) && ([_settings.password length] > 0))
             {
                 [self login:_settings.userName password:_settings.password];
             } else {
                 [self doLogin];                
             }
-        
             
         }
-
-
         
     }
     
