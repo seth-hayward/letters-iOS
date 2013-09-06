@@ -197,7 +197,7 @@
     NSString *real_url;
     
     if(load_level == 120) {
-        real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/api/search/%@/%d", _terms, page];
+        real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/api/search/%@/%d", [_terms stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], page];
         baseURL = [NSURL URLWithString:@"http://letterstocrushes.com/api/search"];
         current_search_terms = _terms;
     }

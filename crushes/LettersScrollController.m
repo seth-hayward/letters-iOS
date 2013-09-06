@@ -51,11 +51,36 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self.testWebView setDelegate:self];    
+    [self.testWebView setDelegate:self];
+    
+    [self redrawNavigationTitle];    
+}
+
+- (void) redrawNavigationTitle
+{
+ 
+    switch ([RODItemStore sharedStore].current_load_level) {
+        case -1:
+            [[self navigationItem] setTitle:[NSString stringWithFormat:@"more letters, page %d", [RODItemStore sharedStore].current_page]];
+            break;
+        case 0:
+            if([RODItemStore sharedStore].current_page == 1) {
+                [[self navigationItem] setTitle:@"letters to crushes"];
+            } else {
+                [[self navigationItem] setTitle:[NSString stringWithFormat:@"home, page %d", [RODItemStore sharedStore].current_page]];
+            }
+            break;
+        case 120:
+            [[self navigationItem] setTitle:[NSString stringWithFormat:@"searching '%@'", [RODItemStore sharedStore].current_search_terms]];
+            break;
+    }
+        
 }
 
 -(void)loadLetterData
 {
+    
+    [self redrawNavigationTitle];
     
     [_items removeAllObjects];
     

@@ -52,7 +52,7 @@
     NSLog(@"Please search for %@", [self.searchTerms text]);
     [self.indicator startAnimating];
     [self.view setNeedsDisplay];
-
+    
     [[RODItemStore sharedStore] loadLettersByPage:1 level:120 terms:[self.searchTerms text]];
 }
 @end
