@@ -56,6 +56,10 @@
             caption = @"Logout";
             checked = false;
             break;
+        case ViewTypeChat:
+            caption = @"Chat";
+            checked = false;
+            break;
     }
     
     return self;

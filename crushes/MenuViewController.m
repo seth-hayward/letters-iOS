@@ -23,6 +23,7 @@
         [[RODItemStore sharedStore] createItem:ViewTypeMore];
         [[RODItemStore sharedStore] createItem:ViewTypeSearch];
         [[RODItemStore sharedStore] createItem:ViewTypeSend];
+        [[RODItemStore sharedStore] createItem:ViewTypeChat];
         [[RODItemStore sharedStore] createItem:ViewTypeLogin];
         
         self.tableView.scrollEnabled = NO;

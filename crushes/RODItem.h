@@ -15,7 +15,8 @@ typedef enum {
     ViewTypeSearch,
     ViewTypeSend,
     ViewTypeLogout,
-    ViewTypeLogin
+    ViewTypeLogin,
+    ViewTypeChat
 } ViewType;
 
 @interface RODItem : NSObject
