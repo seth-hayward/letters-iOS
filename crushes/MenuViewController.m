@@ -173,6 +173,9 @@
             } cancelButtonTitle:@"cancel" otherButtonTitles:@"logout", nil];
             
             break;
+        case ViewTypeChat:
+            [appDelegate.navigationController pushViewController:appDelegate.chatNameViewController animated:YES];
+            break;
         default:
             break;
     }

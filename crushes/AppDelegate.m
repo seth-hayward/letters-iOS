@@ -35,6 +35,8 @@
     MenuViewController * leftDrawer = [[MenuViewController alloc] init];
     menuViewController = leftDrawer;
     
+    self.chatNameViewController = [[ChatNameViewController alloc] init];
+    
     LettersScrollController *lettersScrollVC = [[LettersScrollController alloc] init];
     lettersScrollController = lettersScrollVC;
     

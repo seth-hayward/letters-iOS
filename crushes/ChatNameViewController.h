@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatNameViewController : UIViewController
+@interface ChatNameViewController : UIViewController <UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextField *textChatName;
+- (IBAction)btnGo:(id)sender;
 
 @end

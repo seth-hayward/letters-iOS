@@ -9,7 +9,7 @@
 #import "RODSettings.h"
 
 @implementation RODSettings
-@synthesize loginStatus, userName, password, sentLetters;
+@synthesize loginStatus, userName, password, sentLetters, chatName;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -20,6 +20,7 @@
         [self setUserName:[aDecoder decodeObjectForKey:@"userName"]];
         [self setPassword:[aDecoder decodeObjectForKey:@"password"]];
         [self setSentLetters:[aDecoder decodeObjectForKey:@"sentLetters"]];
+        [self setChatName:[aDecoder decodeObjectForKey:@"chatName"]];
     }
     
     return self;
@@ -31,6 +32,7 @@
     [aCoder encodeObject:userName forKey:@"userName"];
     [aCoder encodeObject:password forKey:@"password"];
     [aCoder encodeObject:self.sentLetters forKey:@"sentLetters"];
+    [aCoder encodeObject:chatName forKey:@"chatName"];
 }
 
 @end
