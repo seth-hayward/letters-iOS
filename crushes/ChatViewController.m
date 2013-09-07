@@ -29,7 +29,7 @@
         MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(openDrawer:)];
         [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
         
-        [[self navigationItem] setTitle:@"CHAT"];
+        [[self navigationItem] setTitle:@"chat"];
 
         self.tableChats.sectionHeaderHeight = 0;
         self.tableChats.sectionFooterHeight = 0;
@@ -43,6 +43,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    [self.loadingChat startAnimating];
+    
     SRHubConnection *hubConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
     
     chatHub = [hubConnection createHubProxy:@"VisitorUpdate"];
@@ -54,11 +56,10 @@
         [chatHub on:@"addSimpleBacklog" perform:self selector:@selector(addSimpleBacklog:)];
         
         [RODItemStore sharedStore].connected_to_chat = true;
-
+        
     };
     
     [hubConnection start];
-    
     
 }
 
@@ -106,6 +107,7 @@
         
     }
     
+    [self.loadingChat stopAnimating];
 }
 
 - (void)addSimpleMessage:(NSString *)chat

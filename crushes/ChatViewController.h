@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *textMessage;
 @property (weak, nonatomic) IBOutlet UITableView *tableChats;
 @property (strong, nonatomic) SRHubProxy *chatHub;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingChat;
 
 @end
