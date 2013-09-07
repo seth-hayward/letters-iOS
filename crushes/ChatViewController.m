@@ -27,7 +27,7 @@
         
         [[self navigationItem] setTitle:@"CHAT"];
 
-        self.tableChats.rowHeight = 30;
+        self.tableChats.rowHeight = 15;
         
     }
     return self;
@@ -46,6 +46,7 @@
         [chatHub invoke:@"join" withArgs:[NSArray arrayWithObject:[RODItemStore sharedStore].settings.chatName]];
         
         [chatHub on:@"addSimpleMessage" perform:self selector:@selector(addSimpleMessage:)];
+        [chatHub on:@"addSimpleBacklog" perform:self selector:@selector(addSimpleBacklog:)];
         
         [RODItemStore sharedStore].connected_to_chat = true;
 
@@ -62,10 +63,14 @@
     // Dispose of any resources that can be recreated.
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self.view endEditing:YES];
-    [self sendChat];
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        [self sendChat];
+        return NO;
+    }
+    
     return YES;
 }
 
@@ -77,6 +82,23 @@
 
 - (IBAction)btnSend:(id)sender {
     [self sendChat];
+}
+
+- (void)addSimpleBacklog:(NSString *)chat
+{
+    NSLog(@"chat backlog: %@", chat);
+    
+    NSArray *simple_chat_backlog = [chat componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
+    for(NSString *chat_line in simple_chat_backlog) {
+        
+        if(chat_line.length > 0) {
+            [[RODItemStore sharedStore] addChat:chat_line];            
+        }
+        
+    }
+    
+    [self.tableChats reloadData];
 }
 
 - (void)addSimpleMessage:(NSString *)chat
