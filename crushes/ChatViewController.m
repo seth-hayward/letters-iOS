@@ -11,7 +11,7 @@
 #import "SignalR.h"
 #import "AppDelegate.h"
 #import "MMDrawerBarButtonItem.h"
-
+#import "RKChat.h"
 
 @implementation ChatViewController
 @synthesize chatHub;
@@ -26,6 +26,7 @@
         [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
         
         [[self navigationItem] setTitle:@"CHAT"];
+        
         
     }
     return self;
@@ -43,7 +44,7 @@
     hubConnection.started = ^{
         [chatHub invoke:@"join" withArgs:[NSArray arrayWithObject:[RODItemStore sharedStore].settings.chatName]];
         
-        [chatHub on:@"addMessage" perform:self selector:@selector(addMessage:)];
+        [chatHub on:@"addSimpleMessage" perform:self selector:@selector(addSimpleMessage:)];
 
     };
     
@@ -75,35 +76,12 @@
     [self sendChat];
 }
 
-- (void)addMessage:(NSString *)message {
-    NSLog(@"Msg: %@", message);
-    
-    NSString* JSONString = @"{ \"name\": \"The name\", \"number\": 12345}";
-    NSString* MIMEType = @"application/json";
-    NSError* error;
-    NSData *data = [JSONString dataUsingEncoding:NSUTF8StringEncoding];
-    id parsedData = [RKMIMETypeSerialization objectFromData:data MIMEType:MIMEType error:&error];
-    if (parsedData == nil && error) {
-        // Parser error...
-    }
-    
-    AppUser *appUser = [[AppUser alloc] init];
-    
-    NSDictionary *mappingsDictionary = @{ @"someKeyPath": someMapping };
-    RKMapperOperation *mapper = [[RKMapperOperation alloc] initWithRepresentation:parsedData mappingsDictionary:mappingsDictionary];
-    mapper.targetObject = appUser;
-    NSError *mappingError = nil;
-    BOOL isMapped = [mapper execute:&mappingError];
-    if (isMapped && !mappingError) {
-        // Yay! Mapping finished successfully
-        NSLog(@"mapper: %@", [mapper representation]);
-        NSLog(@"firstname is %@", appUser.firstName);
-    }
-    
-    
-    [[RODItemStore sharedStore] addChat:message];
+- (void)addSimpleMessage:(NSString *)chat
+{
+    NSLog(@"addMessage fired: %@", chat);
+    //NSLog(@"[%@] %@", chat.Nick, chat.Message);
+    [[RODItemStore sharedStore] addChat:chat];
     [self.tableChats reloadData];
-    //self.textMessage.text = message;
 }
 
 - (void)openDrawer:(id)sender {
@@ -112,6 +90,28 @@
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
     
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [[RODItemStore sharedStore] allChats].count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+    }
+    
+    NSString *c = [[[RODItemStore sharedStore] allChats] objectAtIndex:[indexPath row]];
+
+    NSLog(@"Set cell text: %@", c);
+    [[cell textLabel] setText:c];
+    
+    return cell;
 }
 
 @end

@@ -9,5 +9,7 @@
 #import "RKChat.h"
 
 @implementation RKChat
+@synthesize ChatDate, IP, Message, Nick, StoredInDB, Room;
+
 
 @end

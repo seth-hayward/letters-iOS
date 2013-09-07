@@ -397,6 +397,8 @@
 				5D7F303D17810B3B009F0AC6 /* RKMessage.m */,
 				5D458D7F178B954000B71314 /* RKFullLetter.m */,
 				5D458D7E178B954000B71314 /* RKFullLetter.h */,
+				5DA1180117DAD02300BDE5D0 /* RKChat.h */,
+				5DA1180217DAD02300BDE5D0 /* RKChat.m */,
 				5DE2534017B301050069EC96 /* RKComment.m */,
 				5DE2533F17B301050069EC96 /* RKComment.h */,
 				5D458D8D178C7DC600B71314 /* RKEditLetter.h */,
@@ -408,8 +410,6 @@
 				5D0BD04B1670AAA30088A383 /* AppDelegate.h */,
 				5D0BD04C1670AAA30088A383 /* AppDelegate.m */,
 				5D0BD0431670AAA30088A383 /* Supporting Files */,
-				5DA1180117DAD02300BDE5D0 /* RKChat.h */,
-				5DA1180217DAD02300BDE5D0 /* RKChat.m */,
 			);
 			path = crushes;
 			sourceTree = "<group>";

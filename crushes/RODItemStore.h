@@ -10,6 +10,7 @@
 #import "RODItem.h"
 #import "RKFullLetter.h"
 #import "RKComment.h"
+#import "RKChat.h"
 #import "RODSettings.h"
 
 @interface RODItemStore : NSObject
@@ -48,7 +49,7 @@
 - (void)goNextPage;
 - (void)goBackPage;
 
-- (void) addChat:(NSString *)msg;
+- (void) addChat:(NSString *)chat;
 - (void) generateLoginAlert;
 - (void) logout;
 - (void) login:(NSString *)email password:(NSString *)password;

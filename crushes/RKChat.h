@@ -10,4 +10,11 @@
 
 @interface RKChat : NSObject
 
+@property (nonatomic) NSDate *ChatDate;
+@property (nonatomic) NSString *IP;
+@property (nonatomic) NSString *Message;
+@property (nonatomic) NSString *Nick;
+@property (nonatomic) NSString *Room;
+@property (nonatomic) BOOL StoredInDB;
+
 @end

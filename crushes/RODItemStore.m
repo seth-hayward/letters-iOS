@@ -14,8 +14,8 @@
 #import "RKMessage.h"
 #import "RKLogin.h"
 #import "RKComment.h"
+#import "RKChat.h"
 #import "WCAlertView.h"
-
 
 @implementation RODItemStore
 @synthesize loginStatus, current_load_level, current_page, last_device_orientation, current_viewtype, current_search_terms, connected_to_chat;
@@ -26,6 +26,7 @@
         _allMenuItems = [[NSMutableArray alloc] init];
         _allLetters = [[NSMutableArray alloc] init];
         _allComments = [[NSMutableArray alloc] init];
+        _allChats = [[NSMutableArray alloc] init];
         loginStatus = [NSNumber numberWithInt:0];
         
         NSString *path = [self settingsArchivePath];
@@ -139,9 +140,9 @@
     return comment;
 }
 
-- (void)addChat:(NSString *)msg
+- (void)addChat:(NSString *)chat
 {
-    [_allChats addObject:msg];
+    [_allChats insertObject:chat atIndex:0];
 }
 
 + (RODItemStore *)sharedStore {
