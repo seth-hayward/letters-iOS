@@ -59,9 +59,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textView resignFirstResponder];
+    [self.view endEditing:YES];
     [self sendChat];
     return YES;
 }

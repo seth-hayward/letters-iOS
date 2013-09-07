@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SignalR.h"
 
-@interface ChatViewController : UIViewController <UITextViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ChatViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 - (void)addMessage:(NSString *)message;
 - (IBAction)btnSend:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextView *textMessage;
