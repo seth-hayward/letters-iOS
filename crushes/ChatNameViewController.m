@@ -43,10 +43,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    [self enterChat];
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        [self enterChat];
+        return NO;
+    }
+    
     return YES;
 }
 
@@ -74,8 +78,7 @@
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     
     [appDelegate.navigationController pushViewController:appDelegate.chatViewController animated:YES];
-        
-    NSLog(@"Start chatting with name: %@", [self.textChatName text]);
+    
 }
 
 - (void)openDrawer:(id)sender {

@@ -26,7 +26,8 @@
         [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
         
         [[self navigationItem] setTitle:@"CHAT"];
-        
+
+        self.tableChats.rowHeight = 30;
         
     }
     return self;
@@ -45,6 +46,8 @@
         [chatHub invoke:@"join" withArgs:[NSArray arrayWithObject:[RODItemStore sharedStore].settings.chatName]];
         
         [chatHub on:@"addSimpleMessage" perform:self selector:@selector(addSimpleMessage:)];
+        
+        [RODItemStore sharedStore].connected_to_chat = true;
 
     };
     
@@ -79,17 +82,14 @@
 - (void)addSimpleMessage:(NSString *)chat
 {
     NSLog(@"addMessage fired: %@", chat);
-    //NSLog(@"[%@] %@", chat.Nick, chat.Message);
     [[RODItemStore sharedStore] addChat:chat];
     [self.tableChats reloadData];
 }
 
 - (void)openDrawer:(id)sender {
-    
     // now tell the web view to change the page
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    [appDelegate.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-    
+    [appDelegate.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -108,7 +108,7 @@
     
     NSString *c = [[[RODItemStore sharedStore] allChats] objectAtIndex:[indexPath row]];
 
-    NSLog(@"Set cell text: %@", c);
+    cell.textLabel.font = [UIFont systemFontOfSize:10];
     [[cell textLabel] setText:c];
     
     return cell;
