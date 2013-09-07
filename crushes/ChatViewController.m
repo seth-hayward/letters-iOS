@@ -13,6 +13,10 @@
 #import "MMDrawerBarButtonItem.h"
 #import "RKChat.h"
 
+#define FONT_SIZE 10.0f
+#define CELL_CONTENT_WIDTH 320.0f
+#define CELL_CONTENT_MARGIN 5.0f
+
 @implementation ChatViewController
 @synthesize chatHub;
 
@@ -27,7 +31,8 @@
         
         [[self navigationItem] setTitle:@"CHAT"];
 
-        self.tableChats.rowHeight = 15;
+        self.tableChats.sectionHeaderHeight = 0;
+        self.tableChats.sectionFooterHeight = 0;
         
     }
     return self;
@@ -86,26 +91,31 @@
 
 - (void)addSimpleBacklog:(NSString *)chat
 {
-    NSLog(@"chat backlog: %@", chat);
+    NSLog(@"chat backlog fired.");
     
     NSArray *simple_chat_backlog = [chat componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
     for(NSString *chat_line in simple_chat_backlog) {
         
         if(chat_line.length > 0) {
-            [[RODItemStore sharedStore] addChat:chat_line];            
+            NSLog(@"added: %@", chat_line);
+            [[RODItemStore sharedStore] addChat:chat_line];
+            NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
+            [self.tableChats insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationNone];
         }
         
     }
     
-    [self.tableChats reloadData];
 }
 
 - (void)addSimpleMessage:(NSString *)chat
-{
+{ 
     NSLog(@"addMessage fired: %@", chat);
     [[RODItemStore sharedStore] addChat:chat];
-    [self.tableChats reloadData];
+    
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableChats insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
+    
 }
 
 - (void)openDrawer:(id)sender {
@@ -129,11 +139,25 @@
     }
     
     NSString *c = [[[RODItemStore sharedStore] allChats] objectAtIndex:[indexPath row]];
-
-    cell.textLabel.font = [UIFont systemFontOfSize:10];
-    [[cell textLabel] setText:c];
     
+    [[cell textLabel] setText:c];
+    [[cell textLabel] setLineBreakMode:NSLineBreakByWordWrapping];
+    [[cell textLabel] setNumberOfLines:0];
+    [[cell textLabel] setFont:[UIFont systemFontOfSize:10]];
+        
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    NSString *text = [[[RODItemStore sharedStore] allChats] objectAtIndex:[indexPath row]];
+    
+    UIFont *cellFont = [UIFont systemFontOfSize:10];
+    CGSize constraintSize = CGSizeMake(self.view.bounds.size.width, MAXFLOAT);
+    CGSize labelSize = [text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+    
+    return labelSize.height + 20;
+        
 }
 
 @end

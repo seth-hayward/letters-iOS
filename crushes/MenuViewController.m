@@ -124,7 +124,10 @@
     if([RODItemStore sharedStore].current_viewtype == ViewTypeSend) {
         [appDelegate.navigationController popViewControllerAnimated:NO];
     }
-
+    
+    if([RODItemStore sharedStore].current_viewtype == ViewTypeChat) {
+        [appDelegate.navigationController popViewControllerAnimated:NO];
+    }
 
     RODItem *selected_item = [[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]];
     
@@ -174,8 +177,15 @@
             
             break;
         case ViewTypeChat:
-            [appDelegate.navigationController pushViewController:appDelegate.chatNameViewController animated:YES];
+            
+            if([RODItemStore sharedStore].connected_to_chat == YES) {
+                [appDelegate.navigationController pushViewController:appDelegate.chatViewController animated:YES];
+            } else {
+                [appDelegate.navigationController pushViewController:appDelegate.chatNameViewController animated:YES];
+            }
+            
             break;
+            
         default:
             break;
     }
