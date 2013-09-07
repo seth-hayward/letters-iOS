@@ -80,6 +80,11 @@
     return _allComments;
 }
 
+- (NSArray *)allChats
+{
+    return _allChats;
+}
+
 - (NSArray *)webviewReferences
 {
     return _webviewReferences;
@@ -132,6 +137,11 @@
 {
     [_allComments addObject:comment];
     return comment;
+}
+
+- (void)addChat:(NSString *)msg
+{
+    [_allChats addObject:msg];
 }
 
 + (RODItemStore *)sharedStore {

@@ -17,6 +17,7 @@
     NSMutableArray *_allMenuItems;
     NSMutableArray *_allLetters;
     NSMutableArray *_allComments;
+    NSMutableArray *_allChats;
     NSMutableArray *_webviewReferences;
     RODSettings *_settings;
 }
@@ -26,6 +27,7 @@
 - (NSArray *)allMenuItems;
 - (NSArray *)allLetters;
 - (NSArray *)allComments;
+- (NSArray *)allChats;
 
 - (RODSettings *)settings;
 
@@ -46,6 +48,7 @@
 - (void)goNextPage;
 - (void)goBackPage;
 
+- (void) addChat:(NSString *)msg;
 - (void) generateLoginAlert;
 - (void) logout;
 - (void) login:(NSString *)email password:(NSString *)password;

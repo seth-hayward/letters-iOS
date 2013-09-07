@@ -127,6 +127,7 @@
 		5DA117FB17DA61F200BDE5D0 /* ChatNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA117F917DA61F200BDE5D0 /* ChatNameViewController.xib */; };
 		5DA117FF17DA783400BDE5D0 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA117FD17DA783400BDE5D0 /* ChatViewController.m */; };
 		5DA1180017DA783400BDE5D0 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA117FE17DA783400BDE5D0 /* ChatViewController.xib */; };
+		5DA1180317DAD02300BDE5D0 /* RKChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1180217DAD02300BDE5D0 /* RKChat.m */; };
 		5DE2531C17ACC2150069EC96 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2531B17ACC2150069EC96 /* comment.png */; };
 		5DE2533317B130790069EC96 /* LetterCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2533117B130790069EC96 /* LetterCommentsViewController.m */; };
 		5DE2533417B130790069EC96 /* LetterCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2533217B130790069EC96 /* LetterCommentsViewController.xib */; };
@@ -281,6 +282,8 @@
 		5DA117FC17DA783400BDE5D0 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		5DA117FD17DA783400BDE5D0 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		5DA117FE17DA783400BDE5D0 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		5DA1180117DAD02300BDE5D0 /* RKChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKChat.h; sourceTree = "<group>"; };
+		5DA1180217DAD02300BDE5D0 /* RKChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKChat.m; sourceTree = "<group>"; };
 		5DE2531B17ACC2150069EC96 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		5DE2533017B130790069EC96 /* LetterCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterCommentsViewController.h; sourceTree = "<group>"; };
 		5DE2533117B130790069EC96 /* LetterCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterCommentsViewController.m; sourceTree = "<group>"; };
@@ -405,6 +408,8 @@
 				5D0BD04B1670AAA30088A383 /* AppDelegate.h */,
 				5D0BD04C1670AAA30088A383 /* AppDelegate.m */,
 				5D0BD0431670AAA30088A383 /* Supporting Files */,
+				5DA1180117DAD02300BDE5D0 /* RKChat.h */,
+				5DA1180217DAD02300BDE5D0 /* RKChat.m */,
 			);
 			path = crushes;
 			sourceTree = "<group>";
@@ -741,6 +746,7 @@
 				5D528CAF17C6C25A00AAB762 /* J1Button.m in Sources */,
 				5DA117FA17DA61F200BDE5D0 /* ChatNameViewController.m in Sources */,
 				5DA117FF17DA783400BDE5D0 /* ChatViewController.m in Sources */,
+				5DA1180317DAD02300BDE5D0 /* RKChat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
