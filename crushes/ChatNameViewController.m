@@ -75,9 +75,10 @@
     [RODItemStore sharedStore].settings.chatName = check_name;
     [[RODItemStore sharedStore] saveSettings];
 
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];    
+
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.navigationController popViewControllerAnimated:NO];
     [appDelegate.navigationController pushViewController:appDelegate.chatViewController animated:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

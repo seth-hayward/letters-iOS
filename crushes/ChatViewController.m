@@ -69,10 +69,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.textMessage resignFirstResponder];
+}
+
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     
     if([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
         [self sendChat];
         return NO;
     }
@@ -82,6 +86,7 @@
 
 - (void)sendChat {
     NSString *txt = self.textMessage.text;
+    [self.textMessage resignFirstResponder];
     [chatHub invoke:@"sendChat" withArgs:[NSArray arrayWithObject:txt]];
     [self.textMessage setText:@""];
 }
