@@ -25,6 +25,7 @@
         
         [[self navigationItem] setTitle:@"enter chat"];
         
+        
     }
     return self;
 }
@@ -35,6 +36,9 @@
     // Do any additional setup after loading the view from its nib.
     
     [self.textChatName setText:[RODItemStore sharedStore].settings.chatName];
+    
+    [self.textChatName setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -53,6 +53,8 @@
     SRHubConnection *hubConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
     hubConnection.delegate = self;
     
+    [self.textMessage setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
+    
     chatHub = [hubConnection createHubProxy:@"VisitorUpdate"];
     
     hubConnection.started = ^{
@@ -150,11 +152,15 @@
     NSLog(@"Requesting backlog.");
     [refreshControl endRefreshing];
     [chatHub invoke:@"RequestSimpleBacklog" withArgs:[NSArray arrayWithObject:@"hi"] completionHandler:^(id response) {
-        
-        [[RODItemStore sharedStore] clearChats];
+        NSLog(@"Backlog compleltion handler fired.");
 
     }];
-        
+    
+    [[RODItemStore sharedStore] clearChats];
+    [self.tableChats reloadData];
+    
+    [self.loadingChat startAnimating];
+    
 }
 
 - (void)openDrawer:(id)sender {
