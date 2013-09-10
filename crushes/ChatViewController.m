@@ -51,6 +51,7 @@
     [self.tableChats addSubview:refreshControl];
         
     SRHubConnection *hubConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
+    hubConnection.delegate = self;
     
     chatHub = [hubConnection createHubProxy:@"VisitorUpdate"];
     
@@ -89,6 +90,21 @@
     return YES;
 }
 
+- (void)SRConnectionDidOpen:(id<SRConnectionInterface>)connection
+{
+    [self addSimpleMessage:@"Connecting to the chat, please wait."];
+}
+
+- (void)SRConnectionDidClose:(id<SRConnectionInterface>)connection
+{
+    [self addSimpleMessage:@"Connection to the chat was closed."];
+}
+
+- (void)SRConnectionDidReconnect:(id<SRConnectionInterface>)connection
+{
+    [self addSimpleMessage:@"You are reconnected to the chat."];
+}
+
 - (void)sendChat {
     NSString *txt = self.textMessage.text;
     [self.textMessage resignFirstResponder];
@@ -109,7 +125,7 @@
     for(NSString *chat_line in simple_chat_backlog) {
         
         if(chat_line.length > 0) {
-            NSLog(@"added: %@", chat_line);
+            //NSLog(@"added: %@", chat_line);
             [[RODItemStore sharedStore] addChat:chat_line];
             NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
             [self.tableChats insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationNone];
@@ -133,8 +149,10 @@
 {
     NSLog(@"Requesting backlog.");
     [refreshControl endRefreshing];
-        
     [chatHub invoke:@"RequestSimpleBacklog" withArgs:[NSArray arrayWithObject:@"hi"] completionHandler:^(id response) {
+        
+        [[RODItemStore sharedStore] clearChats];
+
     }];
         
 }
