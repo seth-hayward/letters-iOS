@@ -134,6 +134,11 @@
     [_allComments removeAllObjects];
 }
 
+-(void)clearChats
+{
+    [_allChats removeAllObjects];
+}
+
 - (RKComment *)addComment:(RKComment *)comment
 {
     [_allComments addObject:comment];

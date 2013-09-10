@@ -45,6 +45,11 @@
     
     [self.loadingChat startAnimating];
     
+    // add refresh control
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(requestBacklog:) forControlEvents:UIControlEventValueChanged];
+    [self.tableChats addSubview:refreshControl];
+        
     SRHubConnection *hubConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
     
     chatHub = [hubConnection createHubProxy:@"VisitorUpdate"];
@@ -117,12 +122,21 @@
 
 - (void)addSimpleMessage:(NSString *)chat
 { 
-    NSLog(@"addMessage fired: %@", chat);
     [[RODItemStore sharedStore] addChat:chat];
     
     NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableChats insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
     
+}
+
+- (void)requestBacklog:(UIRefreshControl *)refreshControl
+{
+    NSLog(@"Requesting backlog.");
+    [refreshControl endRefreshing];
+        
+    [chatHub invoke:@"RequestSimpleBacklog" withArgs:[NSArray arrayWithObject:@"hi"] completionHandler:^(id response) {
+    }];
+        
 }
 
 - (void)openDrawer:(id)sender {

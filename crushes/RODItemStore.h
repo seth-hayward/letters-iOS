@@ -75,5 +75,6 @@
 - (void)removeReferences;
 
 - (void)clearComments;
+- (void)clearChats;
 
 @end
