@@ -42,33 +42,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
+    _labelStatus = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(enterChat:)];
+    [self.navigationItem setRightBarButtonItem:_labelStatus animated:YES];
     
-    [self.loadingChat startAnimating];
-    
-    // add refresh control
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(requestBacklog:) forControlEvents:UIControlEventValueChanged];
-    [self.tableChats addSubview:refreshControl];
-        
-    SRHubConnection *hubConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
-    hubConnection.delegate = self;
-    
-    [self.textMessage setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
-    
-    chatHub = [hubConnection createHubProxy:@"VisitorUpdate"];
-    
-    hubConnection.started = ^{
-        [chatHub invoke:@"join" withArgs:[NSArray arrayWithObject:[RODItemStore sharedStore].settings.chatName]];
-        
-        [chatHub on:@"addSimpleMessage" perform:self selector:@selector(addSimpleMessage:)];
-        [chatHub on:@"addSimpleBacklog" perform:self selector:@selector(addSimpleBacklog:)];
-        
-        [RODItemStore sharedStore].connected_to_chat = true;
-        
-    };
-    
-    [hubConnection start];
-    
+    [self enterChat];
+            
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,6 +84,35 @@
 - (void)SRConnectionDidReconnect:(id<SRConnectionInterface>)connection
 {
     [self addSimpleMessage:@"You are reconnected to the chat."];
+}
+
+-(void)SRConnection:(id<SRConnectionInterface>)connection didReceiveError:(NSError *)error
+{
+    [self addSimpleMessage:[NSString stringWithFormat:@"Connection error: %@", error.localizedDescription]];
+}
+
+-(void)SRConnection:(id<SRConnectionInterface>)connection didChangeState:(connectionState)oldState newState:(connectionState)newState
+{
+    
+    switch (newState) {
+        case reconnecting:
+
+            [_labelStatus setEnabled:true];
+            
+            [self addSimpleMessage:@"Connection to the chat was lost, trying to reconnect... press the refresh button to try again."];
+            break;
+        case disconnected:
+            
+            [_labelStatus setEnabled:true];
+            [self addSimpleMessage:@"Disconnected. Press refresh button to enter chat again."];
+            break;
+        default:
+
+            [_labelStatus setEnabled:false];
+            break;
+            
+    }
+    
 }
 
 - (void)sendChat {
@@ -203,6 +211,42 @@
     
     return labelSize.height + 20;
         
+}
+
+-(IBAction)refresChat:(id)sender
+{
+    [self enterChat];
+}
+
+-(void)enterChat
+{
+    
+    [self.loadingChat startAnimating];
+    
+    // add refresh control
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(requestBacklog:) forControlEvents:UIControlEventValueChanged];
+    [self.tableChats addSubview:refreshControl];
+    
+    SRHubConnection *hubConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
+    hubConnection.delegate = self;
+    
+    [self.textMessage setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
+    
+    chatHub = [hubConnection createHubProxy:@"VisitorUpdate"];
+    
+    hubConnection.started = ^{
+        [chatHub invoke:@"join" withArgs:[NSArray arrayWithObject:[RODItemStore sharedStore].settings.chatName]];
+        
+        [chatHub on:@"addSimpleMessage" perform:self selector:@selector(addSimpleMessage:)];
+        [chatHub on:@"addSimpleBacklog" perform:self selector:@selector(addSimpleBacklog:)];
+        
+        [RODItemStore sharedStore].connected_to_chat = true;
+        
+    };
+    
+    [hubConnection start];
+
 }
 
 @end

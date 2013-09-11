@@ -10,6 +10,10 @@
 #import "SignalR.h"
 
 @interface ChatViewController : UIViewController <UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, SRConnectionDelegate>
+{
+    UIBarButtonItem* _labelStatus;
+    UIButton* _buttonStatus;
+}
 - (void)addSimpleMessage:(NSString *)message;
 - (IBAction)btnSend:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextView *textMessage;
