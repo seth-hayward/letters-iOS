@@ -18,7 +18,7 @@
 #define CELL_CONTENT_MARGIN 5.0f
 
 @implementation ChatViewController
-@synthesize chatHub;
+@synthesize chatHub, chatConnection;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,11 +43,28 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+    NSLog(@"viewDidLoad.");
+    
     _labelStatus = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(enterChat:)];
     [self.navigationItem setRightBarButtonItem:_labelStatus animated:YES];
     
     [self enterChat];
             
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [self addSimpleMessage:[NSString stringWithFormat:@"viewWillAppear: %d", chatConnection.state]];
+    
+    if(chatConnection.state == reconnecting) {
+        [self enterChat];
+    }
+    
+    if(chatConnection.state == disconnected) {
+        [self enterChat];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -223,19 +240,20 @@
     
     [self.loadingChat startAnimating];
     
+    
     // add refresh control
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(requestBacklog:) forControlEvents:UIControlEventValueChanged];
     [self.tableChats addSubview:refreshControl];
     
-    SRHubConnection *hubConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
-    hubConnection.delegate = self;
+    chatConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
+    chatConnection.delegate = self;
     
     [self.textMessage setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
     
-    chatHub = [hubConnection createHubProxy:@"VisitorUpdate"];
+    chatHub = [chatConnection createHubProxy:@"VisitorUpdate"];
     
-    hubConnection.started = ^{
+    chatConnection.started = ^{
         [chatHub invoke:@"join" withArgs:[NSArray arrayWithObject:[RODItemStore sharedStore].settings.chatName]];
         
         [chatHub on:@"addSimpleMessage" perform:self selector:@selector(addSimpleMessage:)];
@@ -245,7 +263,7 @@
         
     };
     
-    [hubConnection start];
+    [chatConnection start];
 
 }
 
