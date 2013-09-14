@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchViewController : UIViewController
+@interface SearchViewController : UIViewController <UITextViewDelegate>
 - (IBAction)clickedSearch:(id)sender;
-@property (weak, nonatomic) IBOutlet UITextField *searchTerms;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
+@property (weak, nonatomic) IBOutlet UITextView *textSearchTerms;
 
 @end

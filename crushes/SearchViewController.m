@@ -40,6 +40,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self.textSearchTerms setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.indicator stopAnimating];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,10 +59,25 @@
 }
 
 - (IBAction)clickedSearch:(id)sender {
-    NSLog(@"Please search for %@", [self.searchTerms text]);
+    [self doSearch];
+}
+
+- (void)doSearch {
+    NSLog(@"Please search for %@", [self.textSearchTerms text]);
     [self.indicator startAnimating];
     [self.view setNeedsDisplay];
+    [self.textSearchTerms resignFirstResponder];
     
-    [[RODItemStore sharedStore] loadLettersByPage:1 level:120 terms:[self.searchTerms text]];
+    [[RODItemStore sharedStore] loadLettersByPage:1 level:120 terms:[self.textSearchTerms text]];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"]) {
+        [self doSearch];
+        return NO;
+    }
+    
+    return YES;
 }
 @end
