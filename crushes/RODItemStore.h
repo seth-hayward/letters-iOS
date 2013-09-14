@@ -12,6 +12,7 @@
 #import "RKComment.h"
 #import "RKChat.h"
 #import "RODSettings.h"
+#import "SignalR.h"
 
 @interface RODItemStore : NSObject
 {
@@ -41,6 +42,9 @@
 @property (nonatomic) NSString *current_search_terms;
 @property (nonatomic) NSNumber *loginStatus;
 @property (nonatomic) UIDeviceOrientation last_device_orientation;
+
+@property (strong, nonatomic) SRHubProxy *chatHub;
+@property (strong, nonatomic) SRHubConnection *chatConnection;
 
 - (BOOL) shouldShowHideButton:(NSNumber *)letter_id;
 - (BOOL) shouldShowEditButton:(NSNumber *)letter_id;

@@ -106,12 +106,19 @@
     } else {
         NSLog(@"Error saving settings.");
     }
+
+    [[RODItemStore sharedStore] addChat:@"Chat entered background."];
+
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+    
+    [[RODItemStore sharedStore] addChat:@"App will enter foreground."];
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

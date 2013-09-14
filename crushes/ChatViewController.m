@@ -18,7 +18,6 @@
 #define CELL_CONTENT_MARGIN 5.0f
 
 @implementation ChatViewController
-@synthesize chatHub, chatConnection;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,25 +47,36 @@
     _labelStatus = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(enterChat:)];
     [self.navigationItem setRightBarButtonItem:_labelStatus animated:YES];
     
+    [[self navigationItem] setTitle:[NSString stringWithFormat:@"chat (%d)", [RODItemStore sharedStore].chatConnection.state]];
+    
     [self enterChat];
             
+}
+
+- (void)chatReconnected;
+{
+    [self addSimpleMessage:@"The chat has reconnected."];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-    [self addSimpleMessage:[NSString stringWithFormat:@"viewWillAppear: %d", chatConnection.state]];
     
-    if(chatConnection.state == reconnecting) {
-        [chatConnection stop];
+    if([RODItemStore sharedStore].chatConnection.state == reconnecting) {
+        [[RODItemStore sharedStore].chatConnection stop];
         [self enterChat];
+        [self addSimpleMessage:[NSString stringWithFormat:@"viewWillAppear: reconnecting, %d", [RODItemStore sharedStore].chatConnection.state]];
     }
     
-    if(chatConnection.state == disconnected) {
-        [chatConnection stop];
+    if([RODItemStore sharedStore].chatConnection.state == disconnected) {
+        [[RODItemStore sharedStore].chatConnection stop];
         [self enterChat];
+        [self addSimpleMessage:[NSString stringWithFormat:@"viewWillAppear: disconnected, %d", [RODItemStore sharedStore].chatConnection.state]];
+        
     }
+    
+    [[self navigationItem] setTitle:[NSString stringWithFormat:@"chat (%d)", [RODItemStore sharedStore].chatConnection.state]];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -116,18 +126,18 @@
     switch (newState) {
         case reconnecting:
 
-            [_labelStatus setEnabled:true];
+            //[_labelStatus setEnabled:true];
             
             [self addSimpleMessage:@"Connection to the chat was lost, trying to reconnect... press the refresh button to try again."];
             break;
         case disconnected:
             
-            [_labelStatus setEnabled:true];
+            //[_labelStatus setEnabled:true];
             [self addSimpleMessage:@"Disconnected. Press refresh button to enter chat again."];
             break;
         default:
 
-            [_labelStatus setEnabled:false];
+            //[_labelStatus setEnabled:false];
             break;
             
     }
@@ -137,7 +147,7 @@
 - (void)sendChat {
     NSString *txt = self.textMessage.text;
     [self.textMessage resignFirstResponder];
-    [chatHub invoke:@"sendChat" withArgs:[NSArray arrayWithObject:txt]];
+    [[RODItemStore sharedStore].chatHub invoke:@"sendChat" withArgs:[NSArray arrayWithObject:txt]];
     [self.textMessage setText:@""];
 }
 
@@ -150,8 +160,9 @@
     NSLog(@"chat backlog fired.");
     
     NSArray *simple_chat_backlog = [chat componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    
+        
     for(NSString *chat_line in simple_chat_backlog) {
+        
         
         if(chat_line.length > 0) {
             //NSLog(@"added: %@", chat_line);
@@ -169,24 +180,46 @@
 { 
     [[RODItemStore sharedStore] addChat:chat];
     
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableChats insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
+    [self.tableChats reloadData];
+    
+//    NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [self.tableChats insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
     
 }
 
 - (void)requestBacklog:(UIRefreshControl *)refreshControl
 {
-    NSLog(@"Requesting backlog.");
-    [refreshControl endRefreshing];
-    [chatHub invoke:@"RequestSimpleBacklog" withArgs:[NSArray arrayWithObject:@"hi"] completionHandler:^(id response) {
-        NSLog(@"Backlog compleltion handler fired.");
 
+    [refreshControl endRefreshing];
+    [self askForBacklog];
+    
+}
+
+- (void)askForBacklog {
+
+    if([RODItemStore sharedStore].chatConnection.state == reconnecting || [RODItemStore sharedStore].chatConnection.state == disconnected) {
+        [[RODItemStore sharedStore].chatConnection stop];
+        
+        [self addSimpleMessage:@"Chat connection had disconnected or was stalled, entering chat again."];
+        [self enterChat];
+        
+        return;
+    }
+    
+    [[RODItemStore sharedStore].chatHub invoke:@"RequestSimpleBacklog" withArgs:[NSArray arrayWithObject:@"hi"] completionHandler:^(id response) {
+        NSLog(@"Backlog completion handler fired.");
+        [self addSimpleMessage:@"Backlog request completed."];
+        
     }];
     
     [[RODItemStore sharedStore] clearChats];
+    
+    [self addSimpleMessage:@"Requesting backlog."];
+    
     [self.tableChats reloadData];
     
     [self.loadingChat startAnimating];
+
     
 }
 
@@ -237,35 +270,61 @@
     [self enterChat];
 }
 
+-(void)enterChat:(UIBarButtonItem *)button
+{
+    [self enterChat];
+}
+
 -(void)enterChat
 {
     
-    [self.loadingChat startAnimating];
+    if([RODItemStore sharedStore].chatConnection) {
+        [[RODItemStore sharedStore].chatConnection disconnect];
+    }
     
+    if([RODItemStore sharedStore].chatConnection.state == reconnecting) {
+        //[chatConnection stop];
+        [self addSimpleMessage:@"Reconnecting, not going to try just yet..."];
+        return;
+    }
+    
+    [self.loadingChat startAnimating];
     
     // add refresh control
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(requestBacklog:) forControlEvents:UIControlEventValueChanged];
     [self.tableChats addSubview:refreshControl];
     
-    chatConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
-    chatConnection.delegate = self;
+    [RODItemStore sharedStore].chatConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
+    [RODItemStore sharedStore].chatConnection.delegate = self;
     
     [self.textMessage setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
     
-    chatHub = [chatConnection createHubProxy:@"VisitorUpdate"];
+
+//    if([RODItemStore sharedStore].chatHub) {
+//        // chathub was already initialized prior, lets do cleanup
+//        [self addSimpleMessage:@"chatHub was already initialized."];
+//    }
     
-    chatConnection.started = ^{
-        [chatHub invoke:@"join" withArgs:[NSArray arrayWithObject:[RODItemStore sharedStore].settings.chatName]];
+    [RODItemStore sharedStore].chatHub = [[RODItemStore sharedStore].chatConnection createHubProxy:@"VisitorUpdate"];
+    
+    [RODItemStore sharedStore].chatConnection.reconnected = ^{
+        NSLog(@"Reconnected.. hihihi");
+        [self addSimpleMessage:@"chatConnection.reconnected fired."];
+ //       [self askForBacklog];
+    };
         
-        [chatHub on:@"addSimpleMessage" perform:self selector:@selector(addSimpleMessage:)];
-        [chatHub on:@"addSimpleBacklog" perform:self selector:@selector(addSimpleBacklog:)];
+    [RODItemStore sharedStore].chatConnection.started = ^{
+        [[RODItemStore sharedStore].chatHub invoke:@"join" withArgs:[NSArray arrayWithObject:[RODItemStore sharedStore].settings.chatName]];
+        
+        [[RODItemStore sharedStore].chatHub on:@"addSimpleMessage" perform:self selector:@selector(addSimpleMessage:)];
+        [[RODItemStore sharedStore].chatHub on:@"addSimpleBacklog" perform:self selector:@selector(addSimpleBacklog:)];
         
         [RODItemStore sharedStore].connected_to_chat = true;
         
     };
     
-    [chatConnection start];
+    [[RODItemStore sharedStore].chatConnection start];
 
 }
 

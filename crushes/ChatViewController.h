@@ -18,8 +18,6 @@
 - (IBAction)btnSend:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextView *textMessage;
 @property (weak, nonatomic) IBOutlet UITableView *tableChats;
-@property (strong, nonatomic) SRHubProxy *chatHub;
-@property (strong, nonatomic) SRHubConnection *chatConnection;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingChat;
 
 @end

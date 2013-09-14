@@ -18,7 +18,7 @@
 #import "WCAlertView.h"
 
 @implementation RODItemStore
-@synthesize loginStatus, current_load_level, current_page, last_device_orientation, current_viewtype, current_search_terms, connected_to_chat;
+@synthesize loginStatus, current_load_level, current_page, last_device_orientation, current_viewtype, current_search_terms, connected_to_chat, chatHub, chatConnection;
 
 - (id)init {
     self = [super init];
