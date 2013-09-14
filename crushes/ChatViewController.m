@@ -59,10 +59,12 @@
     [self addSimpleMessage:[NSString stringWithFormat:@"viewWillAppear: %d", chatConnection.state]];
     
     if(chatConnection.state == reconnecting) {
+        [chatConnection stop];
         [self enterChat];
     }
     
     if(chatConnection.state == disconnected) {
+        [chatConnection stop];
         [self enterChat];
     }
 }
