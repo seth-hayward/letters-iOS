@@ -79,7 +79,6 @@
 
     [super viewDidAppear:animated];
     
-    
     if([RODItemStore sharedStore].chatConnection.state == reconnecting || [RODItemStore sharedStore].chatConnection.state == disconnected) {
         [self enterChat];
         [self addSimpleMessage:[NSString stringWithFormat:@"viewWillAppear: reconnecting, %d", [RODItemStore sharedStore].chatConnection.state]];
@@ -304,6 +303,13 @@
     [self.textMessage setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
         
     [RODItemStore sharedStore].chatHub = [[RODItemStore sharedStore].chatConnection createHubProxy:@"VisitorUpdate"];
+
+    [RODItemStore sharedStore].chatConnection.error = ^(NSError * __strong err){
+        [[RODItemStore sharedStore] addChat:[NSString stringWithFormat:@"Error: %@", err]];
+        [self.tableChats reloadData];
+        [self enterChat];
+    };
+                                          
     
     [RODItemStore sharedStore].chatConnection.reconnected = ^{
         NSLog(@"Reconnected.. hihihi");

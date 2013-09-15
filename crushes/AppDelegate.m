@@ -27,6 +27,7 @@
     
     SearchViewController *searchVC = [[SearchViewController alloc] init];
     searchViewController = searchVC;
+    searchViewController.trackedViewName = @"Search";
     
     SendViewController *sendVC = [[SendViewController alloc] init];
     sendViewController = sendVC;
@@ -37,12 +38,15 @@
     
     ChatNameViewController *_chatNameVC = [[ChatNameViewController alloc] init];
     chatNameViewController = _chatNameVC;
+    chatNameViewController.trackedViewName = @"Chat Name";
     
     ChatViewController *_chatVC = [[ChatViewController alloc] init];
     chatViewController = _chatVC;
+    chatViewController.trackedViewName = @"Chat";
     
     LettersScrollController *lettersScrollVC = [[LettersScrollController alloc] init];
     lettersScrollController = lettersScrollVC;
+    lettersScrollController.trackedViewName = @"Letters";
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lettersScrollVC];
     navController.navigationBar.tintColor = [UIColor blackColor];

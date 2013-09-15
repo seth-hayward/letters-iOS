@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface ChatNameViewController : UIViewController <UITextViewDelegate>
+@interface ChatNameViewController : GAITrackedViewController <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *textChatName;
 - (IBAction)btnGo:(id)sender;

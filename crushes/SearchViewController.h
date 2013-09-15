@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface SearchViewController : UIViewController <UITextViewDelegate>
+@interface SearchViewController : GAITrackedViewController <UITextViewDelegate>
 - (IBAction)clickedSearch:(id)sender;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 @property (weak, nonatomic) IBOutlet UITextView *textSearchTerms;

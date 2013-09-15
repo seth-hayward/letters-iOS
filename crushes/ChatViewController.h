@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SignalR.h"
+#import "GAITrackedViewController.h"
 
-@interface ChatViewController : UIViewController <UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, SRConnectionDelegate>
+@interface ChatViewController : GAITrackedViewController <UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, SRConnectionDelegate>
 {
     UIBarButtonItem* _labelStatus;
     UIButton* _buttonStatus;
