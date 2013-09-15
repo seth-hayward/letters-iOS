@@ -8,9 +8,12 @@
 
 #import "LetterCommentsViewController.h"
 #import "RKComment.h"
+#import "RKPostComment.h"
 #import "CommentScrollViewItem.h"
 #import "RODItemStore.h"
 #import "AddCommentViewController.h"
+#import "WCAlertView.h"
+#import "AppDelegate.h"
 
 @implementation LetterCommentsViewController
 @synthesize letter_id, scrollView;
@@ -129,9 +132,7 @@
 
 -(void)loadCommentData
 {
-    
-    NSLog(@"loadCommentData");
-    
+        
     if([[[RODItemStore sharedStore] allComments] count] == 0) {
         [self drawComments];
         return;
@@ -200,10 +201,8 @@
     [add_comment.btnAdd addTarget:self action:@selector(addComment:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.scrollView addSubview:add_comment.view];
-    NSLog(@"Hello, %@", [add_comment.textCommenterName text]);
     
     addComment = add_comment;
-    NSLog(@"Hello, %@", [addComment.textCommenterName text]);
     
     yOffset += add_comment.view.bounds.size.height;
     
@@ -224,8 +223,98 @@
 
 - (void)addComment:(UIButton *)button
 {
-    NSLog(@"Hello, %@", [addComment.textCommenterName text]);
     
+	// Create a new comment and POST it to the server
+	RKPostComment* comment = [RKPostComment new];
+    comment.letterId = [NSNumber numberWithInt:letter_id];
+    comment.comment = [addComment.textComment text];
+    comment.commenterEmail = [addComment.textCommenterEmail text];
+    comment.commenterName = [addComment.textCommenterName text];
+    
+    NSURL *baseURL = [NSURL URLWithString:@"http://letterstocrushes.com"];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
+    
+    [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+    
+    RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+    
+    RKObjectMapping* responseObjectMapping;
+    RKResponseDescriptor* responseDescriptor;
+    RKRequestDescriptor* requestDescriptor;
+    NSString *real_url;
+    
+    //
+    // send comment
+    //
+        
+    responseObjectMapping = [RKObjectMapping mappingForClass:[RKComment class]];
+        
+    [responseObjectMapping addAttributeMappingsFromDictionary:@{
+     @"Id": @"Id",
+     @"commentMessage": @"commentMessage",
+     @"letterId": @"letterId",
+     @"sendEmail": @"sendEmail",
+     @"commentDate": @"commentDate",
+     @"hearts": @"hearts",
+     @"commenterEmail": @"commenterEmail",
+     @"commenterGuid": @"commenterGuid",
+     @"commenterIP": @"commenterIP",
+     @"commenterName": @"commenterName"
+     }];
+    
+    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+        
+    RKObjectMapping* letterRequestMapping = [RKObjectMapping requestMapping];
+    [letterRequestMapping addAttributeMappingsFromDictionary:@{
+     @"letterId": @"letterId",
+     @"comment" : @"comment",
+     @"commenterName" : @"commenterName",
+     @"commenterEmail" : @"commenterEmail"}];
+    
+    requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:letterRequestMapping objectClass:[RKPostComment class] rootKeyPath:@""];
+    [objectManager addRequestDescriptor:requestDescriptor];
+    
+    real_url = @"http://letterstocrushes.com/api/add_comment";
+    
+    [objectManager addResponseDescriptor:responseDescriptor];
+    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
+    
+    [objectManager postObject:comment path:real_url parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+        // now we just need to check the response
+        // there may have been an error on the server that
+        // we want to check for
+        RKComment* msg = mappingResult.array[0];
+        
+        // save the cId for future references
+        // we use this id to know if we can hide the comment or not
+        [RODItemStore sharedStore].settings.cId = msg.commenterGuid;
+        [[RODItemStore sharedStore] saveSettings];
+        
+        // we good
+        // .. now reload this screen somehow
+
+        LetterCommentsViewController *comments = [[LetterCommentsViewController alloc] init];
+        comments.letter_id = letter_id;
+        
+        // now tell the web view to change the page
+        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+        [appDelegate.navigationController popViewControllerAnimated:YES];
+        [appDelegate.navigationController pushViewController:comments animated:true];
+                
+        [WCAlertView showAlertWithTitle:@"Success!" message:@"Your comment was sent." customizationBlock:^(WCAlertView *alertView) {
+            alertView.style = WCAlertViewStyleBlackHatched;
+        } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+        } cancelButtonTitle:@"Great!" otherButtonTitles:nil];
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        
+        // this occurs when restkit can not send a post -- this could happen
+        // if the user does not have internet connection at the time
+        UIAlertView *alert_post_error = [[UIAlertView alloc] initWithTitle:@"iOS Post Error" message: [error description] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+        [alert_post_error show];
+    }];
+        
 }
 
 @end

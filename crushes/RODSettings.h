@@ -17,6 +17,6 @@
 @property (nonatomic) NSString *password;
 @property (nonatomic) NSString *chatName;
 @property (nonatomic) NSMutableArray *sentLetters;
-
+@property (nonatomic) NSString *cId;
 
 @end

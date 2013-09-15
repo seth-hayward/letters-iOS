@@ -127,6 +127,7 @@
 		5D7F30621784FA07009F0AC6 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F30611784FA07009F0AC6 /* Default-Portrait~ipad.png */; };
 		5D977D0417E61B99002DA837 /* AddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D977D0217E61B99002DA837 /* AddCommentViewController.m */; };
 		5D977D0517E61B99002DA837 /* AddCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D977D0317E61B99002DA837 /* AddCommentViewController.xib */; };
+		5D977D0817E66147002DA837 /* RKPostComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D977D0717E66147002DA837 /* RKPostComment.m */; };
 		5DA117FA17DA61F200BDE5D0 /* ChatNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA117F817DA61F100BDE5D0 /* ChatNameViewController.m */; };
 		5DA117FB17DA61F200BDE5D0 /* ChatNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA117F917DA61F200BDE5D0 /* ChatNameViewController.xib */; };
 		5DA117FF17DA783400BDE5D0 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA117FD17DA783400BDE5D0 /* ChatViewController.m */; };
@@ -285,6 +286,8 @@
 		5D977D0117E61B99002DA837 /* AddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCommentViewController.h; sourceTree = "<group>"; };
 		5D977D0217E61B99002DA837 /* AddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentViewController.m; sourceTree = "<group>"; };
 		5D977D0317E61B99002DA837 /* AddCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCommentViewController.xib; sourceTree = "<group>"; };
+		5D977D0617E66146002DA837 /* RKPostComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKPostComment.h; sourceTree = "<group>"; };
+		5D977D0717E66147002DA837 /* RKPostComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKPostComment.m; sourceTree = "<group>"; };
 		5DA117F717DA61F100BDE5D0 /* ChatNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatNameViewController.h; sourceTree = "<group>"; };
 		5DA117F817DA61F100BDE5D0 /* ChatNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatNameViewController.m; sourceTree = "<group>"; };
 		5DA117F917DA61F200BDE5D0 /* ChatNameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatNameViewController.xib; sourceTree = "<group>"; };
@@ -411,6 +414,8 @@
 				5D458D7E178B954000B71314 /* RKFullLetter.h */,
 				5DA1180117DAD02300BDE5D0 /* RKChat.h */,
 				5DA1180217DAD02300BDE5D0 /* RKChat.m */,
+				5D977D0617E66146002DA837 /* RKPostComment.h */,
+				5D977D0717E66147002DA837 /* RKPostComment.m */,
 				5DE2534017B301050069EC96 /* RKComment.m */,
 				5DE2533F17B301050069EC96 /* RKComment.h */,
 				5D458D8D178C7DC600B71314 /* RKEditLetter.h */,
@@ -765,6 +770,7 @@
 				5DA117FF17DA783400BDE5D0 /* ChatViewController.m in Sources */,
 				5DA1180317DAD02300BDE5D0 /* RKChat.m in Sources */,
 				5D977D0417E61B99002DA837 /* AddCommentViewController.m in Sources */,
+				5D977D0817E66147002DA837 /* RKPostComment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
