@@ -10,7 +10,7 @@
 #import "RKComment.h"
 #import "CommentScrollViewItem.h"
 #import "RODItemStore.h"
-
+#import "AddCommentViewController.h"
 
 @implementation LetterCommentsViewController
 @synthesize letter_id, scrollView;
@@ -132,6 +132,11 @@
     
     NSLog(@"loadCommentData");
     
+    if([[[RODItemStore sharedStore] allComments] count] == 0) {
+        [self drawComments];
+        return;
+    }
+    
     // do a preload to get the height
     // start the preload chain
     RKComment *full_comment;
@@ -149,40 +154,54 @@
     CommentScrollViewItem *scv;
     RKComment *full_comment;
     
-    for(int i = 0; i < [[[RODItemStore sharedStore] allComments] count]; i++) {
-        
-        full_comment = [[[RODItemStore sharedStore] allComments] objectAtIndex:i];
-        
-        int comment_height = 0;
-        
-        if([full_comment.commenterIP isEqualToString:@"1"]) {
-            comment_height = [full_comment.commenterGuid integerValue];
-        } else {
-            comment_height = 100;
+    if([[[RODItemStore sharedStore] allComments] count] > 0) {
+
+        for(int i = 0; i < [[[RODItemStore sharedStore] allComments] count]; i++) {
+            
+            full_comment = [[[RODItemStore sharedStore] allComments] objectAtIndex:i];
+            
+            int comment_height = 0;
+            
+            if([full_comment.commenterIP isEqualToString:@"1"]) {
+                comment_height = [full_comment.commenterGuid integerValue];
+            } else {
+                comment_height = 100;
+            }
+            
+            scv = [[CommentScrollViewItem alloc] init];
+            
+            // the height of the padding around the
+            // heart button and the frame of the scrollviewitem is about 40px.
+            
+            scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width - 5, comment_height + 65);
+            
+            //        [scv.webView setDelegate:self];
+            //        [scv.webView setDelegate:scv.view];
+            
+            [scv.webView loadHTMLString:full_comment.commentMessage baseURL:nil];
+            [scv.webView setTag:[full_comment.Id integerValue]];
+            
+            [scv.labelCommenterName setText:full_comment.commenterName];
+            
+            [scv setCurrent_comment:full_comment];
+            
+            yOffset = yOffset + (comment_height + 65);
+            
+            [self.scrollView addSubview:scv.view];
+            
         }
-        
-        scv = [[CommentScrollViewItem alloc] init];
-        
-        // the height of the padding around the
-        // heart button and the frame of the scrollviewitem is about 40px.
-        
-        scv.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width - 5, comment_height + 65);
-        
-        //        [scv.webView setDelegate:self];
-        //        [scv.webView setDelegate:scv.view];
-        
-        [scv.webView loadHTMLString:full_comment.commentMessage baseURL:nil];
-        [scv.webView setTag:[full_comment.Id integerValue]];
-        
-        [scv.labelCommenterName setText:full_comment.commenterName];
-        
-        [scv setCurrent_comment:full_comment];
-        
-        yOffset = yOffset + (comment_height + 65);
-        
-        [self.scrollView addSubview:scv.view];
+
         
     }
+    
+    AddCommentViewController *add_comment = [[AddCommentViewController alloc] init];
+    add_comment.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width - 5, add_comment.view.bounds.size.height);
+    
+    [self.scrollView addSubview:add_comment.view];
+    
+    yOffset += add_comment.view.bounds.size.height;
+    
+    
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = screenRect.size.height;
