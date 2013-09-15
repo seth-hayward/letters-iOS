@@ -187,6 +187,10 @@
             attributeStringComments = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ comments", [full_letter.letterComments stringValue]]];
         }
         
+        if([full_letter.letterComments isEqualToNumber:[NSNumber numberWithInt:0]]) {
+            attributeStringComments = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"add comment"]];
+        }
+        
         NSMutableAttributedString *attributeStringEdit = [[NSMutableAttributedString alloc] initWithString:@"edit"];
         
         NSMutableAttributedString *attributeStringHide = [[NSMutableAttributedString alloc] initWithString:@"hide"];
@@ -217,9 +221,9 @@
         
         // JESUS CHRIST
         
-        if([full_letter.letterComments isEqualToNumber:[NSNumber numberWithInt:0]]) {
-            [scv.labelComments  setHidden:true];
-        }
+        //if([full_letter.letterComments isEqualToNumber:[NSNumber numberWithInt:0]]) {
+        //    [scv.labelComments  setHidden:true];
+        //}
         
         [scv setCurrent_letter:full_letter];
         
