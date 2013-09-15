@@ -8,11 +8,8 @@
 
 #import "AddCommentViewController.h"
 
-@interface AddCommentViewController ()
-
-@end
-
 @implementation AddCommentViewController
+@synthesize textComment, textCommenterEmail, textCommenterName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +24,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self.textCommenterName setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
+    [self.textComment setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
+    [self.textCommenterEmail setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
+    
 }
 
 - (void)didReceiveMemoryWarning

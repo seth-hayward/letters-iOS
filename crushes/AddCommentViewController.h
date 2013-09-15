@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface AddCommentViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextView *textCommenterName;
+@property (weak, nonatomic) IBOutlet UITextView *textCommenterEmail;
+@property (weak, nonatomic) IBOutlet UITextView *textComment;
+@property (weak, nonatomic) IBOutlet UIButton *btnAdd;
 
 @end

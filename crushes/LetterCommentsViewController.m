@@ -197,7 +197,13 @@
     AddCommentViewController *add_comment = [[AddCommentViewController alloc] init];
     add_comment.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width - 5, add_comment.view.bounds.size.height);
     
+    [add_comment.btnAdd addTarget:self action:@selector(addComment:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.scrollView addSubview:add_comment.view];
+    NSLog(@"Hello, %@", [add_comment.textCommenterName text]);
+    
+    addComment = add_comment;
+    NSLog(@"Hello, %@", [addComment.textCommenterName text]);
     
     yOffset += add_comment.view.bounds.size.height;
     
@@ -213,6 +219,12 @@
     
     // now try looping through and resetting everything?
     
+    
+}
+
+- (void)addComment:(UIButton *)button
+{
+    NSLog(@"Hello, %@", [addComment.textCommenterName text]);
     
 }
 

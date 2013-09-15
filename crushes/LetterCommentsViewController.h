@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
+#import "AddCommentViewController.h"
 
 @interface LetterCommentsViewController : GAITrackedViewController <UIWebViewDelegate>
+{
+    AddCommentViewController *addComment;
+}
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic) int letter_id;
