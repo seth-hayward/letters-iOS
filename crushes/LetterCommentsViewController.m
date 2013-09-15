@@ -204,6 +204,7 @@
     
     addComment = add_comment;
     
+    
     yOffset += add_comment.view.bounds.size.height;
     
     
@@ -315,6 +316,12 @@
         [alert_post_error show];
     }];
         
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    NSLog(@"textViewDidEndEditing");
+    [textView resignFirstResponder];
 }
 
 @end

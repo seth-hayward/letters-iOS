@@ -10,7 +10,7 @@
 #import "GAITrackedViewController.h"
 #import "AddCommentViewController.h"
 
-@interface LetterCommentsViewController : GAITrackedViewController <UIWebViewDelegate>
+@interface LetterCommentsViewController : GAITrackedViewController <UIWebViewDelegate, UITextViewDelegate>
 {
     AddCommentViewController *addComment;
 }

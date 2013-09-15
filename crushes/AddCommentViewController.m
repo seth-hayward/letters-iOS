@@ -29,6 +29,22 @@
     [self.textComment setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
     [self.textCommenterEmail setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideHandler:) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void) keyboardWillHideHandler: (NSNotification *)notification {
+
+    [self.textCommenterName resignFirstResponder];
+    [self.textComment resignFirstResponder];
+    [self.textCommenterEmail resignFirstResponder];
+    
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    NSLog(@"textViewDidEndEditing");
+    [textView resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning

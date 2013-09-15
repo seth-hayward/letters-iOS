@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddCommentViewController : UIViewController
+@interface AddCommentViewController : UIViewController <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *textCommenterName;
 @property (weak, nonatomic) IBOutlet UITextView *textCommenterEmail;
 @property (weak, nonatomic) IBOutlet UITextView *textComment;
