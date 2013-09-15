@@ -125,6 +125,8 @@
 		5D7F305E1784F9F8009F0AC6 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F305D1784F9F8009F0AC6 /* Default-Landscape~ipad.png */; };
 		5D7F30601784FA01009F0AC6 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F305F1784FA01009F0AC6 /* Default-Portrait@2x~ipad.png */; };
 		5D7F30621784FA07009F0AC6 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7F30611784FA07009F0AC6 /* Default-Portrait~ipad.png */; };
+		5D977D0417E61B99002DA837 /* AddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D977D0217E61B99002DA837 /* AddCommentViewController.m */; };
+		5D977D0517E61B99002DA837 /* AddCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D977D0317E61B99002DA837 /* AddCommentViewController.xib */; };
 		5DA117FA17DA61F200BDE5D0 /* ChatNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA117F817DA61F100BDE5D0 /* ChatNameViewController.m */; };
 		5DA117FB17DA61F200BDE5D0 /* ChatNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA117F917DA61F200BDE5D0 /* ChatNameViewController.xib */; };
 		5DA117FF17DA783400BDE5D0 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA117FD17DA783400BDE5D0 /* ChatViewController.m */; };
@@ -280,6 +282,9 @@
 		5D7F305D1784F9F8009F0AC6 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		5D7F305F1784FA01009F0AC6 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "../Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		5D7F30611784FA07009F0AC6 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		5D977D0117E61B99002DA837 /* AddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCommentViewController.h; sourceTree = "<group>"; };
+		5D977D0217E61B99002DA837 /* AddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentViewController.m; sourceTree = "<group>"; };
+		5D977D0317E61B99002DA837 /* AddCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCommentViewController.xib; sourceTree = "<group>"; };
 		5DA117F717DA61F100BDE5D0 /* ChatNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatNameViewController.h; sourceTree = "<group>"; };
 		5DA117F817DA61F100BDE5D0 /* ChatNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatNameViewController.m; sourceTree = "<group>"; };
 		5DA117F917DA61F200BDE5D0 /* ChatNameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatNameViewController.xib; sourceTree = "<group>"; };
@@ -358,6 +363,9 @@
 				5DE2533617B132070069EC96 /* LettersScrollController.h */,
 				5DE2533717B132070069EC96 /* LettersScrollController.m */,
 				5DE2533517B132070069EC96 /* LettersScrollController.xib */,
+				5D977D0117E61B99002DA837 /* AddCommentViewController.h */,
+				5D977D0217E61B99002DA837 /* AddCommentViewController.m */,
+				5D977D0317E61B99002DA837 /* AddCommentViewController.xib */,
 				5DE2533117B130790069EC96 /* LetterCommentsViewController.m */,
 				5DE2533017B130790069EC96 /* LetterCommentsViewController.h */,
 				5DE2533217B130790069EC96 /* LetterCommentsViewController.xib */,
@@ -688,6 +696,7 @@
 				5DA1180017DA783400BDE5D0 /* ChatViewController.xib in Resources */,
 				5D36B9BF17E538C500955B1F /* cog.png in Resources */,
 				5D36B9C117E54ED000955B1F /* cog_2.png in Resources */,
+				5D977D0517E61B99002DA837 /* AddCommentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,6 +764,7 @@
 				5DA117FA17DA61F200BDE5D0 /* ChatNameViewController.m in Sources */,
 				5DA117FF17DA783400BDE5D0 /* ChatViewController.m in Sources */,
 				5DA1180317DAD02300BDE5D0 /* RKChat.m in Sources */,
+				5D977D0417E61B99002DA837 /* AddCommentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
