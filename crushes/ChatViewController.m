@@ -42,7 +42,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    _labelStatus = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"cog_2.png"] style:UIBarButtonItemStylePlain target:self action:@selector(leaveChat:)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:CGRectMake(0, 0, 15, 30)];
+    [button setImage:[UIImage imageNamed:@"cog_2.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(leaveChat:) forControlEvents:UIControlEventTouchUpInside];
+        
+    _labelStatus = [[UIBarButtonItem alloc] initWithCustomView:button];
+
     [self.navigationItem setRightBarButtonItem:_labelStatus animated:YES];
     
     [self enterChat];
