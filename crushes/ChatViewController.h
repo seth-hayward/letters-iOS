@@ -20,5 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *textMessage;
 @property (weak, nonatomic) IBOutlet UITableView *tableChats;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingChat;
+@property (weak, nonatomic) NSTimer *refreshTimer;
+@property (nonatomic) int countDown;
 
 @end

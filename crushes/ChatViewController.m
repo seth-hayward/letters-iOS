@@ -18,6 +18,7 @@
 #define CELL_CONTENT_MARGIN 5.0f
 
 @implementation ChatViewController
+@synthesize refreshTimer, countDown;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,7 +44,7 @@
     // Do any additional setup after loading the view from its nib.
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setFrame:CGRectMake(0, 0, 15, 30)];
+    [button setFrame:CGRectMake(0, 0, 30, 30)];
     [button setImage:[UIImage imageNamed:@"cog_2.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(leaveChat:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -132,6 +133,9 @@
 {
     
     switch (newState) {
+        case connected:
+            [refreshTimer invalidate];
+            
         case reconnecting:
 
             //[_labelStatus setEnabled:true];
@@ -289,7 +293,9 @@
     if([RODItemStore sharedStore].chatConnection) {
         [[RODItemStore sharedStore].chatConnection disconnect];
     }
-        
+
+    self.countDown = 15;
+    
     [self.loadingChat startAnimating];
     
     // add refresh control
@@ -303,7 +309,7 @@
     [self.textMessage setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
         
     [RODItemStore sharedStore].chatHub = [[RODItemStore sharedStore].chatConnection createHubProxy:@"VisitorUpdate"];
-
+    
     [RODItemStore sharedStore].chatConnection.error = ^(NSError * __strong err){
         [[RODItemStore sharedStore] addChat:[NSString stringWithFormat:@"Error: %@", err]];
         [self.tableChats reloadData];
@@ -318,6 +324,7 @@
     };
         
     [RODItemStore sharedStore].chatConnection.started = ^{
+        NSLog(@"Connection started.");
         [[RODItemStore sharedStore].chatHub invoke:@"join" withArgs:[NSArray arrayWithObject:[RODItemStore sharedStore].settings.chatName]];
         
         [[RODItemStore sharedStore].chatHub on:@"addSimpleMessage" perform:self selector:@selector(addSimpleMessage:)];
@@ -327,8 +334,26 @@
         
     };
     
+    refreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDownTick:) userInfo:nil repeats:YES];
+    
     [[RODItemStore sharedStore].chatConnection start];
 
+}
+
+- (void) countDownTick
+{
+    
+    self.countDown--;
+
+    [[RODItemStore sharedStore] addChat:[NSString stringWithFormat:@"Refreshing: %d", self.countDown]];
+    [self.tableChats reloadData];
+    
+    if(self.countDown == 0) {
+        [self.refreshTimer invalidate];
+        self.refreshTimer = nil;
+        [self enterChat];
+    }
+    
 }
 
 @end
