@@ -21,6 +21,7 @@
 		5D0BD0741671117C0088A383 /* bookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD0731671117C0088A383 /* bookmark.png */; };
 		5D0BD077167117350088A383 /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BD076167117350088A383 /* pencil.png */; };
 		5D36B9BF17E538C500955B1F /* cog.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D36B9BE17E538C500955B1F /* cog.png */; };
+		5D36B9C117E54ED000955B1F /* cog_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D36B9C017E54ED000955B1F /* cog_2.png */; };
 		5D458D7B17875C1000B71314 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D458D7A17875C1000B71314 /* refresh.png */; };
 		5D458D7D178B731500B71314 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D458D7C178B731500B71314 /* search.png */; };
 		5D458D80178B954000B71314 /* RKFullLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D458D7F178B954000B71314 /* RKFullLetter.m */; };
@@ -161,6 +162,7 @@
 		5D0BD0731671117C0088A383 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
 		5D0BD076167117350088A383 /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		5D36B9BE17E538C500955B1F /* cog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cog.png; sourceTree = "<group>"; };
+		5D36B9C017E54ED000955B1F /* cog_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cog_2.png; sourceTree = "<group>"; };
 		5D458D7A17875C1000B71314 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		5D458D7C178B731500B71314 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		5D458D7E178B954000B71314 /* RKFullLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKFullLetter.h; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				5D0BD0441670AAA30088A383 /* crushes-Info.plist */,
 				5D0BD0451670AAA30088A383 /* InfoPlist.strings */,
 				5D36B9BE17E538C500955B1F /* cog.png */,
+				5D36B9C017E54ED000955B1F /* cog_2.png */,
 				5D0BD0481670AAA30088A383 /* main.m */,
 				5D0BD04A1670AAA30088A383 /* crushes-Prefix.pch */,
 				5D7F30591784F007009F0AC6 /* Default@2x.png */,
@@ -684,6 +687,7 @@
 				5DA117FB17DA61F200BDE5D0 /* ChatNameViewController.xib in Resources */,
 				5DA1180017DA783400BDE5D0 /* ChatViewController.xib in Resources */,
 				5D36B9BF17E538C500955B1F /* cog.png in Resources */,
+				5D36B9C117E54ED000955B1F /* cog_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

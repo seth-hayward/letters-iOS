@@ -47,6 +47,13 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lettersScrollVC];
     navController.navigationBar.tintColor = [UIColor blackColor];
     
+    NSDictionary *new_font = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [UIColor whiteColor], UITextAttributeTextColor,
+                              [UIFont systemFontOfSize:12.0], UITextAttributeFont, nil];
+    
+    [navController.navigationBar setTitleVerticalPositionAdjustment:5 forBarMetrics:UIBarMetricsDefault];
+    [navController.navigationBar setTitleTextAttributes:new_font];
+    
     navigationController = navController;
     
     MMDrawerController * drawerController = [[MMDrawerController alloc]
@@ -106,9 +113,6 @@
     } else {
         NSLog(@"Error saving settings.");
     }
-
-    [[RODItemStore sharedStore] addChat:@"Chat entered background."];
-
     
 }
 
@@ -117,8 +121,6 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
     
-    [[RODItemStore sharedStore] addChat:@"App will enter foreground."];
-
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

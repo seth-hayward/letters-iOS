@@ -42,7 +42,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    _labelStatus = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"cog.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(leaveChat:)];
+    _labelStatus = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"cog_2.png"] style:UIBarButtonItemStylePlain target:self action:@selector(leaveChat:)];
     [self.navigationItem setRightBarButtonItem:_labelStatus animated:YES];
     
     [self enterChat];
@@ -67,20 +67,18 @@
 {
     [super viewWillAppear:animated];
     
-    if([RODItemStore sharedStore].chatConnection.state == reconnecting) {
-        [[RODItemStore sharedStore].chatConnection stop];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+
+    [super viewDidAppear:animated];
+    
+    
+    if([RODItemStore sharedStore].chatConnection.state == reconnecting || [RODItemStore sharedStore].chatConnection.state == disconnected) {
         [self enterChat];
         [self addSimpleMessage:[NSString stringWithFormat:@"viewWillAppear: reconnecting, %d", [RODItemStore sharedStore].chatConnection.state]];
+        return;
     }
-    
-    if([RODItemStore sharedStore].chatConnection.state == disconnected) {
-        [[RODItemStore sharedStore].chatConnection stop];
-        [self enterChat];
-        [self addSimpleMessage:[NSString stringWithFormat:@"viewWillAppear: disconnected, %d", [RODItemStore sharedStore].chatConnection.state]];
-        
-    }
-    
-    [[self navigationItem] setTitle:[NSString stringWithFormat:@"chat (%d)", [RODItemStore sharedStore].chatConnection.state]];
     
 }
 
@@ -195,7 +193,7 @@
 - (void)requestBacklog:(UIRefreshControl *)refreshControl
 {
 
-    if([RODItemStore sharedStore].chatConnection.state == disconnected) {
+    if([RODItemStore sharedStore].chatConnection.state == disconnected || [RODItemStore sharedStore].chatConnection.state == reconnecting) {
         [self enterChat];
         return;
     }
@@ -208,7 +206,7 @@
 - (void)askForBacklog {
 
     if([RODItemStore sharedStore].chatConnection.state == reconnecting || [RODItemStore sharedStore].chatConnection.state == disconnected) {
-        [[RODItemStore sharedStore].chatConnection stop];
+        [[RODItemStore sharedStore].chatConnection disconnect];
         
         [self addSimpleMessage:@"Chat connection had disconnected or was stalled, entering chat again."];
         [self enterChat];
