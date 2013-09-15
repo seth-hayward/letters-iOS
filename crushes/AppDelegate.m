@@ -50,6 +50,8 @@
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lettersScrollVC];
     navController.navigationBar.tintColor = [UIColor blackColor];
+    [navController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [navController.navigationBar setBackgroundColor:[UIColor blackColor]];
     
     NSDictionary *new_font = [NSDictionary dictionaryWithObjectsAndKeys:
                               [UIColor whiteColor], UITextAttributeTextColor,
