@@ -41,21 +41,26 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-
-    NSLog(@"viewDidLoad.");
     
-    _labelStatus = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(enterChat:)];
+    _labelStatus = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"cog.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(leaveChat:)];
     [self.navigationItem setRightBarButtonItem:_labelStatus animated:YES];
     
-    [[self navigationItem] setTitle:[NSString stringWithFormat:@"chat (%d)", [RODItemStore sharedStore].chatConnection.state]];
-    
     [self enterChat];
-            
+
 }
 
-- (void)chatReconnected;
+- (void)leaveChat:(UIBarButtonItem *)button
 {
-    [self addSimpleMessage:@"The chat has reconnected."];
+    if([RODItemStore sharedStore].chatConnection) {
+        [[RODItemStore sharedStore].chatConnection disconnect];
+    }
+    
+    //[[RODItemStore sharedStore] clearChats];
+
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.navigationController popViewControllerAnimated:NO];
+    [appDelegate.navigationController pushViewController:appDelegate.chatNameViewController animated:YES];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -190,6 +195,11 @@
 - (void)requestBacklog:(UIRefreshControl *)refreshControl
 {
 
+    if([RODItemStore sharedStore].chatConnection.state == disconnected) {
+        [self enterChat];
+        return;
+    }
+    
     [refreshControl endRefreshing];
     [self askForBacklog];
     
@@ -265,11 +275,6 @@
         
 }
 
--(IBAction)refresChat:(id)sender
-{
-    [self enterChat];
-}
-
 -(void)enterChat:(UIBarButtonItem *)button
 {
     [self enterChat];
@@ -281,13 +286,7 @@
     if([RODItemStore sharedStore].chatConnection) {
         [[RODItemStore sharedStore].chatConnection disconnect];
     }
-    
-    if([RODItemStore sharedStore].chatConnection.state == reconnecting) {
-        //[chatConnection stop];
-        [self addSimpleMessage:@"Reconnecting, not going to try just yet..."];
-        return;
-    }
-    
+        
     [self.loadingChat startAnimating];
     
     // add refresh control
@@ -299,13 +298,7 @@
     [RODItemStore sharedStore].chatConnection.delegate = self;
     
     [self.textMessage setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
-    
-
-//    if([RODItemStore sharedStore].chatHub) {
-//        // chathub was already initialized prior, lets do cleanup
-//        [self addSimpleMessage:@"chatHub was already initialized."];
-//    }
-    
+        
     [RODItemStore sharedStore].chatHub = [[RODItemStore sharedStore].chatConnection createHubProxy:@"VisitorUpdate"];
     
     [RODItemStore sharedStore].chatConnection.reconnected = ^{
