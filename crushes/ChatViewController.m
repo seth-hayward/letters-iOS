@@ -325,10 +325,8 @@
 {
     
     self.countDown--;
-    
-    NSLog(@"countDownTick: %d", self.countDown);
-    
-    [[RODItemStore sharedStore] addChat:[NSString stringWithFormat:@"Refreshing: %d", self.countDown]];
+        
+    [[RODItemStore sharedStore] addChat:[NSString stringWithFormat:@"Refreshing: %d seconds", self.countDown]];
     [self.tableChats reloadData];
     
     if(self.countDown == 0) {

@@ -61,6 +61,9 @@
 {
  
     switch ([RODItemStore sharedStore].current_load_level) {
+        case 100:
+            [[self navigationItem] setTitle:[NSString stringWithFormat:@"your bookmarks, page %d", [RODItemStore sharedStore].current_page]];
+            break;            
         case -1:
             [[self navigationItem] setTitle:[NSString stringWithFormat:@"more letters, page %d", [RODItemStore sharedStore].current_page]];
             break;
