@@ -30,8 +30,7 @@
         MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(openDrawer:)];
         [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
         
-        [[self navigationItem] setTitle:@"letters to crushes"];
-        
+        [[self navigationItem] setTitle:@"send your letter"];
         
     }
     

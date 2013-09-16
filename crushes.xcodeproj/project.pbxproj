@@ -130,6 +130,9 @@
 		5D977D0817E66147002DA837 /* RKPostComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D977D0717E66147002DA837 /* RKPostComment.m */; };
 		5D977D1217E68125002DA837 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D977D1117E68125002DA837 /* add.png */; };
 		5D977D1417E6814B002DA837 /* comment_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D977D1317E6814B002DA837 /* comment_add.png */; };
+		5D977D1617E77A72002DA837 /* add_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D977D1517E77A72002DA837 /* add_2.png */; };
+		5D977D1817E77B5C002DA837 /* add_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D977D1717E77B5C002DA837 /* add_3.png */; };
+		5D977D1A17E77C9B002DA837 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D977D1917E77C9B002DA837 /* back.png */; };
 		5DA117FA17DA61F200BDE5D0 /* ChatNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA117F817DA61F100BDE5D0 /* ChatNameViewController.m */; };
 		5DA117FB17DA61F200BDE5D0 /* ChatNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA117F917DA61F200BDE5D0 /* ChatNameViewController.xib */; };
 		5DA117FF17DA783400BDE5D0 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA117FD17DA783400BDE5D0 /* ChatViewController.m */; };
@@ -292,6 +295,9 @@
 		5D977D0717E66147002DA837 /* RKPostComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKPostComment.m; sourceTree = "<group>"; };
 		5D977D1117E68125002DA837 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		5D977D1317E6814B002DA837 /* comment_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment_add.png; sourceTree = "<group>"; };
+		5D977D1517E77A72002DA837 /* add_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_2.png; sourceTree = "<group>"; };
+		5D977D1717E77B5C002DA837 /* add_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_3.png; sourceTree = "<group>"; };
+		5D977D1917E77C9B002DA837 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		5DA117F717DA61F100BDE5D0 /* ChatNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatNameViewController.h; sourceTree = "<group>"; };
 		5DA117F817DA61F100BDE5D0 /* ChatNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatNameViewController.m; sourceTree = "<group>"; };
 		5DA117F917DA61F200BDE5D0 /* ChatNameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatNameViewController.xib; sourceTree = "<group>"; };
@@ -438,7 +444,10 @@
 		5D0BD0431670AAA30088A383 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5D977D1917E77C9B002DA837 /* back.png */,
 				5D977D1317E6814B002DA837 /* comment_add.png */,
+				5D977D1517E77A72002DA837 /* add_2.png */,
+				5D977D1717E77B5C002DA837 /* add_3.png */,
 				5D977D1117E68125002DA837 /* add.png */,
 				5D528CB017C6C43600AAB762 /* J1ButtonImages */,
 				5D528D3917C6CA3B00AAB762 /* heart-15px.png */,
@@ -710,6 +719,9 @@
 				5D977D0517E61B99002DA837 /* AddCommentViewController.xib in Resources */,
 				5D977D1217E68125002DA837 /* add.png in Resources */,
 				5D977D1417E6814B002DA837 /* comment_add.png in Resources */,
+				5D977D1617E77A72002DA837 /* add_2.png in Resources */,
+				5D977D1817E77B5C002DA837 /* add_3.png in Resources */,
+				5D977D1A17E77C9B002DA837 /* back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

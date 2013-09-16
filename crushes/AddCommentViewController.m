@@ -35,12 +35,19 @@
     [self.textCommenterEmail setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideHandler:) name:UIKeyboardWillHideNotification object:nil];
+
+    UIButton *button_back = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button_back setFrame:CGRectMake(0, 0, 30, 30)];
+    [button_back setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [button_back addTarget:self action:@selector(popControllerAndGoBack:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *btnGoBack = [[UIBarButtonItem alloc] initWithCustomView:button_back];
+    
+    [self.navigationItem setLeftBarButtonItem:btnGoBack animated:YES];
     
 }
 
 - (void) keyboardWillHideHandler: (NSNotification *)notification {
-
-    NSLog(@"keyboardWillHideHandler:");
 
     [self resignResponders];
 }
@@ -56,7 +63,6 @@
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    NSLog(@"textViewDidEndEditing");
     [textView resignFirstResponder];
 }
 
@@ -175,7 +181,13 @@
 }
 
 - (IBAction)tapGesture:(id)sender {
-    NSLog(@"tapGesture.");
     [self resignResponders];
 }
+
+-(void)popControllerAndGoBack:(UIBarButtonItem *)button
+{
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.navigationController popViewControllerAnimated:YES];
+}
+
 @end

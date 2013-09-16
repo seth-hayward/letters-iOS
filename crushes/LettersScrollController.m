@@ -181,7 +181,7 @@
         NSMutableAttributedString *attributeStringHearts;
         
         if([full_letter.letterUp isEqualToNumber:[NSNumber numberWithInt:1]]) {
-            attributeStringHearts = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ heart", [full_letter.letterUp stringValue]]];
+            attributeStringHearts = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ hearts", [full_letter.letterUp stringValue]]];
         } else {
             attributeStringHearts = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ hearts", [full_letter.letterUp stringValue]]];
         }
@@ -276,9 +276,7 @@
     }
     
     [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
-    
-    NSLog(@"Finished loading letters for load_level %d", [[RODItemStore sharedStore] current_load_level]);
-    
+        
     if([[RODItemStore sharedStore] current_load_level] == 120) {
         AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
         [appDelegate.navigationController popViewControllerAnimated:true];
@@ -317,7 +315,6 @@
 -(void)clickedEdit:(UITapGestureRecognizer *)tapGesture
 {
     NSNumber *letter_id = [NSNumber numberWithInt:[tapGesture.view tag] - 100000];
-    NSLog(@"Edit clicked, tag: %@", letter_id);
     [[RODItemStore sharedStore] editLetter:letter_id];
     
 }
@@ -334,9 +331,7 @@
     NSInteger tag_int = [tapGesture.view tag];
     
     int letter_id = tag_int / 1000;
-    
-    NSLog(@"Clicked heart: %d", letter_id);
-    
+        
     NSURL *baseURL = [NSURL URLWithString:@"http://letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
     
