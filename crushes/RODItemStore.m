@@ -147,7 +147,8 @@
 
 - (void)addChat:(NSString *)chat
 {
-    [_allChats insertObject:chat atIndex:0];
+    NSString *clean_chat = [self cleanText:chat];
+    [_allChats insertObject:clean_chat atIndex:0];
 }
 
 + (RODItemStore *)sharedStore {
