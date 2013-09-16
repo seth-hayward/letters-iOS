@@ -170,6 +170,7 @@
 - (void)addSimpleBacklog:(NSString *)chat
 {
     NSLog(@"chat backlog fired.");
+    [refreshTimer invalidate];
     
     NSArray *simple_chat_backlog = [chat componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         
@@ -213,6 +214,10 @@
 }
 
 - (void)askForBacklog {
+
+    self.countDown = 20;
+    
+    refreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(countDownTick:) userInfo:nil repeats:YES];
 
     if([RODItemStore sharedStore].chatConnection.state == reconnecting || [RODItemStore sharedStore].chatConnection.state == disconnected) {
         [[RODItemStore sharedStore].chatConnection disconnect];
@@ -293,8 +298,6 @@
     if([RODItemStore sharedStore].chatConnection) {
         [[RODItemStore sharedStore].chatConnection disconnect];
     }
-
-    self.countDown = 15;
     
     [self.loadingChat startAnimating];
     
@@ -333,18 +336,18 @@
         [RODItemStore sharedStore].connected_to_chat = true;
         
     };
-    
-    refreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDownTick:) userInfo:nil repeats:YES];
-    
+        
     [[RODItemStore sharedStore].chatConnection start];
 
 }
 
-- (void) countDownTick
+- (void) countDownTick:(NSTimer *)timer
 {
     
     self.countDown--;
-
+    
+    NSLog(@"countDownTick: %d", self.countDown);
+    
     [[RODItemStore sharedStore] addChat:[NSString stringWithFormat:@"Refreshing: %d", self.countDown]];
     [self.tableChats reloadData];
     
