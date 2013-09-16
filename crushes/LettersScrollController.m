@@ -121,8 +121,14 @@
         
         [scv.labelComments setUserInteractionEnabled:true];
         
-        UITapGestureRecognizer *tapComments = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedComments:)];
-        [scv.labelComments addGestureRecognizer:tapComments];
+        
+        if(full_letter.letterComments == [NSNumber numberWithInt:0]) {
+            UITapGestureRecognizer *tapComments = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedAddComment:)];
+            [scv.labelComments addGestureRecognizer:tapComments];            
+        } else {
+            UITapGestureRecognizer *tapComments = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedComments:)];
+            [scv.labelComments addGestureRecognizer:tapComments];
+        }
         
         [scv.labelHearts setUserInteractionEnabled:true];
         
@@ -293,6 +299,18 @@
     // now tell the web view to change the page
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate.navigationController pushViewController:comments animated:true];
+    
+}
+
+- (void)clickedAddComment:(UITapGestureRecognizer *)tapGesture
+{
+    
+    int letter_id = [tapGesture.view tag] / 100;
+    
+    // now tell the web view to change the page
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    appDelegate.addCommentViewController.letter_id = letter_id;
+    [appDelegate.navigationController pushViewController:appDelegate.addCommentViewController animated:true];
     
 }
 

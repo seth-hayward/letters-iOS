@@ -92,7 +92,7 @@
     [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
         NSLog(@"Loaded comments: %d", mappingResult.array.count);
-        
+                
         for(int i = 0; i < mappingResult.array.count; i++) {
             
             RKComment *com = mappingResult.array[i];
@@ -152,12 +152,18 @@
     
 }
 
-- (IBAction)addCommentPlease:(UIBarButtonItem *)button {
+- (void)addCommentRequested
+{
     // now tell the web view to change the page
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     
-    appDelegate.addCommentViewController.letter_id = letter_id;    
-    [appDelegate.navigationController pushViewController:appDelegate.addCommentViewController animated:true];    
+    appDelegate.addCommentViewController.letter_id = letter_id;
+    [appDelegate.navigationController pushViewController:appDelegate.addCommentViewController animated:true];
+    
+}
+
+- (IBAction)addCommentPlease:(UIBarButtonItem *)button {
+    [self addCommentRequested];
 }
 
 -(void)loadCommentData
@@ -241,7 +247,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    NSLog(@"I appeared: %d", [[[RODItemStore sharedStore] allComments] count]);
     
     if([[[RODItemStore sharedStore] allComments] count] == 0)
     {
