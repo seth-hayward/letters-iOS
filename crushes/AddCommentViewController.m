@@ -44,6 +44,9 @@
     UIBarButtonItem *btnGoBack = [[UIBarButtonItem alloc] initWithCustomView:button_back];
     
     [self.navigationItem setLeftBarButtonItem:btnGoBack animated:YES];
+
+    [[self navigationItem] setTitle:@"add comment"];
+
     
 }
 
