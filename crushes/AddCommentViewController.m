@@ -76,8 +76,8 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    
-    if([text isEqualToString:@"\n"]) {
+        
+    if([text isEqualToString:@"\n"] && [textView tag] != 142) {
         [textView resignFirstResponder];
         return NO;
     }
