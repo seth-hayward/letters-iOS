@@ -24,8 +24,7 @@
         [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
         
         [[self navigationItem] setTitle:@"enter chat"];
-        
-        
+                
     }
     return self;
 }

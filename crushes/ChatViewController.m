@@ -62,8 +62,6 @@
         [[RODItemStore sharedStore].chatConnection disconnect];
     }
     
-    //[[RODItemStore sharedStore] clearChats];
-
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate.navigationController popViewControllerAnimated:NO];
     [appDelegate.navigationController pushViewController:appDelegate.chatNameViewController animated:YES];
@@ -82,7 +80,6 @@
     
     if([RODItemStore sharedStore].chatConnection.state == reconnecting || [RODItemStore sharedStore].chatConnection.state == disconnected) {
         [self enterChat];
-        [self addSimpleMessage:[NSString stringWithFormat:@"viewWillAppear: reconnecting, %d", [RODItemStore sharedStore].chatConnection.state]];
         return;
     }
     
@@ -135,23 +132,8 @@
     switch (newState) {
         case connected:
             [refreshTimer invalidate];
-            
-        case reconnecting:
-
-            //[_labelStatus setEnabled:true];
-            
-            [self addSimpleMessage:@"Connection to the chat was lost, trying to reconnect... press the refresh button to try again."];
-            break;
-        case disconnected:
-            
-            //[_labelStatus setEnabled:true];
-            [self addSimpleMessage:@"Disconnected. Press refresh button to enter chat again."];
-            break;
         default:
-
-            //[_labelStatus setEnabled:false];
             break;
-            
     }
     
 }
@@ -169,7 +151,6 @@
 
 - (void)addSimpleBacklog:(NSString *)chat
 {
-    NSLog(@"chat backlog fired.");
     [refreshTimer invalidate];
     
     NSArray *simple_chat_backlog = [chat componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
@@ -178,7 +159,6 @@
         
         
         if(chat_line.length > 0) {
-            //NSLog(@"added: %@", chat_line);
             [[RODItemStore sharedStore] addChat:chat_line];
             NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
             [self.tableChats insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationNone];
@@ -236,7 +216,7 @@
     
     [[RODItemStore sharedStore] clearChats];
     
-    [self addSimpleMessage:@"Requesting backlog."];
+    [self addSimpleMessage:@"Refreshing chat, one moment please."];
     
     [self.tableChats reloadData];
     
@@ -320,12 +300,12 @@
     };
                                           
     
-    [RODItemStore sharedStore].chatConnection.reconnected = ^{
-        NSLog(@"Reconnected.. hihihi");
-        [self addSimpleMessage:@"chatConnection.reconnected fired."];
- //       [self askForBacklog];
-    };
-        
+//    [RODItemStore sharedStore].chatConnection.reconnected = ^{
+//        NSLog(@"Reconnected.. hihihi");
+//        [self addSimpleMessage:@"chatConnection.reconnected fired."];
+// //       [self askForBacklog];
+//    };
+    
     [RODItemStore sharedStore].chatConnection.started = ^{
         NSLog(@"Connection started.");
         [[RODItemStore sharedStore].chatHub invoke:@"join" withArgs:[NSArray arrayWithObject:[RODItemStore sharedStore].settings.chatName]];
