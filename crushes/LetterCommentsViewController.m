@@ -32,10 +32,32 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+
+    [self pullCommentData];
+
+}
+
+-(void)pullCommentData
+{
+
     // clear previous comments
     [[RODItemStore sharedStore] clearComments];
-
+    
+    // scroll to top
+    [self.scrollView setContentOffset:CGPointZero animated:YES];
+    
     self.testWebView.delegate = self;
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:CGRectMake(0, 0, 30, 30)];
+    [button setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(addCommentPlease:) forControlEvents:UIControlEventTouchUpInside];
+    
+    btnAddComment = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
+    [self.navigationItem setRightBarButtonItem:btnAddComment animated:YES];
+    
+    
     
     NSURL *baseURL = [NSURL URLWithString:@"http://letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
@@ -83,13 +105,13 @@
             }
             
             NSString *commentHTML = [NSString stringWithFormat:@"<html> \n"
-                                    "<head> \n"
-                                    "<style type=\"text/css\"> \n"
-                                    "body {font-family: \"%@\"; font-size: %@;}\n"
-                                    "</style> \n"
-                                    "</head> \n"
-                                    "<body>%@</body> \n"
-                                    "</html>", @"helvetica", [NSNumber numberWithInt:14], com.commentMessage];
+                                     "<head> \n"
+                                     "<style type=\"text/css\"> \n"
+                                     "body {font-family: \"%@\"; font-size: %@;}\n"
+                                     "</style> \n"
+                                     "</head> \n"
+                                     "<body>%@</body> \n"
+                                     "</html>", @"helvetica", [NSNumber numberWithInt:14], com.commentMessage];
             com.commentMessage = commentHTML;
             
             [[RODItemStore sharedStore] addComment:com];
@@ -103,7 +125,7 @@
     }];
     
     [objectRequestOperation start];
-
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -128,6 +150,14 @@
 
     self.comment_index++;
     
+}
+
+- (IBAction)addCommentPlease:(UIBarButtonItem *)button {
+    // now tell the web view to change the page
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    appDelegate.addCommentViewController.letter_id = letter_id;    
+    [appDelegate.navigationController pushViewController:appDelegate.addCommentViewController animated:true];    
 }
 
 -(void)loadCommentData
@@ -195,20 +225,6 @@
         
     }
     
-    AddCommentViewController *add_comment = [[AddCommentViewController alloc] init];
-    add_comment.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width - 5, add_comment.view.bounds.size.height);
-    
-    [add_comment.btnAdd addTarget:self action:@selector(addComment:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.scrollView addSubview:add_comment.view];
-    
-    addComment = add_comment;
-    
-    
-    yOffset += add_comment.view.bounds.size.height;
-    
-    
-    
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = screenRect.size.height;
     if(yOffset < screenHeight)
@@ -222,106 +238,15 @@
     
 }
 
-- (void)addComment:(UIButton *)button
+- (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    NSLog(@"I appeared: %d", [[[RODItemStore sharedStore] allComments] count]);
     
-	// Create a new comment and POST it to the server
-	RKPostComment* comment = [RKPostComment new];
-    comment.letterId = [NSNumber numberWithInt:letter_id];
-    comment.comment = [addComment.textComment text];
-    comment.commenterEmail = [addComment.textCommenterEmail text];
-    comment.commenterName = [addComment.textCommenterName text];
-    
-    NSURL *baseURL = [NSURL URLWithString:@"http://letterstocrushes.com"];
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
-    
-    [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
-    
-    RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
-    
-    RKObjectMapping* responseObjectMapping;
-    RKResponseDescriptor* responseDescriptor;
-    RKRequestDescriptor* requestDescriptor;
-    NSString *real_url;
-    
-    //
-    // send comment
-    //
-        
-    responseObjectMapping = [RKObjectMapping mappingForClass:[RKComment class]];
-        
-    [responseObjectMapping addAttributeMappingsFromDictionary:@{
-     @"Id": @"Id",
-     @"commentMessage": @"commentMessage",
-     @"letterId": @"letterId",
-     @"sendEmail": @"sendEmail",
-     @"commentDate": @"commentDate",
-     @"hearts": @"hearts",
-     @"commenterEmail": @"commenterEmail",
-     @"commenterGuid": @"commenterGuid",
-     @"commenterIP": @"commenterIP",
-     @"commenterName": @"commenterName"
-     }];
-    
-    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-        
-    RKObjectMapping* letterRequestMapping = [RKObjectMapping requestMapping];
-    [letterRequestMapping addAttributeMappingsFromDictionary:@{
-     @"letterId": @"letterId",
-     @"comment" : @"comment",
-     @"commenterName" : @"commenterName",
-     @"commenterEmail" : @"commenterEmail"}];
-    
-    requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:letterRequestMapping objectClass:[RKPostComment class] rootKeyPath:@""];
-    [objectManager addRequestDescriptor:requestDescriptor];
-    
-    real_url = @"http://letterstocrushes.com/api/add_comment";
-    
-    [objectManager addResponseDescriptor:responseDescriptor];
-    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
-    
-    [objectManager postObject:comment path:real_url parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        
-        // now we just need to check the response
-        // there may have been an error on the server that
-        // we want to check for
-        RKComment* msg = mappingResult.array[0];
-        
-        // save the cId for future references
-        // we use this id to know if we can hide the comment or not
-        [RODItemStore sharedStore].settings.cId = msg.commenterGuid;
-        [[RODItemStore sharedStore] saveSettings];
-        
-        // we good
-        // .. now reload this screen somehow
-
-        LetterCommentsViewController *comments = [[LetterCommentsViewController alloc] init];
-        comments.letter_id = letter_id;
-        
-        // now tell the web view to change the page
-        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-        [appDelegate.navigationController popViewControllerAnimated:YES];
-        [appDelegate.navigationController pushViewController:comments animated:true];
-                
-        [WCAlertView showAlertWithTitle:@"Success!" message:@"Your comment was sent." customizationBlock:^(WCAlertView *alertView) {
-            alertView.style = WCAlertViewStyleBlackHatched;
-        } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
-        } cancelButtonTitle:@"Great!" otherButtonTitles:nil];
-        
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        
-        // this occurs when restkit can not send a post -- this could happen
-        // if the user does not have internet connection at the time
-        UIAlertView *alert_post_error = [[UIAlertView alloc] initWithTitle:@"iOS Post Error" message: [error description] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
-        [alert_post_error show];
-    }];
-        
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    NSLog(@"textViewDidEndEditing");
-    [textView resignFirstResponder];
+    if([[[RODItemStore sharedStore] allComments] count] == 0)
+    {
+        [self pullCommentData];
+    }
 }
 
 @end

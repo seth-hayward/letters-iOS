@@ -14,6 +14,7 @@
 #import "MenuViewController.h"
 #import "ChatNameViewController.h"
 #import "ChatViewController.h"
+#import "AddCommentViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
@@ -25,6 +26,7 @@
 @property (strong, nonatomic) MenuViewController *menuViewController;
 @property (strong, nonatomic) ChatNameViewController *chatNameViewController;
 @property (strong, nonatomic) ChatViewController *chatViewController;
+@property (strong, nonatomic) AddCommentViewController *addCommentViewController;
 @property (strong, nonatomic) UINavigationController *navigationController;
 
 @end

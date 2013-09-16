@@ -15,7 +15,8 @@
 #import "SearchViewController.h"
 
 @implementation AppDelegate
-@synthesize sendViewController, drawer, lettersScrollController, navigationController, searchViewController, menuViewController, chatViewController, chatNameViewController;
+@synthesize sendViewController, drawer, lettersScrollController, navigationController, searchViewController,
+    menuViewController, chatViewController, chatNameViewController, addCommentViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -47,6 +48,10 @@
     LettersScrollController *lettersScrollVC = [[LettersScrollController alloc] init];
     lettersScrollController = lettersScrollVC;
     lettersScrollController.trackedViewName = @"Letters";
+    
+    AddCommentViewController *addCommentVC = [[AddCommentViewController alloc] init];
+    addCommentViewController = addCommentVC;
+    addCommentViewController.trackedViewName = @"Add Comment";
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lettersScrollVC];
     navController.navigationBar.tintColor = [UIColor blackColor];

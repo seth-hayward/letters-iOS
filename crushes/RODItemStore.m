@@ -387,14 +387,14 @@
             AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
             [appDelegate.menuViewController.tableView reloadData];
             
-            [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"You have logged in. Welcome back!" customizationBlock:^(WCAlertView *alertView) {
-                alertView.style = WCAlertViewStyleBlackHatched;
-            } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
-                if(buttonIndex == 1) {
-                    [self generateLoginAlert];
-                }
-            } cancelButtonTitle:@"ok" otherButtonTitles: nil
-             ];
+//            [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"You have logged in. Welcome back!" customizationBlock:^(WCAlertView *alertView) {
+//                alertView.style = WCAlertViewStyleBlackHatched;
+//            } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+//                if(buttonIndex == 1) {
+//                    [self generateLoginAlert];
+//                }
+//            } cancelButtonTitle:@"ok" otherButtonTitles: nil
+//             ];
             
             
         } else {

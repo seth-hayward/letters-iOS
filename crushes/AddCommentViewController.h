@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface AddCommentViewController : UIViewController <UITextViewDelegate>
+
+@interface AddCommentViewController : GAITrackedViewController <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *textCommenterName;
 @property (weak, nonatomic) IBOutlet UITextView *textCommenterEmail;
 @property (weak, nonatomic) IBOutlet UITextView *textComment;
-@property (weak, nonatomic) IBOutlet UIButton *btnAdd;
+@property (nonatomic) int letter_id;
+- (IBAction)btnAddComment:(id)sender;
+- (IBAction)tapGesture:(id)sender;
 
 @end

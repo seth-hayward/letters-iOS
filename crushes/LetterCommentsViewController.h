@@ -12,7 +12,7 @@
 
 @interface LetterCommentsViewController : GAITrackedViewController <UIWebViewDelegate, UITextViewDelegate>
 {
-    AddCommentViewController *addComment;
+    UIBarButtonItem* btnAddComment;
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
