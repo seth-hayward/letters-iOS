@@ -3,6 +3,8 @@ letters-iOS
 
 This project is the native iOS app to the letters project.
 
+You can find it in iTunes: https://itunes.apple.com/us/app/crushes/id670350082?ls=1&mt=8
+
 Main tabs:
 + Home page
 + More page

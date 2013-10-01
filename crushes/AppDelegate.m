@@ -55,14 +55,12 @@
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lettersScrollVC];
     navController.navigationBar.tintColor = [UIColor blackColor];
-    [navController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    [navController.navigationBar setBackgroundColor:[UIColor blackColor]];
+    [navController.navigationBar setBackgroundColor:[UIColor whiteColor]];
     
     NSDictionary *new_font = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [UIColor whiteColor], UITextAttributeTextColor,
+                              [UIColor blackColor], UITextAttributeTextColor,
                               [UIFont systemFontOfSize:12.0], UITextAttributeFont, nil];
     
-    [navController.navigationBar setTitleVerticalPositionAdjustment:5 forBarMetrics:UIBarMetricsDefault];
     [navController.navigationBar setTitleTextAttributes:new_font];
     
     navigationController = navController;
@@ -79,6 +77,8 @@
     
     [[self window] setRootViewController:drawerController];
 
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
     //
     // hook up rotation notification listeners
     //
