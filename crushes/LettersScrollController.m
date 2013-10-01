@@ -54,7 +54,8 @@
 {
     [self.testWebView setDelegate:self];
     
-    [self redrawNavigationTitle];    
+    [self redrawNavigationTitle];
+    self.scrollView.decelerationRate = UIScrollViewDecelerationRateFast;
 }
 
 - (void) redrawNavigationTitle
