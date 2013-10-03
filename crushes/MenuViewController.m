@@ -114,7 +114,7 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     
@@ -198,7 +198,8 @@
     }
     
     // reload the data so the checkbox updates
-    [tableView reloadData];
+    [_tableView reloadData];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
