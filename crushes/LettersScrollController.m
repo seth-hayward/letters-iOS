@@ -8,13 +8,13 @@
 
 #import "LettersScrollController.h"
 #import "LetterCommentsViewController.h"
-#import "MMDrawerBarButtonItem.h"
 #import "RODItemStore.h"
 #import "RKFullLetter.h"
 #import "ScrollViewItem.h"
 #import "AppDelegate.h"
 #import "PagerViewController.h"
 #import "J1Button.h"
+#import "NavigationController.h"
 
 @implementation LettersScrollController
 @synthesize current_receive, loaded, letter_index;
@@ -23,13 +23,6 @@
 {
     self = [super init];
     if(self) {
-        
-        UIBarButtonItem *button_refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshOriginalPage)];
-        [button_refresh setBackgroundImage:[UIImage new] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-        [[self navigationItem] setRightBarButtonItem:button_refresh];
-        
-        MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(openDrawer:)];
-        [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
         
         [[self navigationItem] setTitle:@"letters to crushes"];
 
@@ -55,6 +48,20 @@
     [self.testWebView setDelegate:self];
     
     [self redrawNavigationTitle];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    UIBarButtonItem *button_refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshOriginalPage)];
+    [button_refresh setBackgroundImage:[UIImage new] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[self navigationItem] setRightBarButtonItem:button_refresh];
+    
+    //MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(openDrawer:)];
+    UIBarButtonItem *leftDrawerButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:(NavigationController *)self.navigationController action:@selector(showMenu)];
+    [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+
 }
 
 - (void) redrawNavigationTitle
@@ -408,13 +415,13 @@
 
 }
 
-- (void)openDrawer:(id)sender {
-    
-    // now tell the web view to change the page
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    [appDelegate.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-    
-}
+//- (void)openDrawer:(id)sender {
+//    
+//    // now tell the web view to change the page
+//    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+//    [appDelegate.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+//    
+//}
 
 -(void)refreshOriginalPage
 {

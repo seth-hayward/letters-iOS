@@ -225,11 +225,11 @@
     
 }
 
-- (void)openDrawer:(id)sender {
-    // now tell the web view to change the page
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    [appDelegate.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];    
-}
+//- (void)openDrawer:(id)sender {
+//    // now tell the web view to change the page
+//    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+//    [appDelegate.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];    
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

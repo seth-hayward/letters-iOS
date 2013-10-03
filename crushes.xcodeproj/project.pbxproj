@@ -138,6 +138,7 @@
 		5DA117FF17DA783400BDE5D0 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA117FD17DA783400BDE5D0 /* ChatViewController.m */; };
 		5DA1180017DA783400BDE5D0 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA117FE17DA783400BDE5D0 /* ChatViewController.xib */; };
 		5DA1180317DAD02300BDE5D0 /* RKChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1180217DAD02300BDE5D0 /* RKChat.m */; };
+		5DCD9D9317FCC73A0048504A /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD9D9217FCC73A0048504A /* NavigationController.m */; };
 		5DE2531C17ACC2150069EC96 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2531B17ACC2150069EC96 /* comment.png */; };
 		5DE2533317B130790069EC96 /* LetterCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2533117B130790069EC96 /* LetterCommentsViewController.m */; };
 		5DE2533417B130790069EC96 /* LetterCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2533217B130790069EC96 /* LetterCommentsViewController.xib */; };
@@ -306,6 +307,8 @@
 		5DA117FE17DA783400BDE5D0 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		5DA1180117DAD02300BDE5D0 /* RKChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKChat.h; sourceTree = "<group>"; };
 		5DA1180217DAD02300BDE5D0 /* RKChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKChat.m; sourceTree = "<group>"; };
+		5DCD9D9117FCC73A0048504A /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		5DCD9D9217FCC73A0048504A /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		5DE2531B17ACC2150069EC96 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		5DE2533017B130790069EC96 /* LetterCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterCommentsViewController.h; sourceTree = "<group>"; };
 		5DE2533117B130790069EC96 /* LetterCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterCommentsViewController.m; sourceTree = "<group>"; };
@@ -410,6 +413,8 @@
 				5D528CA517C3F69100AAB762 /* SearchViewController.h */,
 				5D528CA617C3F69200AAB762 /* SearchViewController.m */,
 				5D528CA717C3F69200AAB762 /* SearchViewController.xib */,
+				5DCD9D9117FCC73A0048504A /* NavigationController.h */,
+				5DCD9D9217FCC73A0048504A /* NavigationController.m */,
 				5D7609AB179CDD660018F27B /* MenuViewController.h */,
 				5D7609AC179CDD660018F27B /* MenuViewController.m */,
 				5D528C9A17C12FEF00AAB762 /* PagerViewController.h */,
@@ -771,6 +776,7 @@
 				5D458D80178B954000B71314 /* RKFullLetter.m in Sources */,
 				5D458D8F178C7DC600B71314 /* RKEditLetter.m in Sources */,
 				5D458D92178C86F800B71314 /* RKEditMessage.m in Sources */,
+				5DCD9D9317FCC73A0048504A /* NavigationController.m in Sources */,
 				5D7609AE179CDD660018F27B /* MenuViewController.m in Sources */,
 				5D7609B2179DBDF00018F27B /* RODItem.m in Sources */,
 				5D7609B5179DCE100018F27B /* RODItemStore.m in Sources */,
@@ -866,7 +872,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "crushes/crushes-Prefix.pch";
 				INFOPLIST_FILE = "crushes/crushes-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -883,7 +889,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "crushes/crushes-Prefix.pch";
 				INFOPLIST_FILE = "crushes/crushes-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "703DFDCF-0196-4297-B57F-0CF04B1773B0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "703DFDCF-0196-4297-B57F-0CF04B1773B0";

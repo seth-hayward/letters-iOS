@@ -11,42 +11,42 @@
 #import "RODItemStore.h"
 #import "AppDelegate.h"
 #import "WCAlertView.h"
+#import <REFrostedViewController.h>
 
 @implementation MenuViewController
+@synthesize tableView, navigationController;
 
-- (id) init {
-    self = [super initWithStyle:UITableViewStylePlain];
-    if (self) {
-        
-        // hard code the creation of the items...
-        [[RODItemStore sharedStore] createItem:ViewTypeHome];
-        [[RODItemStore sharedStore] createItem:ViewTypeMore];
-        [[RODItemStore sharedStore] createItem:ViewTypeSearch];
-        [[RODItemStore sharedStore] createItem:ViewTypeSend];
-        [[RODItemStore sharedStore] createItem:ViewTypeChat];
-        [[RODItemStore sharedStore] createItem:ViewTypeLogin];
-        
-        self.tableView.scrollEnabled = NO;
-        
-        // border
-        
-        [self.tableView.layer setBorderWidth: 1.0];
-        [self.tableView.layer setMasksToBounds:YES];
-        [self.tableView.layer setBorderColor:[[UIColor blackColor] CGColor]];
-                
-    }
-    return self;
+-(void)viewDidLoad
+{
+    
+    [[RODItemStore sharedStore] createItem:ViewTypeHome];
+    [[RODItemStore sharedStore] createItem:ViewTypeMore];
+    [[RODItemStore sharedStore] createItem:ViewTypeSearch];
+    [[RODItemStore sharedStore] createItem:ViewTypeSend];
+    [[RODItemStore sharedStore] createItem:ViewTypeChat];
+    [[RODItemStore sharedStore] createItem:ViewTypeLogin];
+    
+    self.view.opaque = NO;
+    
+    self.tableView = [[UITableView alloc] init]; // Frame will be automatically set
+    self.tableView.separatorColor = [UIColor colorWithRed:150/255.0f green:161/255.0f blue:177/255.0f alpha:1.0f];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.opaque = NO;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.tableHeaderView = ({
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 29.0f)];
+        view;
+    });
+    [self.view addSubview:self.tableView];
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];    
-}
-
--(id) initWithStyle:(UITableViewStyle)style
-{
-    return [self init];
 }
 
 - (UIView *)loginView
@@ -82,6 +82,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [[[RODItemStore sharedStore] allMenuItems] count];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = [UIColor clearColor];
+    cell.textLabel.textColor = [UIColor colorWithRed:62/255.0f green:68/255.0f blue:75/255.0f alpha:1.0f];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:17];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

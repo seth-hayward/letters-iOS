@@ -8,11 +8,12 @@
 
 #import "AppDelegate.h"
 #import "SendViewController.h"
-#import "MMDrawerController.h"
 #import "MenuViewController.h"
 #import "GAI.h"
 #import "RODItemStore.h"
 #import "SearchViewController.h"
+#import <REFrostedViewController.h>
+#import "NavigationController.h"
 
 @implementation AppDelegate
 @synthesize sendViewController, drawer, lettersScrollController, navigationController, searchViewController,
@@ -53,7 +54,7 @@
     addCommentViewController = addCommentVC;
     addCommentViewController.trackedViewName = @"Add Comment";
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lettersScrollVC];
+    NavigationController *navController = [[NavigationController alloc] initWithRootViewController:lettersScrollVC];
     navController.navigationBar.tintColor = [UIColor blackColor];
     [navController.navigationBar setBackgroundColor:[UIColor whiteColor]];
     
@@ -65,17 +66,20 @@
     
     navigationController = navController;
     
-    MMDrawerController * drawerController = [[MMDrawerController alloc]
-                                             initWithCenterViewController:navController
-                                             leftDrawerViewController:leftDrawer];
+    //MMDrawerController * drawerController = [[MMDrawerController alloc]
+    //                                        initWithCenterViewController:navController
+    //                                         leftDrawerViewController:leftDrawer];
+    
+    REFrostedViewController *drawerController = [[REFrostedViewController alloc] init];
     drawer = drawerController;
     
-    [drawerController setMaximumLeftDrawerWidth:150.0];
-    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
-    [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-    [drawerController setShowsShadow:false];
     
-    [[self window] setRootViewController:drawerController];
+    //[drawerController setMaximumLeftDrawerWidth:150.0];
+    //[drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    //[drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    //[drawerController setShowsShadow:false];
+    
+    [[self window] setRootViewController:navController];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
