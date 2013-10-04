@@ -27,6 +27,10 @@
     [[RODItemStore sharedStore] createItem:ViewTypeLogin];
     
     self.view.opaque = NO;
+    self.view.backgroundColor = [UIColor clearColor];
+    self.view.alpha = 0.85f;
+    
+    [self setThreshold:150.0f];
     
     self.tableView = [[UITableView alloc] init]; // Frame will be automatically set
     self.tableView.separatorColor = [UIColor colorWithRed:150/255.0f green:161/255.0f blue:177/255.0f alpha:1.0f];

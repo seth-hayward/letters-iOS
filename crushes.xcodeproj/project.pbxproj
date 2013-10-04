@@ -139,6 +139,11 @@
 		5DA1180017DA783400BDE5D0 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA117FE17DA783400BDE5D0 /* ChatViewController.xib */; };
 		5DA1180317DAD02300BDE5D0 /* RKChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1180217DAD02300BDE5D0 /* RKChat.m */; };
 		5DC4F32217FD214500B2117D /* hamburger-150px.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F32117FD214500B2117D /* hamburger-150px.png */; };
+		5DC4F32417FD28D100B2117D /* back-150px.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F32317FD28D100B2117D /* back-150px.png */; };
+		5DC4F32917FD2AA400B2117D /* add-comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F32517FD2AA400B2117D /* add-comment.png */; };
+		5DC4F32A17FD2AA400B2117D /* back-2-150px.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F32617FD2AA400B2117D /* back-2-150px.png */; };
+		5DC4F32B17FD2AA400B2117D /* comment-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F32717FD2AA400B2117D /* comment-1.png */; };
+		5DC4F32C17FD2AA400B2117D /* comment-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F32817FD2AA400B2117D /* comment-2.png */; };
 		5DCD9D9317FCC73A0048504A /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD9D9217FCC73A0048504A /* NavigationController.m */; };
 		5DE2531C17ACC2150069EC96 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2531B17ACC2150069EC96 /* comment.png */; };
 		5DE2533317B130790069EC96 /* LetterCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2533117B130790069EC96 /* LetterCommentsViewController.m */; };
@@ -309,6 +314,11 @@
 		5DA1180117DAD02300BDE5D0 /* RKChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKChat.h; sourceTree = "<group>"; };
 		5DA1180217DAD02300BDE5D0 /* RKChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKChat.m; sourceTree = "<group>"; };
 		5DC4F32117FD214500B2117D /* hamburger-150px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamburger-150px.png"; sourceTree = "<group>"; };
+		5DC4F32317FD28D100B2117D /* back-150px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-150px.png"; sourceTree = "<group>"; };
+		5DC4F32517FD2AA400B2117D /* add-comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-comment.png"; sourceTree = "<group>"; };
+		5DC4F32617FD2AA400B2117D /* back-2-150px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-2-150px.png"; sourceTree = "<group>"; };
+		5DC4F32717FD2AA400B2117D /* comment-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment-1.png"; sourceTree = "<group>"; };
+		5DC4F32817FD2AA400B2117D /* comment-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment-2.png"; sourceTree = "<group>"; };
 		5DCD9D9117FCC73A0048504A /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		5DCD9D9217FCC73A0048504A /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		5DE2531B17ACC2150069EC96 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
@@ -453,6 +463,11 @@
 			children = (
 				5D977D1917E77C9B002DA837 /* back.png */,
 				5D977D1317E6814B002DA837 /* comment_add.png */,
+				5DC4F32317FD28D100B2117D /* back-150px.png */,
+				5DC4F32517FD2AA400B2117D /* add-comment.png */,
+				5DC4F32617FD2AA400B2117D /* back-2-150px.png */,
+				5DC4F32717FD2AA400B2117D /* comment-1.png */,
+				5DC4F32817FD2AA400B2117D /* comment-2.png */,
 				5DC4F32117FD214500B2117D /* hamburger-150px.png */,
 				5D977D1517E77A72002DA837 /* add_2.png */,
 				5D977D1717E77B5C002DA837 /* add_3.png */,
@@ -651,6 +666,7 @@
 				5D528C9917C1207100AAB762 /* border.png in Resources */,
 				5D528C9E17C12FEF00AAB762 /* PagerViewController.xib in Resources */,
 				5D528CA917C3F69300AAB762 /* SearchViewController.xib in Resources */,
+				5DC4F32A17FD2AA400B2117D /* back-2-150px.png in Resources */,
 				5D528CF517C6C57C00AAB762 /* J1-blue-highlighted.png in Resources */,
 				5D528CF617C6C57C00AAB762 /* J1-blue-highlighted@2x.png in Resources */,
 				5D528CF717C6C57C00AAB762 /* J1-blue-normal.png in Resources */,
@@ -661,6 +677,8 @@
 				5D528CFC17C6C57C00AAB762 /* J1-blue-small-highlighted@2x.png in Resources */,
 				5D528CFD17C6C57C00AAB762 /* J1-blue-small-normal.png in Resources */,
 				5D528CFE17C6C57C00AAB762 /* J1-blue-small-normal@2x.png in Resources */,
+				5DC4F32B17FD2AA400B2117D /* comment-1.png in Resources */,
+				5DC4F32C17FD2AA400B2117D /* comment-2.png in Resources */,
 				5D528CFF17C6C57C00AAB762 /* J1-blue-small-selected.png in Resources */,
 				5D528D0017C6C57C00AAB762 /* J1-blue-small-selected@2x.png in Resources */,
 				5D528D0117C6C57C00AAB762 /* J1-gray-disabled.png in Resources */,
@@ -695,6 +713,7 @@
 				5D528D1E17C6C57C00AAB762 /* J1-grayOnBlack-small-normal@2x.png in Resources */,
 				5D528D1F17C6C57C00AAB762 /* J1-grayOnBlack-small-selected.png in Resources */,
 				5D528D2017C6C57C00AAB762 /* J1-grayOnBlack-small-selected@2x.png in Resources */,
+				5DC4F32417FD28D100B2117D /* back-150px.png in Resources */,
 				5D528D2117C6C57C00AAB762 /* J1-green-highlighted.png in Resources */,
 				5D528D2217C6C57C00AAB762 /* J1-green-highlighted@2x.png in Resources */,
 				5D528D2317C6C57C00AAB762 /* J1-green-normal.png in Resources */,
@@ -711,6 +730,7 @@
 				5D528D2E17C6C57C00AAB762 /* J1-red-highlighted@2x.png in Resources */,
 				5D528D2F17C6C57C00AAB762 /* J1-red-normal.png in Resources */,
 				5D528D3017C6C57C00AAB762 /* J1-red-normal@2x.png in Resources */,
+				5DC4F32917FD2AA400B2117D /* add-comment.png in Resources */,
 				5D528D3117C6C57C00AAB762 /* J1-red-selected.png in Resources */,
 				5D528D3217C6C57C00AAB762 /* J1-red-selected@2x.png in Resources */,
 				5D528D3317C6C57C00AAB762 /* J1-red-small-highlighted.png in Resources */,

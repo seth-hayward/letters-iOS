@@ -38,7 +38,7 @@
 
     UIButton *button_back = [UIButton buttonWithType:UIButtonTypeCustom];
     [button_back setFrame:CGRectMake(0, 0, 30, 30)];
-    [button_back setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [button_back setImage:[UIImage imageNamed:@"back-150px.png"] forState:UIControlStateNormal];
     [button_back addTarget:self action:@selector(popControllerAndGoBack:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *btnGoBack = [[UIBarButtonItem alloc] initWithCustomView:button_back];
@@ -184,6 +184,7 @@
 }
 
 - (IBAction)tapGesture:(id)sender {
+    NSLog(@"tapGesture fired.");
     [self resignResponders];
 }
 

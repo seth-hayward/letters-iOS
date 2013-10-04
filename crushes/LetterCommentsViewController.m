@@ -51,7 +51,7 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:CGRectMake(0, 0, 30, 30)];
-    [button setImage:[UIImage imageNamed:@"add_3.png"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"add-comment.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(addCommentPlease:) forControlEvents:UIControlEventTouchUpInside];
     
     btnAddComment = [[UIBarButtonItem alloc] initWithCustomView:button];
@@ -60,7 +60,7 @@
 
     UIButton *button_back = [UIButton buttonWithType:UIButtonTypeCustom];
     [button_back setFrame:CGRectMake(0, 0, 30, 30)];
-    [button_back setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [button_back setImage:[UIImage imageNamed:@"back-150px.png"] forState:UIControlStateNormal];
     [button_back addTarget:self action:@selector(popControllerAndGoBack:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *btnGoBack = [[UIBarButtonItem alloc] initWithCustomView:button_back];

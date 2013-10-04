@@ -39,7 +39,6 @@
 
 - (void)showMenu
 {
-    NSLog(@"- NavController.m: showMenu");
     [self.menuViewController presentFromViewController:self animated:YES completion:nil];
 }
 

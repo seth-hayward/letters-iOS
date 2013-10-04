@@ -73,7 +73,6 @@
     REFrostedViewController *drawerController = [[REFrostedViewController alloc] init];
     drawer = drawerController;
     
-    
     //[drawerController setMaximumLeftDrawerWidth:150.0];
     //[drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     //[drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
