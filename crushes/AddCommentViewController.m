@@ -45,6 +45,15 @@
     
     [self.navigationItem setLeftBarButtonItem:btnGoBack animated:YES];
 
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:CGRectMake(0, 0, 30, 30)];
+    [button setImage:[UIImage imageNamed:@"add-comment.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(addCommentPlease:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *btnAddComment = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
+    [self.navigationItem setRightBarButtonItem:btnAddComment animated:YES];
+    
     [[self navigationItem] setTitle:@"add comment"];
 
     
