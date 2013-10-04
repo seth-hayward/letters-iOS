@@ -17,7 +17,7 @@
         <tapGestureRecognizer id="285">
             <connections>
                 <action selector="tapGesture:" destination="-1" id="FlP-i2-fYj"/>
-                <outlet property="delegate" destination="-1" id="50V-Rj-Z8V"/>
+                <outlet property="delegate" destination="vF1-La-RnK" id="Rgy-Yj-HcE"/>
             </connections>
         </tapGestureRecognizer>
         <view contentMode="scaleToFill" id="vF1-La-RnK">
@@ -122,6 +122,9 @@
                 <constraint firstItem="158" firstAttribute="top" secondItem="91" secondAttribute="bottom" constant="2" id="vLV-op-Ta3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="285" appends="YES" id="adY-HI-kJH"/>
+            </connections>
         </view>
     </objects>
 </document>

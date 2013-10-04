@@ -53,8 +53,9 @@
     [button addTarget:self action:@selector(addCommentPlease:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *btnAddComment = [[UIBarButtonItem alloc] initWithCustomView:button];
+    UIBarButtonItem *btnAC = [[UIBarButtonItem alloc] initWithTitle:@"send" style:UIBarButtonItemStylePlain target:self action:@selector(addCommentPlease:)];
     
-    [self.navigationItem setRightBarButtonItem:btnAddComment animated:YES];
+    [self.navigationItem setRightBarButtonItem:btnAC animated:YES];
     
     [[self navigationItem] setTitle:@"add comment"];
     
@@ -107,8 +108,9 @@
     return YES;
 }
 
-- (IBAction)btnAddComment:(id)sender {
-
+-(void)addCommentPlease:(id)sender
+{
+    
     // Create a new comment and POST it to the server
 	RKPostComment* comment = [RKPostComment new];
     comment.letterId = [NSNumber numberWithInt:letter_id];
@@ -135,26 +137,26 @@
     responseObjectMapping = [RKObjectMapping mappingForClass:[RKComment class]];
     
     [responseObjectMapping addAttributeMappingsFromDictionary:@{
-     @"Id": @"Id",
-     @"commentMessage": @"commentMessage",
-     @"letterId": @"letterId",
-     @"sendEmail": @"sendEmail",
-     @"commentDate": @"commentDate",
-     @"hearts": @"hearts",
-     @"commenterEmail": @"commenterEmail",
-     @"commenterGuid": @"commenterGuid",
-     @"commenterIP": @"commenterIP",
-     @"commenterName": @"commenterName"
-     }];
+                                                                @"Id": @"Id",
+                                                                @"commentMessage": @"commentMessage",
+                                                                @"letterId": @"letterId",
+                                                                @"sendEmail": @"sendEmail",
+                                                                @"commentDate": @"commentDate",
+                                                                @"hearts": @"hearts",
+                                                                @"commenterEmail": @"commenterEmail",
+                                                                @"commenterGuid": @"commenterGuid",
+                                                                @"commenterIP": @"commenterIP",
+                                                                @"commenterName": @"commenterName"
+                                                                }];
     
     responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
     RKObjectMapping* letterRequestMapping = [RKObjectMapping requestMapping];
     [letterRequestMapping addAttributeMappingsFromDictionary:@{
-     @"letterId": @"letterId",
-     @"comment" : @"comment",
-     @"commenterName" : @"commenterName",
-     @"commenterEmail" : @"commenterEmail"}];
+                                                               @"letterId": @"letterId",
+                                                               @"comment" : @"comment",
+                                                               @"commenterName" : @"commenterName",
+                                                               @"commenterEmail" : @"commenterEmail"}];
     
     requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:letterRequestMapping objectClass:[RKPostComment class] rootKeyPath:@""];
     [objectManager addRequestDescriptor:requestDescriptor];
@@ -201,7 +203,11 @@
         UIAlertView *alert_post_error = [[UIAlertView alloc] initWithTitle:@"iOS Post Error" message: [error description] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
         [alert_post_error show];
     }];
+    
+    
+}
 
+- (IBAction)btnAddComment:(id)sender {
     
 }
 
