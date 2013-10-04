@@ -12,6 +12,7 @@
 #import "RODItemStore.h"
 #import "AppDelegate.h"
 #import "WCAlertView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation AddCommentViewController
 @synthesize textComment, textCommenterEmail, textCommenterName, letter_id;
@@ -28,11 +29,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    // PREVENT THE UNDERLAPPING THAT OCCURS WITH
+    // IOS 7!!!!!
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    [self.textCommenterName setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
-    [self.textComment setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
-    [self.textCommenterEmail setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
+    // Do any additional setup after loading the view from its nib.
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideHandler:) name:UIKeyboardWillHideNotification object:nil];
 
@@ -55,8 +57,19 @@
     [self.navigationItem setRightBarButtonItem:btnAddComment animated:YES];
     
     [[self navigationItem] setTitle:@"add comment"];
-
     
+    [[self.textComment layer] setBorderColor:[[UIColor blackColor] CGColor]];
+    [[self.textComment layer] setBorderWidth:1.0f];
+    [[self.textComment layer] setCornerRadius:1.0f];
+
+    [[self.textCommenterName layer] setBorderColor:[[UIColor blackColor] CGColor]];
+    [[self.textCommenterName layer] setBorderWidth:1.0f];
+    [[self.textCommenterName layer] setCornerRadius:1.0f];
+    
+    [[self.textCommenterEmail layer] setBorderColor:[[UIColor blackColor] CGColor]];
+    [[self.textCommenterEmail layer] setBorderWidth:1.0f];
+    [[self.textCommenterEmail layer] setCornerRadius:1.0f];
+        
 }
 
 - (void) keyboardWillHideHandler: (NSNotification *)notification {

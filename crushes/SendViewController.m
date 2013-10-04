@@ -39,6 +39,11 @@
 
 - (void)viewDidLoad
 {
+
+    // PREVENT THE UNDERLAPPING THAT OCCURS WITH
+    // IOS 7!!!!!
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     self.messageText.layer.borderWidth = 5.0f;
     self.messageText.layer.borderColor = [[UIColor grayColor] CGColor];
 }
