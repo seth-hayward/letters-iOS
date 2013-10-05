@@ -24,7 +24,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    //RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     //RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
     
     SearchViewController *searchVC = [[SearchViewController alloc] init];
@@ -66,19 +66,11 @@
     
     navigationController = navController;
     
-    //MMDrawerController * drawerController = [[MMDrawerController alloc]
-    //                                        initWithCenterViewController:navController
-    //                                         leftDrawerViewController:leftDrawer];
-    
     REFrostedViewController *drawerController = [[REFrostedViewController alloc] init];
     drawer = drawerController;
     
-    //[drawerController setMaximumLeftDrawerWidth:150.0];
-    //[drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
-    //[drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-    //[drawerController setShowsShadow:false];
-    
     [[self window] setRootViewController:navController];
+    
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     

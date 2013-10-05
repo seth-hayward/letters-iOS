@@ -28,20 +28,23 @@
     return self;
 }
 
-//- (void)openDrawer:(id)sender {
-//    
-//    // now tell the web view to change the page
-//    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-//    [appDelegate.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-//}
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self.textSearchTerms setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    UIButton *button_menu = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button_menu setFrame:CGRectMake(0, 0, 30, 30)];
+    [button_menu setImage:[UIImage imageNamed:@"hamburger-150px.png"] forState:UIControlStateNormal];
+    [button_menu addTarget:(NavigationController *)self.navigationController action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *leftDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_menu];
+    [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+    
+    
     
 }
 

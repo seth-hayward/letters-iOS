@@ -26,11 +26,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self) {
-
-        MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(openDrawer:)];
-        [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
-        
-        [[self navigationItem] setTitle:@"send your letter"];
         
     }
     
@@ -46,6 +41,21 @@
     
     self.messageText.layer.borderWidth = 5.0f;
     self.messageText.layer.borderColor = [[UIColor grayColor] CGColor];
+    
+    UIBarButtonItem *btnAC = [[UIBarButtonItem alloc] initWithTitle:@"send" style:UIBarButtonItemStylePlain target:self action:@selector(addCommentPlease:)];
+    [self.navigationItem setRightBarButtonItem:btnAC];
+
+    UIButton *button_menu = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button_menu setFrame:CGRectMake(0, 0, 30, 30)];
+    [button_menu setImage:[UIImage imageNamed:@"hamburger-150px.png"] forState:UIControlStateNormal];
+    [button_menu addTarget:(NavigationController *)self.navigationController action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *leftDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_menu];
+    [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+    
+    [[self navigationItem] setTitle:@"send your letter"];
+
+    
 }
 
 - (void)viewDidUnload {
@@ -63,16 +73,7 @@
     [[self view] endEditing:YES];
    }
 
-//- (void)openDrawer:(id)sender {
-//    
-//    // now tell the web view to change the page
-//    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-//    [appDelegate.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-//    
-//}
-
-
-- (IBAction)sendLetter:(id)sender {
+- (void)sendLetter:(id)sender {
     // Read the value from the text field
 	NSString *letter_message = [self.messageText text];
     

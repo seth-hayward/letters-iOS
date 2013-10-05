@@ -193,7 +193,6 @@
 
 - (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level terms:(NSString *)_terms
 {
-    NSLog(@"Load letters by page called.");
     
     current_load_level = load_level;
     current_page = page;

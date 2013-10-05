@@ -40,6 +40,7 @@
 - (void)showMenu
 {
     [self.menuViewController presentFromViewController:self animated:YES completion:nil];
+    [self resignFirstResponder];
 }
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)sender

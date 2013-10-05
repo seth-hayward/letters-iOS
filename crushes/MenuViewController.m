@@ -28,7 +28,7 @@
     
     self.view.opaque = NO;
     self.view.backgroundColor = [UIColor clearColor];
-    self.view.alpha = 0.85f;
+    self.view.alpha = 0.95f;
     
     [self setThreshold:150.0f];
     
@@ -121,23 +121,22 @@
 - (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    NSLog(@"UINavigationController: %@", [[self navigationController].visibleViewController class]);
     
     // if the previous view type was
     // the send screen, we want to pop
     // that one off the top
     
     if([RODItemStore sharedStore].current_viewtype == ViewTypeSearch) {
-        [appDelegate.navigationController popViewControllerAnimated:NO];
+        
     }
     
     if([RODItemStore sharedStore].current_viewtype == ViewTypeSend) {
-        [appDelegate.navigationController popViewControllerAnimated:NO];
     }
     
     if([RODItemStore sharedStore].current_viewtype == ViewTypeChat) {
-        [appDelegate.navigationController popViewControllerAnimated:NO];
+        
     }
 
     RODItem *selected_item = [[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]];
@@ -153,23 +152,26 @@
     switch([selected_item viewType])
     {
         case ViewTypeHome:
+            self.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
             [appDelegate.lettersScrollController clearLettersAndReset];
             [[RODItemStore sharedStore] loadLettersByPage:1  level:0];
             break;
         case ViewTypeMore:
+            self.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
             [appDelegate.lettersScrollController clearLettersAndReset];            
             [[RODItemStore sharedStore] loadLettersByPage:1 level:-1];
             break;
         case ViewTypeBookmarks:
+            self.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
             [appDelegate.lettersScrollController clearLettersAndReset];
             [[RODItemStore sharedStore] loadLettersByPage:1 level:100];
             break;
         case ViewTypeSend:
             // now tell the web view to change the page
-            [appDelegate.navigationController pushViewController:appDelegate.sendViewController animated:YES];
+            self.navigationController.viewControllers = @[ appDelegate.sendViewController ];
             break;
         case ViewTypeSearch:
-            [appDelegate.navigationController pushViewController:appDelegate.searchViewController animated:YES];
+            self.navigationController.viewControllers = @[ appDelegate.searchViewController ];
             break;
         case ViewTypeLogin:
             [[RODItemStore sharedStore] generateLoginAlert];
@@ -190,9 +192,9 @@
         case ViewTypeChat:
             
             if([RODItemStore sharedStore].connected_to_chat == YES) {
-                [appDelegate.navigationController pushViewController:appDelegate.chatViewController animated:YES];
+                self.navigationController.viewControllers = @[ appDelegate.chatViewController ];
             } else {
-                [appDelegate.navigationController pushViewController:appDelegate.chatNameViewController animated:YES];
+                self.navigationController.viewControllers = @[ appDelegate.chatViewController ];
             }
             
             break;
