@@ -10,6 +10,7 @@
 #import "MMDrawerBarButtonItem.h"
 #import "AppDelegate.h"
 #import "RODItemStore.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation SearchViewController
 
@@ -19,10 +20,7 @@
     if (self) {
         // Custom initialization
         
-        MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(openDrawer:)];
-        [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
-        
-        [[self navigationItem] setTitle:@"search"];
+        [[self navigationItem] setTitle:@"what are you searching for?"];
         
     }
     return self;
@@ -44,8 +42,15 @@
     UIBarButtonItem *leftDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_menu];
     [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
     
+    UIBarButtonItem *btnSearch = [[UIBarButtonItem alloc] initWithTitle:@"search" style:UIBarButtonItemStylePlain target:self action:@selector(clickedSearch:)];
+    [self.navigationItem setRightBarButtonItem:btnSearch];
     
+    [[self.textSearchTerms layer] setBorderColor:[[UIColor blackColor] CGColor]];
+    [[self.textSearchTerms layer] setBorderWidth:1.0f];
+    [[self.textSearchTerms layer] setCornerRadius:1.0f];
     
+    [self.textSearchTerms becomeFirstResponder];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -61,17 +66,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)clickedSearch:(id)sender {
+- (void)clickedSearch:(id)sender {
     [self doSearch];
 }
 
-- (void)doSearch {
-    NSLog(@"Please search for %@", [self.textSearchTerms text]);
+- (void)doSearch
+{
     [self.indicator startAnimating];
     [self.view setNeedsDisplay];
     [self.textSearchTerms resignFirstResponder];
     
     [[RODItemStore sharedStore] loadLettersByPage:1 level:120 terms:[self.textSearchTerms text]];
+    
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {

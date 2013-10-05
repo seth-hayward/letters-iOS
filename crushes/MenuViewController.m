@@ -122,22 +122,6 @@
 {
     
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    NSLog(@"UINavigationController: %@", [[self navigationController].visibleViewController class]);
-    
-    // if the previous view type was
-    // the send screen, we want to pop
-    // that one off the top
-    
-    if([RODItemStore sharedStore].current_viewtype == ViewTypeSearch) {
-        
-    }
-    
-    if([RODItemStore sharedStore].current_viewtype == ViewTypeSend) {
-    }
-    
-    if([RODItemStore sharedStore].current_viewtype == ViewTypeChat) {
-        
-    }
 
     RODItem *selected_item = [[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]];
     

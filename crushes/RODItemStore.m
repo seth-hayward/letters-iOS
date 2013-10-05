@@ -290,6 +290,7 @@
         if(current_load_level == 120) {
             AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
             [appDelegate.lettersScrollController clearLettersAndReset];
+            appDelegate.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
         }
         
         RKFullLetter *full_letter;
