@@ -35,7 +35,6 @@
 		5D528CA817C3F69300AAB762 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D528CA617C3F69200AAB762 /* SearchViewController.m */; };
 		5D528CA917C3F69300AAB762 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D528CA717C3F69200AAB762 /* SearchViewController.xib */; };
 		5D528CAC17C3FEBE00AAB762 /* RODSentLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D528CAB17C3FEBD00AAB762 /* RODSentLetter.m */; };
-		5D528CAF17C6C25A00AAB762 /* J1Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D528CAE17C6C25900AAB762 /* J1Button.m */; };
 		5D528CF517C6C57C00AAB762 /* J1-blue-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D528CB117C6C57C00AAB762 /* J1-blue-highlighted.png */; };
 		5D528CF617C6C57C00AAB762 /* J1-blue-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D528CB217C6C57C00AAB762 /* J1-blue-highlighted@2x.png */; };
 		5D528CF717C6C57C00AAB762 /* J1-blue-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D528CB317C6C57C00AAB762 /* J1-blue-normal.png */; };
@@ -144,6 +143,7 @@
 		5DC4F32A17FD2AA400B2117D /* back-2-150px.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F32617FD2AA400B2117D /* back-2-150px.png */; };
 		5DC4F32B17FD2AA400B2117D /* comment-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F32717FD2AA400B2117D /* comment-1.png */; };
 		5DC4F32C17FD2AA400B2117D /* comment-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F32817FD2AA400B2117D /* comment-2.png */; };
+		5DC4F3451800B99600B2117D /* J1Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC4F3441800B99600B2117D /* J1Button.m */; };
 		5DCD9D9317FCC73A0048504A /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD9D9217FCC73A0048504A /* NavigationController.m */; };
 		5DE2531C17ACC2150069EC96 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2531B17ACC2150069EC96 /* comment.png */; };
 		5DE2533317B130790069EC96 /* LetterCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2533117B130790069EC96 /* LetterCommentsViewController.m */; };
@@ -198,8 +198,6 @@
 		5D528CA717C3F69200AAB762 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		5D528CAA17C3FEBC00AAB762 /* RODSentLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RODSentLetter.h; sourceTree = "<group>"; };
 		5D528CAB17C3FEBD00AAB762 /* RODSentLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RODSentLetter.m; sourceTree = "<group>"; };
-		5D528CAD17C6C25800AAB762 /* J1Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = J1Button.h; sourceTree = "<group>"; };
-		5D528CAE17C6C25900AAB762 /* J1Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = J1Button.m; sourceTree = "<group>"; };
 		5D528CB117C6C57C00AAB762 /* J1-blue-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "J1-blue-highlighted.png"; sourceTree = "<group>"; };
 		5D528CB217C6C57C00AAB762 /* J1-blue-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "J1-blue-highlighted@2x.png"; sourceTree = "<group>"; };
 		5D528CB317C6C57C00AAB762 /* J1-blue-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "J1-blue-normal.png"; sourceTree = "<group>"; };
@@ -319,6 +317,8 @@
 		5DC4F32617FD2AA400B2117D /* back-2-150px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-2-150px.png"; sourceTree = "<group>"; };
 		5DC4F32717FD2AA400B2117D /* comment-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment-1.png"; sourceTree = "<group>"; };
 		5DC4F32817FD2AA400B2117D /* comment-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment-2.png"; sourceTree = "<group>"; };
+		5DC4F3431800B99600B2117D /* J1Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = J1Button.h; sourceTree = "<group>"; };
+		5DC4F3441800B99600B2117D /* J1Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = J1Button.m; sourceTree = "<group>"; };
 		5DCD9D9117FCC73A0048504A /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		5DCD9D9217FCC73A0048504A /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		5DE2531B17ACC2150069EC96 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
@@ -388,6 +388,8 @@
 		5D0BD0421670AAA30088A383 /* crushes */ = {
 			isa = PBXGroup;
 			children = (
+				5DC4F3431800B99600B2117D /* J1Button.h */,
+				5DC4F3441800B99600B2117D /* J1Button.m */,
 				5DE2533617B132070069EC96 /* LettersScrollController.h */,
 				5DE2533717B132070069EC96 /* LettersScrollController.m */,
 				5DE2533517B132070069EC96 /* LettersScrollController.xib */,
@@ -414,8 +416,6 @@
 				5D528CAB17C3FEBD00AAB762 /* RODSentLetter.m */,
 				5D7609B0179DBDF00018F27B /* RODItem.h */,
 				5D7609B1179DBDF00018F27B /* RODItem.m */,
-				5D528CAD17C6C25800AAB762 /* J1Button.h */,
-				5D528CAE17C6C25900AAB762 /* J1Button.m */,
 				5DA117F717DA61F100BDE5D0 /* ChatNameViewController.h */,
 				5DA117F817DA61F100BDE5D0 /* ChatNameViewController.m */,
 				5DA117F917DA61F200BDE5D0 /* ChatNameViewController.xib */,
@@ -803,6 +803,7 @@
 				5DCD9D9317FCC73A0048504A /* NavigationController.m in Sources */,
 				5D7609AE179CDD660018F27B /* MenuViewController.m in Sources */,
 				5D7609B2179DBDF00018F27B /* RODItem.m in Sources */,
+				5DC4F3451800B99600B2117D /* J1Button.m in Sources */,
 				5D7609B5179DCE100018F27B /* RODItemStore.m in Sources */,
 				5D7609D617A0588B0018F27B /* ScrollViewItem.m in Sources */,
 				5DE2533317B130790069EC96 /* LetterCommentsViewController.m in Sources */,
@@ -815,7 +816,6 @@
 				5D528CA117C2B6AD00AAB762 /* RODSettings.m in Sources */,
 				5D528CA817C3F69300AAB762 /* SearchViewController.m in Sources */,
 				5D528CAC17C3FEBE00AAB762 /* RODSentLetter.m in Sources */,
-				5D528CAF17C6C25A00AAB762 /* J1Button.m in Sources */,
 				5DA117FA17DA61F200BDE5D0 /* ChatNameViewController.m in Sources */,
 				5DA117FF17DA783400BDE5D0 /* ChatViewController.m in Sources */,
 				5DA1180317DAD02300BDE5D0 /* RKChat.m in Sources */,
