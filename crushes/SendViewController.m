@@ -43,6 +43,8 @@
     self.messageText.layer.borderColor = [[UIColor grayColor] CGColor];
     
     UIBarButtonItem *btnAC = [[UIBarButtonItem alloc] initWithTitle:@"send" style:UIBarButtonItemStylePlain target:self action:@selector(addCommentPlease:)];
+    [btnAC setTintColor:[UIColor blueColor]];
+    
     [self.navigationItem setRightBarButtonItem:btnAC];
 
     UIButton *button_menu = [UIButton buttonWithType:UIButtonTypeCustom];

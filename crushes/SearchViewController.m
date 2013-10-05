@@ -43,7 +43,9 @@
     [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
     
     UIBarButtonItem *btnSearch = [[UIBarButtonItem alloc] initWithTitle:@"search" style:UIBarButtonItemStylePlain target:self action:@selector(clickedSearch:)];
+    btnSearch.tintColor = [UIColor blueColor];
     [self.navigationItem setRightBarButtonItem:btnSearch];
+    
     
     [[self.textSearchTerms layer] setBorderColor:[[UIColor blackColor] CGColor]];
     [[self.textSearchTerms layer] setBorderWidth:1.0f];
@@ -78,7 +80,6 @@
     
     [[RODItemStore sharedStore] loadLettersByPage:1 level:120 terms:[self.textSearchTerms text]];
     
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
