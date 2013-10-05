@@ -19,12 +19,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
-        MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(openDrawer:)];
-        [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
-        
-        [[self navigationItem] setTitle:@"enter chat"];
-                
     }
     return self;
 }
@@ -34,10 +28,40 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    // PREVENT THE UNDERLAPPING THAT OCCURS WITH
+    // IOS 7!!!!!
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+        
     [self.textChatName setText:[RODItemStore sharedStore].settings.chatName];
+
+    UIBarButtonItem *btnChat = [[UIBarButtonItem alloc] initWithTitle:@"chat" style:UIBarButtonItemStylePlain target:self action:@selector(btnGo:)];
+    [btnChat setTintColor:[UIColor blueColor]];
+    [self.navigationItem setRightBarButtonItem:btnChat animated:YES];
+
+    UIButton *button_menu = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button_menu setFrame:CGRectMake(0, 0, 30, 30)];
+    [button_menu setImage:[UIImage imageNamed:@"hamburger-150px.png"] forState:UIControlStateNormal];
+    [button_menu addTarget:self action:@selector(hamburger:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.textChatName setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
+    UIBarButtonItem *leftDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_menu];
+    [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
     
+    
+    [[self navigationItem] setTitle:@"enter nickname"];
+    
+    [[self.textChatName layer] setBorderColor:[[UIColor blackColor] CGColor]];
+    [[self.textChatName layer] setBorderWidth:1.0f];
+    [[self.textChatName layer] setCornerRadius:1.0f];
+    
+    [self.textChatName becomeFirstResponder];
+    
+}
+
+- (void)hamburger:(id)sender
+{
+    [self.textChatName resignFirstResponder];
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.navigationController showMenu];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +81,7 @@
     return YES;
 }
 
-- (IBAction)btnGo:(id)sender {
+- (void)btnGo:(id)sender {
     [self enterChat];
 }
 

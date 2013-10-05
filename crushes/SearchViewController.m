@@ -37,7 +37,7 @@
     UIButton *button_menu = [UIButton buttonWithType:UIButtonTypeCustom];
     [button_menu setFrame:CGRectMake(0, 0, 30, 30)];
     [button_menu setImage:[UIImage imageNamed:@"hamburger-150px.png"] forState:UIControlStateNormal];
-    [button_menu addTarget:(NavigationController *)self.navigationController action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
+    [button_menu addTarget:self action:@selector(hamburger:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *leftDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_menu];
     [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
@@ -53,6 +53,13 @@
     
     [self.textSearchTerms becomeFirstResponder];
 
+}
+
+- (void)hamburger:(id)sender
+{
+    [self.textSearchTerms resignFirstResponder];
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.navigationController showMenu];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

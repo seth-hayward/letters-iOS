@@ -57,9 +57,7 @@
     UIBarButtonItem *button_refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshOriginalPage)];
     [button_refresh setBackgroundImage:[UIImage new] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[self navigationItem] setRightBarButtonItem:button_refresh];
-    
-    //MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(openDrawer:)];
-    
+        
     UIButton *button_menu = [UIButton buttonWithType:UIButtonTypeCustom];
     [button_menu setFrame:CGRectMake(0, 0, 30, 30)];
     [button_menu setImage:[UIImage imageNamed:@"hamburger-150px.png"] forState:UIControlStateNormal];

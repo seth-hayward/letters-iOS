@@ -174,11 +174,11 @@
             
             break;
         case ViewTypeChat:
-            
+                        
             if([RODItemStore sharedStore].connected_to_chat == YES) {
                 self.navigationController.viewControllers = @[ appDelegate.chatViewController ];
             } else {
-                self.navigationController.viewControllers = @[ appDelegate.chatViewController ];
+                self.navigationController.viewControllers = @[ appDelegate.chatNameViewController ];
             }
             
             break;
