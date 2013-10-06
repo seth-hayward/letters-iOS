@@ -34,6 +34,7 @@
     
     self.tableView = [[UITableView alloc] init]; // Frame will be automatically set
     self.tableView.separatorColor = [UIColor colorWithRed:150/255.0f green:161/255.0f blue:177/255.0f alpha:1.0f];
+    self.tableView.separatorInset = UIEdgeInsetsZero;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.opaque = NO;

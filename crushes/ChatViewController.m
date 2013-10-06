@@ -26,11 +26,6 @@
     if (self) {
         // Custom initialization
         
-        MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(openDrawer:)];
-        [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
-        
-        [[self navigationItem] setTitle:@"chat"];
-
         self.tableChats.sectionHeaderHeight = 0;
         self.tableChats.sectionFooterHeight = 0;
         
@@ -43,14 +38,34 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
+    self.tableChats.separatorInset = UIEdgeInsetsZero;
+    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:CGRectMake(0, 0, 30, 30)];
-    [button setImage:[UIImage imageNamed:@"cog_2.png"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"cog.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(leaveChat:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self.textMessage layer] setBorderColor:[[UIColor blackColor] CGColor]];
+    [[self.textMessage layer] setBorderWidth:1.0f];
+    [[self.textMessage layer] setCornerRadius:1.0f];
         
     _labelStatus = [[UIBarButtonItem alloc] initWithCustomView:button];
 
     [self.navigationItem setRightBarButtonItem:_labelStatus animated:YES];
+    
+    
+    UIButton *button_menu = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button_menu setFrame:CGRectMake(0, 0, 30, 30)];
+    [button_menu setImage:[UIImage imageNamed:@"hamburger-150px.png"] forState:UIControlStateNormal];
+    [button_menu addTarget:self action:@selector(hamburger:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *leftDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_menu];
+    [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+    
+    [[self navigationItem] setTitle:@"chat"];
+    
     
     [self enterChat];
 
@@ -225,12 +240,6 @@
     
 }
 
-//- (void)openDrawer:(id)sender {
-//    // now tell the web view to change the page
-//    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-//    [appDelegate.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];    
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [[RODItemStore sharedStore] allChats].count;
@@ -289,8 +298,6 @@
     [RODItemStore sharedStore].chatConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
     [RODItemStore sharedStore].chatConnection.delegate = self;
     
-    [self.textMessage setBackgroundColor:[UIColor colorWithRed:245/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
-        
     [RODItemStore sharedStore].chatHub = [[RODItemStore sharedStore].chatConnection createHubProxy:@"VisitorUpdate"];
     
     [RODItemStore sharedStore].chatConnection.error = ^(NSError * __strong err){
@@ -335,6 +342,13 @@
         [self enterChat];
     }
     
+}
+
+- (void)hamburger:(id)sender
+{
+    [self.textMessage resignFirstResponder];
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.navigationController showMenu];
 }
 
 @end
