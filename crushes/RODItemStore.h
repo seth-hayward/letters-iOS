@@ -14,7 +14,7 @@
 #import "RODSettings.h"
 #import "SignalR.h"
 
-@interface RODItemStore : NSObject
+@interface RODItemStore : NSObject <SRConnectionDelegate>
 {
     NSMutableArray *_allMenuItems;
     NSMutableArray *_allLetters;

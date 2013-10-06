@@ -47,22 +47,13 @@
     [[self.textMessage layer] setBorderWidth:1.0f];
     [[self.textMessage layer] setCornerRadius:1.0f];
     
-//    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    button.bounds = CGRectMake(0, 0, 65.0, 30.0);
-//    [button setImage:[UIImage imageNamed:@"img.png"] forState:UIControlStateNormal];
-//    
-//    [button addTarget:self action:@selector(popupMenu:event:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    _labelStatus = button;
-//    [self.navigationItem setRightBarButtonItem:button];
-    
     UIButton *button_menu = [UIButton buttonWithType:UIButtonTypeCustom];
     [button_menu setFrame:CGRectMake(0, 0, 30, 30)];
     [button_menu setImage:[UIImage imageNamed:@"hamburger-150px.png"] forState:UIControlStateNormal];
     [button_menu addTarget:self action:@selector(hamburger:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *leftDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_menu];
-    [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+    [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES                                                                                                                                                                            ];
     
     UIButton *button_set = [UIButton buttonWithType:UIButtonTypeCustom];
     [button_set setFrame:CGRectMake(0, 0, 30, 30)];
@@ -110,18 +101,44 @@
     
 }
 
+- (void)setCogColor:(NSString *)color
+{
+
+    NSLog(@"setCogColor: %@", color);
+    
+    UIButton *button_set = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button_set setFrame:CGRectMake(0, 0, 30, 30)];
+    [button_set addTarget:self action:@selector(popupMenu:event:) forControlEvents:UIControlEventTouchUpInside];
+    [button_set setImage:[UIImage imageNamed:[NSString stringWithFormat:@"cog-%@.png", color]] forState:UIControlStateNormal];
+    UIBarButtonItem *rightDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_set];
+    [self.navigationItem setRightBarButtonItem:rightDrawerButton animated:YES];
+
+    
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
+    
     [super viewWillAppear:animated];
+    
+    NSLog(@"viewWillAppear");
+    
+    if([RODItemStore sharedStore].chatConnection.state == reconnecting || [RODItemStore sharedStore].chatConnection.state == disconnected) {
+        [self setCogColor:@"red"];
+        [self enterChat];
+        return;
+    }
     
 }
 
 -(void)viewDidAppear:(BOOL)animated {
 
     [super viewDidAppear:animated];
+
+    NSLog(@"viewWillAppear");
     
     if([RODItemStore sharedStore].chatConnection.state == reconnecting || [RODItemStore sharedStore].chatConnection.state == disconnected) {
-        [_labelStatus setImage:[UIImage imageNamed:@"cog-red.png"]];        
+        [self setCogColor:@"red"];
         [self enterChat];
         return;
     }
@@ -149,39 +166,6 @@
     return YES;
 }
 
-- (void)SRConnectionDidOpen:(id<SRConnectionInterface>)connection
-{
-    [self addSimpleMessage:@"Connecting to the chat, please wait."];
-}
-
-- (void)SRConnectionDidClose:(id<SRConnectionInterface>)connection
-{
-    [self addSimpleMessage:@"Connection to the chat was closed."];
-}
-
-- (void)SRConnectionDidReconnect:(id<SRConnectionInterface>)connection
-{
-    [self addSimpleMessage:@"You are reconnected to the chat."];
-}
-
--(void)SRConnection:(id<SRConnectionInterface>)connection didReceiveError:(NSError *)error
-{
-    [self addSimpleMessage:[NSString stringWithFormat:@"Connection error: %@", error.localizedDescription]];
-    [_labelStatus setImage:[UIImage imageNamed:@"cog-red.png"]];
-    
-}
-
--(void)SRConnection:(id<SRConnectionInterface>)connection didChangeState:(connectionState)oldState newState:(connectionState)newState
-{
-    
-    switch (newState) {
-        case connected:
-            [refreshTimer invalidate];
-        default:
-            break;
-    }
-    
-}
 
 - (void)sendChat {
     NSString *txt = self.textMessage.text;
@@ -212,7 +196,7 @@
     }
     
     [self.loadingChat stopAnimating];
-    [_labelStatus setImage:[UIImage imageNamed:@"cog-green.png"]];
+    [self setCogColor:@"green"];
     
 }
 
@@ -229,8 +213,10 @@
 
 - (void)requestBacklog:(UIRefreshControl *)refreshControl
 {
-
+    
+    
     if([RODItemStore sharedStore].chatConnection.state == disconnected || [RODItemStore sharedStore].chatConnection.state == reconnecting) {
+        [self setCogColor:@"black"];
         [self enterChat];
         return;
     }
@@ -241,17 +227,17 @@
 }
 
 - (void)askForBacklog {
-    
-    [_labelStatus setImage:[UIImage imageNamed:@"cog-purple.png"]];
 
-    self.countDown = 20;
+    [self setCogColor:@"purple"];
+    
+    self.countDown = 10;
     
     refreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(countDownTick:) userInfo:nil repeats:YES];
 
     if([RODItemStore sharedStore].chatConnection.state == reconnecting || [RODItemStore sharedStore].chatConnection.state == disconnected) {
         [[RODItemStore sharedStore].chatConnection disconnect];
         
-        [_labelStatus setImage:[UIImage imageNamed:@"cog-red.png"]];
+        [self setCogColor:@"red"];
         
         [self addSimpleMessage:@"Chat connection had disconnected or was stalled, entering chat again."];
         [self enterChat];
@@ -332,7 +318,7 @@
     [self.tableChats addSubview:refreshControl];
     
     [RODItemStore sharedStore].chatConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
-    [RODItemStore sharedStore].chatConnection.delegate = self;
+    [RODItemStore sharedStore].chatConnection.delegate = [[RODItemStore sharedStore] self];
     
     [RODItemStore sharedStore].chatHub = [[RODItemStore sharedStore].chatConnection createHubProxy:@"VisitorUpdate"];
     

@@ -778,6 +778,53 @@
     return incoming;
 }
 
+
+- (void)SRConnectionDidOpen:(id<SRConnectionInterface>)connection
+{
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.chatViewController addSimpleMessage:@"Connecting to the chat, please wait."];
+}
+
+- (void)SRConnectionDidClose:(id<SRConnectionInterface>)connection
+{
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.chatViewController addSimpleMessage:@"Connection to the chat was closed."];
+}
+
+- (void)SRConnectionDidReconnect:(id<SRConnectionInterface>)connection
+{
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.chatViewController addSimpleMessage:@"You are reconnected to the chat."];
+}
+
+-(void)SRConnection:(id<SRConnectionInterface>)connection didReceiveError:(NSError *)error
+{
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.chatViewController addSimpleMessage:[NSString stringWithFormat:@"Connection error: %@", error.localizedDescription]];
+}
+
+-(void)SRConnection:(id<SRConnectionInterface>)connection didChangeState:(connectionState)oldState newState:(connectionState)newState
+{
+
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    switch (newState) {
+        case reconnecting:
+            [appDelegate.chatViewController setCogColor:@"red"];
+        case connecting:
+            [appDelegate.chatViewController setCogColor:@"blue"];
+        case disconnected:
+            [appDelegate.chatViewController setCogColor:@"black"];
+        case connected:
+            [appDelegate.chatViewController setCogColor:@"purple"];
+            [appDelegate.chatViewController.refreshTimer invalidate];
+        default:
+            break;
+    }
+    
+}
+
+
 + (id)allocWithZone:(NSZone *)zone {
     return [self sharedStore];
 }
