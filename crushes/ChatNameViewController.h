@@ -10,6 +10,9 @@
 #import "GAITrackedViewController.h"
 
 @interface ChatNameViewController : GAITrackedViewController <UITextViewDelegate>
+{
+    UIBarButtonItem* _goChat;
+}
 
 @property (weak, nonatomic) IBOutlet UITextView *textChatName;
 - (IBAction)btnGo:(id)sender;

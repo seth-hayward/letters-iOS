@@ -11,6 +11,7 @@
 #import "MMDrawerBarButtonItem.h"
 #import "WCAlertView.h"
 #import "AppDelegate.h"
+#import <KxMenu.h>
 
 @implementation ChatNameViewController
 
@@ -33,10 +34,17 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
         
     [self.textChatName setText:[RODItemStore sharedStore].settings.chatName];
-
+    
     UIBarButtonItem *btnChat = [[UIBarButtonItem alloc] initWithTitle:@"chat" style:UIBarButtonItemStylePlain target:self action:@selector(btnGo:)];
     [btnChat setTintColor:[UIColor blueColor]];
     [self.navigationItem setRightBarButtonItem:btnChat animated:YES];
+    
+//    UIButton *button_set = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [button_set setFrame:CGRectMake(0, 0, 30, 30)];
+//    [button_set setImage:[UIImage imageNamed:@"cog-black.png"] forState:UIControlStateNormal];
+//    [button_set addTarget:self action:@selector(popupMenu:event:) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *rightDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_set];
+//    [self.navigationItem setRightBarButtonItem:rightDrawerButton animated:YES];
 
     UIButton *button_menu = [UIButton buttonWithType:UIButtonTypeCustom];
     [button_menu setFrame:CGRectMake(0, 0, 30, 30)];
@@ -44,6 +52,8 @@
     [button_menu addTarget:self action:@selector(hamburger:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *leftDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_menu];
+    _goChat = leftDrawerButton;
+    
     [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
     
     

@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "MMDrawerBarButtonItem.h"
 #import "RKChat.h"
+#import <KxMenu.h>
 
 #define FONT_SIZE 10.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -42,21 +43,18 @@
 
     self.tableChats.separatorInset = UIEdgeInsetsZero;
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setFrame:CGRectMake(0, 0, 30, 30)];
-    
-    // first load, set it to black, black means not connected
-    [button setImage:[UIImage imageNamed:@"cog-black.png"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(leaveChat:) forControlEvents:UIControlEventTouchUpInside];
-    
     [[self.textMessage layer] setBorderColor:[[UIColor blackColor] CGColor]];
     [[self.textMessage layer] setBorderWidth:1.0f];
     [[self.textMessage layer] setCornerRadius:1.0f];
-        
-    _labelStatus = [[UIBarButtonItem alloc] initWithCustomView:button];
-
-    [self.navigationItem setRightBarButtonItem:_labelStatus animated:YES];
     
+//    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    button.bounds = CGRectMake(0, 0, 65.0, 30.0);
+//    [button setImage:[UIImage imageNamed:@"img.png"] forState:UIControlStateNormal];
+//    
+//    [button addTarget:self action:@selector(popupMenu:event:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    _labelStatus = button;
+//    [self.navigationItem setRightBarButtonItem:button];
     
     UIButton *button_menu = [UIButton buttonWithType:UIButtonTypeCustom];
     [button_menu setFrame:CGRectMake(0, 0, 30, 30)];
@@ -66,15 +64,42 @@
     UIBarButtonItem *leftDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_menu];
     [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
     
-    [[self navigationItem] setTitle:@"chat"];
+    UIButton *button_set = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button_set setFrame:CGRectMake(0, 0, 30, 30)];
+    [button_set setImage:[UIImage imageNamed:@"cog-black.png"] forState:UIControlStateNormal];
+    [button_set addTarget:self action:@selector(popupMenu:event:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIBarButtonItem *rightDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_set];
+    [self.navigationItem setRightBarButtonItem:rightDrawerButton animated:YES];
+    
+    [[self navigationItem] setTitle:@"chat"];
     
     [self enterChat];
 
 }
 
-- (void)leaveChat:(UIBarButtonItem *)button
+-(void)popupMenu:(UIBarButtonItem*)sender event:(UIEvent*)event;
 {
+    
+    [KxMenu showMenuInView:self.view
+                  fromRect:[[event.allTouches anyObject] view].frame
+                 menuItems:@[
+                             [KxMenuItem menuItem:@"Refresh"
+                                            image:[UIImage imageNamed:@"refresh.png"]
+                                           target:self
+                                           action:@selector(askForBacklog)],
+                             [KxMenuItem menuItem:@"Leave"
+                                            image:nil
+                                           target:self
+                                           action:@selector(leaveChat)],
+                             ]
+                ];
+    
+}
+
+- (void)leaveChat
+{
+    
     if([RODItemStore sharedStore].chatConnection) {
         [[RODItemStore sharedStore].chatConnection disconnect];
     }
@@ -96,6 +121,7 @@
     [super viewDidAppear:animated];
     
     if([RODItemStore sharedStore].chatConnection.state == reconnecting || [RODItemStore sharedStore].chatConnection.state == disconnected) {
+        [_labelStatus setImage:[UIImage imageNamed:@"cog-red.png"]];        
         [self enterChat];
         return;
     }
@@ -141,6 +167,8 @@
 -(void)SRConnection:(id<SRConnectionInterface>)connection didReceiveError:(NSError *)error
 {
     [self addSimpleMessage:[NSString stringWithFormat:@"Connection error: %@", error.localizedDescription]];
+    [_labelStatus setImage:[UIImage imageNamed:@"cog-red.png"]];
+    
 }
 
 -(void)SRConnection:(id<SRConnectionInterface>)connection didChangeState:(connectionState)oldState newState:(connectionState)newState
@@ -184,6 +212,8 @@
     }
     
     [self.loadingChat stopAnimating];
+    [_labelStatus setImage:[UIImage imageNamed:@"cog-green.png"]];
+    
 }
 
 - (void)addSimpleMessage:(NSString *)chat
@@ -211,6 +241,8 @@
 }
 
 - (void)askForBacklog {
+    
+    [_labelStatus setImage:[UIImage imageNamed:@"cog-purple.png"]];
 
     self.countDown = 20;
     
@@ -218,6 +250,8 @@
 
     if([RODItemStore sharedStore].chatConnection.state == reconnecting || [RODItemStore sharedStore].chatConnection.state == disconnected) {
         [[RODItemStore sharedStore].chatConnection disconnect];
+        
+        [_labelStatus setImage:[UIImage imageNamed:@"cog-red.png"]];
         
         [self addSimpleMessage:@"Chat connection had disconnected or was stalled, entering chat again."];
         [self enterChat];
@@ -303,6 +337,7 @@
     [RODItemStore sharedStore].chatHub = [[RODItemStore sharedStore].chatConnection createHubProxy:@"VisitorUpdate"];
     
     [RODItemStore sharedStore].chatConnection.error = ^(NSError * __strong err){
+        [_labelStatus setImage:[UIImage imageNamed:@"cog-black.png"]];
         [[RODItemStore sharedStore] addChat:[NSString stringWithFormat:@"Error: %@", err]];
         [self.tableChats reloadData];
         [self enterChat];
@@ -323,6 +358,8 @@
         [[RODItemStore sharedStore].chatHub on:@"addSimpleBacklog" perform:self selector:@selector(addSimpleBacklog:)];
         
         [RODItemStore sharedStore].connected_to_chat = true;
+        [_labelStatus setImage:[UIImage imageNamed:@"cog-green.png"]];
+        
         
     };
         
