@@ -58,6 +58,8 @@
     navController.navigationBar.tintColor = [UIColor blackColor];
     [navController.navigationBar setBackgroundColor:[UIColor whiteColor]];
     
+    [navController.menuViewController setThreshold:100.0f];
+    
     NSDictionary *new_font = [NSDictionary dictionaryWithObjectsAndKeys:
                               [UIColor blackColor], UITextAttributeTextColor,
                               [UIFont systemFontOfSize:12.0], UITextAttributeFont, nil];
