@@ -44,7 +44,9 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:CGRectMake(0, 0, 30, 30)];
-    [button setImage:[UIImage imageNamed:@"cog.png"] forState:UIControlStateNormal];
+    
+    // first load, set it to black, black means not connected
+    [button setImage:[UIImage imageNamed:@"cog-black.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(leaveChat:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self.textMessage layer] setBorderColor:[[UIColor blackColor] CGColor]];

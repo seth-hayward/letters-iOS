@@ -144,6 +144,11 @@
 		5DC4F32B17FD2AA400B2117D /* comment-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F32717FD2AA400B2117D /* comment-1.png */; };
 		5DC4F32C17FD2AA400B2117D /* comment-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F32817FD2AA400B2117D /* comment-2.png */; };
 		5DC4F3451800B99600B2117D /* J1Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC4F3441800B99600B2117D /* J1Button.m */; };
+		5DC4F34B1801110700B2117D /* cog-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F3461801110700B2117D /* cog-black.png */; };
+		5DC4F34C1801110700B2117D /* cog-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F3471801110700B2117D /* cog-blue.png */; };
+		5DC4F34D1801110700B2117D /* cog-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F3481801110700B2117D /* cog-green.png */; };
+		5DC4F34E1801110700B2117D /* cog-purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F3491801110700B2117D /* cog-purple.png */; };
+		5DC4F34F1801110700B2117D /* cog-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC4F34A1801110700B2117D /* cog-red.png */; };
 		5DCD9D9317FCC73A0048504A /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD9D9217FCC73A0048504A /* NavigationController.m */; };
 		5DE2531C17ACC2150069EC96 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2531B17ACC2150069EC96 /* comment.png */; };
 		5DE2533317B130790069EC96 /* LetterCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE2533117B130790069EC96 /* LetterCommentsViewController.m */; };
@@ -319,6 +324,11 @@
 		5DC4F32817FD2AA400B2117D /* comment-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment-2.png"; sourceTree = "<group>"; };
 		5DC4F3431800B99600B2117D /* J1Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = J1Button.h; sourceTree = "<group>"; };
 		5DC4F3441800B99600B2117D /* J1Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = J1Button.m; sourceTree = "<group>"; };
+		5DC4F3461801110700B2117D /* cog-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog-black.png"; sourceTree = "<group>"; };
+		5DC4F3471801110700B2117D /* cog-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog-blue.png"; sourceTree = "<group>"; };
+		5DC4F3481801110700B2117D /* cog-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog-green.png"; sourceTree = "<group>"; };
+		5DC4F3491801110700B2117D /* cog-purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog-purple.png"; sourceTree = "<group>"; };
+		5DC4F34A1801110700B2117D /* cog-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog-red.png"; sourceTree = "<group>"; };
 		5DCD9D9117FCC73A0048504A /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		5DCD9D9217FCC73A0048504A /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		5DE2531B17ACC2150069EC96 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
@@ -472,6 +482,11 @@
 				5D977D1517E77A72002DA837 /* add_2.png */,
 				5D977D1717E77B5C002DA837 /* add_3.png */,
 				5D977D1117E68125002DA837 /* add.png */,
+				5DC4F3461801110700B2117D /* cog-black.png */,
+				5DC4F3471801110700B2117D /* cog-blue.png */,
+				5DC4F3481801110700B2117D /* cog-green.png */,
+				5DC4F3491801110700B2117D /* cog-purple.png */,
+				5DC4F34A1801110700B2117D /* cog-red.png */,
 				5D528CB017C6C43600AAB762 /* J1ButtonImages */,
 				5D528D3917C6CA3B00AAB762 /* heart-15px.png */,
 				5DE2534717B6D16F0069EC96 /* WCAlertView.h */,
@@ -645,6 +660,7 @@
 				5D7F304017820161009F0AC6 /* envelope.png in Resources */,
 				5D7F30421782019E009F0AC6 /* medical.png in Resources */,
 				5D7F304A1784C3E5009F0AC6 /* ios-app-icon-114x114.png in Resources */,
+				5DC4F34C1801110700B2117D /* cog-blue.png in Resources */,
 				5D7F304C1784C3E9009F0AC6 /* ios-app-icon-57x57.png in Resources */,
 				5D7F30541784CA28009F0AC6 /* ios-app-icon-72x72.png in Resources */,
 				5D7F30561784CA3D009F0AC6 /* ios-app-icon-144x144.png in Resources */,
@@ -656,9 +672,11 @@
 				5D7F30621784FA07009F0AC6 /* Default-Portrait~ipad.png in Resources */,
 				5D458D7B17875C1000B71314 /* refresh.png in Resources */,
 				5D458D7D178B731500B71314 /* search.png in Resources */,
+				5DC4F34D1801110700B2117D /* cog-green.png in Resources */,
 				5D458D94178E318A00B71314 /* Default-568h@2x.png in Resources */,
 				5D7609C6179F0C580018F27B /* LoginView.xib in Resources */,
 				5D7609D717A0588B0018F27B /* ScrollViewItem.xib in Resources */,
+				5DC4F34B1801110700B2117D /* cog-black.png in Resources */,
 				5DE2531C17ACC2150069EC96 /* comment.png in Resources */,
 				5DE2533417B130790069EC96 /* LetterCommentsViewController.xib in Resources */,
 				5DE2533817B132070069EC96 /* LettersScrollController.xib in Resources */,
@@ -717,6 +735,7 @@
 				5D528D2117C6C57C00AAB762 /* J1-green-highlighted.png in Resources */,
 				5D528D2217C6C57C00AAB762 /* J1-green-highlighted@2x.png in Resources */,
 				5D528D2317C6C57C00AAB762 /* J1-green-normal.png in Resources */,
+				5DC4F34E1801110700B2117D /* cog-purple.png in Resources */,
 				5D528D2417C6C57C00AAB762 /* J1-green-normal@2x.png in Resources */,
 				5D528D2517C6C57C00AAB762 /* J1-green-selected.png in Resources */,
 				5D528D2617C6C57C00AAB762 /* J1-green-selected@2x.png in Resources */,
@@ -735,6 +754,7 @@
 				5D528D3217C6C57C00AAB762 /* J1-red-selected@2x.png in Resources */,
 				5D528D3317C6C57C00AAB762 /* J1-red-small-highlighted.png in Resources */,
 				5D528D3417C6C57C00AAB762 /* J1-red-small-highlighted@2x.png in Resources */,
+				5DC4F34F1801110700B2117D /* cog-red.png in Resources */,
 				5D528D3517C6C57C00AAB762 /* J1-red-small-normal.png in Resources */,
 				5D528D3617C6C57C00AAB762 /* J1-red-small-normal@2x.png in Resources */,
 				5D528D3717C6C57C00AAB762 /* J1-red-small-selected.png in Resources */,
