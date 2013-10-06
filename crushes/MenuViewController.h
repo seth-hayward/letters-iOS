@@ -13,6 +13,7 @@
 @interface MenuViewController : REFrostedViewController <UITableViewDelegate, UITableViewDataSource>
 {
     IBOutlet UIView *loginView;
+    IBOutlet UIView *footerView;
 }
 
 - (UIView *)loginView;

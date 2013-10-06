@@ -19,6 +19,12 @@
 -(void)viewDidLoad
 {
     
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(oneTap:)];
+    UITapGestureRecognizer *singleTap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(oneTap:)];
+    
+    [self.loginView addGestureRecognizer:singleTap];
+    [[self footerView] addGestureRecognizer:singleTap2];
+    
     [[RODItemStore sharedStore] createItem:ViewTypeHome];
     [[RODItemStore sharedStore] createItem:ViewTypeMore];
     [[RODItemStore sharedStore] createItem:ViewTypeSearch];
@@ -43,15 +49,30 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 29.0f)];
         view;
     });
-    [self.view addSubview:self.tableView];
     
+
+    [self.view addSubview:self.tableView];
+    [self.tableView reloadData];
+
     
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.tableView reloadData];    
+    [self.tableView reloadData];
+
+    
+    int height = 50;
+    
+    NSLog(@"Height: %d", height);
+    
+    self.tableView.tableFooterView = ({
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, height)];
+        view;
+    });
+
+    
 }
 
 - (UIView *)loginView
@@ -63,6 +84,23 @@
     return loginView;
 }
 
+- (UIView *)footerView
+{
+    if (!footerView) {
+        int height = self.view.bounds.size.height - tableView.bounds.size.height;
+        height = 50;
+        footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, height)];
+        [footerView setBackgroundColor:[UIColor whiteColor]];
+    }
+    return footerView;
+}
+
+- (void)oneTap:(UIGestureRecognizer *)gesture {
+    
+    NSLog(@"oneTap:");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     return [self loginView];
@@ -70,13 +108,12 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *little_blanky = [[UIView alloc] init];
-    return little_blanky;
+    return [self footerView];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 10;
+    return [[self footerView] bounds].size.height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
