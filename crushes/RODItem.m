@@ -60,6 +60,14 @@
             caption = @"Chat";
             checked = false;
             break;
+        case ViewTypeComments:
+            caption  = @"Comments";
+            checked = false;
+            break;
+        case ViewTypeModLetters:
+            caption = @"Mod Letters";
+            checked = false;
+            break;
     }
     
     return self;

@@ -41,6 +41,7 @@
 @property (nonatomic) BOOL connected_to_chat;
 @property (nonatomic) NSString *current_search_terms;
 @property (nonatomic) NSNumber *loginStatus;
+@property (nonatomic) NSNumber *modStatus;
 @property (nonatomic) UIDeviceOrientation last_device_orientation;
 
 @property (strong, nonatomic) SRHubProxy *chatHub;

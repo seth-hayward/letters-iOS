@@ -385,18 +385,11 @@
             [self createItem:ViewTypeBookmarks];
             [self createItem:ViewTypeLogout];
             
+            // check to see if the user is a mod
+            [self checkUserStatus];
+            
             AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
             [appDelegate.menuViewController.tableView reloadData];
-            
-//            [WCAlertView showAlertWithTitle:@"letters to crushes" message:@"You have logged in. Welcome back!" customizationBlock:^(WCAlertView *alertView) {
-//                alertView.style = WCAlertViewStyleBlackHatched;
-//            } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
-//                if(buttonIndex == 1) {
-//                    [self generateLoginAlert];
-//                }
-//            } cancelButtonTitle:@"ok" otherButtonTitles: nil
-//             ];
-            
             
         } else {
             self.loginStatus = [NSNumber numberWithInt:0];
@@ -423,6 +416,64 @@
         
         self.loginStatus = [NSNumber numberWithInt:0];
     }];
+    
+}
+
+- (void) checkUserStatus
+{
+    // checks to see if the user is a mod or not
+    // updates modStatus with the result
+    // adds some more links to the menu controller
+    // prompts the menu controller to reload the table
+
+    // setup the send view with the edit screen
+    
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    NSURL *baseURL = [NSURL URLWithString:@"http://letterstocrushes.com"];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
+    
+    [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+    
+    RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+    
+    RKObjectMapping* responseObjectMapping = [RKObjectMapping mappingForClass:[RKMessage class]];
+    [responseObjectMapping addAttributeMappingsFromDictionary:@{
+                                                                @"response": @"response",
+                                                                @"message": @"message",
+                                                                @"guid": @"guid"
+                                                                }];
+    
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    NSString *real_url = @"http://letterstocrushes.com/account/mobilestatus";
+    
+    [objectManager addResponseDescriptor:responseDescriptor];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];
+    
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseDescriptor] ];
+    
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+
+        RKMessage *server_says = (RKMessage *)mappingResult.array[0];
+        
+        NSLog(@"mobilestatus, server_says: '%@'", server_says.guid);
+        
+        if([server_says.guid isEqualToString:@"1"]) {
+            [self setModStatus:[NSNumber numberWithInt:1]];
+            [[RODItemStore sharedStore] createItem:ViewTypeComments];
+            [[RODItemStore sharedStore] createItem:ViewTypeModLetters];
+            [appDelegate.menuViewController.tableView reloadData];
+        }
+        else {
+            [self setModStatus:[NSNumber numberWithInt:0]];
+        }
+        
+    } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Error checking modStatus: %@", error);
+    }];
+    
+    [objectRequestOperation start];
     
 }
 
