@@ -61,18 +61,6 @@
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
-
-    
-    int height = 50;
-    
-    NSLog(@"Height: %d", height);
-    
-    self.tableView.tableFooterView = ({
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, height)];
-        view;
-    });
-
-    
 }
 
 - (UIView *)loginView
@@ -95,9 +83,8 @@
     return footerView;
 }
 
-- (void)oneTap:(UIGestureRecognizer *)gesture {
-    
-    NSLog(@"oneTap:");
+- (void)oneTap:(UIGestureRecognizer *)gesture
+{    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -111,10 +98,6 @@
     return [self footerView];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return [[self footerView] bounds].size.height;
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -133,10 +116,10 @@
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:17];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)a_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    UITableViewCell *cell = [a_tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
 
     if(!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
@@ -156,7 +139,7 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)a_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
@@ -190,7 +173,7 @@
             break;
         case ViewTypeModLetters:
             self.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
-            [[RODItemStore sharedStore] loadLettersByPage:1 level:110];
+            [[RODItemStore sharedStore] loadLettersByPage:1 level:-10];
             break;
         case ViewTypeSend:
             // now tell the web view to change the page
@@ -230,7 +213,7 @@
     }
     
     // reload the data so the checkbox updates
-    [_tableView reloadData];
+    [a_tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }

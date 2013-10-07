@@ -439,13 +439,13 @@
     NSString *height = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
     [[RODItemStore sharedStore] updateLetterByIndex:self.letter_index letter_height:height];
     
-    self.letter_index++;    
-    
-    if(self.letter_index == [[[RODItemStore sharedStore] allLetters] count]) {
+    if(self.letter_index == [[[RODItemStore sharedStore] allLetters] count] - 1) {
         self.loaded = true;
         [self loadLetterData];
         return;
     }
+    
+    self.letter_index++;
     
     RKFullLetter *full_letter;
     full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:self.letter_index];

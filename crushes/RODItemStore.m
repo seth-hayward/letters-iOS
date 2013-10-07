@@ -219,7 +219,7 @@
         baseURL = [NSURL URLWithString:@"http://letterstocrushes.com/account/getbookmarks"];
     }
     
-    if(load_level == 0 || load_level == -1)
+    if(load_level == 0 || load_level == -1 || load_level == -10)
     {
         real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/api/get_letters/%d/%d", load_level, page];
     }
