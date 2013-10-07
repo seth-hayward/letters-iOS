@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "WCAlertView.h"
 #import <REFrostedViewController.h>
+#import "LetterCommentsViewController.h"
 
 @implementation MenuViewController
 @synthesize tableView, navigationController;
@@ -174,6 +175,17 @@
         case ViewTypeModLetters:
             self.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
             [[RODItemStore sharedStore] loadLettersByPage:1 level:-10];
+            break;
+        case ViewTypeComments:
+        {
+            LetterCommentsViewController *comments = [[LetterCommentsViewController alloc] init];
+            comments.letter_id = -10;
+            
+            // now tell the web view to change the page
+            AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+            [appDelegate.navigationController pushViewController:comments animated:true];
+            
+        }
             break;
         case ViewTypeSend:
             // now tell the web view to change the page

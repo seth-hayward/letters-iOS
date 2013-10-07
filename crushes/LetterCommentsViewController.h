@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic) int letter_id;
 @property (nonatomic) int comment_index;
+@property (nonatomic) int page_number;
 @property (weak, nonatomic) IBOutlet UIWebView *testWebView;
 
 -(void)loadCommentData;

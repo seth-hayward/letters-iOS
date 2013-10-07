@@ -16,7 +16,7 @@
 #import "AppDelegate.h"
 
 @implementation LetterCommentsViewController
-@synthesize letter_id, scrollView;
+@synthesize letter_id, scrollView, page_number;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +37,7 @@
     [[self navigationItem] setTitle:@"comments"];
     
     [self pullCommentData];
+    [self setPage_number:1];
 
 }
 
@@ -95,7 +96,14 @@
     
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
-    NSString *real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/comment/getcomments/%d", letter_id];
+    
+    NSString *real_url;
+    
+    if(self.letter_id > -10) {
+        real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/comment/getcomments/%d", letter_id];
+    } else {
+        real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/api/get_comments/%d", page_number];
+    }
     
     [objectManager addResponseDescriptor:responseDescriptor];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:real_url]];
