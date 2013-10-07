@@ -94,10 +94,10 @@
     if([RODItemStore sharedStore].chatConnection) {
         [[RODItemStore sharedStore].chatConnection disconnect];
     }
-    
+        
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    [appDelegate.navigationController popViewControllerAnimated:NO];
-    [appDelegate.navigationController pushViewController:appDelegate.chatNameViewController animated:YES];
+    [appDelegate.lettersScrollController clearLettersAndReset];
+    appDelegate.navigationController.viewControllers = @[ appDelegate.chatNameViewController ];
     
 }
 

@@ -31,6 +31,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self setEdgesForExtendedLayout:UIRectEdgeNone];
 
     [[self navigationItem] setTitle:@"comments"];
     
@@ -46,6 +48,8 @@
     
     // scroll to top
     [self.scrollView setContentOffset:CGPointZero animated:YES];
+    
+    self.comment_index = 0;
     
     self.testWebView.delegate = self;
     
@@ -143,9 +147,11 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)webViewDidFinishLoad:(UIWebView *)webView
-{    
-    NSString *height = [webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
+-(void)webViewDidFinishLoad:(UIWebView *)a_webView
+{
+            
+    NSString *height = [a_webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
+    
     [[RODItemStore sharedStore] updateComment:self.comment_index comment_height:height];
     
     if(self.comment_index == [[[RODItemStore sharedStore] allComments] count] - 1) {
@@ -153,12 +159,11 @@
         return;
     }
     
+    self.comment_index++;
+    
     RKComment *full_comment;
     full_comment = [[[RODItemStore sharedStore] allComments] objectAtIndex:self.comment_index];
     [self.testWebView loadHTMLString:full_comment.commentMessage baseURL:nil];
-
-    self.comment_index++;
-    
 }
 
 - (void)addCommentRequested
@@ -200,7 +205,7 @@
 -(void)drawComments
 {
     
-    [self.testWebView setHidden:true];
+    //[self.testWebView setHidden:true];
     int yOffset = 0;
     
     CommentScrollViewItem *scv;
