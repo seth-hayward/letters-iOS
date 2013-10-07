@@ -188,6 +188,10 @@
             [appDelegate.lettersScrollController clearLettersAndReset];
             [[RODItemStore sharedStore] loadLettersByPage:1 level:100];
             break;
+        case ViewTypeModLetters:
+            self.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
+            [[RODItemStore sharedStore] loadLettersByPage:1 level:110];
+            break;
         case ViewTypeSend:
             // now tell the web view to change the page
             self.navigationController.viewControllers = @[ appDelegate.sendViewController ];
