@@ -38,7 +38,7 @@
     
     [self pullCommentData];
     [self setPage_number:1];
-
+    
 }
 
 -(void)pullCommentData
@@ -60,18 +60,33 @@
     [button addTarget:self action:@selector(addCommentPlease:) forControlEvents:UIControlEventTouchUpInside];
     
     btnAddComment = [[UIBarButtonItem alloc] initWithCustomView:button];
-    
-    [self.navigationItem setRightBarButtonItem:btnAddComment animated:YES];
 
-    UIButton *button_back = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button_back setFrame:CGRectMake(0, 0, 30, 30)];
-    [button_back setImage:[UIImage imageNamed:@"back-150px.png"] forState:UIControlStateNormal];
-    [button_back addTarget:self action:@selector(popControllerAndGoBack:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *btnGoBack = [[UIBarButtonItem alloc] initWithCustomView:button_back];
+    if(self.letter_id > 0) {
+        
+        UIButton *button_back = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button_back setFrame:CGRectMake(0, 0, 30, 30)];
+        [button_back setImage:[UIImage imageNamed:@"back-150px.png"] forState:UIControlStateNormal];
+        [button_back addTarget:self action:@selector(popControllerAndGoBack:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *btnGoBack = [[UIBarButtonItem alloc] initWithCustomView:button_back];
+        
+        [self.navigationItem setLeftBarButtonItem:btnGoBack animated:YES];
+        
+    } else {
+
+        UIButton *button_menu = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button_menu setFrame:CGRectMake(0, 0, 30, 30)];
+        [button_menu setImage:[UIImage imageNamed:@"hamburger-150px.png"] forState:UIControlStateNormal];
+        [button_menu addTarget:(NavigationController *)self.navigationController action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *leftDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_menu];
+        [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+        
+    }
     
     [self.navigationItem setRightBarButtonItem:btnAddComment animated:YES];
-    [self.navigationItem setLeftBarButtonItem:btnGoBack animated:YES];
+    
+    [self.navigationItem setRightBarButtonItem:btnAddComment animated:YES];
     
     NSURL *baseURL = [NSURL URLWithString:@"http://letterstocrushes.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];

@@ -33,6 +33,7 @@
     // PREVENT THE UNDERLAPPING THAT OCCURS WITH
     // IOS 7!!!!!
     self.edgesForExtendedLayout = UIRectEdgeNone;
+
     
     // Do any additional setup after loading the view from its nib.
     
@@ -52,7 +53,6 @@
     [button setImage:[UIImage imageNamed:@"add-comment.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(addCommentPlease:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *btnAddComment = [[UIBarButtonItem alloc] initWithCustomView:button];
     UIBarButtonItem *btnAC = [[UIBarButtonItem alloc] initWithTitle:@"send" style:UIBarButtonItemStylePlain target:self action:@selector(addCommentPlease:)];
     
     [self.navigationItem setRightBarButtonItem:btnAC animated:YES];

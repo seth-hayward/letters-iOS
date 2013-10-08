@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5">
-                    <rect key="frame" x="76" y="51" width="221" height="29"/>
+                    <rect key="frame" x="76.000000000000028" y="51" width="221" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -37,7 +37,7 @@
                     </connections>
                 </textView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="anonymous lover" translatesAutoresizingMaskIntoConstraints="NO" id="18">
-                    <rect key="frame" x="76" y="20" width="221" height="29"/>
+                    <rect key="frame" x="76" y="20" width="221.00000000000003" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -100,6 +100,7 @@
             <constraints>
                 <constraint firstItem="68" firstAttribute="trailing" secondItem="158" secondAttribute="trailing" id="1yW-ei-tfF"/>
                 <constraint firstItem="68" firstAttribute="leading" secondItem="QaK-0k-rGB" secondAttribute="leading" constant="20" symbolic="YES" id="5dQ-y7-kmN"/>
+                <constraint firstItem="91" firstAttribute="top" secondItem="QaK-0k-rGB" secondAttribute="top" constant="83" id="6Ts-4q-DA4"/>
                 <constraint firstItem="91" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="3" id="7Ad-kk-6fa"/>
                 <constraint firstItem="68" firstAttribute="leading" secondItem="82" secondAttribute="leading" id="7Ns-go-Sgf"/>
                 <constraint firstItem="18" firstAttribute="leading" secondItem="QaK-0k-rGB" secondAttribute="leading" constant="76" id="97Q-6q-e8n"/>
@@ -107,6 +108,7 @@
                 <constraint firstItem="18" firstAttribute="centerY" secondItem="68" secondAttribute="centerY" id="AgW-PX-3dQ"/>
                 <constraint firstItem="18" firstAttribute="trailing" secondItem="91" secondAttribute="trailing" id="HXI-uU-8YG"/>
                 <constraint firstItem="18" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" id="KJQ-aK-OES"/>
+                <constraint firstItem="26" firstAttribute="top" secondItem="QaK-0k-rGB" secondAttribute="top" constant="127" id="TgG-rB-VAA"/>
                 <constraint firstItem="18" firstAttribute="leading" secondItem="5" secondAttribute="leading" id="Vbk-pA-pCj"/>
                 <constraint firstItem="18" firstAttribute="leading" secondItem="91" secondAttribute="leading" id="Xdx-YK-Ijs"/>
                 <constraint firstItem="68" firstAttribute="leading" secondItem="158" secondAttribute="leading" id="Y9W-kR-CXN"/>
