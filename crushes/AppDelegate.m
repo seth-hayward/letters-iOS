@@ -17,7 +17,7 @@
 
 @implementation AppDelegate
 @synthesize sendViewController, drawer, lettersScrollController, navigationController, searchViewController,
-    menuViewController, chatViewController, chatNameViewController, addCommentViewController;
+    menuViewController, chatViewController, chatNameViewController, addCommentViewController, letterCommentsViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

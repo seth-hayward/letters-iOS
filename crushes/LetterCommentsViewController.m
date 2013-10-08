@@ -77,7 +77,7 @@
         UIButton *button_menu = [UIButton buttonWithType:UIButtonTypeCustom];
         [button_menu setFrame:CGRectMake(0, 0, 30, 30)];
         [button_menu setImage:[UIImage imageNamed:@"hamburger-150px.png"] forState:UIControlStateNormal];
-        [button_menu addTarget:(NavigationController *)self.navigationController action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
+        [button_menu addTarget:self action:@selector(popControllerAndShowMenu:) forControlEvents:UIControlEventTouchUpInside];
         
         UIBarButtonItem *leftDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button_menu];
         [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
@@ -207,6 +207,11 @@
 {
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];    
     [appDelegate.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)popControllerAndShowMenu:(UIBarButtonItem *)button {
+    
+    [(NavigationController *)self.navigationController showMenu];
 }
 
 -(void)loadCommentData

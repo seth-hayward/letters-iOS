@@ -147,6 +147,14 @@
 
     RODItem *selected_item = [[[RODItemStore sharedStore] allMenuItems] objectAtIndex:[indexPath row]];
     
+    if([[RODItemStore sharedStore] current_viewtype] == ViewTypeComments)
+    {
+//        [self.navigationController dismissViewControllerAnimated:appDelegate.letterCommentsViewController completion:nil];
+//        self.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+    }
+    
     // set all items to be checked=false
     for(int i = 0; i < [[[RODItemStore sharedStore] allMenuItems] count]; i++) {
         [[[[RODItemStore sharedStore] allMenuItems] objectAtIndex:i] setChecked:false];
@@ -183,8 +191,9 @@
             
             // now tell the web view to change the page
             AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-            [appDelegate.navigationController pushViewController:comments animated:true];
-            
+            appDelegate.letterCommentsViewController = comments;
+            //[appDelegate.navigationController pushViewController:comments animated:true];
+            self.navigationController.viewControllers = @[ appDelegate.letterCommentsViewController ];
         }
             break;
         case ViewTypeSend:

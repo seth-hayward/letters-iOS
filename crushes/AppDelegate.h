@@ -16,6 +16,7 @@
 #import "AddCommentViewController.h"
 #import <REFrostedViewController.h>
 #import "NavigationController.h"
+#import "LetterCommentsViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
@@ -29,5 +30,6 @@
 @property (strong, nonatomic) ChatViewController *chatViewController;
 @property (strong, nonatomic) AddCommentViewController *addCommentViewController;
 @property (strong, nonatomic) NavigationController *navigationController;
+@property (strong, nonatomic) LetterCommentsViewController *letterCommentsViewController;
 
 @end
