@@ -14,6 +14,7 @@
 #import "AddCommentViewController.h"
 #import "WCAlertView.h"
 #import "AppDelegate.h"
+#import "PagerViewController.h"
 
 @implementation LetterCommentsViewController
 @synthesize letter_id, scrollView, page_number;
@@ -38,6 +39,10 @@
     
     [self pullCommentData];
     [self setPage_number:1];
+
+    // clear previous comments
+    [[RODItemStore sharedStore] clearComments];
+
     
 }
 
@@ -286,10 +291,80 @@
     
     [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
     
+
+    // now add the pager control -- only if we're showing
+    // the most recent comments (mod access only) screen.
+    if(self.letter_id < 0) {
+
+        PagerViewController *pager = [[PagerViewController alloc] init];
+        pager.view.frame = CGRectMake(0, yOffset, self.view.bounds.size.width, pager.view.frame.size.height);
+        
+        if(self.page_number > 1) {
+            [pager.buttonBack setHidden:false];
+            [pager.buttonBack addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+            
+        } else {
+            [pager.buttonBack setHidden:true];
+        }
+        
+        [pager.buttonNext addTarget:self action:@selector(nextButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        pager.view.tag = 7;
+        
+        if([[[RODItemStore sharedStore] allLetters] count] > 9) {
+            // got rejected for this!
+            // hide the buttons if there are no letters
+            
+            [self.scrollView addSubview:pager.view];
+            yOffset = yOffset + pager.view.frame.size.height;
+            
+        }
+        
+        [self.scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, yOffset)];
+        
+        if([[RODItemStore sharedStore] current_load_level] == 120) {
+            AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+            [appDelegate.navigationController popViewControllerAnimated:true];
+        }
+
+        
+    }
     
     // now try looping through and resetting everything?
     
     
+}
+
+-(void)clearCommentsAndReset
+{
+    
+    for (UIView *subview in self.scrollView.subviews) {
+        if([subview tag] > 0) {
+            [subview performSelector:@selector(removeFromSuperview)];
+        }
+    }
+    
+    self.scrollView.contentSize = CGSizeMake(0,0);
+    
+    [self.scrollView setNeedsDisplay];
+    
+}
+
+
+- (void)nextButtonClicked:(UIButton *)button
+{
+    [self clearCommentsAndReset];
+    self.page_number += 1;
+    [self pullCommentData];
+}
+
+-(void)backButtonClicked:(UIButton *)button
+{
+    if(self.page_number > 1) {
+        [self clearCommentsAndReset];
+        self.page_number -= 1;
+        [self pullCommentData];        
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

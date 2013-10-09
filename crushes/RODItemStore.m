@@ -515,8 +515,17 @@
         
         // rebuild the menu table
         // remove Logout item and Bookmark item, add login
-        [_allMenuItems removeLastObject];
-        [_allMenuItems removeLastObject];
+        
+        NSArray *_copy = [_allMenuItems copy];
+        
+        for(RODItem *l in _copy) {
+            if(l.viewType == ViewTypeComments || l.viewType == ViewTypeLogout
+               || l.viewType == ViewTypeBookmarks || l.viewType == ViewTypeModLetters)
+            {
+                [_allMenuItems removeObject:l];
+            }
+        }
+        
         [self createItem:ViewTypeLogin];
         
         AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
