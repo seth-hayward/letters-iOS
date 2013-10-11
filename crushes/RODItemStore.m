@@ -315,9 +315,53 @@
     self.loginStatus = [NSNumber numberWithInt:valid];
 }
 
+- (BOOL)signup:(NSString *)email password:(NSString *)password
+{
+    
+    BOOL result = NO;
+
+    // make the post to mobilesignup
+    // check the status
+
+    // log the new user in
+    [self login:email password:password];
+    
+    // now show the home page again...
+    // should it go to the bookmarks page instead?
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.lettersScrollController clearLettersAndReset];
+    appDelegate.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
+    
+    // set HOme to be checked
+    for(RODItem *l in _allMenuItems) {
+        if(l.viewType == ViewTypeHome) {
+            l.checked = true;
+        } else {
+            l.checked = false;
+        }
+    }
+    
+    [[RODItemStore sharedStore] loadLettersByPage:1  level:0];
+    
+    [WCAlertView showAlertWithTitle:@"Success!" message:@"Your account was created. Welcome to letters to crushes!" customizationBlock:^(WCAlertView *alertView) {
+        alertView.style = WCAlertViewStyleBlackHatched;
+    } completionBlock:nil cancelButtonTitle:@"ok" otherButtonTitles:nil
+     ];
+    
+    
+    result = YES;
+    
+    if (result == NO) {
+        [WCAlertView showAlertWithTitle:@"sign up error" message:@"An error occurred, please try again. You can sign up on the web site at \n http://letterstocrushes.com/signup" customizationBlock:^(WCAlertView *alertView) {
+            alertView.style = WCAlertViewStyleBlackHatched;
+        } completionBlock:nil cancelButtonTitle:@"ok" otherButtonTitles:nil
+         ];
+    }
+    return result;
+}
+
 - (void)login:(NSString *)email password:(NSString *)password
 {
-    NSLog(@"Plz login '%@' with password '%@'", email, password);
     
 	// Create a new login object and POST it to the server
 	RKLogin* login = [RKLogin new];
@@ -379,10 +423,6 @@
             
             [[RODItemStore sharedStore] saveSettings];
             
-            // remove login item
-            [_allMenuItems removeLastObject];
-            
-
             // rebuild the menu table
             // remove Signup, Login
             

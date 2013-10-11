@@ -8,6 +8,7 @@
 
 #import "SignupViewController.h"
 #import "NavigationController.h"
+#import "RODItemStore.h"
 
 @implementation SignupViewController
 
@@ -42,7 +43,10 @@
 
 - (IBAction)signUp:(id)sender
 {
-    NSLog(@"Signup.");
+    [self.textPassword resignFirstResponder];
+    [self.textEmail resignFirstResponder];
+    
+    [[RODItemStore sharedStore] signup:self.textEmail.text password:self.textPassword.text];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
