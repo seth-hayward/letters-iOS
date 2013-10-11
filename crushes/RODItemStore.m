@@ -382,6 +382,20 @@
             // remove login item
             [_allMenuItems removeLastObject];
             
+
+            // rebuild the menu table
+            // remove Signup, Login
+            
+            NSArray *_copy = [_allMenuItems copy];
+            
+            for(RODItem *l in _copy) {
+                if(l.viewType == ViewTypeSignup || l.viewType == ViewTypeLogin)
+                {
+                    [_allMenuItems removeObject:l];
+                }
+            }
+            
+            
             [self createItem:ViewTypeBookmarks];
             [self createItem:ViewTypeLogout];
             
@@ -764,6 +778,7 @@
 - (void)addLoginMenuOption
 {
     [self createItem:ViewTypeLogin];
+    [self createItem:ViewTypeSignup];
     
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate.menuViewController.tableView reloadData];

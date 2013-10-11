@@ -68,6 +68,10 @@
             caption = @"Mod Letters";
             checked = false;
             break;
+        case ViewTypeSignup:
+            caption = @"Signup";
+            checked = false;
+            break;
     }
     
     return self;

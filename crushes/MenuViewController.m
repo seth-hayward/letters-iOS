@@ -21,16 +21,15 @@
 {
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(oneTap:)];
-    UITapGestureRecognizer *singleTap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(oneTap:)];
     
     [self.loginView addGestureRecognizer:singleTap];
-    [[self footerView] addGestureRecognizer:singleTap2];
     
     [[RODItemStore sharedStore] createItem:ViewTypeHome];
     [[RODItemStore sharedStore] createItem:ViewTypeMore];
     [[RODItemStore sharedStore] createItem:ViewTypeSearch];
     [[RODItemStore sharedStore] createItem:ViewTypeSend];
     [[RODItemStore sharedStore] createItem:ViewTypeChat];
+    [[RODItemStore sharedStore] createItem:ViewTypeSignup];
     [[RODItemStore sharedStore] createItem:ViewTypeLogin];
     
     self.view.opaque = NO;
@@ -73,16 +72,6 @@
     return loginView;
 }
 
-- (UIView *)footerView
-{
-    if (!footerView) {
-        int height = self.view.bounds.size.height - tableView.bounds.size.height;
-        height = 50;
-        footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, height)];
-        [footerView setBackgroundColor:[UIColor whiteColor]];
-    }
-    return footerView;
-}
 
 - (void)oneTap:(UIGestureRecognizer *)gesture
 {    
@@ -93,12 +82,6 @@
 {
     return [self loginView];
 }
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [self footerView];
-}
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -228,6 +211,8 @@
             }
             
             break;
+        case ViewTypeSignup:
+            self.navigationController.viewControllers = @[ appDelegate.suViewController ];
             
         default:
             break;

@@ -17,6 +17,7 @@
 #import <REFrostedViewController.h>
 #import "NavigationController.h"
 #import "LetterCommentsViewController.h"
+#import "SignupViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
@@ -31,5 +32,6 @@
 @property (strong, nonatomic) AddCommentViewController *addCommentViewController;
 @property (strong, nonatomic) NavigationController *navigationController;
 @property (strong, nonatomic) LetterCommentsViewController *letterCommentsViewController;
+@property (strong, nonatomic) SignupViewController *suViewController;
 
 @end

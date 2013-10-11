@@ -14,10 +14,12 @@
 #import "SearchViewController.h"
 #import <REFrostedViewController.h>
 #import "NavigationController.h"
+#import "SignupViewController.h"
 
 @implementation AppDelegate
 @synthesize sendViewController, drawer, lettersScrollController, navigationController, searchViewController,
-    menuViewController, chatViewController, chatNameViewController, addCommentViewController, letterCommentsViewController;
+    menuViewController, chatViewController, chatNameViewController, addCommentViewController, letterCommentsViewController,
+    suViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -53,6 +55,9 @@
     AddCommentViewController *addCommentVC = [[AddCommentViewController alloc] init];
     addCommentViewController = addCommentVC;
     addCommentViewController.trackedViewName = @"Add Comment";
+    
+    SignupViewController *suVC = [[SignupViewController alloc] init];
+    suViewController = suVC;
     
     NavigationController *navController = [[NavigationController alloc] initWithRootViewController:lettersScrollVC];
     navController.navigationBar.tintColor = [UIColor blackColor];

@@ -117,6 +117,8 @@
 		5D7609C6179F0C580018F27B /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7609C5179F0C580018F27B /* LoginView.xib */; };
 		5D7609D617A0588B0018F27B /* ScrollViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7609D417A058890018F27B /* ScrollViewItem.m */; };
 		5D7609D717A0588B0018F27B /* ScrollViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7609D517A0588A0018F27B /* ScrollViewItem.xib */; };
+		5D770C6E180872640061D243 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D770C6C180872640061D243 /* SignupViewController.m */; };
+		5D770C6F180872640061D243 /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D770C6D180872640061D243 /* SignupViewController.xib */; };
 		5D7ABC841804EB57007D253D /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7ABC831804EB57007D253D /* Default-Portrait@2x~ipad.png */; };
 		5D7ABC861804EB6E007D253D /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7ABC851804EB6E007D253D /* Default-Landscape~ipad.png */; };
 		5D7ABC881804EB82007D253D /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7ABC871804EB82007D253D /* Default-Landscape@2x~ipad.png */; };
@@ -293,6 +295,9 @@
 		5D7609D317A058890018F27B /* ScrollViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewItem.h; sourceTree = "<group>"; };
 		5D7609D417A058890018F27B /* ScrollViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewItem.m; sourceTree = "<group>"; };
 		5D7609D517A0588A0018F27B /* ScrollViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScrollViewItem.xib; sourceTree = "<group>"; };
+		5D770C6B180872640061D243 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		5D770C6C180872640061D243 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		5D770C6D180872640061D243 /* SignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupViewController.xib; sourceTree = "<group>"; };
 		5D7ABC831804EB57007D253D /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		5D7ABC851804EB6E007D253D /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		5D7ABC871804EB82007D253D /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
@@ -420,6 +425,9 @@
 				5D7609D317A058890018F27B /* ScrollViewItem.h */,
 				5D7609D417A058890018F27B /* ScrollViewItem.m */,
 				5D7609D517A0588A0018F27B /* ScrollViewItem.xib */,
+				5D770C6B180872640061D243 /* SignupViewController.h */,
+				5D770C6C180872640061D243 /* SignupViewController.m */,
+				5D770C6D180872640061D243 /* SignupViewController.xib */,
 				5DE2534217B438D00069EC96 /* CommentScrollViewItem.h */,
 				5DE2534317B438D00069EC96 /* CommentScrollViewItem.m */,
 				5DE2534417B438D10069EC96 /* CommentScrollViewItem.xib */,
@@ -709,6 +717,7 @@
 				5DC4F32C17FD2AA400B2117D /* comment-2.png in Resources */,
 				5D528CFF17C6C57C00AAB762 /* J1-blue-small-selected.png in Resources */,
 				5D528D0017C6C57C00AAB762 /* J1-blue-small-selected@2x.png in Resources */,
+				5D770C6F180872640061D243 /* SignupViewController.xib in Resources */,
 				5D528D0117C6C57C00AAB762 /* J1-gray-disabled.png in Resources */,
 				5D528D0217C6C57C00AAB762 /* J1-gray-disabled@2x.png in Resources */,
 				5D0D7CF81804DD6400D661F3 /* Default-568h@2x.png in Resources */,
@@ -852,6 +861,7 @@
 				5D528CA117C2B6AD00AAB762 /* RODSettings.m in Sources */,
 				5D528CA817C3F69300AAB762 /* SearchViewController.m in Sources */,
 				5D528CAC17C3FEBE00AAB762 /* RODSentLetter.m in Sources */,
+				5D770C6E180872640061D243 /* SignupViewController.m in Sources */,
 				5DA117FA17DA61F200BDE5D0 /* ChatNameViewController.m in Sources */,
 				5DA117FF17DA783400BDE5D0 /* ChatViewController.m in Sources */,
 				5DA1180317DAD02300BDE5D0 /* RKChat.m in Sources */,
