@@ -54,6 +54,7 @@
     [button addTarget:self action:@selector(addCommentPlease:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *btnAC = [[UIBarButtonItem alloc] initWithTitle:@"send" style:UIBarButtonItemStylePlain target:self action:@selector(addCommentPlease:)];
+    [btnAC setTintColor:[UIColor blueColor]];
     
     [self.navigationItem setRightBarButtonItem:btnAC animated:YES];
     
@@ -70,7 +71,8 @@
     [[self.textCommenterEmail layer] setBorderColor:[[UIColor blackColor] CGColor]];
     [[self.textCommenterEmail layer] setBorderWidth:1.0f];
     [[self.textCommenterEmail layer] setCornerRadius:1.0f];
-        
+
+
 }
 
 - (void) keyboardWillHideHandler: (NSNotification *)notification {
