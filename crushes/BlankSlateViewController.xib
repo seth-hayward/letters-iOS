@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CzR-3z-2Mt" customClass="J1Button">
-                    <rect key="frame" x="20" y="176" width="124" height="30"/>
+                    <rect key="frame" x="20" y="161" width="124" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="write your letter">
@@ -24,7 +24,7 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oae-DJ-QIq" customClass="J1Button">
-                    <rect key="frame" x="169" y="176" width="124" height="30"/>
+                    <rect key="frame" x="169" y="161" width="124" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="124" id="Nxc-jc-FUE"/>
@@ -41,20 +41,20 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="273" translatesAutoresizingMaskIntoConstraints="NO" id="K36-ZJ-OeV">
-                    <rect key="frame" x="20" y="57" width="273" height="118"/>
+                    <rect key="frame" x="20" y="42" width="273" height="118"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <string key="text">letters to crushes is a place where you can send a letter to someone that you've been thinking about. we are a supportive, caring environment and we are here to listen and encourage.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="any time you send a letter, it's saved here so you can read it again." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="124" translatesAutoresizingMaskIntoConstraints="NO" id="StH-7k-ABq">
-                    <rect key="frame" x="20" y="202" width="124" height="36"/>
+                    <rect key="frame" x="20" y="214" width="124" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="new letters are posted to the 'more' page." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="124" translatesAutoresizingMaskIntoConstraints="NO" id="f4w-FG-11e">
-                    <rect key="frame" x="169" y="202" width="124" height="24"/>
+                    <rect key="frame" x="169" y="214" width="124" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <nil key="highlightedColor"/>
@@ -66,19 +66,18 @@
                 <constraint firstItem="Oae-DJ-QIq" firstAttribute="width" secondItem="StH-7k-ABq" secondAttribute="width" id="4eL-dZ-zFt"/>
                 <constraint firstItem="Oae-DJ-QIq" firstAttribute="trailing" secondItem="f4w-FG-11e" secondAttribute="trailing" id="5gu-jR-Sc3"/>
                 <constraint firstItem="Oae-DJ-QIq" firstAttribute="width" secondItem="CzR-3z-2Mt" secondAttribute="width" id="AfF-Mj-KLM"/>
-                <constraint firstItem="StH-7k-ABq" firstAttribute="top" secondItem="1" secondAttribute="top" constant="202" id="BLG-Mw-M09"/>
-                <constraint firstItem="Oae-DJ-QIq" firstAttribute="top" secondItem="1" secondAttribute="top" constant="176" id="GF1-Pp-Bvh"/>
-                <constraint firstAttribute="bottom" secondItem="Oae-DJ-QIq" secondAttribute="bottom" constant="87" id="ILX-DC-yiB"/>
+                <constraint firstItem="StH-7k-ABq" firstAttribute="top" secondItem="1" secondAttribute="top" constant="214" id="BLG-Mw-M09"/>
+                <constraint firstItem="Oae-DJ-QIq" firstAttribute="top" secondItem="1" secondAttribute="top" constant="161" id="GF1-Pp-Bvh"/>
                 <constraint firstItem="Oae-DJ-QIq" firstAttribute="bottom" secondItem="CzR-3z-2Mt" secondAttribute="bottom" id="Jo3-RA-Z6Y"/>
                 <constraint firstItem="baG-um-MpN" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="P5g-M4-pPq"/>
                 <constraint firstItem="Oae-DJ-QIq" firstAttribute="trailing" secondItem="K36-ZJ-OeV" secondAttribute="trailing" id="XLg-9I-qcL"/>
                 <constraint firstItem="Oae-DJ-QIq" firstAttribute="top" secondItem="K36-ZJ-OeV" secondAttribute="bottom" constant="1" id="Yln-5y-0KI"/>
                 <constraint firstAttribute="trailing" secondItem="Oae-DJ-QIq" secondAttribute="trailing" constant="20" symbolic="YES" id="duR-zO-WHr"/>
                 <constraint firstItem="Oae-DJ-QIq" firstAttribute="leading" secondItem="f4w-FG-11e" secondAttribute="leading" id="fgD-98-evk"/>
-                <constraint firstItem="K36-ZJ-OeV" firstAttribute="top" secondItem="1" secondAttribute="top" constant="57" id="hys-DI-PiR"/>
-                <constraint firstItem="f4w-FG-11e" firstAttribute="top" secondItem="1" secondAttribute="top" constant="202" id="j4g-7S-ohR"/>
+                <constraint firstItem="K36-ZJ-OeV" firstAttribute="top" secondItem="1" secondAttribute="top" constant="42" id="hys-DI-PiR"/>
+                <constraint firstItem="f4w-FG-11e" firstAttribute="top" secondItem="1" secondAttribute="top" constant="214" id="j4g-7S-ohR"/>
                 <constraint firstItem="CzR-3z-2Mt" firstAttribute="trailing" secondItem="StH-7k-ABq" secondAttribute="trailing" id="lzb-cn-7a4"/>
-                <constraint firstItem="CzR-3z-2Mt" firstAttribute="top" secondItem="1" secondAttribute="top" constant="176" id="q3J-TX-3DW"/>
+                <constraint firstItem="CzR-3z-2Mt" firstAttribute="top" secondItem="1" secondAttribute="top" constant="161" id="q3J-TX-3DW"/>
                 <constraint firstItem="CzR-3z-2Mt" firstAttribute="leading" secondItem="baG-um-MpN" secondAttribute="leading" id="qKP-F7-sZc"/>
                 <constraint firstItem="Oae-DJ-QIq" firstAttribute="trailing" secondItem="baG-um-MpN" secondAttribute="trailing" id="qgm-0N-FW2"/>
                 <constraint firstItem="StH-7k-ABq" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="ryC-ab-8Y0"/>
