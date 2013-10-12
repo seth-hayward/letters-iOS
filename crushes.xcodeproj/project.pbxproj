@@ -119,6 +119,7 @@
 		5D7609D717A0588B0018F27B /* ScrollViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7609D517A0588A0018F27B /* ScrollViewItem.xib */; };
 		5D770C6E180872640061D243 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D770C6C180872640061D243 /* SignupViewController.m */; };
 		5D770C6F180872640061D243 /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D770C6D180872640061D243 /* SignupViewController.xib */; };
+		5D770C711808FE3F0061D243 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D770C701808FE3F0061D243 /* Images.xcassets */; };
 		5D7ABC841804EB57007D253D /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7ABC831804EB57007D253D /* Default-Portrait@2x~ipad.png */; };
 		5D7ABC861804EB6E007D253D /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7ABC851804EB6E007D253D /* Default-Landscape~ipad.png */; };
 		5D7ABC881804EB82007D253D /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7ABC871804EB82007D253D /* Default-Landscape@2x~ipad.png */; };
@@ -298,6 +299,7 @@
 		5D770C6B180872640061D243 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
 		5D770C6C180872640061D243 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		5D770C6D180872640061D243 /* SignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupViewController.xib; sourceTree = "<group>"; };
+		5D770C701808FE3F0061D243 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5D7ABC831804EB57007D253D /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		5D7ABC851804EB6E007D253D /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		5D7ABC871804EB82007D253D /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 				5DE2534B17BD92D70069EC96 /* RKLogin.m */,
 				5D0BD04B1670AAA30088A383 /* AppDelegate.h */,
 				5D0BD04C1670AAA30088A383 /* AppDelegate.m */,
+				5D770C701808FE3F0061D243 /* Images.xcassets */,
 				5D0BD0431670AAA30088A383 /* Supporting Files */,
 			);
 			path = crushes;
@@ -680,6 +683,7 @@
 				5D7F304017820161009F0AC6 /* envelope.png in Resources */,
 				5D7F30421782019E009F0AC6 /* medical.png in Resources */,
 				5D7F304A1784C3E5009F0AC6 /* ios-app-icon-114x114.png in Resources */,
+				5D770C711808FE3F0061D243 /* Images.xcassets in Resources */,
 				5DC4F34C1801110700B2117D /* cog-blue.png in Resources */,
 				5D7F304C1784C3E9009F0AC6 /* ios-app-icon-57x57.png in Resources */,
 				5D7ABC841804EB57007D253D /* Default-Portrait@2x~ipad.png in Resources */,
@@ -938,6 +942,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E241FCEAA9F14664A45919BA /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = crushes/crushes.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "crushes/crushes-Prefix.pch";
@@ -953,6 +959,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E241FCEAA9F14664A45919BA /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = crushes/crushes.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Seth Hayward";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Seth Hayward";
