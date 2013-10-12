@@ -9,6 +9,7 @@
 #import "SignupViewController.h"
 #import "NavigationController.h"
 #import "RODItemStore.h"
+#import "WCAlertView.h"
 
 @implementation SignupViewController
 
@@ -38,6 +39,8 @@
     [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
 
     self.textPassword.secureTextEntry = YES;
+
+    [[self navigationItem] setTitle:@"sign up"];
     
 }
 
@@ -45,6 +48,17 @@
 {
     [self.textPassword resignFirstResponder];
     [self.textEmail resignFirstResponder];
+    
+    if([self.textEmail.text length] == 0) {
+        [WCAlertView showAlertWithTitle:@"Signup error" message:@"Please enter an email address." customizationBlock:nil completionBlock:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+        return;
+    }
+
+    if([self.textPassword.text length] == 0) {
+        [WCAlertView showAlertWithTitle:@"Signup error" message:@"Please enter a password." customizationBlock:nil completionBlock:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+        return;
+    }
+
     
     [[RODItemStore sharedStore] signup:self.textEmail.text password:self.textPassword.text];
 }
