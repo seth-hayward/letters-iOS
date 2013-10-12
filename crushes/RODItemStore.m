@@ -315,49 +315,115 @@
     self.loginStatus = [NSNumber numberWithInt:valid];
 }
 
-- (BOOL)signup:(NSString *)email password:(NSString *)password
+- (void)signup:(NSString *)email password:(NSString *)password
 {
     
-    BOOL result = NO;
-
-    // make the post to mobilesignup
-    // check the status
-
-    // log the new user in
-    [self login:email password:password];
+    NSURL *baseURL = [NSURL URLWithString:@"http://letterstocrushes.com"];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
     
-    // now show the home page again...
-    // should it go to the bookmarks page instead?
+    [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+    
+    RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+    
+    RKObjectMapping* responseObjectMapping;
+    RKResponseDescriptor* responseDescriptor;
+    RKRequestDescriptor* requestDescriptor;
+    
+    responseObjectMapping = [RKObjectMapping mappingForClass:[RKMessage class]];
+    [responseObjectMapping addAttributeMappingsFromDictionary:@{
+                                                                @"response": @"response",
+                                                                @"message": @"message",
+                                                                @"guid": @"guid"
+                                                                }];
+    
+    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseObjectMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    RKObjectMapping* letterRequestMapping = [RKObjectMapping requestMapping];
+    [letterRequestMapping addAttributeMappingsFromDictionary:@{
+                                                               @"email": @"email",
+                                                               @"password" : @"password"}];
+    
+    requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:letterRequestMapping objectClass:[RKLogin class] rootKeyPath:@""];
+    [objectManager addRequestDescriptor:requestDescriptor];
+    
+    NSString *real_url = [NSString stringWithFormat:@"http://letterstocrushes.com/account/mobileregister?a=%@&b=%@", email, password];
+    
+    [objectManager addResponseDescriptor:responseDescriptor];
+    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
+    
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    [appDelegate.lettersScrollController clearLettersAndReset];
-    appDelegate.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
+    [appDelegate.menuViewController.tableView reloadData];
     
-    // set HOme to be checked
-    for(RODItem *l in _allMenuItems) {
-        if(l.viewType == ViewTypeHome) {
-            l.checked = true;
-        } else {
-            l.checked = false;
+    [objectManager postObject:nil path:real_url parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+        // now we just need to check the response
+        // there may have been an error on the server that
+        // we want to check for
+        
+        //NSLog("Mapping result: %@", mappingResult.);
+        
+        RKMessage *server_says = (RKMessage *)mappingResult.array[0];
+        
+        if([server_says.response isEqualToNumber:[NSNumber numberWithInt:1]]) {
+            // successful registration, the back end logs the user in as well..
+            // so we should set the same login values here
+            
+            _settings.userName = email;
+            _settings.password = password;
+            _settings.loginStatus = [NSNumber numberWithInt:1];
+            [self saveSettings];
+            
+            // now show the home page again...
+            // should it go to the bookmarks page instead?
+            AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+            [appDelegate.lettersScrollController clearLettersAndReset];
+            appDelegate.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
+            
+            // set HOme to be checked
+            for(RODItem *l in _allMenuItems) {
+                if(l.viewType == ViewTypeHome) {
+                    l.checked = true;
+                } else {
+                    l.checked = false;
+                }
+            }
+            
+            [[RODItemStore sharedStore] loadLettersByPage:1  level:0];
+            
+            [WCAlertView showAlertWithTitle:@"Success!" message:@"Your account was created. Welcome to letters to crushes!" customizationBlock:^(WCAlertView *alertView) {
+                alertView.style = WCAlertViewStyleBlackHatched;
+            } completionBlock:nil cancelButtonTitle:@"ok" otherButtonTitles:nil
+             ];
+            
         }
-    }
-    
-    [[RODItemStore sharedStore] loadLettersByPage:1  level:0];
-    
-    [WCAlertView showAlertWithTitle:@"Success!" message:@"Your account was created. Welcome to letters to crushes!" customizationBlock:^(WCAlertView *alertView) {
-        alertView.style = WCAlertViewStyleBlackHatched;
-    } completionBlock:nil cancelButtonTitle:@"ok" otherButtonTitles:nil
-     ];
-    
-    
-    result = YES;
-    
-    if (result == NO) {
+        
+        if([server_says.response isEqualToNumber:[NSNumber numberWithInt:200]]) {
+            self.loginStatus = [NSNumber numberWithInt:0];
+            [WCAlertView showAlertWithTitle:@"Signup error" message:@"Please enter a valid email address." customizationBlock:^(WCAlertView *alertView) {
+                alertView.style = WCAlertViewStyleBlackHatched;
+            } completionBlock:nil
+              cancelButtonTitle:@"ok" otherButtonTitles:nil];
+        }
+        
+        if([server_says.response isEqualToNumber:[NSNumber numberWithInt:201]]) {
+            self.loginStatus = [NSNumber numberWithInt:0];
+            [WCAlertView showAlertWithTitle:@"Signup error" message:@"Someone has already created an account with this address." customizationBlock:^(WCAlertView *alertView) {
+                alertView.style = WCAlertViewStyleBlackHatched;
+            } completionBlock:nil
+                          cancelButtonTitle:@"ok" otherButtonTitles:nil];
+        }
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"There was a failure: %@", error.description);
+        
         [WCAlertView showAlertWithTitle:@"sign up error" message:@"An error occurred, please try again. You can sign up on the web site at \n http://letterstocrushes.com/signup" customizationBlock:^(WCAlertView *alertView) {
             alertView.style = WCAlertViewStyleBlackHatched;
         } completionBlock:nil cancelButtonTitle:@"ok" otherButtonTitles:nil
          ];
-    }
-    return result;
+        
+    }];
+    
 }
 
 - (void)login:(NSString *)email password:(NSString *)password

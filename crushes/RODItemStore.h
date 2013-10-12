@@ -57,7 +57,7 @@
 - (void) addChat:(NSString *)chat;
 - (void) generateLoginAlert;
 - (void) logout;
-- (BOOL) signup:(NSString *)email password:(NSString *)password;
+- (void) signup:(NSString *)email password:(NSString *)password;
 - (void) login:(NSString *)email password:(NSString *)password;
 - (void) hideLetter:(NSNumber *)letter_id;
 - (void) editLetter:(NSNumber *)letter_id;
