@@ -120,6 +120,8 @@
 		5D770C6E180872640061D243 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D770C6C180872640061D243 /* SignupViewController.m */; };
 		5D770C6F180872640061D243 /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D770C6D180872640061D243 /* SignupViewController.xib */; };
 		5D770C711808FE3F0061D243 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D770C701808FE3F0061D243 /* Images.xcassets */; };
+		5D770C751809A2880061D243 /* BlankSlateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D770C731809A2880061D243 /* BlankSlateViewController.m */; };
+		5D770C761809A2880061D243 /* BlankSlateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D770C741809A2880061D243 /* BlankSlateViewController.xib */; };
 		5D7ABC841804EB57007D253D /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7ABC831804EB57007D253D /* Default-Portrait@2x~ipad.png */; };
 		5D7ABC861804EB6E007D253D /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7ABC851804EB6E007D253D /* Default-Landscape~ipad.png */; };
 		5D7ABC881804EB82007D253D /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D7ABC871804EB82007D253D /* Default-Landscape@2x~ipad.png */; };
@@ -300,6 +302,9 @@
 		5D770C6C180872640061D243 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		5D770C6D180872640061D243 /* SignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupViewController.xib; sourceTree = "<group>"; };
 		5D770C701808FE3F0061D243 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5D770C721809A2880061D243 /* BlankSlateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlankSlateViewController.h; sourceTree = "<group>"; };
+		5D770C731809A2880061D243 /* BlankSlateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlankSlateViewController.m; sourceTree = "<group>"; };
+		5D770C741809A2880061D243 /* BlankSlateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlankSlateViewController.xib; sourceTree = "<group>"; };
 		5D7ABC831804EB57007D253D /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		5D7ABC851804EB6E007D253D /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		5D7ABC871804EB82007D253D /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
@@ -418,6 +423,9 @@
 				5DE2533617B132070069EC96 /* LettersScrollController.h */,
 				5DE2533717B132070069EC96 /* LettersScrollController.m */,
 				5DE2533517B132070069EC96 /* LettersScrollController.xib */,
+				5D770C721809A2880061D243 /* BlankSlateViewController.h */,
+				5D770C731809A2880061D243 /* BlankSlateViewController.m */,
+				5D770C741809A2880061D243 /* BlankSlateViewController.xib */,
 				5D977D0117E61B99002DA837 /* AddCommentViewController.h */,
 				5D977D0217E61B99002DA837 /* AddCommentViewController.m */,
 				5D977D0317E61B99002DA837 /* AddCommentViewController.xib */,
@@ -755,6 +763,7 @@
 				5D528D1B17C6C57C00AAB762 /* J1-grayOnBlack-small-highlighted.png in Resources */,
 				5D528D1C17C6C57C00AAB762 /* J1-grayOnBlack-small-highlighted@2x.png in Resources */,
 				5D528D1D17C6C57C00AAB762 /* J1-grayOnBlack-small-normal.png in Resources */,
+				5D770C761809A2880061D243 /* BlankSlateViewController.xib in Resources */,
 				5D528D1E17C6C57C00AAB762 /* J1-grayOnBlack-small-normal@2x.png in Resources */,
 				5D528D1F17C6C57C00AAB762 /* J1-grayOnBlack-small-selected.png in Resources */,
 				5D528D2017C6C57C00AAB762 /* J1-grayOnBlack-small-selected@2x.png in Resources */,
@@ -855,6 +864,7 @@
 				5DC4F3451800B99600B2117D /* J1Button.m in Sources */,
 				5D7609B5179DCE100018F27B /* RODItemStore.m in Sources */,
 				5D7609D617A0588B0018F27B /* ScrollViewItem.m in Sources */,
+				5D770C751809A2880061D243 /* BlankSlateViewController.m in Sources */,
 				5DE2533317B130790069EC96 /* LetterCommentsViewController.m in Sources */,
 				5DE2533917B132070069EC96 /* LettersScrollController.m in Sources */,
 				5DE2534117B301050069EC96 /* RKComment.m in Sources */,

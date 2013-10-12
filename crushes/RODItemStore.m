@@ -16,6 +16,7 @@
 #import "RKComment.h"
 #import "RKChat.h"
 #import "WCAlertView.h"
+#import "BlankSlateViewController.h"
 
 @implementation RODItemStore
 @synthesize loginStatus, current_load_level, current_page, last_device_orientation, current_viewtype, current_search_terms, connected_to_chat, chatHub, chatConnection;
@@ -283,19 +284,41 @@
             [_allLetters addObject:current_letter];
         }
         
+
         // now i need to tell the letters view controller that
         // it should reload the table view
         
         // first, i clear it for the search function though...
         if(current_load_level == 120) {
-            AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
             [appDelegate.lettersScrollController clearLettersAndReset];
             appDelegate.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
         }
         
         RKFullLetter *full_letter;
-        full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:0];
-        [appDelegate.lettersScrollController.testWebView loadHTMLString:full_letter.letterMessage baseURL:nil];
+
+        // if the user is currently on the bookmarks,
+        // and they HAVE NO BOOKMARKS, we must be able
+        // to show them the special blank slate screen
+        // and also prevent the whole thing from crashing too
+        
+        if((current_load_level == 100) && ([_allLetters count] == 0)) {
+
+            // now add the blank slate
+            BlankSlateViewController *blank = [[BlankSlateViewController alloc] init];
+            blank.view.frame = CGRectMake(0, 0, appDelegate.lettersScrollController.scrollView.bounds.size.width, blank.view.frame.size.height);
+            
+            [appDelegate.lettersScrollController.scrollView addSubview:blank.view];
+
+//            [pager.buttonNext addTarget:self action:@selector(nextButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
+        } else {
+
+            full_letter = [[[RODItemStore sharedStore] allLetters] objectAtIndex:0];
+            [appDelegate.lettersScrollController.testWebView loadHTMLString:full_letter.letterMessage baseURL:nil];
+                        
+            
+        }
         
         
     } failure: ^(RKObjectRequestOperation *operation, NSError *error) {
