@@ -53,7 +53,9 @@
 
     [self.view addSubview:self.tableView];
     [self.tableView reloadData];
-
+    
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    [self.tableView setSeparatorColor:[UIColor clearColor]];
     
 }
 
