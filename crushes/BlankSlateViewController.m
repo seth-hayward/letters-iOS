@@ -8,10 +8,6 @@
 
 #import "BlankSlateViewController.h"
 
-@interface BlankSlateViewController ()
-
-@end
-
 @implementation BlankSlateViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "J1Button.h"
 
 @interface BlankSlateViewController : UIViewController
+@property (weak, nonatomic) IBOutlet J1Button *btnGoToSend;
+@property (weak, nonatomic) IBOutlet J1Button *btnGoToMore;
 
 @end

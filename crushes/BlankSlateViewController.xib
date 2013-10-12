@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BlankSlateViewController">
             <connections>
+                <outlet property="btnGoToMore" destination="Oae-DJ-QIq" id="Ib0-Vv-mHu"/>
+                <outlet property="btnGoToSend" destination="CzR-3z-2Mt" id="vpi-Gv-7N1"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -68,7 +70,6 @@
                 <constraint firstItem="Oae-DJ-QIq" firstAttribute="width" secondItem="CzR-3z-2Mt" secondAttribute="width" id="AfF-Mj-KLM"/>
                 <constraint firstItem="StH-7k-ABq" firstAttribute="top" secondItem="1" secondAttribute="top" constant="214" id="BLG-Mw-M09"/>
                 <constraint firstItem="Oae-DJ-QIq" firstAttribute="top" secondItem="1" secondAttribute="top" constant="161" id="GF1-Pp-Bvh"/>
-                <constraint firstItem="Oae-DJ-QIq" firstAttribute="bottom" secondItem="CzR-3z-2Mt" secondAttribute="bottom" id="Jo3-RA-Z6Y"/>
                 <constraint firstItem="baG-um-MpN" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="P5g-M4-pPq"/>
                 <constraint firstItem="Oae-DJ-QIq" firstAttribute="trailing" secondItem="K36-ZJ-OeV" secondAttribute="trailing" id="XLg-9I-qcL"/>
                 <constraint firstItem="Oae-DJ-QIq" firstAttribute="top" secondItem="K36-ZJ-OeV" secondAttribute="bottom" constant="1" id="Yln-5y-0KI"/>
