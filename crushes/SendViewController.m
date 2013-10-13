@@ -42,10 +42,10 @@
     self.messageText.layer.borderWidth = 5.0f;
     self.messageText.layer.borderColor = [[UIColor grayColor] CGColor];
     
-    UIBarButtonItem *btnAC = [[UIBarButtonItem alloc] initWithTitle:@"send" style:UIBarButtonItemStylePlain target:self action:@selector(addCommentPlease:)];
-    [btnAC setTintColor:[UIColor blueColor]];
+    UIBarButtonItem *btnSend = [[UIBarButtonItem alloc] initWithTitle:@"send" style:UIBarButtonItemStylePlain target:self action:@selector(sendLetter:)];
+    [btnSend setTintColor:[UIColor blueColor]];
     
-    [self.navigationItem setRightBarButtonItem:btnAC];
+    [self.navigationItem setRightBarButtonItem:btnSend];
 
     UIButton *button_menu = [UIButton buttonWithType:UIButtonTypeCustom];
     [button_menu setFrame:CGRectMake(0, 0, 30, 30)];
