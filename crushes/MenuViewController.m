@@ -63,6 +63,11 @@
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    NSLog(@"Top class: %@", [[appDelegate.navigationController visibleViewController] class]);
+        
 }
 
 - (UIView *)loginView
@@ -157,7 +162,7 @@
             break;
         case ViewTypeMore:
             self.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
-            [appDelegate.lettersScrollController clearLettersAndReset];            
+            [appDelegate.lettersScrollController clearLettersAndReset];
             [[RODItemStore sharedStore] loadLettersByPage:1 level:-1];
             break;
         case ViewTypeBookmarks:
