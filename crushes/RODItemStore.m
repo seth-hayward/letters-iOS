@@ -307,8 +307,11 @@
             BlankSlateViewController *blank = [[BlankSlateViewController alloc] init];
             blank.view.frame = CGRectMake(0, 0, appDelegate.lettersScrollController.scrollView.bounds.size.width, blank.view.frame.size.height);
             
+            // add a tag so it gets removed
+            blank.view.tag = 10243;
             
             [blank.btnGoToMore addTarget:self action:@selector(goMorePage:) forControlEvents:UIControlEventTouchUpInside];
+            [blank.btnGoToSend addTarget:self action:@selector(goSendPage:) forControlEvents:UIControlEventTouchUpInside];
             
             [appDelegate.lettersScrollController.scrollView addSubview:blank.view];
             
@@ -334,16 +337,20 @@
     
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate.lettersScrollController clearLettersAndReset];
+    
     self.current_load_level = -1;
     [self loadLettersByPage:1 level:self.current_load_level];
     
 }
 
-- (void)goSendPage
+- (void)goSendPage:(UIButton *)button
 {
-    NSLog(@"Load send page.");
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.lettersScrollController clearLettersAndReset];
+    
+    appDelegate.navigationController.viewControllers = @[ appDelegate.sendViewController ];
 }
-                                                               
+
 - (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level
 {
     [self loadLettersByPage:page level:load_level terms:nil];

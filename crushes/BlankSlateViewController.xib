@@ -87,7 +87,6 @@
                 <constraint firstItem="CzR-3z-2Mt" firstAttribute="leading" secondItem="StH-7k-ABq" secondAttribute="leading" id="xgm-6a-bjO"/>
                 <constraint firstItem="baG-um-MpN" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" id="xmb-Rp-TxG"/>
                 <constraint firstItem="K36-ZJ-OeV" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="y86-A7-m0m"/>
-                <constraint firstItem="Oae-DJ-QIq" firstAttribute="leading" secondItem="StH-7k-ABq" secondAttribute="trailing" constant="25" id="zUF-GV-2oq"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
