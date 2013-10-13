@@ -458,6 +458,10 @@
                     l.checked = false;
                 }
             }
+                        
+            // ADD BOOKMARKS, LOGOUT
+            // REMOVE SIGNUP, LOGIN
+            [self recreateNavigationMenu];
             
             [[RODItemStore sharedStore] loadLettersByPage:1  level:0];
             
@@ -573,21 +577,7 @@
             
             [[RODItemStore sharedStore] saveSettings];
             
-            // rebuild the menu table
-            // remove Signup, Login
-            
-            NSArray *_copy = [_allMenuItems copy];
-            
-            for(RODItem *l in _copy) {
-                if(l.viewType == ViewTypeSignup || l.viewType == ViewTypeLogin)
-                {
-                    [_allMenuItems removeObject:l];
-                }
-            }
-            
-            
-            [self createItem:ViewTypeBookmarks];
-            [self createItem:ViewTypeLogout];
+            [self recreateNavigationMenu];
             
             // check to see if the user is a mod
             [self checkUserStatus];
@@ -620,6 +610,27 @@
         
         self.loginStatus = [NSNumber numberWithInt:0];
     }];
+    
+}
+
+
+- (void)recreateNavigationMenu
+{
+    // rebuild the menu table
+    // remove Signup, Login
+    
+    NSArray *_copy = [_allMenuItems copy];
+    
+    for(RODItem *l in _copy) {
+        if(l.viewType == ViewTypeSignup || l.viewType == ViewTypeLogin)
+        {
+            [_allMenuItems removeObject:l];
+        }
+    }
+    
+    
+    [self createItem:ViewTypeBookmarks];
+    [self createItem:ViewTypeLogout];
     
 }
 
