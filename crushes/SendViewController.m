@@ -190,7 +190,8 @@
                 // now display a webview with the letter...
                 
                 AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-                [appDelegate.navigationController popViewControllerAnimated:YES];
+                
+                appDelegate.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
                 
                 [appDelegate.lettersScrollController clearLettersAndReset];
                 [[RODItemStore sharedStore] loadLettersByPage:1 level:-1];
