@@ -841,9 +841,10 @@
     
     [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
-        [appDelegate.navigationController pushViewController:appDelegate.sendViewController animated:YES];
+        //[appDelegate.navigationController pushViewController:appDelegate.sendViewController animated:YES];
+        appDelegate.navigationController.viewControllers = @[ appDelegate.sendViewController ];
 
-        [RODItemStore sharedStore].current_viewtype = ViewTypeSend;
+        [[RODItemStore sharedStore] setCurrent_viewtype:ViewTypeSend];
                 
         RKFullLetter *letter = mappingResult.array[0];
         NSLog(@"Loaded letter: %@", letter.letterMessage);

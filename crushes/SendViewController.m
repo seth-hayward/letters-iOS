@@ -192,7 +192,7 @@
                 AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
                 
                 appDelegate.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
-                
+                                
                 [appDelegate.lettersScrollController clearLettersAndReset];
                 [[RODItemStore sharedStore] loadLettersByPage:1 level:-1];
                 
@@ -271,10 +271,12 @@
 
                 // reload the page
                 AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-                [appDelegate.navigationController popViewControllerAnimated:YES];
                 
                 [appDelegate.lettersScrollController clearLettersAndReset];
                 [[RODItemStore sharedStore] loadLettersByPage:[RODItemStore sharedStore].current_page level:[RODItemStore sharedStore].current_load_level];
+
+                appDelegate.navigationController.viewControllers = @[ appDelegate.lettersScrollController ];
+                
                 
                 [WCAlertView showAlertWithTitle:@"Success!" message:@"Your letter was edited." customizationBlock:^(WCAlertView *alertView) {
                     alertView.style = WCAlertViewStyleBlackHatched;
