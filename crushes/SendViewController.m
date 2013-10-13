@@ -109,6 +109,8 @@
         //
         // send letter
         //
+        
+        [self.indicator startAnimating];
 
         responseObjectMapping = [RKObjectMapping mappingForClass:[RKMessage class]];
         
@@ -200,9 +202,13 @@
                     alertView.style = WCAlertViewStyleBlackHatched;
                 } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
                 } cancelButtonTitle:@"Great!" otherButtonTitles:nil];
-                
             }
+            
+            [self.indicator stopAnimating];
+            
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+           
+            [self.indicator stopAnimating];
             
             // this occurs when restkit can not send a post -- this could happen
             // if the user does not have internet connection at the time
@@ -217,6 +223,8 @@
         //
 
         NSLog(@"editing letter: %@", editingId);
+        
+        [self.indicator startAnimating];
         
         RKEditLetter* edit_letter = [RKEditLetter new];
         edit_letter.mobile = @"1";
@@ -266,6 +274,7 @@
                 self.labelCallToAction.text = @"Write your letter.";
                 [self.sendButton setTitle:@"Send" forState:UIControlStateNormal];
                 self.messageText.text = @"";
+                self.isEditing = NO;
                 
                 // now display a webview with the letter...
 
@@ -286,8 +295,14 @@
                 
                 
                 
-            }
+            }                                                                                                                                                                                                           
+            
+            [self.indicator stopAnimating];
+            
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+            
+            
+            [self.indicator stopAnimating];
             
             // this occurs when restkit can not send a post -- this could happen
             // if the user does not have internet connection at the time

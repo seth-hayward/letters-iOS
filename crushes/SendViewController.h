@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *messageText;
 @property (nonatomic) BOOL *isEditing;
 @property (strong, nonatomic) NSString *editingId;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
 @end
