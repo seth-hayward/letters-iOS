@@ -262,6 +262,31 @@
         
         AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
         
+        switch(current_load_level)
+        {
+                // mod letters
+            case -10:
+                [self setCurrent_viewtype:ViewTypeModLetters];
+                break;
+                // more
+            case -1:
+                [self setCurrent_viewtype:ViewTypeMore];
+                break;
+                // home
+            case 0:
+                [self setCurrent_viewtype:ViewTypeHome];
+                break;
+                // bookmarks
+            case 100:
+                [self setCurrent_viewtype:ViewTypeBookmarks];
+                break;
+                // search
+            case 120:
+                [self setCurrent_viewtype:ViewTypeSearch];
+                break;
+                
+        }
+        
         // now loop through the result and add all of these
         for(int i = 0; i<[mappingResult count]; i++) {
             RKFullLetter *current_letter = mappingResult.array[i];
@@ -349,6 +374,7 @@
     [appDelegate.lettersScrollController clearLettersAndReset];
     
     appDelegate.navigationController.viewControllers = @[ appDelegate.sendViewController ];
+    [self setCurrent_viewtype:ViewTypeSend];
 }
 
 - (void)loadLettersByPage:(NSInteger)page level:(NSInteger)load_level
@@ -469,6 +495,19 @@
         
     }];
     
+}
+
+- (void)setCurrent_viewtype:(ViewType)type
+{
+    // set HOme to be checked
+    for(RODItem *l in _allMenuItems) {
+        if(l.viewType == type) {
+            l.checked = true;
+        } else {
+            l.checked = false;
+        }
+    }
+
 }
 
 - (void)login:(NSString *)email password:(NSString *)password

@@ -13,6 +13,7 @@
 #import "WCAlertView.h"
 #import <REFrostedViewController.h>
 #import "LetterCommentsViewController.h"
+#import "LettersScrollController.h"
 
 @implementation MenuViewController
 @synthesize tableView, navigationController;
@@ -67,7 +68,8 @@
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     
     NSLog(@"Top class: %@", [[appDelegate.navigationController visibleViewController] class]);
-        
+    
+    
 }
 
 - (UIView *)loginView

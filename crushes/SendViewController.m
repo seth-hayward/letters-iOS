@@ -155,7 +155,7 @@
                 [self.messageText setText:@""];
                 
                 // add add RODSentLetter object to the settings object
-                // We keep track of these objects so we know which letters
+                // We keep track of these o                                                                                                                                                                                                             bjects so we know which letters
                 // to show the hide/edit buttons on, really this should be
                 // done on the server....
                 
