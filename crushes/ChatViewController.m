@@ -317,10 +317,10 @@
     [refreshControl addTarget:self action:@selector(requestBacklog:) forControlEvents:UIControlEventValueChanged];
     [self.tableChats addSubview:refreshControl];
     
-    [RODItemStore sharedStore].chatConnection = [SRHubConnection connectionWithURL:@"http://letterstocrushes.com"];
+    [RODItemStore sharedStore].chatConnection = [SRHubConnection connectionWithURL:@"http://return-on-development.com/"];
     [RODItemStore sharedStore].chatConnection.delegate = [[RODItemStore sharedStore] self];
     
-    [RODItemStore sharedStore].chatHub = [[RODItemStore sharedStore].chatConnection createHubProxy:@"VisitorUpdate"];
+    [RODItemStore sharedStore].chatHub = [[RODItemStore sharedStore].chatConnection createHubProxy:@"visitorUpdate"];
     
     [RODItemStore sharedStore].chatConnection.error = ^(NSError * __strong err){
         [_labelStatus setImage:[UIImage imageNamed:@"cog-black.png"]];
@@ -329,12 +329,6 @@
         [self enterChat];
     };
                                           
-    
-//    [RODItemStore sharedStore].chatConnection.reconnected = ^{
-//        NSLog(@"Reconnected.. hihihi");
-//        [self addSimpleMessage:@"chatConnection.reconnected fired."];
-// //       [self askForBacklog];
-//    };
     
     [RODItemStore sharedStore].chatConnection.started = ^{
         NSLog(@"Connection started.");
