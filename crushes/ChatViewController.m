@@ -317,7 +317,7 @@
     [refreshControl addTarget:self action:@selector(requestBacklog:) forControlEvents:UIControlEventValueChanged];
     [self.tableChats addSubview:refreshControl];
     
-    [RODItemStore sharedStore].chatConnection = [SRHubConnection connectionWithURL:@"http://return-on-development.com/"];
+    [RODItemStore sharedStore].chatConnection = [SRHubConnection connectionWithURL:@"http://www.letterstocrushes.com/"];
     [RODItemStore sharedStore].chatConnection.delegate = [[RODItemStore sharedStore] self];
     
     [RODItemStore sharedStore].chatHub = [[RODItemStore sharedStore].chatConnection createHubProxy:@"visitorUpdate"];
