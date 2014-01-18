@@ -659,6 +659,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Seth Hayward";
+				TargetAttributes = {
+					5D0BD0371670AAA30088A383 = {
+						DevelopmentTeam = 83Z475K83E;
+					};
+				};
 			};
 			buildConfigurationList = 5D0BD0321670AAA30088A383 /* Build configuration list for PBXProject "crushes" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -955,11 +960,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = crushes/crushes.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "crushes/crushes-Prefix.pch";
 				INFOPLIST_FILE = "crushes/crushes-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "046D3882-C1B6-47F8-8186-7892C643CD08";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -972,15 +980,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = crushes/crushes.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Seth Hayward";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Seth Hayward";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "crushes/crushes-Prefix.pch";
 				INFOPLIST_FILE = "crushes/crushes-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "703DFDCF-0196-4297-B57F-0CF04B1773B0";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "703DFDCF-0196-4297-B57F-0CF04B1773B0";
+				PROVISIONING_PROFILE = "046D3882-C1B6-47F8-8186-7892C643CD08";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
