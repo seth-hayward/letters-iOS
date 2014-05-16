@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
 
-
-@interface AddCommentViewController : GAITrackedViewController <UITextViewDelegate>
+@interface AddCommentViewController : UIViewController <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *textCommenterName;
 @property (weak, nonatomic) IBOutlet UITextView *textCommenterEmail;
 @property (weak, nonatomic) IBOutlet UITextView *textComment;

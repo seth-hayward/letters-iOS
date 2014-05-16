@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
 
-@interface ChatNameViewController : GAITrackedViewController <UITextViewDelegate>
+@interface ChatNameViewController : UIViewController <UITextViewDelegate>
 {
     UIBarButtonItem* _goChat;
 }
