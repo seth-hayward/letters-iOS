@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GAITrackedViewController.h"
 
-@interface SendViewController : GAITrackedViewController <UITextFieldDelegate>
+@interface SendViewController : UIViewController <UITextFieldDelegate>
 {
 }
 - (IBAction)backgroundTapped:(id)sender;

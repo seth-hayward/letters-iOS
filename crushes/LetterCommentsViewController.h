@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
 #import "AddCommentViewController.h"
 
-@interface LetterCommentsViewController : GAITrackedViewController <UIWebViewDelegate, UITextViewDelegate>
+@interface LetterCommentsViewController : UIViewController <UIWebViewDelegate, UITextViewDelegate>
 {
     UIBarButtonItem* btnAddComment;
 }

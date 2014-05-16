@@ -429,8 +429,8 @@
 				5D977D0117E61B99002DA837 /* AddCommentViewController.h */,
 				5D977D0217E61B99002DA837 /* AddCommentViewController.m */,
 				5D977D0317E61B99002DA837 /* AddCommentViewController.xib */,
-				5DE2533117B130790069EC96 /* LetterCommentsViewController.m */,
 				5DE2533017B130790069EC96 /* LetterCommentsViewController.h */,
+				5DE2533117B130790069EC96 /* LetterCommentsViewController.m */,
 				5DE2533217B130790069EC96 /* LetterCommentsViewController.xib */,
 				5D7609D317A058890018F27B /* ScrollViewItem.h */,
 				5D7609D417A058890018F27B /* ScrollViewItem.m */,
@@ -960,14 +960,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = crushes/crushes.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Seth Hayward (3LDR3NFF35)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Seth Hayward (3LDR3NFF35)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "crushes/crushes-Prefix.pch";
 				INFOPLIST_FILE = "crushes/crushes-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "BE7821D2-D58E-49D8-B72E-14623FD00837";
+				PROVISIONING_PROFILE = "7D7619B4-DCCB-4087-AE2D-6DC0FBF13763";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -980,15 +980,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = crushes/crushes.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Seth Hayward (3LDR3NFF35)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Seth Hayward (3LDR3NFF35)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "crushes/crushes-Prefix.pch";
 				INFOPLIST_FILE = "crushes/crushes-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "BE7821D2-D58E-49D8-B72E-14623FD00837";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "7D7619B4-DCCB-4087-AE2D-6DC0FBF13763";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7D7619B4-DCCB-4087-AE2D-6DC0FBF13763";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

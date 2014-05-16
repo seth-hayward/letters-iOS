@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <GAITrackedViewController.h>
 
-@interface SignupViewController : GAITrackedViewController <UITextFieldDelegate>
+@interface SignupViewController : UIViewController <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textEmail;
 @property (weak, nonatomic) IBOutlet UITextField *textPassword;
 

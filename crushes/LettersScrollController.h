@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GAITrackedViewController.h"
 
-@interface LettersScrollController : GAITrackedViewController <UIWebViewDelegate, UIScrollViewDelegate>
+@interface LettersScrollController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate>
 {
     NSMutableArray *_items;
 }

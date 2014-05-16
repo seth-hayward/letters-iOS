@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "SendViewController.h"
 #import "MenuViewController.h"
-#import "GAI.h"
 #import "RODItemStore.h"
 #import "SearchViewController.h"
 #import <REFrostedViewController.h>
@@ -31,30 +30,30 @@
     
     SearchViewController *searchVC = [[SearchViewController alloc] init];
     searchViewController = searchVC;
-    searchViewController.trackedViewName = @"Search";
+//    searchViewController.trackedViewName = @"Search";
     
     SendViewController *sendVC = [[SendViewController alloc] init];
     sendViewController = sendVC;
-    sendViewController.trackedViewName = @"Send Letter";
+//    sendViewController.trackedViewName = @"Send Letter";
     
     MenuViewController * leftDrawer = [[MenuViewController alloc] init];
     menuViewController = leftDrawer;
     
     ChatNameViewController *_chatNameVC = [[ChatNameViewController alloc] init];
     chatNameViewController = _chatNameVC;
-    chatNameViewController.trackedViewName = @"Chat Name";
+//    chatNameViewController.trackedViewName = @"Chat Name";
     
     ChatViewController *_chatVC = [[ChatViewController alloc] init];
     chatViewController = _chatVC;
-    chatViewController.trackedViewName = @"Chat";
+//    chatViewController.trackedViewName = @"Chat";
     
     LettersScrollController *lettersScrollVC = [[LettersScrollController alloc] init];
     lettersScrollController = lettersScrollVC;
-    lettersScrollController.trackedViewName = @"Letters";
+//    lettersScrollController.trackedViewName = @"Letters";
     
     AddCommentViewController *addCommentVC = [[AddCommentViewController alloc] init];
     addCommentViewController = addCommentVC;
-    addCommentViewController.trackedViewName = @"Add Comment";
+//    addCommentViewController.trackedViewName = @"Add Comment";
     
     SignupViewController *suVC = [[SignupViewController alloc] init];
     suViewController = suVC;
@@ -95,15 +94,15 @@
     // integrate with google analytics
     //
     
-    // Optional: automatically send uncaught exceptions to Google Analytics.
-    [GAI sharedInstance].trackUncaughtExceptions = YES;
-    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-    [GAI sharedInstance].dispatchInterval = 20;
-    // Optional: set debug to YES for extra debugging information.
-    [GAI sharedInstance].debug = NO;
-    // Create tracker instance.
-    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-42351224-1"];
-        
+//    // Optional: automatically send uncaught exceptions to Google Analytics.
+//    [GAI sharedInstance].trackUncaughtExceptions = YES;
+//    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+//    [GAI sharedInstance].dispatchInterval = 20;
+//    // Optional: set debug to YES for extra debugging information.
+//    [GAI sharedInstance].debug = NO;
+//    // Create tracker instance.
+//    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-42351224-1"];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
